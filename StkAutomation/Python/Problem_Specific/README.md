@@ -66,7 +66,7 @@ Step 2. Explore the sample code in HWM93STKpy notebook. Filepaths will need to b
 
 * Licenses: [STK Pro](https://www.ansys.com/content/dam/amp/2022/june/webpage-requests/stk-product-page/brochures/stk-pro-brochure.pdf)
 * Other Scripts: N/A
-* Scenario: [EOIRTrackingInTheLoopScenarios](/SupportingScenarios/EOIRTrackingInTheLoopScenarios.zip)
+* Scenario: N/A
 
 ---
 
@@ -80,7 +80,7 @@ Notebooks and libraries to automate STK, take EOIR images, process images, gener
 
 * Licenses: [STK Premium Space](https://www.ansys.com/content/dam/amp/2022/june/webpage-requests/stk-product-page/brochures/stk-premium-space-brochure.pdf) or [STK Premium Air](https://www.ansys.com/content/dam/amp/2022/june/webpage-requests/stk-product-page/brochures/stk-premium-air-brochure.pdf)
 * Other Scripts: N/A
-* Scenario: 
+* Scenario: [EOIRTrackingInTheLoopScenarios](/SupportingScenarios/EOIRTrackingInTheLoopScenarios.zip)
 * Third-Party Libraries: numpy, pandas, cv2, shutil, imageio, matplotlib, sklearn, skimage, scipy, astropy, PIL
 
 ---
