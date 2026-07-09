@@ -80,7 +80,7 @@ Notebooks and libraries to automate STK, take EOIR images, process images, gener
 
 * Licenses: [STK Premium Space](https://www.ansys.com/content/dam/amp/2022/june/webpage-requests/stk-product-page/brochures/stk-premium-space-brochure.pdf) or [STK Premium Air](https://www.ansys.com/content/dam/amp/2022/june/webpage-requests/stk-product-page/brochures/stk-premium-air-brochure.pdf)
 * Other Scripts: N/A
-* Scenario: N/A
+* Scenario: [EOIRTrackingInTheLoopScenarios](/SupportingScenarios/EOIRTrackingInTheLoopScenarios.zip)
 * Third-Party Libraries: numpy, pandas, cv2, shutil, imageio, matplotlib, sklearn, skimage, scipy, astropy, PIL
 
 ---
