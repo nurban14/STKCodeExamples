@@ -1,0 +1,14 @@
+C#
+
+//Check if an event interval collection with the specified name already exists.
+if (provider.EventIntervalCollections.Contains("EventIntervalCollectionName"))
+{
+    Console.WriteLine("The event interval collection \"{0}\" already exists!", "EventIntervalCollectionName");
+}
+
+vbNet
+
+'Check if an event interval collection with the specified name already exists.
+If provider.EventIntervalCollections.Contains("EventIntervalCollectionName") Then
+	Console.WriteLine("The event interval collection ""{0}"" already exists!", "EventIntervalCollectionName")
+End If

@@ -1,0 +1,31 @@
+C#
+
+// Get the acceleration performance model used for the current phase
+IAgAvtrPerformanceModelOptions acceleration = phase.GetPerformanceModelByType("Acceleration");
+// Check if it is linked to the catalog
+bool isLinkedToCatalog = acceleration.IsLinkedToCatalog;
+// Use the performance model in the catalog named "Built-In Model"
+acceleration.LinkToCatalog("Built-In Model");
+
+// Get the VTOL performance model
+IAgAvtrPerformanceModelOptions vtol = phase.GetPerformanceModelByType("VTOL");
+// Create a new vtol model of type AGI VTOL Model. Note that this new model does not exist in the catalog and only exists in the phase.
+vtol.CreateNew("AGI VTOL Model");
+// Rename the performance model
+vtol.Rename("Temporary VTOL Model");
+
+vbNet
+
+' Get the acceleration performance model used for the current phase
+Dim acceleration As IAgAvtrPerformanceModelOptions = phase.GetPerformanceModelByType("Acceleration")
+' Check if it is linked to the catalog
+Dim isLinkedToCatalog As Boolean = acceleration.IsLinkedToCatalog
+' Use the performance model in the catalog named "Built-In Model"
+acceleration.LinkToCatalog("Built-In Model")
+
+' Get the VTOL performance model
+Dim vtol As IAgAvtrPerformanceModelOptions = phase.GetPerformanceModelByType("VTOL")
+' Create a new vtol model of type AGI VTOL Model. Note that this new model does not exist in the catalog and only exists in the phase.
+vtol.CreateNew("AGI VTOL Model")
+' Rename the performance model
+vtol.Rename("Temporary VTOL Model")

@@ -1,0 +1,89 @@
+C#
+
+propagator.Method = AgEVeWayPtCompMethod.eDetermineVelFromTime;
+
+Array waypoints = Array.CreateInstance(typeof(object), 4, 5);
+// Point #1
+waypoints.SetValue("17 Jan 2013 17:00:00.000", 0, 0); // Time
+waypoints.SetValue(0.0, 0, 1); // Lat
+waypoints.SetValue(0.0, 0, 2); // Lon
+waypoints.SetValue(35000, 0, 3); // Alt
+waypoints.SetValue(0.0, 0, 4); // Turn radius
+
+// Point #2
+waypoints.SetValue("17 Jan 2013 17:01:00.000", 1, 0); // Time
+waypoints.SetValue(0.1, 1, 1); // Lat
+waypoints.SetValue(0.1, 1, 2); // Lon
+waypoints.SetValue(35100, 1, 3); // Alt
+waypoints.SetValue(0.2, 1, 4); // Turn radius
+
+// Point #3
+waypoints.SetValue("17 Jan 2013 17:02:00.000", 2, 0); // Time
+waypoints.SetValue(0.2, 2, 1); // Lat
+waypoints.SetValue(0.2, 2, 2); // Lon
+waypoints.SetValue(35200, 2, 3); // Alt
+waypoints.SetValue(0.0, 2, 4); // Turn radius
+
+// Point #4
+waypoints.SetValue("17 Jan 2013 17:03:00.000", 3, 0); // Time
+waypoints.SetValue(0.0, 3, 1); // Lat
+waypoints.SetValue(0.0, 3, 2); // Lon
+waypoints.SetValue(35200, 3, 3); // Alt
+waypoints.SetValue(0.0, 3, 4); // Turn radius
+
+propagator.SetPointsSpecifyTimeAndPropagate(ref waypoints);
+
+Assert.AreEqual(4, propagator.Waypoints.Count);
+
+vbNet
+
+propagator.Method = AgEVeWayPtCompMethod.eDetermineVelFromTime
+
+Dim waypoints As Array = Array.CreateInstance(GetType(Object), 4, 5)
+' Point #1
+waypoints.SetValue("17 Jan 2013 17:00:00.000", 0, 0)
+' Time
+waypoints.SetValue(0, 0, 1)
+' Lat
+waypoints.SetValue(0, 0, 2)
+' Lon
+waypoints.SetValue(35000, 0, 3)
+' Alt
+waypoints.SetValue(0, 0, 4)
+' Turn radius
+' Point #2
+waypoints.SetValue("17 Jan 2013 17:01:00.000", 1, 0)
+' Time
+waypoints.SetValue(0.1, 1, 1)
+' Lat
+waypoints.SetValue(0.1, 1, 2)
+' Lon
+waypoints.SetValue(35100, 1, 3)
+' Alt
+waypoints.SetValue(0.2, 1, 4)
+' Turn radius
+' Point #3
+waypoints.SetValue("17 Jan 2013 17:02:00.000", 2, 0)
+' Time
+waypoints.SetValue(0.2, 2, 1)
+' Lat
+waypoints.SetValue(0.2, 2, 2)
+' Lon
+waypoints.SetValue(35200, 2, 3)
+' Alt
+waypoints.SetValue(0, 2, 4)
+' Turn radius
+' Point #4
+waypoints.SetValue("17 Jan 2013 17:03:00.000", 3, 0)
+' Time
+waypoints.SetValue(0, 3, 1)
+' Lat
+waypoints.SetValue(0, 3, 2)
+' Lon
+waypoints.SetValue(35200, 3, 3)
+' Alt
+waypoints.SetValue(0, 3, 4)
+' Turn radius
+propagator.SetPointsSpecifyTimeAndPropagate(waypoints)
+
+Assert.AreEqual(4, propagator.Waypoints.Count)

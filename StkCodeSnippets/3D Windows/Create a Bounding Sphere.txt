@@ -1,0 +1,9 @@
+Matlab
+% IAgScenario scenario: Scenario object
+manager = scenario.SceneManager;
+sphere = manager.Initializers.BoundingSphere.Initialize({-1061.22;-5773.98;4456.04},100);
+Python
+
+# IAgScenario scenario: Scenario object
+manager = scenario.SceneManager
+sphere = manager.Initializers.BoundingSphere.Initialize([ [-1061.22],[-5773.98],[4456.04] ],100)

@@ -1,0 +1,21 @@
+Python
+## Extracting Specific Group Time Independent Data
+# IAgStkObjectRoot root: STK Object Model root
+# IAgFacility facility: Facility object
+# Change DateFormat dimension to epoch seconds to make the data easier to handle in Python
+
+root.UnitPreferences.Item('DateFormat').SetCurrentUnit('EpSec')
+
+#Retrieve only Normal x, Normal y, and Normal z DataSets from Data Provider
+elems = [['Normal x'], ['Normal y'],['Normal z']]
+
+facDP = facility.DataProviders.Item('Terrain Info').Group.Item('Topocentric').ExecElements(elems)
+normX = facDP.DataSets.GetDataSetByName('Normal x').GetValues()
+normY = facDP.DataSets.GetDataSetByName('Normal y').GetValues()
+normZ = facDP.DataSets.GetDataSetByName('Normal z').GetValues()
+
+#Alternatively...
+facDP = facility.DataProviders.GetDataPrvFixedFromPath('Terrain Info/Topocentric').ExecElements(elems)
+normX_2 = facDP.DataSets.GetDataSetByName('Normal x').GetValues()
+normY_2 = facDP.DataSets.GetDataSetByName('Normal y').GetValues()
+normZ_2 = facDP.DataSets.GetDataSetByName('Normal z').GetValues()

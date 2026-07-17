@@ -1,0 +1,9 @@
+C#
+
+IAgCrdnPoint point = provider.Points.Factory.Create("OriginalPoint", "description", AgECrdnPointType.eCrdnPointTypeAtTimeInstant);
+IAgCrdn anonymousDuplicate = ((IAgCrdn)point).AnonymousDuplicate();
+
+vbNet
+
+Dim point As IAgCrdnPoint = provider.Points.Factory.Create("OriginalPoint", "description", AgECrdnPointType.eCrdnPointTypeAtTimeInstant)
+Dim anonymousDuplicate As IAgCrdn = DirectCast(point, IAgCrdn).AnonymousDuplicate()

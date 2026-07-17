@@ -1,0 +1,17 @@
+Matlab
+% IAgAntenna antenna: Antenna object
+antenna.SetModel('Dipole');
+antennaModel = antenna.Model;
+antennaModel.DesignFrequency = 15; %GHz
+antennaModel.Length = 1.5; %m
+antennaModel.LengthToWavelengthRatio = 45;
+antennaModel.Efficiency = 85; %Percent
+Python
+
+# IAgAntenna antenna: Antenna object
+antenna.SetModel('Dipole')
+antennaModel = antenna.Model
+antennaModel.DesignFrequency = 15 # GHz
+antennaModel.Length = 1.5 # m
+antennaModel.LengthToWavelengthRatio = 45
+antennaModel.Efficiency = 85 # Percents

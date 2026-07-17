@@ -1,0 +1,16 @@
+C#
+
+Array center = new object[]
+{
+    1247.87,
+    -4739.74,
+    4067.77
+};
+
+IAgStkGraphicsBoundingSphere boundingSphere = sceneManager.Initializers.BoundingSphere.Initialize(ref center, 100);
+
+vbNet
+
+Dim center As Array = New Object() {1247.87, -4739.74, 4067.77}
+
+Dim boundingSphere As IAgStkGraphicsBoundingSphere = sceneManager.Initializers.BoundingSphere.Initialize(center, 100)

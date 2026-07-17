@@ -1,0 +1,15 @@
+Matlab
+%% Extracting Specific Ungrouped Time Dependent Data at a Single Point
+% IAgStkObjectRoot root: STK Object Model root
+% IAgSatellite satellite: Satellite object
+
+% Change DateFormat dimension to epoch seconds to make the data easier to handle in MATLAB
+root.UnitPreferences.Item('DateFormat').SetCurrentUnit('EpSec');
+
+%Retrieving only Precision Path Number and Precision Pass Number from Precision Pass Data Provider
+elems = {'Precision Path Number';'Precision Pass Number'};
+
+%satPassDP will not contain the Time dataset
+satPassDP = satellite.DataProviders.Item('Precision Passes').ExecSingleElements(2600, elems);
+path = cell2mat(satPassDP.DataSets.GetDataSetByName('Precision Path Number').GetValues);
+pass = cell2mat(satPassDP.DataSets.GetDataSetByName('Precision Pass Number').GetValues);

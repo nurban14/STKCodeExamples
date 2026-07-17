@@ -1,0 +1,14 @@
+C#
+
+//Check if an event with the specified name already exists.
+if (provider.Events.Contains("EventName"))
+{
+    Console.WriteLine("The event \"{0}\" already exists!", "EventName");
+}
+
+vbNet
+
+'Check if an event with the specified name already exists.
+If provider.Events.Contains("EventName") Then
+	Console.WriteLine("The event ""{0}"" already exists!", "EventName")
+End If

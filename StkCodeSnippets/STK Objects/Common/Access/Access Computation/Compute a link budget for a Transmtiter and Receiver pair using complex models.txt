@@ -1,0 +1,211 @@
+C#
+// IAgReceiver facilityReceiver: Receiver object
+// IAgAntenna facilityDish: Antenna object
+// IAgRFEnvironment scenarioRFEnv: Scenario RF Environment
+
+IAgStkObject xmtrAsStkObject = geoTransmitter as IAgStkObject;
+IAgStkObject rcvrAsStkObject = facilityReceiver as IAgStkObject;
+
+//Enable the rain loss computation on the scenario RF environment
+scenarioRFEnv.PropagationChannel.EnableRainLoss = true;
+
+//Set the transmitter to the complex model
+geoTransmitter.ModelComponentLinking.SetComponent("Complex Transmitter Model");
+IAgTransmitterModelComplex complexTrans = geoTransmitter.ModelComponentLinking.Component as IAgTransmitterModelComplex;
+
+//Set the complex transmitter model's frequency to 3.2 GHz
+complexTrans.Frequency = 3.2;
+
+//Set the complex transmitter model's Power to 50 dBW
+complexTrans.Power = 50.0;
+
+//Set the complex transmitter's embedded antenna model to helix
+complexTrans.AntennaControl.EmbeddedModelComponentLinking.SetComponent("Helix");
+
+//Set the beamwidth of the parablic antenna to 2 degrees
+IAgAntennaModelHelix helix = complexTrans.AntennaControl.EmbeddedModelComponentLinking.Component as IAgAntennaModelHelix;
+helix.NumberOfTurns = 30.0;
+
+//Orient the complex transmitter embedded antenna's boresight to point directly at the receiver's location
+complexTrans.AntennaControl.EmbeddedModelOrientation.AssignAzEl(287.2, 83.4, AgEAzElAboutBoresight.eAzElAboutBoresightRotate);
+
+//Set the receiver to the complex model
+facilityReceiver.ModelComponentLinking.SetComponent("Complex Receiver Model");
+IAgReceiverModelComplex complexRcvr = facilityReceiver.ModelComponentLinking.Component as IAgReceiverModelComplex;
+
+//Configure the complex receiver to use the antenna object on the same parent facility, by linking
+complexRcvr.AntennaControl.ReferenceType = AgEAntennaControlRefType.eAntennaControlRefTypeLink;
+complexRcvr.AntennaControl.LinkedAntennaObject = "Antenna/FacilityDish";
+
+//Enable rain loss computation on the receiver
+complexRcvr.UseRain = true;
+complexRcvr.RainOutagePercent = 0.001;
+
+//Enable the receiver system noise temperature computation.
+complexRcvr.SystemNoiseTemperature.ComputeType = AgENoiseTempComputeType.eNoiseTempComputeTypeCalculate;
+
+//Enable the antenna noise temperature computation
+complexRcvr.SystemNoiseTemperature.AntennaNoiseTemperature.ComputeType = AgENoiseTempComputeType.eNoiseTempComputeTypeCalculate;
+complexRcvr.SystemNoiseTemperature.AntennaNoiseTemperature.UseRain = true;
+
+//Orient the antenna object's boresight to point directly at the transmitter's location
+facilityDish.Orientation.AssignAzEl(202.6, 41.2, AgEAzElAboutBoresight.eAzElAboutBoresightRotate);
+
+//Set the antenna object's model to parabolic
+facilityDish.ModelComponentLinking.SetComponent("Parabolic");
+
+//Set the antenan object's design frequency to match the transmitter's 3.2 GHz
+((IAgAntennaModel)facilityDish.ModelComponentLinking.Component).DesignFrequency = 3.2;
+
+//Set the antenna object's parabolic model diameter to 5 m.
+IAgAntennaModelParabolic parabolic = facilityDish.ModelComponentLinking.Component as IAgAntennaModelParabolic;
+parabolic.InputType = AgEAntennaModelInputType.eAntennaModelInputTypeDiameter;
+parabolic.Diameter = 5.0;
+
+//Create an access object for the access between the transmitter and recevier objects
+IAgStkAccess linkAccess = xmtrAsStkObject.GetAccessToObject(rcvrAsStkObject);
+
+//Compute access
+linkAccess.ComputeAccess();
+
+// Get the access intervals
+IAgIntervalCollection accessIntervals = linkAccess.ComputedAccessIntervalTimes;
+
+// Extract the access intervals and the range information for each access interval
+Array dataPrvElements = new object[] { "Time", "Xmtr Gain", "Rcvr Gain", "Eb/No", "BER" };
+
+IAgDataPrvTimeVar dp = linkAccess.DataProviders["Link Information"] as IAgDataPrvTimeVar;
+
+for (int index0 = 0; index0 &lt; accessIntervals.Count; ++index0)
+{
+    object startTime = null, stopTime = null;
+
+    accessIntervals.GetInterval(index0, out startTime, out stopTime);
+
+    IAgDrResult result = dp.ExecElements(startTime, stopTime, 60, ref dataPrvElements);
+
+    Array timeValues = result.DataSets[0].GetValues();
+    Array xmtrGain = result.DataSets[1].GetValues();
+    Array rcvrGain = result.DataSets[2].GetValues();
+    Array ebno = result.DataSets[3].GetValues();
+    Array ber = result.DataSets[4].GetValues();
+
+    for (int index1 = 0; index1 &lt; timeValues.GetLength(0); ++index1)
+    {
+        string time = (string)timeValues.GetValue(index1);
+        double xmtrGainVal = (double)xmtrGain.GetValue(index1);
+        double rcvrGainVal = (double)rcvrGain.GetValue(index1);
+        double ebnoVal = (double)ebno.GetValue(index1);
+        double berVal = (double)ber.GetValue(index1);
+        Console.WriteLine("{0}: Xmtr Gain = {1} Rcvr Gain = {2} Eb/No={3} BER={4}", time, xmtrGainVal, rcvrGainVal, ebnoVal, berVal);
+    }
+
+    Console.WriteLine();
+}
+
+vbNet
+// IAgReceiver facilityReceiver: Receiver object
+// IAgAntenna facilityDish: Antenna object
+// IAgRFEnvironment scenarioRFEnv: Scenario RF Environment
+
+Dim xmtrAsStkObject As IAgStkObject = TryCast(geoTransmitter, IAgStkObject)
+Dim rcvrAsStkObject As IAgStkObject = TryCast(facilityReceiver, IAgStkObject)
+
+'Enable the rain loss computation on the scenario RF environment
+scenarioRFEnv.PropagationChannel.EnableRainLoss = True
+
+'Set the transmitter to the complex model
+geoTransmitter.ModelComponentLinking.SetComponent("Complex Transmitter Model")
+Dim complexTrans As IAgTransmitterModelComplex = TryCast(geoTransmitter.ModelComponentLinking.Component, IAgTransmitterModelComplex)
+
+'Set the complex transmitter model's frequency to 3.2 GHz
+complexTrans.Frequency = 3.2
+
+'Set the complex transmitter model's Power to 50 dBW
+complexTrans.Power = 50
+
+'Set the complex transmitter's embedded antenna model to helix
+complexTrans.AntennaControl.EmbeddedModelComponentLinking.SetComponent("Helix")
+
+'Set the beamwidth of the parablic antenna to 2 degrees
+Dim helix As IAgAntennaModelHelix = TryCast(complexTrans.AntennaControl.EmbeddedModelComponentLinking.Component, IAgAntennaModelHelix)
+helix.NumberOfTurns = 30
+
+'Orient the complex transmitter embedded antenna's boresight to point directly at the receiver's location
+complexTrans.AntennaControl.EmbeddedModelOrientation.AssignAzEl(287.2, 83.4, AgEAzElAboutBoresight.eAzElAboutBoresightRotate)
+
+'Set the receiver to the complex model
+facilityReceiver.ModelComponentLinking.SetComponent("Complex Receiver Model")
+Dim complexRcvr As IAgReceiverModelComplex = TryCast(facilityReceiver.ModelComponentLinking.Component, IAgReceiverModelComplex)
+
+'Configure the complex receiver to use the antenna object on the same parent facility, by linking
+complexRcvr.AntennaControl.ReferenceType = AgEAntennaControlRefType.eAntennaControlRefTypeLink
+complexRcvr.AntennaControl.LinkedAntennaObject = "Antenna/FacilityDish"
+
+'Enable rain loss computation on the receiver
+complexRcvr.UseRain = True
+complexRcvr.RainOutagePercent = 0.001
+
+'Enable the receiver system noise temperature computation.
+complexRcvr.SystemNoiseTemperature.ComputeType = AgENoiseTempComputeType.eNoiseTempComputeTypeCalculate
+
+'Enable the antenna noise temperature computation
+complexRcvr.SystemNoiseTemperature.AntennaNoiseTemperature.ComputeType = AgENoiseTempComputeType.eNoiseTempComputeTypeCalculate
+complexRcvr.SystemNoiseTemperature.AntennaNoiseTemperature.UseRain = True
+
+'Orient the antenna object's boresight to point directly at the transmitter's location
+facilityDish.Orientation.AssignAzEl(202.6, 41.2, AgEAzElAboutBoresight.eAzElAboutBoresightRotate)
+
+'Set the antenna object's model to parabolic
+facilityDish.ModelComponentLinking.SetComponent("Parabolic")
+
+'Set the antenan object's design frequency to match the transmitter's 3.2 GHz
+DirectCast(facilityDish.ModelComponentLinking.Component, IAgAntennaModel).DesignFrequency = 3.2
+
+'Set the antenna object's parabolic model diameter to 5 m.
+Dim parabolic As IAgAntennaModelParabolic = TryCast(facilityDish.ModelComponentLinking.Component, IAgAntennaModelParabolic)
+parabolic.InputType = AgEAntennaModelInputType.eAntennaModelInputTypeDiameter
+parabolic.Diameter = 5
+
+'Create an access object for the access between the transmitter and recevier objects
+Dim linkAccess As IAgStkAccess = xmtrAsStkObject.GetAccessToObject(rcvrAsStkObject)
+
+'Compute access
+linkAccess.ComputeAccess()
+
+' Get the access intervals
+Dim accessIntervals As IAgIntervalCollection = linkAccess.ComputedAccessIntervalTimes
+
+' Extract the access intervals and the range information for each access interval
+Dim dataPrvElements As Array = New Object() {"Time", "Xmtr Gain", "Rcvr Gain", "Eb/No", "BER"}
+
+Dim dp As IAgDataPrvTimeVar = TryCast(linkAccess.DataProviders("Link Information"), IAgDataPrvTimeVar)
+
+Dim index0 As Integer = 0
+While index0 &lt; accessIntervals.Count
+	Dim startTime As Object = Nothing, stopTime As Object = Nothing
+
+	accessIntervals.GetInterval(index0, startTime, stopTime)
+
+	Dim result As IAgDrResult = dp.ExecElements(startTime, stopTime, 60, dataPrvElements)
+
+	Dim timeValues As Array = result.DataSets(0).GetValues()
+	Dim xmtrGain As Array = result.DataSets(1).GetValues()
+	Dim rcvrGain As Array = result.DataSets(2).GetValues()
+	Dim ebno As Array = result.DataSets(3).GetValues()
+	Dim ber As Array = result.DataSets(4).GetValues()
+
+	Dim index1 As Integer = 0
+	While index1 &lt; timeValues.GetLength(0)
+		Dim time As String = DirectCast(timeValues.GetValue(index1), String)
+		Dim xmtrGainVal As Double = DirectCast(xmtrGain.GetValue(index1), Double)
+		Dim rcvrGainVal As Double = DirectCast(rcvrGain.GetValue(index1), Double)
+		Dim ebnoVal As Double = DirectCast(ebno.GetValue(index1), Double)
+		Dim berVal As Double = DirectCast(ber.GetValue(index1), Double)
+		Console.WriteLine("{0}: Xmtr Gain = {1} Rcvr Gain = {2} Eb/No={3} BER={4}", time, xmtrGainVal, rcvrGainVal, ebnoVal, berVal)
+		System.Threading.Interlocked.Increment(index1)
+	End While
+
+	Console.WriteLine()
+	System.Threading.Interlocked.Increment(index0)
+End While

@@ -1,0 +1,9 @@
+C#
+
+// Create the MTO
+IAgMto mto = root.CurrentScenario.Children.New(AgESTKObjectType.eMTO,  "mto1") as IAgMto;
+
+vbNet
+
+' Create the MTO
+Dim mto As IAgMto = TryCast(root.CurrentScenario.Children.[New](AgESTKObjectType.eMTO, "mto1"), IAgMto)

@@ -1,0 +1,15 @@
+C#
+
+// The path separator is //
+IAgDataProviderInfo dp = facility.DataProviders.GetDataPrvInfoFromPath("Lighting Times//Sunlight");
+string dpiName              = dp.Name;
+AgEDataProviderType dpiType = dp.Type;
+bool isGroup                = dp.IsGroup();
+
+vbNet
+
+' The path separator is //
+Dim dp As IAgDataProviderInfo = facility.DataProviders.GetDataPrvInfoFromPath("Lighting Times//Sunlight")
+Dim dpiName As String = dp.Name
+Dim dpiType As AgEDataProviderType = dp.Type
+Dim isGroup As Boolean = dp.IsGroup()

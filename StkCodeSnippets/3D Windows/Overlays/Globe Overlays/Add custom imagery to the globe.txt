@@ -1,0 +1,23 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+
+IAgStkGraphicsSceneManager manager = ((IAgScenario)root.CurrentScenario).SceneManager;
+
+IAgStkGraphicsCustomImageGlobeOverlayPluginActivator activator =
+    manager.Initializers.CustomImageGlobeOverlayPluginActivator.Initialize();
+IAgStkGraphicsCustomImageGlobeOverlayPluginProxy proxy =
+    activator.CreateFromDisplayName("OpenStreetMapPlugin.CSharp");
+
+IAgStkGraphicsCustomImageGlobeOverlay overlay = proxy.CustomImageGlobeOverlay;
+scene.CentralBodies.Earth.Imagery.Add((IAgStkGraphicsGlobeImageOverlay)overlay);
+
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+
+Dim manager As IAgStkGraphicsSceneManager = DirectCast(root.CurrentScenario, IAgScenario).SceneManager
+
+Dim activator As IAgStkGraphicsCustomImageGlobeOverlayPluginActivator = manager.Initializers.CustomImageGlobeOverlayPluginActivator.Initialize()
+Dim proxy As IAgStkGraphicsCustomImageGlobeOverlayPluginProxy = activator.CreateFromDisplayName("OpenStreetMapPlugin.VBNET")
+
+Dim overlay As IAgStkGraphicsCustomImageGlobeOverlay = proxy.CustomImageGlobeOverlay
+scene.CentralBodies.Earth.Imagery.Add(DirectCast(overlay, IAgStkGraphicsGlobeImageOverlay))

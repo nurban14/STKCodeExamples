@@ -1,0 +1,20 @@
+C#
+// AgECrdnEventType eventType: A event type.
+
+// Check if the specified event type is supported.
+if (provider.Events.Factory.IsTypeSupported(eventType))
+{
+    //Create an Event with the supported Type
+    IAgCrdnEvent @event = provider.Events.Factory.Create(
+        "MyEvent", string.Empty,
+        eventType);
+}
+
+vbNet
+// AgECrdnEventType eventType: A event type.
+
+' Check if the specified event type is supported.
+If provider.Events.Factory.IsTypeSupported(eventType) Then
+	'Create an Event with the supported Type
+	Dim [event] As IAgCrdnEvent = provider.Events.Factory.Create("MyEvent", String.Empty, eventType)
+End If

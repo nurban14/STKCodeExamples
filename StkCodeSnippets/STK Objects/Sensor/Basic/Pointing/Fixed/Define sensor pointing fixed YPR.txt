@@ -1,0 +1,4 @@
+Python
+# IAgSensor sensor: Sensor object
+# Change pointing and set
+sensor.CommonTasks.SetPointingFixedYPR(AgEYPRAnglesSequence.eRPY, 12, 24, 36)

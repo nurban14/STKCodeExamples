@@ -1,0 +1,15 @@
+Matlab
+% IAgAntenna antenna: Antenna object
+antOrientation = antenna.Orientation;
+antOrientation.AssignAzEl(0,-90,1) % 1 represents Rotate About Boresight
+antOrientation.PositionOffset.X = 0.0; %m
+antOrientation.PositionOffset.Y = 1; %m
+antOrientation.PositionOffset.Z = 0.25; %m
+
+Python
+# IAgAntenna antenna: Antenna object
+antOrientation = antenna.Orientation
+antOrientation.AssignAzEl(0,-90,1) # 1 represents Rotate About Boresight
+antOrientation.PositionOffset.X = 0.0 # m
+antOrientation.PositionOffset.Y = 1 # m
+antOrientation.PositionOffset.Z = 0.25 # m

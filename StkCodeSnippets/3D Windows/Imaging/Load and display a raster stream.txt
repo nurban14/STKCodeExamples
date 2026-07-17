@@ -1,0 +1,67 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+// String imageFile: Image file to use for the raster
+
+IAgStkGraphicsSceneManager manager = ((IAgScenario)root.CurrentScenario).SceneManager;
+IAgStkGraphicsScreenOverlayCollectionBase overlayManager = (IAgStkGraphicsScreenOverlayCollectionBase)manager.ScreenOverlays.Overlays;
+
+//
+// Create the RasterStream from the plugin
+//
+IAgStkGraphicsProjectionRasterStreamPluginActivator activator =
+    manager.Initializers.ProjectionRasterStreamPluginActivator.Initialize();
+IAgStkGraphicsProjectionRasterStreamPluginProxy proxy =
+    activator.CreateFromDisplayName("ProjectionRasterStreamPlugin.CSharp");
+
+//
+// Use reflection to set the plugin's properties
+//
+Type plugin = proxy.RealPluginObject.GetType();
+plugin.GetProperty("RasterPath").SetValue(proxy.RealPluginObject, imageFile, null);
+
+IAgStkGraphicsRasterStream rasterStream = proxy.RasterStream;
+rasterStream.UpdateDelta = 0.01667;
+
+//
+// Creates the texture screen overlay to display the raster
+//
+IAgStkGraphicsRendererTexture2D texture = manager.Textures.FromRaster((IAgStkGraphicsRaster)rasterStream);
+IAgStkGraphicsTextureScreenOverlay overlay =
+    manager.Initializers.TextureScreenOverlay.InitializeWithXYWidthHeight(0, 0,
+    texture.Template.Width, texture.Template.Height);
+overlay.Texture = texture;
+((IAgStkGraphicsOverlay)overlay).Origin = AgEStkGraphicsScreenOverlayOrigin.eStkGraphicsScreenOverlayOriginCenterLeft;
+
+overlayManager.Add((IAgStkGraphicsScreenOverlay)overlay);
+
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+// String imageFile: The image file
+
+Dim manager As IAgStkGraphicsSceneManager = DirectCast(root.CurrentScenario, IAgScenario).SceneManager
+Dim overlayManager As IAgStkGraphicsScreenOverlayCollectionBase = DirectCast(manager.ScreenOverlays.Overlays, IAgStkGraphicsScreenOverlayCollectionBase)
+
+'
+' Create the RasterStream from the plugin
+'
+Dim activator As IAgStkGraphicsProjectionRasterStreamPluginActivator = manager.Initializers.ProjectionRasterStreamPluginActivator.Initialize()
+Dim proxy As IAgStkGraphicsProjectionRasterStreamPluginProxy = activator.CreateFromDisplayName("ProjectionRasterStreamPlugin.VBNET")
+
+'
+' Use reflection to set the plugin's properties
+'
+Dim plugin As Type = proxy.RealPluginObject.[GetType]()
+plugin.GetProperty("RasterPath").SetValue(proxy.RealPluginObject, imageFile, Nothing)
+
+Dim rasterStream As IAgStkGraphicsRasterStream = proxy.RasterStream
+rasterStream.UpdateDelta = 0.01667
+
+'
+' Creates the texture overlay
+'
+Dim texture As IAgStkGraphicsRendererTexture2D = manager.Textures.FromRaster(DirectCast(rasterStream, IAgStkGraphicsRaster))
+Dim overlay As IAgStkGraphicsTextureScreenOverlay = manager.Initializers.TextureScreenOverlay.InitializeWithXYWidthHeight(0, 0, texture.Template.Width, texture.Template.Height)
+overlay.Texture = texture
+DirectCast(overlay, IAgStkGraphicsOverlay).Origin = AgEStkGraphicsScreenOverlayOrigin.eStkGraphicsScreenOverlayOriginCenterLeft
+
+overlayManager.Add(DirectCast(overlay, IAgStkGraphicsScreenOverlay))

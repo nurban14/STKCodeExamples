@@ -1,0 +1,13 @@
+C#
+
+fom.SetDefinitionType(AgEFmDefinitionType.eFmSystemResponseTime);
+IAgFmDefSystemResponseTime systemResponseTime = fom.Definition as IAgFmDefSystemResponseTime;
+
+systemResponseTime.CommandStationPath = "NONE";
+
+vbNet
+
+fom.SetDefinitionType(AgEFmDefinitionType.eFmSystemResponseTime)
+Dim systemResponseTime As IAgFmDefSystemResponseTime = TryCast(fom.Definition, IAgFmDefSystemResponseTime)
+
+systemResponseTime.CommandStationPath = "NONE"

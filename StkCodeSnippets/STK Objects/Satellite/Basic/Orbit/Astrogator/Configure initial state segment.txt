@@ -1,0 +1,73 @@
+C#
+
+// Add a new segment and cast the segment to the IAgVAMCSInitialState interface
+IAgVAMCSSegment segment = driver.MainSequence.Insert(AgEVASegmentType.eVASegmentTypeInitialState, "Inner Orbit", "-");
+IAgVAMCSInitialState initState = segment as IAgVAMCSInitialState;
+
+initState.CoordSystemName = "CentralBody/Earth Fixed";
+initState.OrbitEpoch = "1 Jan 2012 12:00:00.000";
+
+// Set element type and cast the Element property to the appropriate interface
+// configure the element as necessary
+initState.SetElementType(AgEVAElementType.eVAElementTypeCartesian);
+IAgVAElementCartesian cartesian = initState.Element as IAgVAElementCartesian;
+cartesian.Vx = 8051.21;
+cartesian.Y = 55;
+cartesian.Z = 0;
+cartesian.Vx = 0.45;
+cartesian.Vy = 8.10158;
+cartesian.Vz = 3.51009;
+
+// Configure fuel tank if necessary
+initState.FuelTank.FuelDensity = 1001;
+initState.FuelTank.FuelMass = 501;
+initState.FuelTank.TankPressure = 5001;
+initState.FuelTank.TankTemperature = 292;
+
+// Configure spacecraft parameters
+initState.SpacecraftParameters.Cd = 2.3;
+initState.SpacecraftParameters.Ck = 1.1;
+initState.SpacecraftParameters.Cr = 1.3;
+initState.SpacecraftParameters.DragArea = 21;
+initState.SpacecraftParameters.DryMass = 501;
+initState.SpacecraftParameters.K1 = /*$k1$K1*/2;
+initState.SpacecraftParameters.K2 = 3;
+initState.SpacecraftParameters.RadiationPressureArea = 23.0;
+initState.SpacecraftParameters.SolarRadiationPressureArea = 22.0;
+
+vbNet
+
+' Add a new segment and cast the segment to the IAgVAMCSInitialState interface
+Dim segment As IAgVAMCSSegment = driver.MainSequence.Insert(AgEVASegmentType.eVASegmentTypeInitialState, "Inner Orbit", "-")
+Dim initState As IAgVAMCSInitialState = TryCast(segment, IAgVAMCSInitialState)
+
+initState.CoordSystemName = "CentralBody/Earth Fixed"
+initState.OrbitEpoch = "1 Jan 2012 12:00:00.000"
+
+' Set element type and cast the Element property to the appropriate interface
+' configure the element as necessary
+initState.SetElementType(AgEVAElementType.eVAElementTypeCartesian)
+Dim cartesian As IAgVAElementCartesian = TryCast(initState.Element, IAgVAElementCartesian)
+cartesian.Vx = 8051.21
+cartesian.Y = 55
+cartesian.Z = 0
+cartesian.Vx = 0.45
+cartesian.Vy = 8.10158
+cartesian.Vz = 3.51009
+
+' Configure fuel tank if necessary
+initState.FuelTank.FuelDensity = 1001
+initState.FuelTank.FuelMass = 501
+initState.FuelTank.TankPressure = 5001
+initState.FuelTank.TankTemperature = 292
+
+' Configure spacecraft parameters
+initState.SpacecraftParameters.Cd = 2.3
+initState.SpacecraftParameters.Ck = 1.1
+initState.SpacecraftParameters.Cr = 1.3
+initState.SpacecraftParameters.DragArea = 21
+initState.SpacecraftParameters.DryMass = 501
+initState.SpacecraftParameters.K1 = 2
+initState.SpacecraftParameters.K2 = 3
+initState.SpacecraftParameters.RadiationPressureArea = 23
+initState.SpacecraftParameters.SolarRadiationPressureArea = 22

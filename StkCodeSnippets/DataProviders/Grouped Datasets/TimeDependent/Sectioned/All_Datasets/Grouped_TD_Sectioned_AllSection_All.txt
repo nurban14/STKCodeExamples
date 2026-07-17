@@ -1,0 +1,17 @@
+Python
+## Extracting All Group Time Dependent Data separated by Sections
+# IAgStkObjectRoot root: STK Object Model root
+# IAgScenario scenario: Scenario object
+# IAgStkAccess access: Access calculation
+
+# Change DateFormat dimension to epoch seconds to make the data easier to handle in Python
+root.UnitPreferences.Item('DateFormat').SetCurrentUnit('EpSec')
+
+accessAER = access.DataProviders.Item('AER Data').Group.Item('BodyFixed').Exec(scenario.StartTime, scenario.StopTime, 60)
+AERTimes = accessAER.Intervals.Item(0).DataSets.GetDataSetByName('Time').GetValues()
+Az = accessAER.Intervals.Item(0).DataSets.GetDataSetByName('Azimuth').GetValues()
+El = accessAER.Intervals.Item(0).DataSets.GetDataSetByName('Elevation').GetValues()
+for i  in range(1,accessAER.Intervals.Count):
+    AERTimes += accessAER.Intervals.Item(i).DataSets.GetDataSetByName('Time').GetValues()
+    Az += accessAER.Intervals.Item(i).DataSets.GetDataSetByName('Azimuth').GetValues()
+    El += accessAER.Intervals.Item(i).DataSets.GetDataSetByName('Elevation').GetValues()

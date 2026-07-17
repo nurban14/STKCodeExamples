@@ -1,0 +1,71 @@
+C#
+
+// Add a basic maneuver procedure
+IAgAvtrProcedureBasicManeuver basicManeuver = procedures.Add(AgEAvtrSiteType.eSiteEndOfPrevProcedure, AgEAvtrProcedureType.eProcBasicManeuver) as IAgAvtrProcedureBasicManeuver;
+
+// Set the navigation to use a Straight Ahead strategy
+basicManeuver.NavigationStrategyType = "Straight Ahead";
+// Get the options for the straight ahead strategy
+IAgAvtrBasicManeuverStrategyStraightAhead straightAhead = basicManeuver.Navigation as IAgAvtrBasicManeuverStrategyStraightAhead;
+// Opt to maintain course (as opposed to maintain heading)
+straightAhead.ReferenceFrame = AgEAvtrStraightAheadRefFrame.eMaintainCourse;
+
+// Set the profile to use a Autopilot - Vertical Plane strategy
+basicManeuver.ProfileStrategyType = "Autopilot - Vertical Plane";
+// Get the options for the profile strategy
+IAgAvtrBasicManeuverStrategyAutopilotProf autopilot = basicManeuver.Profile as IAgAvtrBasicManeuverStrategyAutopilotProf;
+// Opt to maintain the initial altitude
+autopilot.AltitudeMode = AgEAvtrAutopilotAltitudeMode.eAutopilotHoldInitAltitude;
+IAgAvtrBasicManeuverAirspeedOptions airspeedOptions = autopilot.AirspeedOptions;
+// Opt to maintain a specified airspeed
+airspeedOptions.AirspeedMode = AgEAvtrBasicManeuverAirspeedMode.eMaintainSpecifiedAirspeed;
+// Specify the airspeed
+airspeedOptions.SpecifiedAirspeed = 250;
+
+// Configure the options on the Attitude / Performance / Fuel page
+basicManeuver.FlightMode = AgEAvtrPhaseOfFlight.eFlightPhaseCruise;
+// Override the fuel flow
+basicManeuver.FuelFlowType = AgEAvtrBasicManeuverFuelFlowType.eBasicManeuverFuelFlowOverride;
+basicManeuver.OverrideFuelFlowValue = 1000;
+
+// Set the basic stopping conditions
+basicManeuver.UseMaxDownrange = true;
+basicManeuver.MaxDownrange = 10;
+basicManeuver.UseStopFuelState = false;
+basicManeuver.UseMaxTimeOfFlight = false;
+
+vbNet
+
+' Add a basic maneuver procedure
+Dim basicManeuver As IAgAvtrProcedureBasicManeuver = TryCast(procedures.Add(AgEAvtrSiteType.eSiteEndOfPrevProcedure, AgEAvtrProcedureType.eProcBasicManeuver), IAgAvtrProcedureBasicManeuver)
+
+' Set the navigation to use a Straight Ahead strategy
+basicManeuver.NavigationStrategyType = "Straight Ahead"
+' Get the options for the straight ahead strategy
+Dim straightAhead As IAgAvtrBasicManeuverStrategyStraightAhead = TryCast(basicManeuver.Navigation, IAgAvtrBasicManeuverStrategyStraightAhead)
+' Opt to maintain course (as opposed to maintain heading)
+straightAhead.ReferenceFrame = AgEAvtrStraightAheadRefFrame.eMaintainCourse
+
+' Set the profile to use a Autopilot - Vertical Plane strategy
+basicManeuver.ProfileStrategyType = "Autopilot - Vertical Plane"
+' Get the options for the profile strategy
+Dim autopilot As IAgAvtrBasicManeuverStrategyAutopilotProf = TryCast(basicManeuver.Profile, IAgAvtrBasicManeuverStrategyAutopilotProf)
+' Opt to maintain the initial altitude
+autopilot.AltitudeMode = AgEAvtrAutopilotAltitudeMode.eAutopilotHoldInitAltitude
+Dim airspeedOptions As IAgAvtrBasicManeuverAirspeedOptions = autopilot.AirspeedOptions
+' Opt to maintain a specified airspeed
+airspeedOptions.AirspeedMode = AgEAvtrBasicManeuverAirspeedMode.eMaintainSpecifiedAirspeed
+' Specify the airspeed
+airspeedOptions.SpecifiedAirspeed = 250
+
+' Configure the options on the Attitude / Performance / Fuel page
+basicManeuver.FlightMode = AgEAvtrPhaseOfFlight.eFlightPhaseCruise
+' Override the fuel flow
+basicManeuver.FuelFlowType = AgEAvtrBasicManeuverFuelFlowType.eBasicManeuverFuelFlowOverride
+basicManeuver.OverrideFuelFlowValue = 1000
+
+' Set the basic stopping conditions
+basicManeuver.UseMaxDownrange = True
+basicManeuver.MaxDownrange = 10
+basicManeuver.UseStopFuelState = False
+basicManeuver.UseMaxTimeOfFlight = False

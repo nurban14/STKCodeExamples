@@ -1,0 +1,7 @@
+C#
+
+IAgOrbitStateClassical newOrbit = orbit.ConvertTo(AgEOrbitStateType.eOrbitStateClassical) as IAgOrbitStateClassical;
+
+vbNet
+
+Dim newOrbit As IAgOrbitStateClassical = TryCast(orbit.ConvertTo(AgEOrbitStateType.eOrbitStateClassical), IAgOrbitStateClassical)

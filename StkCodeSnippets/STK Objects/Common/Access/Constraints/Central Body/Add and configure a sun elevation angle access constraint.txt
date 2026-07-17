@@ -1,0 +1,19 @@
+Matlab
+% IAgAccessConstraintCollection accessConstraints: Access Constraint collection
+
+minmax = accessConstraints.AddConstraint('eCstrSunElevationAngle');
+minmax.EnableMin = true;
+minmax.Min = 22.2;
+minmax.EnableMax = true;
+minmax.Max = 77.7;
+
+Python
+##Add and configure a sun elevation angle access constraint
+# IAgAccessConstraintCollection accessConstraints: Access Constraint collection
+
+# To make this more efficient, wrap this method between calls to root.BeginUpdate() and root.EndUpdate()
+minmax = accessConstraints.AddConstraint(AgEAccessConstraints.eCstrSunElevationAngle)
+minmax.EnableMin = True
+minmax.Min = 22.2
+minmax.EnableMax = True
+minmax.Max = 77.7

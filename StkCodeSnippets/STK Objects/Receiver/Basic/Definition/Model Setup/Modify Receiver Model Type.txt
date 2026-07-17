@@ -1,0 +1,13 @@
+Matlab
+% IAgReceiver receiver: Receiver object
+receiver.SetModel('Complex Receiver Model');
+recModel = receiver.Model;
+recModel.AutoTrackFrequency = false;
+recModel.Frequency = 11.81;
+
+Python
+# IAgReceiver receiver: Receiver object
+receiver.SetModel('Complex Receiver Model')
+recModel = receiver.Model
+recModel.AutoTrackFrequency = False
+recModel.Frequency = 11.81

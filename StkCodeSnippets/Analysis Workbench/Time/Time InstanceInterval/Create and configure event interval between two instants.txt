@@ -1,0 +1,28 @@
+C#
+
+IAgCrdnEventInterval eventInterval = provider.EventIntervals.Factory.CreateEventIntervalBetweenTimeInstants("MyIntervalBetweenTwoInstants",  "MyDescription");
+IAgCrdnEventIntervalBetweenTimeInstants asTimeInstant = eventInterval as IAgCrdnEventIntervalBetweenTimeInstants;
+
+asTimeInstant.StartTimeInstant = provider.Events["EphemerisStartTime"];
+asTimeInstant.StopTimeInstant = provider.Events["EphemerisStopTime"];
+
+IAgCrdnEventIntervalResult intervalResult = eventInterval.FindInterval();
+if (intervalResult.IsValid)
+{
+    Console.WriteLine("Interval Start: " + intervalResult.Interval.Start);
+    Console.WriteLine("Interval Stop: " + intervalResult.Interval.Stop);
+}
+
+vbNet
+
+Dim eventInterval As IAgCrdnEventInterval = provider.EventIntervals.Factory.CreateEventIntervalBetweenTimeInstants("MyIntervalBetweenTwoInstants", "MyDescription")
+Dim asTimeInstant As IAgCrdnEventIntervalBetweenTimeInstants = TryCast(eventInterval, IAgCrdnEventIntervalBetweenTimeInstants)
+
+asTimeInstant.StartTimeInstant = provider.Events("EphemerisStartTime")
+asTimeInstant.StopTimeInstant = provider.Events("EphemerisStopTime")
+
+Dim intervalResult As IAgCrdnEventIntervalResult = eventInterval.FindInterval()
+If intervalResult.IsValid Then
+	Console.WriteLine("Interval Start: " + intervalResult.Interval.Start)
+	Console.WriteLine("Interval Stop: " + intervalResult.Interval.[Stop])
+End If

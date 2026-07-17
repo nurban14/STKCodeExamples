@@ -1,0 +1,37 @@
+C#
+// Double latitude: Terrain Latitude Position
+// Double longitude: Terrain Longitude Position
+// String terrainFile: Path of Terrain file
+
+IAgScenario scenario = (IAgScenario)root.CurrentScenario;
+
+// If you haven't done so, add the terrain to your scenario (for example .PDTT)
+IAgCentralBodyTerrainCollectionElement earthTerrain = scenario.Terrain["Earth"];
+earthTerrain.TerrainCollection.Add(terrainFile, AgETerrainFileType.ePDTTTerrainFile);
+
+// Get single altitude
+double altitude = earthTerrain.GetAltitude(latitude, longitude, AgEAltRefType.eMSL);
+
+// Get points in batches.
+Array specifiedPositions = new object[,]
+{
+    { 40.0386, -75.5966 },
+    { 28.5383, -81.3792 },
+    { 37.7749, -122.4194 }
+};
+
+Array altitudes = earthTerrain.GetAltitudeBatch(ref specifiedPositions, AgEAltRefType.eWGS84);
+
+// GetAltitudeBatch returns a one-dimensional array of altitude values in the distance unit perference.
+int numPoints = altitudes.GetLength(0);
+for (int i = 0; i &lt; numPoints; ++i)
+{
+    Console.WriteLine("Latitude={0}, Longitude={1}, Altitude={2}", specifiedPositions.GetValue(i, 0), specifiedPositions.GetValue(i, 1), altitudes.GetValue(i));
+}
+
+vbNet
+// Double latitude: Terrain Latitude Position
+// Double longitude: Terrain Longitude Position
+// String terrainFile: Path of Terrain file
+
+

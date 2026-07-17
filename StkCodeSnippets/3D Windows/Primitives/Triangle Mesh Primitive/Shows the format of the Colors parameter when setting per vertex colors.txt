@@ -1,0 +1,19 @@
+C#
+
+Array colors = new object[]
+{
+    Color.Red.ToArgb(),
+    Color.Green.ToArgb(),
+    Color.Blue.ToArgb(),
+    Color.White.ToArgb()
+};
+
+IAgStkGraphicsTriangleMeshPrimitiveOptionalParameters parameters = sceneManager.Initializers.TriangleMeshPrimitiveOptionalParameters.Initialize();
+parameters.SetPerVertexColors(ref colors);
+
+vbNet
+
+Dim colors As Array = New Object() {Color.Red.ToArgb(), Color.Green.ToArgb(), Color.Blue.ToArgb(), Color.White.ToArgb()}
+
+Dim parameters As IAgStkGraphicsTriangleMeshPrimitiveOptionalParameters = sceneManager.Initializers.TriangleMeshPrimitiveOptionalParameters.Initialize()
+parameters.SetPerVertexColors(colors)

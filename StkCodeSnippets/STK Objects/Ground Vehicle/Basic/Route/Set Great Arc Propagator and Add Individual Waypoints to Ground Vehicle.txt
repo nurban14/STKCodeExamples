@@ -1,0 +1,42 @@
+Matlab
+# IAgGroundVehicle grndVehicle: Ground Vehicle object
+# Set route to great arc, method and altitude reference
+grndVehicle.SetRouteType(9) # ePropagatorGreatArc
+route = grndVehicle.Route
+route.Method = 0 # eDetermineTimeAccFromVel
+route.SetAltitudeRefType(2) # eWayPtAltRefWGS84
+# Add first point
+waypoint = route.Waypoints.Add()
+waypoint.Latitude = 56.18
+waypoint.Longitude = 40.91
+waypoint.Altitude = 0  # km
+waypoint.Speed = .026    # km/sec
+# Add second point
+waypoint2 = route.Waypoints.Add()
+waypoint2.Latitude = 50.22
+waypoint2.Longitude = 11.05
+waypoint2.Altitude = 0 # km
+waypoint2.Speed = .026    # km/sec
+#Propagate the route
+route.Propagate()
+Python
+# IAgGroundVehicle grndVehicle: Ground Vehicle object
+# Set route to great arc, method and altitude reference
+grndVehicle.SetRouteType(9) # ePropagatorGreatArc
+route = grndVehicle.Route
+route.Method = 0 # eDetermineTimeAccFromVel
+route.SetAltitudeRefType(2) # eWayPtAltRefWGS84
+# Add first point
+waypoint = route.Waypoints.Add()
+waypoint.Latitude = 56.18
+waypoint.Longitude = 40.91
+waypoint.Altitude = 0  # km
+waypoint.Speed = .026    # km/sec
+# Add second point
+waypoint2 = route.Waypoints.Add()
+waypoint2.Latitude = 50.22
+waypoint2.Longitude = 11.05
+waypoint2.Altitude = 0 # km
+waypoint2.Speed = .026    # km/sec
+#Propagate the route
+route.Propagate()

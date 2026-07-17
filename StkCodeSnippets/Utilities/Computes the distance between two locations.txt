@@ -1,0 +1,17 @@
+C#
+
+IAgStkCentralBodyEllipsoid centralBodyEllipsoid = root.CentralBodies["Earth"].Ellipsoid;
+
+// Compute the distance between Philadelphia and London.
+// The code snippet assumes the latitude and longitude unit preference is set to degrees.
+double distance = centralBodyEllipsoid.ComputeSurfaceDistance(40.0068, -75.1347, 51.4879, -0.1780);
+Console.WriteLine("The distance between Philadelphia and London is: {0}", distance);
+
+vbNet
+
+Dim centralBodyEllipsoid As IAgStkCentralBodyEllipsoid = root.CentralBodies("Earth").Ellipsoid
+
+' Compute the distance between Philadelphia and London.
+' The code snippet assumes the latitude and longitude unit preference is set to degrees.
+Dim distance As Double = centralBodyEllipsoid.ComputeSurfaceDistance(40.0068, -75.1347, 51.4879, -0.178)
+Console.WriteLine("The distance between Philadelphia and London is: {0}", distance)

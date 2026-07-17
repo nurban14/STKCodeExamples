@@ -1,0 +1,12 @@
+Matlab
+%% Getting Data for Specific Points and Elements
+% IAgStkObjectRoot root: STK Object Model root
+% IAgSatellite satellite: Satellite object
+
+% Change DateFormat dimension to epoch seconds to make the data easier to handle in MATLAB
+root.UnitPreferences.Item('DateFormat').SetCurrentUnit('EpSec');
+times = {0;15000;20000;55000};
+
+elems = {'Time';'Precision Pass Number'};
+satPassesDP = satellite.DataProviders.Item('Precision Passes').ExecSingleElementsArray(times, elems);
+passes = cell2mat(satPassesDP.GetArray(cast(1, 'int32')));

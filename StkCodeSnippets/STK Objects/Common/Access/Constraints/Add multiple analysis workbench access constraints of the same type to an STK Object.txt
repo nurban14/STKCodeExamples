@@ -1,0 +1,29 @@
+C#
+
+IAgAccessConstraintCollection accessConstraints = stkobject.AccessConstraints;
+IAgAccessCnstrAWBCollection awbAccessConstraints = accessConstraints.AWBConstraints;
+
+// Add constraints
+string objectPath = stkobject.ClassName + "/" + stkobject.InstanceName;
+IAgAccessCnstrAWB awbConst = awbAccessConstraints.AddConstraint(AgEAWBAccessConstraints.eCstrAWBVectorMag, objectPath + " East Vector") as IAgAccessCnstrAWB;
+awbConst.EnableMin = true;
+awbConst.Min = 0.0;
+
+IAgAccessCnstrAWB awbConst2 = awbAccessConstraints.AddConstraint(AgEAWBAccessConstraints.eCstrAWBVectorMag, objectPath + " North Vector") as IAgAccessCnstrAWB;
+awbConst2.EnableMax = true;
+awbConst2.Max = 1000.0;
+
+vbNet
+
+Dim accessConstraints As IAgAccessConstraintCollection = stkobject.AccessConstraints
+Dim awbAccessConstraints As IAgAccessCnstrAWBCollection = accessConstraints.AWBConstraints
+
+' Add constraints
+Dim objectPath As String = stkobject.ClassName + "/" + stkobject.InstanceName
+Dim awbConst As IAgAccessCnstrAWB = TryCast(awbAccessConstraints.AddConstraint(AgEAWBAccessConstraints.eCstrAWBVectorMag, objectPath + " East Vector"), IAgAccessCnstrAWB)
+awbConst.EnableMin = True
+awbConst.Min = 0
+
+Dim awbConst2 As IAgAccessCnstrAWB = TryCast(awbAccessConstraints.AddConstraint(AgEAWBAccessConstraints.eCstrAWBVectorMag, objectPath + " North Vector"), IAgAccessCnstrAWB)
+awbConst2.EnableMax = True
+awbConst2.Max = 1000

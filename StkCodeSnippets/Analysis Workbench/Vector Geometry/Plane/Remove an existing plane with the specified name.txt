@@ -1,0 +1,14 @@
+C#
+
+// Check if the plane with specified name exists
+if (provider.Planes.Contains("PlaneName"))
+{
+    provider.Planes.Remove("PlaneName");
+}
+
+vbNet
+
+' Check if the plane with specified name exists
+If provider.Planes.Contains("PlaneName") Then
+	provider.Planes.Remove("PlaneName")
+End If

@@ -1,0 +1,7 @@
+C#
+
+IAgSnPtFixedAxes fixedAxesSensor = sensor.CommonTasks.SetPointingFixedAxesEuler("CentralBody/Sun J2000 Axes", AgEEulerOrientationSequence.e132, 30, 40, 50);
+
+vbNet
+
+Dim fixedAxesSensor As IAgSnPtFixedAxes = sensor.CommonTasks.SetPointingFixedAxesEuler("CentralBody/Sun J2000 Axes", AgEEulerOrientationSequence.e132, 30, 40, 50)

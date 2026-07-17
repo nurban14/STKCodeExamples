@@ -1,0 +1,14 @@
+C#
+
+// Check if the event interval list with specified name exists
+if (provider.EventIntervalLists.Contains("EventIntervalListName"))
+{
+    provider.EventIntervalLists.Remove("EventIntervalListName");
+}
+
+vbNet
+
+' Check if the event interval list with specified name exists
+If provider.EventIntervalLists.Contains("EventIntervalListName") Then
+	provider.EventIntervalLists.Remove("EventIntervalListName")
+End If

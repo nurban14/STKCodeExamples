@@ -1,0 +1,7 @@
+Matlab
+commandList = {'New / */Place MyPlace';'SetPosition */Place/MyPlace Geodetic 37.9 -75.5 0.0'};
+root.ExecuteMultipleCommands(commandList,'eExceptionOnError');
+Python
+
+commandList = [ ['New / */Place MyPlace'],['SetPosition */Place/MyPlace Geodetic 37.9 -75.5 0.0'] ]
+root.ExecuteMultipleCommands(commandList,2) # eExceptionOnError

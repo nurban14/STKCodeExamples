@@ -1,0 +1,104 @@
+C#
+
+// Set satellite propagator to HPOP
+satellite.SetPropagatorType(AgEVePropagatorType.ePropagatorHPOP);
+
+// Get IAgVePropagatorLOP interface
+IAgVePropagatorHPOP hpopProp = satellite.Propagator as IAgVePropagatorHPOP;
+
+// Configure force model
+IAgVeHPOPForceModel hpopForceModel = hpopProp.ForceModel;
+hpopForceModel.CentralBodyGravity.File = @"STKData\CentralBodies\Earth\GGM02C.grv";
+hpopForceModel.CentralBodyGravity.MaxDegree = 45;
+hpopForceModel.CentralBodyGravity.MaxOrder = 10;
+hpopForceModel.CentralBodyGravity.UseOceanTides = true;
+
+hpopForceModel.Drag.Use = true;
+IAgVeHPOPDragModelSpherical hpopDragModel = hpopForceModel.Drag.DragModel as IAgVeHPOPDragModelSpherical;
+hpopDragModel.Cd = 1.890000;
+hpopDragModel.AreaMassRatio = 0.05;
+hpopForceModel.Drag.AtmosphericDensityModel = AgEAtmosphericDensityModel.eMSIS90;
+
+hpopForceModel.ThirdBodyGravity.RemoveThirdBody("Moon");
+
+// Propagate
+hpopProp.Propagate();
+
+Matlab
+% IAgSatellite satellite: Satellite object
+satellite.SetPropagatorType('ePropagatorHPOP');
+set(satellite.Propagator,'Step',60);
+satellite.Propagator.InitialState.Representation.AssignCartesian('eCoordinateSystemFixed',6406.92,-1787.59,-506.422,2.10185,6.48871,3.64041);
+
+forceModel = satellite.Propagator.ForceModel;
+forceModel.CentralBodyGravity.File = '<Install Dir>\STKData\CentralBodies\Earth\WGS84_EGM96.grv';
+forceModel.CentralBodyGravity.MaxDegree = 21;
+forceModel.CentralBodyGravity.MaxOrder = 21;
+forceModel.Drag.Use=1;
+forceModel.Drag.DragModel.Cd=0.01;
+forceModel.Drag.DragModel.AreaMassRatio=0.01;
+forceModel.SolarRadiationPressure.Use=0;
+
+integrator = satellite.Propagator.Integrator;
+integrator.DoNotPropagateBelowAlt=-1e6;
+integrator.IntegrationModel=3;
+integrator.StepSizeControl.Method=1;
+integrator.StepSizeControl.ErrorTolerance=1e-13;
+integrator.StepSizeControl.MinStepSize=0.1;
+integrator.StepSizeControl.MaxStepSize=30;
+integrator.Interpolation.Method=1;
+integrator.Interpolation.Order=7;
+
+satellite.Propagator.Propagate;
+
+Python
+# IAgSatellite satellite: Satellite object
+satellite.SetPropagatorType(AgEVePropagatorType.ePropagatorHPOP)
+satellite.Propagator.Step = 60
+satellite.Propagator.InitialState.Representation.AssignCartesian(AgECoordinateSystem.eCoordinateSystemFixed, 6406.92, -1787.59, -506.422, 2.10185, 6.48871, 3.64041)
+
+forceModel = satellite.Propagator.ForceModel
+forceModel.CentralBodyGravity.File = r'C:\Program Files\AGI\STK 12\STKData\CentralBodies\Earth\WGS84_EGM96.grv'
+forceModel.CentralBodyGravity.MaxDegree = 21
+forceModel.CentralBodyGravity.MaxOrder = 21
+forceModel.Drag.Use = True
+forceModel.Drag.DragModel.Cd = 0.01
+forceModel.Drag.DragModel.AreaMassRatio = 0.01
+forceModel.SolarRadiationPressure.Use = False
+
+integrator = satellite.Propagator.Integrator
+integrator.DoNotPropagateBelowAlt = -1e6
+integrator.IntegrationModel = AgEVeIntegrationModel.eRKF78
+integrator.StepSizeControl.Method = AgEVeMethod.eRelativeError
+integrator.StepSizeControl.ErrorTolerance = 1e-13
+integrator.StepSizeControl.MinStepSize = 0.1
+integrator.StepSizeControl.MaxStepSize = 30
+integrator.Interpolation.Method = AgEVeInterpolationMethod.eLagrange
+integrator.Interpolation.Order = 7
+
+satellite.Propagator.Propagate()
+vbNet
+
+' Set satellite propagator to HPOP
+satellite.SetPropagatorType(AgEVePropagatorType.ePropagatorHPOP)
+
+' Get IAgVePropagatorLOP interface
+Dim hpopProp As IAgVePropagatorHPOP = TryCast(satellite.Propagator, IAgVePropagatorHPOP)
+
+' Configure force model
+Dim hpopForceModel As IAgVeHPOPForceModel = hpopProp.ForceModel
+hpopForceModel.CentralBodyGravity.File = "STKData\CentralBodies\Earth\GGM02C.grv"
+hpopForceModel.CentralBodyGravity.MaxDegree = 45
+hpopForceModel.CentralBodyGravity.MaxOrder = 10
+hpopForceModel.CentralBodyGravity.UseOceanTides = True
+
+hpopForceModel.Drag.Use = True
+Dim hpopDragModel As IAgVeHPOPDragModelSpherical = TryCast(hpopForceModel.Drag.DragModel, IAgVeHPOPDragModelSpherical)
+hpopDragModel.Cd = 1.89
+hpopDragModel.AreaMassRatio = 0.05
+hpopForceModel.Drag.AtmosphericDensityModel = AgEAtmosphericDensityModel.eMSIS90
+
+hpopForceModel.ThirdBodyGravity.RemoveThirdBody("Moon")
+
+' Propagate
+hpopProp.Propagate()

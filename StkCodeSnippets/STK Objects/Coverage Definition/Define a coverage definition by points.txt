@@ -1,0 +1,42 @@
+C#
+// String regionFilePath: Path of region file
+
+// Get the IAgCvGrid interface
+IAgCvGrid cvGrid = coverageDefinition.Grid;
+
+// Define custom region
+cvGrid.BoundsType = AgECvBounds.eBoundsCustomRegions;
+IAgCvBoundsCustomRegions oBoundsCustom = cvGrid.Bounds as IAgCvBoundsCustomRegions;
+oBoundsCustom.RegionFiles.Add(regionFilePath);
+oBoundsCustom.AreaTargets.Add("AreaTarget/AreaTarget1");
+// Create an Array of LLA points
+// Array should contain Lat, Lon, Alt values
+Array points = new object[,]
+{
+    { 6.9346423789e+01, -5.0260748372e+01, 0.0000000000e+00 },
+    { 3.9613371741e+01, -6.6285429903e+01, 0.0000000000e+00 },
+    { 3.9880319688e+01, -7.3881767479e+01, 0.0000000000e+00 },
+    { 4.0700636942e+01, -1.1224999998e+02, 0.0000000000e+00 }
+};
+
+// SetPointsLLA expects a two dimensional array of LLA points
+coverageDefinition.PointDefinition.SetPointsLLA(ref points);
+
+vbNet
+// String regionFilePath: Path of region file
+
+' Get the IAgCvGrid interface
+Dim cvGrid As IAgCvGrid = coverageDefinition.Grid
+
+' Define custom region
+cvGrid.BoundsType = AgECvBounds.eBoundsCustomRegions
+Dim oBoundsCustom As IAgCvBoundsCustomRegions = TryCast(cvGrid.Bounds, IAgCvBoundsCustomRegions)
+oBoundsCustom.RegionFiles.Add(regionFilePath)
+oBoundsCustom.AreaTargets.Add("AreaTarget/AreaTarget1")
+
+' Create an Array of LLA points
+' Array should contain Lat, Lon, Alt values
+Dim points As Array = New Object(,) {{69.346423789, -50.260748372, 0}, {39.613371741, -66.285429903, 0}, {39.880319688, -73.881767479, 0}, {40.700636942, -112.24999998, 0}}
+
+' SetPointsLLA expects a two dimensional array of LLA points
+coverageDefinition.PointDefinition.SetPointsLLA(points)

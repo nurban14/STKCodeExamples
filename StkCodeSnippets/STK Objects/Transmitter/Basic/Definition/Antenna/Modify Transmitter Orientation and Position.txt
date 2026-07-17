@@ -1,0 +1,18 @@
+Matlab
+% IAgTransmitter transmitter: Transmitter object
+txModel = transmitter.Model;
+antennaControl = txModel.AntennaControl;
+antOrientation = antennaControl.EmbeddedModelOrientation;
+antOrientation.AssignAzEl(0, 90, 1); % 1 represents Rotate About Boresight
+antOrientation.PositionOffset.X = 0.0; %m
+antOrientation.PositionOffset.Y = 1; %m
+antOrientation.PositionOffset.Z = 0.25; %m
+Python
+# IAgTransmitter transmitter: Transmitter object
+txModel = transmitter.Model
+antennaControl = txModel.AntennaControl
+antOrientation = antennaControl.EmbeddedModelOrientation
+antOrientation.AssignAzEl(0, 90, 1) # 1 represents Rotate About Boresight
+antOrientation.PositionOffset.X = 0.0 # m
+antOrientation.PositionOffset.Y = 1 # m
+antOrientation.PositionOffset.Z = 0.25 # m

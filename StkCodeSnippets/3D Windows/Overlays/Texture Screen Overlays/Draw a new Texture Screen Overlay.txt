@@ -1,0 +1,27 @@
+C#
+
+Array position = new object[]
+{
+    0,
+    0,
+    AgEStkGraphicsScreenOverlayUnit.eStkGraphicsScreenOverlayUnitPixels,
+    AgEStkGraphicsScreenOverlayUnit.eStkGraphicsScreenOverlayUnitPixels
+};
+
+Array size = new object[]
+{
+    100,
+    200,
+    AgEStkGraphicsScreenOverlayUnit.eStkGraphicsScreenOverlayUnitPixels,
+    AgEStkGraphicsScreenOverlayUnit.eStkGraphicsScreenOverlayUnitPixels
+};
+
+IAgStkGraphicsTextureScreenOverlay screenOverlay = sceneManager.Initializers.TextureScreenOverlay.InitializeWithPositionSize(ref position, ref size);
+
+vbNet
+
+Dim position As Array = New Object() {0, 0, AgEStkGraphicsScreenOverlayUnit.eStkGraphicsScreenOverlayUnitPixels, AgEStkGraphicsScreenOverlayUnit.eStkGraphicsScreenOverlayUnitPixels}
+
+Dim size As Array = New Object() {100, 200, AgEStkGraphicsScreenOverlayUnit.eStkGraphicsScreenOverlayUnitPixels, AgEStkGraphicsScreenOverlayUnit.eStkGraphicsScreenOverlayUnitPixels}
+
+Dim screenOverlay As IAgStkGraphicsTextureScreenOverlay = sceneManager.Initializers.TextureScreenOverlay.InitializeWithPositionSize(position, size)

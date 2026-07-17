@@ -1,0 +1,23 @@
+C#
+// IAgScenario scenario: Scenario object
+
+IAgSatellite satellite = stkRoot.GetObjectFromPath("/Satellite/GeoEye") as IAgSatellite;
+
+IAgCrdnProvider vgtProvider = stkRoot.VgtRoot.GetProvider("/Satellite/GeoEye");
+IAgVePropagatorTwoBody twoBody = satellite.Propagator as IAgVePropagatorTwoBody;
+IAgCrdnEventSmartEpoch startEpoch = twoBody.EphemerisInterval.GetStartEpoch();
+IAgCrdnEventSmartEpoch stopEpoch = twoBody.EphemerisInterval.GetStopEpoch();
+
+scenario.AnalysisInterval.SetStartAndStopEpochs(startEpoch, stopEpoch);
+
+vbNet
+// IAgScenario scenario: Scenario object
+
+Dim satellite As IAgSatellite = TryCast(stkRoot.GetObjectFromPath("/Satellite/GeoEye"), IAgSatellite)
+
+Dim vgtProvider As IAgCrdnProvider = stkRoot.VgtRoot.GetProvider("/Satellite/GeoEye")
+Dim twoBody As IAgVePropagatorTwoBody = TryCast(satellite.Propagator, IAgVePropagatorTwoBody)
+Dim startEpoch As IAgCrdnEventSmartEpoch = twoBody.EphemerisInterval.GetStartEpoch()
+Dim stopEpoch As IAgCrdnEventSmartEpoch = twoBody.EphemerisInterval.GetStopEpoch()
+
+scenario.AnalysisInterval.SetStartAndStopEpochs(startEpoch, stopEpoch)

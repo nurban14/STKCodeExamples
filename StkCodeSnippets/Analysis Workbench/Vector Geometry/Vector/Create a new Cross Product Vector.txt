@@ -1,0 +1,28 @@
+C#
+// IAgCrdnVector VectorA: First vector.
+// IAgCrdnVector VectorB: Second vector.
+
+//Create a vector defined as cross product of vectors A and B.
+IAgCrdnVectorCross vector = provider.Vectors.Factory.CreateCrossProductVector(
+    "CrossVector", VectorA, VectorB);
+
+Matlab
+
+% IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+% IAgCrdnVectorDisplacement Sat2EarthCenter: vector component
+% IAgCrdnVectorDisplacement fixedAxesVector: vector component
+VectFactory = vgtSat.Vectors.Factory;
+lineOfNodesVector = VectFactory.CreateCrossProductVector('CrossProduct',Sat2EarthCenter,fixedAxesVector);
+
+Python
+# IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+# IAgCrdnVectorDisplacement Sat2EarthCenter: vector component
+# IAgCrdnVectorDisplacement fixedAxesVector: vector component
+VectFactory = vgtSat.Vectors.Factory
+lineOfNodesVector = VectFactory.CreateCrossProductVector('CrossProduct', Sat2EarthCenter, fixedAxesVector)
+vbNet
+// IAgCrdnVector VectorA: First vector.
+// IAgCrdnVector VectorB: Second vector.
+
+'Create a vector defined as cross product of vectors A and B.
+Dim vector As IAgCrdnVectorCross = provider.Vectors.Factory.CreateCrossProductVector("CrossVector", VectorA, VectorB)

@@ -1,0 +1,17 @@
+C#
+
+Array eyeoffset = new object[]
+{
+    2, 3, 4,
+    2, 3, 4
+};
+
+IAgStkGraphicsMarkerBatchPrimitiveOptionalParameters parameters = sceneManager.Initializers.MarkerBatchPrimitiveOptionalParameters.Initialize();
+parameters.SetEyeOffsets(ref eyeoffset);
+
+vbNet
+
+Dim eyeoffset As Array = New Object() {2, 3, 4, 2, 3, 4}
+
+Dim parameters As IAgStkGraphicsMarkerBatchPrimitiveOptionalParameters = sceneManager.Initializers.MarkerBatchPrimitiveOptionalParameters.Initialize()
+parameters.SetEyeOffsets(eyeoffset)

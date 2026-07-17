@@ -1,0 +1,14 @@
+C#
+
+//Check if the axes with specified name exist
+if (provider.Axes.Contains("AxesName"))
+{
+    Console.WriteLine("Axes \"{0}\" already exist!", "AxesName");
+}
+
+vbNet
+
+'Check if the axes with specified name exist
+If provider.Axes.Contains("AxesName") Then
+	Console.WriteLine("Axes ""{0}"" already exist!", "AxesName")
+End If

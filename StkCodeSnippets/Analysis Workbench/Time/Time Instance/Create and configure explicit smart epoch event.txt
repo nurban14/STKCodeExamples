@@ -1,0 +1,17 @@
+C#
+
+IAgCrdnEventSmartEpoch smartEpoch = provider.Events.Factory.CreateSmartEpochFromTime("1 May 2016 04:00:00.000");
+
+// Smart epochs can be set explicitly (Uses current DateTime unit preference, this code snippet assumes UTCG)
+smartEpoch.SetExplicitTime("1 May 2015 01:00:00.000");
+
+Console.WriteLine("Event occurred at: " + smartEpoch.TimeInstant);
+
+vbNet
+
+Dim smartEpoch As IAgCrdnEventSmartEpoch = provider.Events.Factory.CreateSmartEpochFromTime("1 May 2016 04:00:00.000")
+
+' Smart epochs can be set explicitly (Uses current DateTime unit preference, this code snippet assumes UTCG)
+smartEpoch.SetExplicitTime("1 May 2015 01:00:00.000")
+
+Console.WriteLine("Event occurred at: " + smartEpoch.TimeInstant)

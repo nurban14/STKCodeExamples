@@ -1,0 +1,15 @@
+Matlab
+
+% COM.STK13_application uiApplication: STK Application
+% Loop through the available windows to close the Timeline and maximize the
+% 3D window
+timelineWindow = '';
+for i=0:uiApplication.Windows.Count - 1
+    window = uiApplication.Windows.Item(i);
+    if (strcmp(window.Caption,'3D Graphics 1 - Earth'))
+        window.WindowState = 'eWindowStateMaximized';
+    elseif (strcmp(window.Caption,''))
+        timelineWindow = window;
+    end
+end
+timelineWindow.Close;

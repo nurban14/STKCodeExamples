@@ -1,0 +1,41 @@
+C#
+
+IAgConversionUtility converter = root.ConversionUtility;
+
+// ConvertPositionArray expects a two dimensional array of positions
+Array cartesianPositions = new object[,]
+    {
+        { 1216.47, -4736.12, 4081.39 },
+        { 1000, -2000, 2000 }
+    };
+
+// Convert cartesian dates to cylindrical
+// ConvertPositionArray returns a two dimensional array of cartesian dates
+Array cylindricalPositions = converter.ConvertPositionArray(AgEPositionType.eCartesian, ref cartesianPositions, AgEPositionType.eCylindrical);
+
+// Print results
+for (int i = 0; i &lt; cylindricalPositions.GetLength(0); i++)
+{
+    Console.WriteLine("X: {0}, Y: {1}, Z: {2}",
+        cylindricalPositions.GetValue(i, 0),
+        cylindricalPositions.GetValue(i, 1),
+        cylindricalPositions.GetValue(i, 2));
+}
+
+vbNet
+
+Dim converter As IAgConversionUtility = root.ConversionUtility
+
+' ConvertPositionArray expects a two dimensional array of positions
+Dim cartesianPositions As Array = New Object(,) {{1216.47, -4736.12, 4081.39}, {1000, -2000, 2000}}
+
+' Convert cartesian dates to cylindrical
+' ConvertPositionArray returns a two dimensional array of cartesian dates
+Dim cylindricalPositions As Array = converter.ConvertPositionArray(AgEPositionType.eCartesian, cartesianPositions, AgEPositionType.eCylindrical)
+
+' Print results
+Dim i As Integer = 0
+While i &lt; cylindricalPositions.GetLength(0)
+	Console.WriteLine("X: {0}, Y: {1}, Z: {2}", cylindricalPositions.GetValue(i, 0), cylindricalPositions.GetValue(i, 1), cylindricalPositions.GetValue(i, 2))
+	System.Math.Max(System.Threading.Interlocked.Increment(i),i - 1)
+End While

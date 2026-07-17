@@ -1,0 +1,70 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+// Array pennsylvaniaPositions: Pennsylvania positions
+// Array areaCode610Positions: Area Code 610 positions
+// Array areaCode215Positions: Area Code 215 positions
+// Array schuylkillPositions: Schuylkill positions
+
+IAgStkGraphicsSceneManager manager = ((IAgScenario)root.CurrentScenario).SceneManager;
+
+IAgStkGraphicsTriangleMeshPrimitive pennsylvania = manager.Initializers.TriangleMeshPrimitive.Initialize();
+pennsylvania.SetTriangulator((IAgStkGraphicsTriangulatorResult)manager.Initializers.SurfacePolygonTriangulator.Compute(
+    "Earth", ref pennsylvaniaPositions));
+((IAgStkGraphicsPrimitive)pennsylvania).Color = Color.Yellow;
+
+IAgStkGraphicsTriangleMeshPrimitive areaCode610 = manager.Initializers.TriangleMeshPrimitive.Initialize();
+areaCode610.SetTriangulator((IAgStkGraphicsTriangulatorResult)manager.Initializers.SurfacePolygonTriangulator.Compute(
+    "Earth", ref areaCode610Positions));
+((IAgStkGraphicsPrimitive)areaCode610).Color = Color.DarkRed;
+
+IAgStkGraphicsTriangleMeshPrimitive areaCode215 = manager.Initializers.TriangleMeshPrimitive.Initialize();
+areaCode215.SetTriangulator((IAgStkGraphicsTriangulatorResult)manager.Initializers.SurfacePolygonTriangulator.Compute(
+    "Earth", ref areaCode215Positions));
+((IAgStkGraphicsPrimitive)areaCode215).Color = Color.Green;
+
+IAgStkGraphicsPolylinePrimitive schuylkillRiver = manager.Initializers.PolylinePrimitive.Initialize();
+schuylkillRiver.Set(ref schuylkillPositions);
+((IAgStkGraphicsPrimitive)schuylkillRiver).Color = Color.Blue;
+schuylkillRiver.Width = 2;
+
+IAgStkGraphicsCompositePrimitive composite = manager.Initializers.CompositePrimitive.Initialize();
+composite.Add((IAgStkGraphicsPrimitive)pennsylvania);
+composite.Add((IAgStkGraphicsPrimitive)areaCode610);
+composite.Add((IAgStkGraphicsPrimitive)areaCode215);
+composite.Add((IAgStkGraphicsPrimitive)schuylkillRiver);
+
+manager.Primitives.Add((IAgStkGraphicsPrimitive)composite);
+
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+// Array pennsylvaniaPositions: Pennsylvania positions
+// Array areaCode610Positions: Area Code 610 positions
+// Array areaCode215Positions: Area Code 215 positions
+// Array schuylkillPositions: Schuylkill positions
+
+Dim manager As IAgStkGraphicsSceneManager = DirectCast(root.CurrentScenario, IAgScenario).SceneManager
+
+Dim pennsylvania As IAgStkGraphicsTriangleMeshPrimitive = manager.Initializers.TriangleMeshPrimitive.Initialize()
+pennsylvania.SetTriangulator(DirectCast(manager.Initializers.SurfacePolygonTriangulator.Compute("Earth", pennsylvaniaPositions), IAgStkGraphicsTriangulatorResult))
+DirectCast(pennsylvania, IAgStkGraphicsPrimitive).Color = Color.Yellow
+
+Dim areaCode610 As IAgStkGraphicsTriangleMeshPrimitive = manager.Initializers.TriangleMeshPrimitive.Initialize()
+areaCode610.SetTriangulator(DirectCast(manager.Initializers.SurfacePolygonTriangulator.Compute("Earth", areaCode610Positions), IAgStkGraphicsTriangulatorResult))
+DirectCast(areaCode610, IAgStkGraphicsPrimitive).Color = Color.DarkRed
+
+Dim areaCode215 As IAgStkGraphicsTriangleMeshPrimitive = manager.Initializers.TriangleMeshPrimitive.Initialize()
+areaCode215.SetTriangulator(DirectCast(manager.Initializers.SurfacePolygonTriangulator.Compute("Earth", areaCode215Positions), IAgStkGraphicsTriangulatorResult))
+DirectCast(areaCode215, IAgStkGraphicsPrimitive).Color = Color.Green
+
+Dim schuylkillRiver As IAgStkGraphicsPolylinePrimitive = manager.Initializers.PolylinePrimitive.Initialize()
+schuylkillRiver.Set(schuylkillPositions)
+DirectCast(schuylkillRiver, IAgStkGraphicsPrimitive).Color = Color.Blue
+schuylkillRiver.Width = 2
+
+Dim composite As IAgStkGraphicsCompositePrimitive = manager.Initializers.CompositePrimitive.Initialize()
+composite.Add(DirectCast(pennsylvania, IAgStkGraphicsPrimitive))
+composite.Add(DirectCast(areaCode610, IAgStkGraphicsPrimitive))
+composite.Add(DirectCast(areaCode215, IAgStkGraphicsPrimitive))
+composite.Add(DirectCast(schuylkillRiver, IAgStkGraphicsPrimitive))
+
+manager.Primitives.Add(DirectCast(composite, IAgStkGraphicsPrimitive))

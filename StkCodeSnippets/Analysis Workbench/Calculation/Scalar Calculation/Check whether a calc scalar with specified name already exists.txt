@@ -1,0 +1,14 @@
+C#
+
+//Check if a calc scalar with the specified name already exists.
+if (provider.CalcScalars.Contains("CalcScalarName"))
+{
+    Console.WriteLine("The calc scalar \"{0}\" already exists!", "CalcScalarName");
+}
+
+vbNet
+
+'Check if a calc scalar with the specified name already exists.
+If provider.CalcScalars.Contains("CalcScalarName") Then
+	Console.WriteLine("The calc scalar ""{0}"" already exists!", "CalcScalarName")
+End If

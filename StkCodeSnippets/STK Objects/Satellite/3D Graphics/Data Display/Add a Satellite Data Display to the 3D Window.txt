@@ -1,0 +1,11 @@
+Python
+# IAgSatellite satellite: Satellite object
+# Remove all data displays so you can easily pick one that may already be in
+# the list
+satellite.VO.DataDisplay.RemoveAll()
+# Add LLA data display and change size/title
+datadisplay = satellite.VO.DataDisplay.Add('LLA Position')
+datadisplay.IsVisible = True
+datadisplay.FontSize = AgEVOFontSize.eMedium
+datadisplay.TitleText = 'My Data Display'
+datadisplay.IsShowNameEnabled = False

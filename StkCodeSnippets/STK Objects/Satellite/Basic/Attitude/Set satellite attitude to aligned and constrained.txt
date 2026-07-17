@@ -1,0 +1,15 @@
+Python
+IAgSatellite satellite: Satellite Object
+
+basic = satellite.Attitude.Basic
+
+basic.SetProfileType(AgEVeProfile.eProfileAlignedAndConstrained)
+
+#Set Aligned Vector to Satellite1 Nadir(Centric) vector
+basic.Profile.AlignedVector.ReferenceVector = "Satellite/Satellite1 Nadir(Centric)"
+
+#Set Cartesian Magnitudes of Aligned Vector to X:0, Y:1, Z:0
+basic.Profile.AlignedVector.Body.AssignXYZ(0,1,0)
+
+#Set Constrained Vector to Satellite1 Earth vector
+basic.Profile.ConstrainedVector.ReferenceVector = "Satellite/Satellite1 Earth"

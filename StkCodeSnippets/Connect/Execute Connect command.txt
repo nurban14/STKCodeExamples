@@ -1,0 +1,5 @@
+Matlab
+root.ExecuteCommand('New / */Target MyTarget');
+Python
+
+root.ExecuteCommand('New / */Target MyTarget')

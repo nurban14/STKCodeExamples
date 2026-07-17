@@ -1,0 +1,31 @@
+C#
+
+// Get the IAgCvGrid interface
+IAgCvGrid grid = coverageDefinition.Grid;
+
+// Set resolution type
+grid.ResolutionType = AgECvResolution.eResolutionLatLon;
+
+// Get the resolution interface
+IAgCvResolution resolution = grid.Resolution;
+IAgCvResolutionLatLon latLonResolution = resolution as IAgCvResolutionLatLon;
+
+// Assign LatLon used to define grid resolution
+// Uses Angle Dimension
+latLonResolution.LatLon = 3.0;
+
+vbNet
+
+' Get the IAgCvGrid interface
+Dim grid As IAgCvGrid = coverageDefinition.Grid
+
+' Set resolution type
+grid.ResolutionType = AgECvResolution.eResolutionLatLon
+
+' Get the resolution interface
+Dim resolution As IAgCvResolution = grid.Resolution
+Dim latLonResolution As IAgCvResolutionLatLon = TryCast(resolution, IAgCvResolutionLatLon)
+
+' Assign LatLon used to define grid resolution
+' Uses Angle Dimension
+latLonResolution.LatLon = 3

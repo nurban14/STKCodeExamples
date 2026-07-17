@@ -1,0 +1,26 @@
+C#
+// Create an instance of STK
+AgUiApplication uiApplication = new AgUiApplication();
+uiApplication.LoadPersonality("STK");
+uiApplication.Visible = true;
+
+// Get our IAgStkObjectRoot interface
+IAgStkObjectRoot stkRoot = uiApplication.Personality2 as IAgStkObjectRoot;
+
+Matlab
+
+%Create an instance of STK
+uiApplication = actxserver('STK13.application');
+uiApplication.Visible = 1;
+
+%Get our IAgStkObjectRoot interface
+root = uiApplication.Personality2;
+
+vbNet
+' Create an instance of STK
+Dim uiApplication As New AgUiApplication()
+uiApplication.LoadPersonality("STK")
+uiApplication.Visible = True
+
+' Get our IAgStkObjectRoot interface
+Dim stkRoot As IAgStkObjectRoot = TryCast(uiApplication.Personality2, IAgStkObjectRoot)

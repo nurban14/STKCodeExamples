@@ -1,0 +1,7 @@
+Matlab
+% IAgAccessConstraintCollection accessConstraints: Access Constraint collection
+excludeZone = accessConstraints.AddNamedConstraint('ExclusionZone');
+excludeZone.MaxLat = 45;
+excludeZone.MinLat = 15;
+excludeZone.MinLon = -75;
+excludeZone.MaxLon = -35;

@@ -1,0 +1,11 @@
+C#
+
+IAgDrStatisticResult result = dataSet.Statistics.ComputeStatistic(AgEStatistics.eStdDev);
+Console.WriteLine("{0}", dataSet.ElementName);
+Console.WriteLine("\tStandard Deviation: {0}", result.Value);
+
+vbNet
+
+Dim result As IAgDrStatisticResult = dataSet.Statistics.ComputeStatistic(AgEStatistics.eStdDev)
+Console.WriteLine("{0}", dataSet.ElementName)
+Console.WriteLine(vbTab &amp;&amp;#160;"Standard Deviation: {0}", result.Value)

@@ -1,0 +1,3 @@
+Python
+# IAgSatellite satellite: Satellite object
+satellite.Attitude.External.Load(r'C:\Program Files\AGI\STK 12\Data\Resources\stktraining\text\AttitudeTimeEulerAngles_Example.a')

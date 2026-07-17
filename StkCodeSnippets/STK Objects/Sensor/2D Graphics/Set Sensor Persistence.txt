@@ -1,0 +1,8 @@
+Matlab
+% IAgSensor sensor: Sensor object
+projection = sensor.Graphics.Projection;
+projection.Persistence = 7200;  % sec
+projection.ForwardPersistence = true;
+projection.FillPersistence = true;
+sensor.Graphics.FillVisible = true;
+sensor.Graphics.PercentTranslucency = 50;

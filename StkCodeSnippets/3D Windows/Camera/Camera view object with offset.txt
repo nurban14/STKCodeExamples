@@ -1,0 +1,15 @@
+Matlab
+% IAgSatellite satellite: Satellite object
+% IAgScenario scenario: Scenario object
+axes = satellite.Vgt.Axes.Item('TopoCentric');
+point = satellite.vgt.Points.Item('Center');
+offset = {0.0975; 0.0279; 0.0273};
+upDirection = {-0.0906; -0.6908; 0.7173};
+
+manager = scenario.SceneManager;
+camera = manager.scenes.Item(0).Camera;
+camera.ViewOffsetWithUpAxis(axes , point, offset, upDirection);
+camera.ConstrainedUpAxis = 'eStkGraphicsConstrainedUpAxisZ';
+camera.FieldOfView = deg2rad(45);
+camera.LockViewDirection = false;
+manager.Render;

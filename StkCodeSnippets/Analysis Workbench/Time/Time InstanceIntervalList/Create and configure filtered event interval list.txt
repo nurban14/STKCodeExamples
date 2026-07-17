@@ -1,0 +1,53 @@
+C#
+
+IAgCrdnEventIntervalList intervalList = provider.EventIntervalLists.Factory.CreateEventIntervalListFiltered("MyIntervalListFiltered",  "MyDescription");
+IAgCrdnEventIntervalListFiltered listFiltered = intervalList as IAgCrdnEventIntervalListFiltered;
+
+listFiltered.OriginalIntervals = provider.EventIntervalLists["AttitudeIntervals"];
+
+IAgCrdnFirstIntervalsFilter firstIntervals = listFiltered.FilterFactory.Create(AgECrdnPruneFilter.eCrdnPruneFilterFirstIntervals) as IAgCrdnFirstIntervalsFilter;
+firstIntervals.MaximumNumberOfIntervals = 3;
+
+// Or for example satisfaction intervals
+IAgCrdnSatisfactionConditionFilter asSatisfactionCondition = listFiltered.FilterFactory.Create(AgECrdnPruneFilter.eCrdnPruneFilterSatisfactionIntervals) as IAgCrdnSatisfactionConditionFilter;
+asSatisfactionCondition.Condition = provider.Conditions["BeforeStop"];
+asSatisfactionCondition.DurationKind = AgECrdnIntervalDurationKind.eCrdnIntervalDurationKindAtLeast;
+
+// Uses current Time unit preference, this code snippet assumes seconds.
+asSatisfactionCondition.IntervalDuration = 30;
+
+IAgCrdnIntervalListResult intervals = intervalList.FindIntervals();
+if (intervals.IsValid)
+{
+    foreach (IAgCrdnInterval interval in intervals.Intervals)
+    {
+        Console.WriteLine("Start: " + interval.Start);
+        Console.WriteLine("Stop: " + interval.Stop);
+    }
+}
+
+vbNet
+
+Dim intervalList As IAgCrdnEventIntervalList = provider.EventIntervalLists.Factory.CreateEventIntervalListFiltered("MyIntervalListFiltered", "MyDescription")
+Dim listFiltered As IAgCrdnEventIntervalListFiltered = TryCast(intervalList, IAgCrdnEventIntervalListFiltered)
+
+listFiltered.OriginalIntervals = provider.EventIntervalLists("AttitudeIntervals")
+
+Dim firstIntervals As IAgCrdnFirstIntervalsFilter = TryCast(listFiltered.FilterFactory.Create(AgECrdnPruneFilter.eCrdnPruneFilterFirstIntervals), IAgCrdnFirstIntervalsFilter)
+firstIntervals.MaximumNumberOfIntervals = 3
+
+' Or for example satisfaction intervals
+Dim asSatisfactionCondition As IAgCrdnSatisfactionConditionFilter = TryCast(listFiltered.FilterFactory.Create(AgECrdnPruneFilter.eCrdnPruneFilterSatisfactionIntervals), IAgCrdnSatisfactionConditionFilter)
+asSatisfactionCondition.Condition = provider.Conditions("BeforeStop")
+asSatisfactionCondition.DurationKind = AgECrdnIntervalDurationKind.eCrdnIntervalDurationKindAtLeast
+
+' Uses current Time unit preference, this code snippet assumes seconds.
+asSatisfactionCondition.IntervalDuration = 30
+
+Dim intervals As IAgCrdnIntervalListResult = intervalList.FindIntervals()
+If intervals.IsValid Then
+	For Each interval As IAgCrdnInterval In intervals.Intervals
+		Console.WriteLine("Start: " + interval.Start)
+		Console.WriteLine("Stop: " + interval.[Stop])
+	Next
+End If

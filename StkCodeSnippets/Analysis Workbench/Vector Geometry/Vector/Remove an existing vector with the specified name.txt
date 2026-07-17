@@ -1,0 +1,16 @@
+C#
+// String VectorName: A name of the vector to be removed.
+
+// Check if the vector with specified name already exists.
+if (provider.Vectors.Contains(VectorName))
+{
+    provider.Vectors.Remove(VectorName);
+}
+
+vbNet
+// String VectorName: A name of the vector to be removed.
+
+' Check if the vector with specified name already exists.
+If provider.Vectors.Contains(VectorName) Then
+	provider.Vectors.Remove(VectorName)
+End If

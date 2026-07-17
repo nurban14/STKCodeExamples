@@ -1,0 +1,18 @@
+C#
+// AgECrdnPlaneType planeType: A plane type.
+
+// Check if the specified plane type is supported.
+if (provider.Planes.Factory.IsTypeSupported(planeType))
+{
+    IAgCrdnPlane p = provider.Planes.Factory.Create(
+        "PlaneName", string.Empty,
+        planeType);
+}
+
+vbNet
+// AgECrdnPlaneType planeType: A plane type.
+
+' Check if the specified plane type is supported.
+If provider.Planes.Factory.IsTypeSupported(planeType) Then
+	Dim p As IAgCrdnPlane = provider.Planes.Factory.Create("PlaneName", String.Empty, planeType)
+End If

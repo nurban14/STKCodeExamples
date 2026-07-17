@@ -1,0 +1,11 @@
+C#
+
+// Angle constraint
+IAgAccessCnstrAngle cnstrAngle = accessConstraints.AddConstraint(AgEAccessConstraints.eCstrLOSSunExclusion) as IAgAccessCnstrAngle;
+cnstrAngle.Angle = 176.0;
+
+vbNet
+
+' Angle constraint
+Dim cnstrAngle As IAgAccessCnstrAngle = TryCast(accessConstraints.AddConstraint(AgEAccessConstraints.eCstrLOSSunExclusion), IAgAccessCnstrAngle)
+cnstrAngle.Angle = 176

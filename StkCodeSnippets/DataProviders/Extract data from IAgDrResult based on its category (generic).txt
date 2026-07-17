@@ -1,0 +1,44 @@
+C#
+
+// Look at the Category property to find out which interface to use
+switch (result.Category)
+{
+    case AgEDrCategories.eDrCatDataSetList:
+        IAgDrDataSetCollection datasets = result.DataSets;
+        // See IAgDrDataSetCollection inteface
+        break;
+    case AgEDrCategories.eDrCatIntervalList:
+        IAgDrIntervalCollection intervals = result.Intervals;
+        // See IAgDrIntervalCollection interface
+        break;
+    case AgEDrCategories.eDrCatMessage:
+        IAgDrTextMessage message = result.Message;
+        // See IAgDrTextMessage interface
+        break;
+    case AgEDrCategories.eDrCatSubSectionList:
+        IAgDrSubSectionCollection section = result.Sections;
+        // See IAgDrSubSectionCollection interface
+        break;
+}
+
+vbNet
+
+' Look at the Category property to find out which interface to use
+Select Case result.Category
+	Case AgEDrCategories.eDrCatDataSetList
+		Dim datasets As IAgDrDataSetCollection = result.DataSets
+		' See IAgDrDataSetCollection inteface
+		Exit Select
+	Case AgEDrCategories.eDrCatIntervalList
+		Dim intervals As IAgDrIntervalCollection = result.Intervals
+		' See IAgDrIntervalCollection interface
+		Exit Select
+	Case AgEDrCategories.eDrCatMessage
+		Dim message As IAgDrTextMessage = result.Message
+		' See IAgDrTextMessage interface
+		Exit Select
+	Case AgEDrCategories.eDrCatSubSectionList
+		Dim section As IAgDrSubSectionCollection = result.Sections
+		' See IAgDrSubSectionCollection interface
+		Exit Select
+End Select

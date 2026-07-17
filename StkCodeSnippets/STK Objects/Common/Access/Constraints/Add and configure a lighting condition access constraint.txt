@@ -1,0 +1,11 @@
+C#
+
+// Condition constraint
+IAgAccessCnstrCondition light = accessConstraints.AddConstraint(AgEAccessConstraints.eCstrLighting) as IAgAccessCnstrCondition;
+light.Condition = AgECnstrLighting.eDirectSun;
+
+vbNet
+
+' Condition constraint
+Dim light As IAgAccessCnstrCondition = TryCast(accessConstraints.AddConstraint(AgEAccessConstraints.eCstrLighting), IAgAccessCnstrCondition)
+light.Condition = AgECnstrLighting.eDirectSun

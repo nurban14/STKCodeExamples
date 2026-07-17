@@ -1,0 +1,27 @@
+C#
+
+// Set altitude automatically by using terrain data
+place.UseTerrain = true;
+
+// Set the position ignores the altitude value in AssignGeodetic
+place.Position.AssignGeodetic(29.98, -90.25, 9);
+
+// Ignores the altitude value in AssignGeocentric
+place.Position.AssignGeocentric(32.12, -110.93, 787);
+
+// Ignores the radius value in AssignSpherical
+place.Position.AssignSpherical(40.65, -73.78, 7);
+
+vbNet
+
+' Set altitude automatically by using terrain data
+place.UseTerrain = True
+
+' Set the position ignores the altitude value in AssignGeodetic
+place.Position.AssignGeodetic(29.98, -90.25, 9)
+
+' Ignores the altitude value in AssignGeocentric
+place.Position.AssignGeocentric(32.12, -110.93, 787)
+
+' Ignores the radius value in AssignSpherical
+place.Position.AssignSpherical(40.65, -73.78, 7)

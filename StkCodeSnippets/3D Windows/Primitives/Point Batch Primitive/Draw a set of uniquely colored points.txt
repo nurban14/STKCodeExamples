@@ -1,0 +1,52 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+
+IAgStkGraphicsSceneManager manager = ((IAgScenario)root.CurrentScenario).SceneManager;
+Array positions = new object[]
+{
+    37.62, -122.38, 0.0,    // San Francisco
+    38.52, -121.50, 0.0,    // Sacramento
+    33.93, -118.40, 0.0,    // Los Angeles
+    32.82, -117.13, 0.0     // San Diego
+};
+
+Array colors = new object[]
+{
+    (uint)Color.Red.ToArgb(),
+    (uint)Color.Orange.ToArgb(),
+    (uint)Color.Blue.ToArgb(),
+    (uint)Color.White.ToArgb()
+};
+
+IAgStkGraphicsPointBatchPrimitive pointBatch = manager.Initializers.PointBatchPrimitive.Initialize();
+pointBatch.SetCartographicWithColors("Earth", ref positions, ref colors);
+pointBatch.PixelSize = 8;
+
+manager.Primitives.Add((IAgStkGraphicsPrimitive)pointBatch);
+
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+
+Dim manager As IAgStkGraphicsSceneManager = DirectCast(root.CurrentScenario, IAgScenario).SceneManager
+' San Francisco, Sacramento, Los Angeles, San Diego
+Dim positions As Array = New Object() _
+{ _
+    37.62, -122.38, 0.0, _
+    38.52, -121.5, 0.0, _
+    33.93, -118.4, 0.0, _
+    32.82, -117.13, 0.0 _
+}
+
+Dim colors As Array = New Object() _
+{ _
+    Color.Red.ToArgb(), _
+     Color.Orange.ToArgb(), _
+     Color.Blue.ToArgb(), _
+     Color.White.ToArgb() _
+}
+
+Dim pointBatch As IAgStkGraphicsPointBatchPrimitive = manager.Initializers.PointBatchPrimitive.Initialize()
+pointBatch.SetCartographicWithColors("Earth", positions, colors)
+pointBatch.PixelSize = 8
+
+manager.Primitives.Add(DirectCast(pointBatch, IAgStkGraphicsPrimitive))

@@ -1,0 +1,45 @@
+C#
+
+// Add a landing procedure
+IAgAvtrProcedureLanding landing = procedures.Add(AgEAvtrSiteType.eSiteRunway, AgEAvtrProcedureType.eProcLanding) as IAgAvtrProcedureLanding;
+
+// Get the runway heading options
+IAgAvtrRunwayHeadingOptions headingOptions = landing.RunwayHeadingOptions;
+// Land from the low end
+headingOptions.RunwayMode = AgEAvtrRunwayHighLowEnd.eLowEnd;
+
+// Use a standard instrument approach
+landing.ApproachMode = AgEAvtrApproachMode.eStandardInstrumentApproach;
+// Get the options for a standard instrument approach
+IAgAvtrLandingStandardInstrumentApproach sia = landing.ModeAsStandardInstrumentApproach;
+// Change the approach altitude
+sia.ApproachAltitude = 1000;
+// Change the glideslope
+sia.Glideslope = 4;
+// Offset the runway altitude
+sia.RunwayAltitudeOffset = 10;
+// Use the terrain as an altitude reference for the runway
+sia.UseRunwayTerrain = true;
+
+vbNet
+
+' Add a landing procedure
+Dim landing As IAgAvtrProcedureLanding = TryCast(procedures.Add(AgEAvtrSiteType.eSiteRunway, AgEAvtrProcedureType.eProcLanding), IAgAvtrProcedureLanding)
+
+' Get the runway heading options
+Dim headingOptions As IAgAvtrRunwayHeadingOptions = landing.RunwayHeadingOptions
+' Land from the low end
+headingOptions.RunwayMode = AgEAvtrRunwayHighLowEnd.eLowEnd
+
+' Use a standard instrument approach
+landing.ApproachMode = AgEAvtrApproachMode.eStandardInstrumentApproach
+' Get the options for a standard instrument approach
+Dim sia As IAgAvtrLandingStandardInstrumentApproach = landing.ModeAsStandardInstrumentApproach
+' Change the approach altitude
+sia.ApproachAltitude = 1000
+' Change the glideslope
+sia.Glideslope = 4
+' Offset the runway altitude
+sia.RunwayAltitudeOffset = 10
+' Use the terrain as an altitude reference for the runway
+sia.UseRunwayTerrain = True

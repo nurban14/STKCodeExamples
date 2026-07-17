@@ -1,0 +1,7 @@
+C#
+
+bool supported = launchVehicle.IsTrajectoryTypeSupported(AgEVePropagatorType.ePropagatorRealtime);
+
+vbNet
+
+Dim supported As Boolean = launchVehicle.IsTrajectoryTypeSupported(AgEVePropagatorType.ePropagatorRealtime)

@@ -1,0 +1,13 @@
+Matlab
+% IAgSatellite satellite: Satellite object
+satellite.SetPropagatorType('ePropagatorAstrogator');
+driver = satellite.Propagator;
+%Clear all segments from the MCS
+driver.MainSequence.RemoveAll();
+
+Python
+# IAgSatellite satellite: Satellite object
+satellite.SetPropagatorType(AgEVePropagatorType.ePropagatorAstrogator)
+driver = satellite.Propagator
+# Clear all segments from the MCS
+driver.MainSequence.RemoveAll()

@@ -1,0 +1,14 @@
+C#
+
+// Check if the plane with the specified name already exists.
+if (provider.Planes.Contains("PlaneName"))
+{
+    Console.WriteLine("The plane \"{0}\" already exists!", "PlaneName");
+}
+
+vbNet
+
+' Check if the plane with the specified name already exists.
+If provider.Planes.Contains("PlaneName") Then
+	Console.WriteLine("The plane ""{0}"" already exists!", "PlaneName")
+End If

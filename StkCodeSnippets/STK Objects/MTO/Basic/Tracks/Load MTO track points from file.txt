@@ -1,0 +1,13 @@
+Matlab
+# LoadPoints expects the path an Ephemeris file path
+# IAgMto mto: MTO Object
+track2 = mto.Tracks.Add(2)
+track2.Points.LoadPoints(r'C:\Program Files\AGI\STK_ODTK 13\STK\Help\stktraining\text\EphemerisLLATimePosVel_Example.e')
+track2.Interpolate = True
+Python
+
+# LoadPoints expects the path an Ephemeris file path
+# IAgMto mto: MTO Object
+track2 = mto.Tracks.Add(2)
+track2.Points.LoadPoints(r'C:\Program Files\AGI\STK_ODTK 13\STK\Help\stktraining\text\EphemerisLLATimePosVel_Example.e')
+track2.Interpolate = True

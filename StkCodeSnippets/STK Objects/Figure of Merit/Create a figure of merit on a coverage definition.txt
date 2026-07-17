@@ -1,0 +1,15 @@
+C#
+
+// Get the coverage definition as a IAgStkObject interface
+IAgStkObject covdefObject = covdef as IAgStkObject;
+
+// Create the figure of merit
+IAgFigureOfMerit fom = covdefObject.Children.New(AgESTKObjectType.eFigureOfMerit, "MyFigureOfMerit") as IAgFigureOfMerit;
+
+vbNet
+
+' Get the coverage definition as a IAgStkObject interface
+Dim covdefObject As IAgStkObject = TryCast(covdef, IAgStkObject)
+
+' Create the figure of merit
+Dim fom As IAgFigureOfMerit = TryCast(covdefObject.Children.[New](AgESTKObjectType.eFigureOfMerit, "MyFigureOfMerit"), IAgFigureOfMerit)

@@ -1,0 +1,24 @@
+C#
+// IAgOrientation orientation: A valid orientation object.
+
+Array position = new object[]
+{
+    31378.1,
+    0,
+    0
+};
+
+IAgStkGraphicsProjection projection = sceneManager.Initializers.Projection.InitializeWithData(
+    ref position,
+    orientation,
+    200,
+    200,
+    20,
+    10000);
+
+vbNet
+// IAgOrientation orientation: A valid orientation object.
+
+Dim position As Array = New Object() {31378.1, 0, 0}
+
+Dim projection As IAgStkGraphicsProjection = sceneManager.Initializers.Projection.InitializeWithData(position, orientation, 200, 200, 20, 10000)

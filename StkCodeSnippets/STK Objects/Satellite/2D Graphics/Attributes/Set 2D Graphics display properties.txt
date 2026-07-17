@@ -1,0 +1,26 @@
+Matlab
+% IAgStkObjectRoot root: STK Object Model root
+% IAgSatellite satellite: Satellite object
+%Change the line width, style, color and marker
+
+graphics = satellite.Graphics;
+graphics.SetAttributesType('eAttributesBasic');
+attributes = graphics.Attributes;
+attributes.Inherit = false;
+attributes.Line.Width = 3;
+attributes.Line.Style = 'eLongDash';
+attributes.Color = 65280;
+attributes.MarkerStyle = '<Install Dir>\STKData\Pixmaps\MarkersWin\m010Satellite.bmp';
+Python
+# IAgStkObjectRoot root: STK Object Model root
+# IAgSatellite satellite: Satellite object
+# Change the line width, style, color and marker
+
+graphics = satellite.Graphics
+graphics.SetAttributesType(AgEVeGfxAttributes.eAttributesBasic)
+attributes = graphics.Attributes
+attributes.Inherit = False
+attributes.Line.Width = AgELineWidth.e4
+attributes.Line.Style = AgELineStyle.eLongDash
+attributes.Color = Colors.Lime
+attributes.MarkerStyle = r'C:\Program Files\AGI\STK 12\STKData\Pixmaps\MarkersWin\m010Satellite.bmp'

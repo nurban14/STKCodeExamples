@@ -1,0 +1,7 @@
+C#
+
+IAgVePropDefExportTool attExTool = groundVehicle.ExportTools.GetPropDefExportTool();
+
+vbNet
+
+Dim attExTool As IAgVePropDefExportTool = groundVehicle.ExportTools.GetPropDefExportTool()

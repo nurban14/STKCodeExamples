@@ -1,0 +1,14 @@
+C#
+
+// Check if the condition with specified name exists
+if (provider.Conditions.Contains("ConditionName"))
+{
+    provider.Conditions.Remove("ConditionName");
+}
+
+vbNet
+
+' Check if the condition with specified name exists
+If provider.Conditions.Contains("ConditionName") Then
+	provider.Conditions.Remove("ConditionName")
+End If

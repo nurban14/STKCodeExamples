@@ -1,0 +1,14 @@
+C#
+
+// Check if a point with specified name exists.
+if (provider.Points.Contains("PointName"))
+{
+    Console.WriteLine("The point \"{0}\" exists!", "PointName");
+}
+
+vbNet
+
+' Check if a point with specified name exists.
+If provider.Points.Contains("PointName") Then
+	Console.WriteLine("The point ""{0}"" exists!", "PointName")
+End If

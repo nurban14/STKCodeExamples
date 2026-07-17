@@ -1,0 +1,13 @@
+Matlab
+
+% IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+PtFactory = vgtSat.Points.Factory;
+fixedPt = PtFactory.Create('FixedPt','Point offest from Center','eCrdnPointTypeFixedInSystem');
+fixedPt.Reference.SetPath('Satellite1 RIC')
+fixedPt.FixedPoint.AssignCartesian(.005, 0, .005);
+
+Python
+# IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+PtFactory = vgtSat.Points.Factory
+fixedPt = PtFactory.Create('FixedPt', 'Point offest from Center', AgECrdnPointType.eCrdnPointTypeFixedInSystem)
+fixedPt.FixedPoint.AssignCartesian(.005, 0, .005)

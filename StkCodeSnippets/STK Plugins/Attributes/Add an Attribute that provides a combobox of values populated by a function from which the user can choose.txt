@@ -1,0 +1,49 @@
+C#
+//Add the following code to your plugin
+public object Choice { get; set; }
+public object[] Choices
+{
+    get
+    {
+        return new object[4] { "0", "1", "2", "3" };
+    }
+}
+
+
+public object GetPluginConfig(AGI.Attr.AgAttrBuilder pAttrBuilder)
+{
+    if (m_AgAttrScope == null)
+    {
+        m_AgAttrScope = pAttrBuilder.NewScope();
+        pAttrBuilder.AddChoicesFuncDispatchProperty(m_AgAttrScope, "Choice", "A property", "Choice", "Choices");
+    }
+
+    return m_AgAttrScope;
+}
+
+vbNet
+'Add the following code to your plugin
+      Public _choice As Object
+      Public Property Choice() As Object Implements IExample2.Choice
+          Get
+              Return _choice
+          End Get
+          Set(ByVal value As Object)
+              _choice = value
+          End Set
+      End Property
+      Public ReadOnly Property Choices() As Object() Implements IExample2.Choices
+          Get
+              Return New Object(3) {"0", "1", "2", "3"}
+          End Get
+      End Property
+
+
+Public Function GetPluginConfig(ByVal pAttrBuilder As AGI.Attr.AgAttrBuilder) As Object Implements IAgUtPluginConfig.GetPluginConfig
+    If m_AgAttrScope = Nothing Then
+        m_AgAttrScope = pAttrBuilder.NewScope()
+        pAttrBuilder.AddChoicesFuncDispatchProperty(m_AgAttrScope, "Choice", "A property", "Choice", "Choices")
+    End If
+
+    Return m_AgAttrScope
+End Function

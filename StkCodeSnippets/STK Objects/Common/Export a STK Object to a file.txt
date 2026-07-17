@@ -1,0 +1,11 @@
+C#
+// String outputPath: Output path
+
+string fileNameWithoutExtension = Path.Combine(outputPath, "MySatellite1");
+stkObject.Export(fileNameWithoutExtension);
+
+vbNet
+// String outputPath: Output path
+
+Dim fileNameWithoutExtension As String = Path.Combine(outputPath, "MySatellite1")
+stkObject.Export(fileNameWithoutExtension)

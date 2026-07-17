@@ -1,0 +1,22 @@
+Matlab
+%% Extracting Specific Ungrouped Time Independent Data
+% IAgStkObjectRoot root: STK Object Model root
+% IAgFacility facility: Facility object
+
+% Change DateFormat dimension to epoch seconds to make the data easier to handle in MATLAB
+root.UnitPreferences.Item('DateFormat').SetCurrentUnit('EpSec');
+
+%Imports only these Data Sets from All Position Data Providers
+elems = {'Spherical-Lat'; 'Spherical-Lon';'Spherical-Rad'};
+facDP = facility.DataProviders.Item('All Position').ExecElements(elems);
+
+%Order in which datasets are imported matches how the order they are in STK
+%Integer in cast should align with this
+lat = cell2mat(facDP.DataSets.Item(cast(0, 'int32')).GetValues);
+lon = cell2mat(facDP.DataSets.Item(cast(1, 'int32')).GetValues);
+rad = cell2mat(facDP.DataSets.Item(cast(2, 'int32')).GetValues);
+
+%Alternatively you can also use .GetDataSetByName()
+lat_2 = cell2mat(facDP.DataSets.GetDataSetByName('Spherical-Lat').GetValues);
+lon_2 = cell2mat(facDP.DataSets.GetDataSetByName('Spherical-Lon').GetValues);
+rad_2 = cell2mat(facDP.DataSets.GetDataSetByName('Spherical-Rad').GetValues);

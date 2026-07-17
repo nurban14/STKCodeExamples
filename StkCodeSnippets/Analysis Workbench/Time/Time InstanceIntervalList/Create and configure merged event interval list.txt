@@ -1,0 +1,41 @@
+C#
+
+IAgCrdnProvider satelliteVgtProvider = stkRoot.GetObjectFromPath("Satellite/LEO").Vgt;
+IAgCrdnProvider aircraftVgtProvider = stkRoot.GetObjectFromPath("Aircraft/UAV").Vgt;
+
+IAgCrdnEventIntervalList intervalList = satelliteVgtProvider.EventIntervalLists.Factory.CreateEventIntervalListMerged("MyIntervalListMerged",  "MyDescription");
+IAgCrdnEventIntervalListMerged asListMerged = intervalList as IAgCrdnEventIntervalListMerged;
+
+asListMerged.SetIntervalListA(satelliteVgtProvider.EventIntervalLists["AvailabilityIntervals"]);
+asListMerged.SetIntervalListB(aircraftVgtProvider.EventIntervalLists["AvailabilityIntervals"]);
+asListMerged.MergeOperation = AgECrdnEventListMergeOperation.eCrdnEventListMergeOperationMINUS;
+
+IAgCrdnIntervalListResult intervals = intervalList.FindIntervals();
+if (intervals.IsValid)
+{
+    foreach (IAgCrdnInterval interval in intervals.Intervals)
+    {
+        Console.WriteLine("Start: " + interval.Start);
+        Console.WriteLine("Stop: " + interval.Stop);
+    }
+}
+
+vbNet
+
+Dim satelliteVgtProvider As IAgCrdnProvider = stkRoot.GetObjectFromPath("Satellite/LEO").Vgt
+Dim aircraftVgtProvider As IAgCrdnProvider = stkRoot.GetObjectFromPath("Aircraft/UAV").Vgt
+
+Dim intervalList As IAgCrdnEventIntervalList = satelliteVgtProvider.EventIntervalLists.Factory.CreateEventIntervalListMerged("MyIntervalListMerged", "MyDescription")
+Dim asListMerged As IAgCrdnEventIntervalListMerged = TryCast(intervalList, IAgCrdnEventIntervalListMerged)
+
+asListMerged.SetIntervalListA(satelliteVgtProvider.EventIntervalLists("AvailabilityIntervals"))
+asListMerged.SetIntervalListB(aircraftVgtProvider.EventIntervalLists("AvailabilityIntervals"))
+asListMerged.MergeOperation = AgECrdnEventListMergeOperation.eCrdnEventListMergeOperationMINUS
+
+Dim intervals As IAgCrdnIntervalListResult = intervalList.FindIntervals()
+If intervals.IsValid Then
+	For Each interval As IAgCrdnInterval In intervals.Intervals
+		Console.WriteLine("Start: " + interval.Start)
+		Console.WriteLine("Stop: " + interval.[Stop])
+	Next
+End If

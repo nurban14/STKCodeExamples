@@ -1,0 +1,30 @@
+C#
+
+IAgSatellite satellite = root.CurrentScenario.Children["Satellite1"] as IAgSatellite;
+IAgVODataDisplayElement voElt = satellite.VO.DataDisplay[0];
+
+root.BeginUpdate(); // Suspend updates
+
+// Put modifications here
+voElt.IsVisible = true;
+voElt.UseBackground = true;
+voElt.BgColor = Color.Green;
+voElt.UseBackground = false;
+
+root.EndUpdate(); // Resume updates now
+
+vbNet
+
+Dim satellite As IAgSatellite = TryCast(root.CurrentScenario.Children("Satellite1"), IAgSatellite)
+Dim voElt As IAgVODataDisplayElement = satellite.VO.DataDisplay(0)
+
+root.BeginUpdate()
+' Suspend updates
+' Put modifications here
+voElt.IsVisible = True
+voElt.UseBackground = True
+voElt.BgColor = Color.Green
+voElt.UseBackground = False
+
+root.EndUpdate()
+' Resume updates now

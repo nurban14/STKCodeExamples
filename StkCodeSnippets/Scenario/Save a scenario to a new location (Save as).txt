@@ -1,0 +1,9 @@
+C#
+// String fileName: Specified path and file name of scenario
+
+root.SaveScenarioAs(fileName);
+
+vbNet
+// String fileName: Specified path and file name of scenario
+
+root.SaveScenarioAs(fileName)

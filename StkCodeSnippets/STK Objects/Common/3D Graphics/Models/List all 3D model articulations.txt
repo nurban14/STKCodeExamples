@@ -1,0 +1,62 @@
+C#
+// IAgVOModel model: VO Model from an STK Object
+
+// Enumerating through the transformation collection is helpful if you do not
+// know what tranformations exist or their value ranges
+
+IAgVOModelArtic modelArticulation = model.Articulation;
+
+for (int lod = 0; lod &lt; modelArticulation.LODCount; lod++)
+{
+    // Get all articulations
+    // GetAvailableArticulations returns a one dimensional array of articulation names
+    Array articulations = modelArticulation.GetAvailableArticulations(lod);
+
+    // Enumerate through available articulations
+    for (int articulation = 0; articulation &lt; articulations.Length; articulation++)
+    {
+        // We need the articulation string to call the GetAvailableTransformations function
+        String articulationString = articulations.GetValue(articulation) as String;
+
+        // Get all transformations
+        IAgVOModelTransCollection transformations = modelArticulation.GetAvailableTransformations(lod, articulationString);
+
+        // Enumerate through available transformations
+        foreach (IAgVOModelTrans trans in transformations)
+        {
+            Console.WriteLine("Name: {0}, Current {1}, Max {2}, Min {3}", trans.Name, trans.Value, trans.Max, trans.Min);
+        }
+    }
+}
+
+vbNet
+// IAgVOModel model: VO Model from an STK Object
+
+' Enumerating through the transformation collection is helpful if you do not
+' know what tranformations exist or their value ranges
+
+Dim modelArticulation As IAgVOModelArtic = model.Articulation
+
+Dim lod As Integer = 0
+While lod &lt; modelArticulation.LODCount
+	' Get all articulations
+	' GetAvailableArticulations returns a one dimensional array of articulation names
+	Dim articulations As Array = modelArticulation.GetAvailableArticulations(lod)
+
+	' Enumerate through available articulations
+	Dim articulation As Integer = 0
+	While articulation &lt; articulations.Length
+		' We need the articulation string to call the GetAvailableTransformations function
+		Dim articulationString As [String] = TryCast(articulations.GetValue(articulation), [String])
+
+		' Get all transformations
+		Dim transformations As IAgVOModelTransCollection = modelArticulation.GetAvailableTransformations(lod, articulationString)
+
+		' Enumerate through available transformations
+		For Each trans As IAgVOModelTrans In transformations
+			Console.WriteLine("Name: {0}, Current {1}, Max {2}, Min {3}", trans.Name, trans.Value, trans.Max, trans.Min)
+		Next
+		System.Math.Max(System.Threading.Interlocked.Increment(articulation),articulation - 1)
+	End While
+	System.Math.Max(System.Threading.Interlocked.Increment(lod),lod - 1)
+End While

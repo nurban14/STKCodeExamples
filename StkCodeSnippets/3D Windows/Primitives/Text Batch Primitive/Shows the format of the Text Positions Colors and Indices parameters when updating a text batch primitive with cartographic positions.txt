@@ -1,0 +1,68 @@
+C#
+// IAgStkGraphicsTextBatchPrimitive textBatch: A text batch primitive
+
+Array colors = new object[]
+{
+    Color.Red.ToArgb(),
+    Color.Green.ToArgb(),
+    Color.Blue.ToArgb(),
+    Color.White.ToArgb()
+};
+
+IAgStkGraphicsTextBatchPrimitiveOptionalParameters parameters = sceneManager.Initializers.TextBatchPrimitiveOptionalParameters.Initialize();
+parameters.SetColors(ref colors);
+
+Array text = new object[]
+{
+    "Philadelphia",
+    "Washington D.C.",
+    "New Orleans",
+    "San Jose"
+};
+
+Array positions = new object[]
+{
+    39.88, -75.25, 0,    // Philadelphia
+    38.85, -77.04, 0, // Washington, D.C.
+    29.98, -90.25, 0, // New Orleans
+    37.37, -121.92, 0    // San Jose
+};
+
+Array indices = new object[]
+{
+    0,
+    1,
+    2,
+    3
+};
+
+textBatch.SetPartialCartographicWithOptionalParametersIndicesOrderAndRenderPass(
+    "Earth",
+    ref positions,
+    ref text,
+    parameters,
+    ref indices,
+    AgEStkGraphicsIndicesOrderHint.eStkGraphicsIndicesOrderHintSortedAscending,
+    AgEStkGraphicsRenderPassHint.eStkGraphicsRenderPassHintOpaque);
+
+vbNet
+// IAgStkGraphicsTextBatchPrimitive textBatch: A text batch primitive
+
+Dim colors As Array = New Object() {Color.Red.ToArgb(), Color.Green.ToArgb(), Color.Blue.ToArgb(), Color.White.ToArgb()}
+
+Dim parameters As IAgStkGraphicsTextBatchPrimitiveOptionalParameters = sceneManager.Initializers.TextBatchPrimitiveOptionalParameters.Initialize()
+parameters.SetColors(colors)
+
+Dim text As Array = New Object() {"Philadelphia", "Washington D.C.", "New Orleans", "San Jose"}
+
+' Philadelphia
+' Washington, D.C.
+' New Orleans
+	' San Jose
+Dim positions As Array = New Object() {39.88, -75.25, 0, 38.85, -77.04, 0, _
+	29.98, -90.25, 0, 37.37, -121.92, 0}
+
+Dim indices As Array = New Object() {0, 1, 2, 3}
+
+textBatch.SetPartialCartographicWithOptionalParametersIndicesOrderAndRenderPass("Earth", positions, text, parameters, indices, AgEStkGraphicsIndicesOrderHint.eStkGraphicsIndicesOrderHintSortedAscending, _
+	AgEStkGraphicsRenderPassHint.eStkGraphicsRenderPassHintOpaque)

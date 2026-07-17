@@ -1,0 +1,10 @@
+C#
+
+IAgVeRealtimeLLAPoints points = propagator.PointBuilder.LLA;
+points.Add("1 Jan 2012 12:00:00.000", 39.693, -76.399, 0.039, 0.03458, 0.01223, 0.05402);
+
+vbNet
+
+Dim points As IAgVeRealtimeLLAPoints = propagator.PointBuilder.LLA
+points.Add("1 Jan 2012 12:00:00.000", 39.693, -76.399, 0.039, 0.03458, 0.01223, _
+	0.05402)

@@ -1,0 +1,20 @@
+C#
+// AgECrdnAngleType angleType: An angle type.
+
+// Check if the specified angle type is supported.
+if (provider.Angles.Factory.IsTypeSupported(angleType))
+{
+    //Create an Angle with the supported Type
+    IAgCrdnAngle angle = provider.Angles.Factory.Create(
+        "MyAngle", string.Empty,
+        angleType);
+}
+
+vbNet
+// AgECrdnAngleType angleType: An angle type.
+
+' Check if the specified angle type is supported.
+If provider.Angles.Factory.IsTypeSupported(angleType) Then
+	'Create an Angle with the supported Type
+	Dim angle As IAgCrdnAngle = provider.Angles.Factory.Create("MyAngle", String.Empty, angleType)
+End If

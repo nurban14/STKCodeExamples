@@ -1,0 +1,34 @@
+Python
+## Extracting Specific Group Time Dependent Data Elements at Discrete Times
+# IAgStkObjectRoot root: STK Object Model root
+# IAgSatellite satellite: Satellite object
+
+# Change DateFormat dimension to epoch seconds to make the data easier to handle in Python
+root.UnitPreferences.Item('DateFormat').SetCurrentUnit('EpSec')
+times = [[0],[15000],[20000],[55000]]
+
+# IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+#Need to Create Time Array element to Retrieve Data Elements
+vgtSat = satellite.Vgt
+
+elems = [['x'],['y'],['z']]
+
+#Extract Satellite Position Data at 0, 15000,20000,55000 Epoch Seconds
+satPosDP = satellite.DataProviders.Item('Cartesian Position').Group.Item('ICRF').ExecSingleElementsArray(times,elems)
+
+#Integer parameter in GetArray() matches order of elemenets in "elems"
+satx = satPosDP.GetArray(0)
+saty = satPosDP.GetArray(1)
+satz = satPosDP.GetArray(2)
+
+
+#Alternatively...
+satVelDP = satellite.DataProviders.GetDataPrvTimeVarFromPath('Cartesian Velocity/ICRF').ExecSingleElementsArray(times,elems)
+# There are 4 Methods to get DP From a Path depending on the kind of DP:
+#   GetDataPrvTimeVarFromPath
+#   GetDataPrvIntervalFromPath
+#   GetDataPrvInfoFromPath
+#   GetDataPrvFixedFromPath
+satvx = satVelDP.GetArray(0)
+satvy = satVelDP.GetArray(1)
+satvz = satVelDP.GetArray(2)

@@ -1,0 +1,8 @@
+Matlab
+% IAgSatellite satellite: Satellite object
+resolution = satellite.Graphics.Resolution;
+resolution.Orbit = 60;
+Python
+# IAgSatellite satellite: Satellite object
+resolution = satellite.Graphics.Resolution
+resolution.Orbit = 60

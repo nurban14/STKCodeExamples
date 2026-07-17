@@ -1,0 +1,18 @@
+Python
+# IAgAccessConstraintCollection accessConstraints: Access Constraint collection
+for i in range(accessConstraints.Count - 1, 0, -1):
+    constraint = accessConstraints.Item(i).ConstraintName
+
+    if (constraint == 'LineOfSight') is False:
+        if (constraint == 'ThirdBodyObstruction'):
+            thirdBodyConstraint = accessConstraints.GetActiveNamedConstraint('ThirdBodyObstruction')
+            assignedArray = thirdBodyConstraint.AssignedObstructions
+
+            for j in range(0, len(assignedArray)):
+                thirdBodyConstraint.RemoveObstruction(assignedArray[j])
+
+        elif (constraint == 'ExclusionZone'):
+            accessConstraints.GetActiveNamedConstraint('ExclusionZone').RemoveAll()
+
+        else:
+            accessConstraints.RemoveNamedConstraint(constraint)

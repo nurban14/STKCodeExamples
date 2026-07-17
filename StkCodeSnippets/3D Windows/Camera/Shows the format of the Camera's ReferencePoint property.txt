@@ -1,0 +1,16 @@
+C#
+
+Array point = new object[]
+{
+    31378.1,
+    0,
+    0
+};
+
+scene.Camera.ReferencePoint = point;
+
+vbNet
+
+Dim point As Array = New Object() {31378.1, 0, 0}
+
+scene.Camera.ReferencePoint = point

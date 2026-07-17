@@ -1,0 +1,35 @@
+C#
+
+// Add launch sequence and retrieve the IAgVAMCSManeuver interface
+IAgVAMCSSegment segment = driver.MainSequence.Insert(AgEVASegmentType.eVASegmentTypeManeuver, "MyManeuver", "-");
+IAgVAMCSManeuver maneuver = segment as IAgVAMCSManeuver;
+
+// Set Maneuver to Impulsive
+maneuver.SetManeuverType(AgEVAManeuverType.eVAManeuverTypeImpulsive);
+IAgVAManeuverImpulsive impulse = maneuver.Maneuver as IAgVAManeuverImpulsive;
+
+// Set Impulsive attitude to VelocityVector
+impulse.SetAttitudeControlType(AgEVAAttitudeControl.eVAAttitudeControlVelocityVector);
+IAgVAAttitudeControlImpulsiveVelocityVector velVec = impulse.AttitudeControl as IAgVAAttitudeControlImpulsiveVelocityVector;
+velVec.DeltaVMagnitude = 1.0;
+
+impulse.SetPropulsionMethod(AgEVAPropulsionMethod.eVAPropulsionMethodThrusterSet, "Thruster Set");
+impulse.UpdateMass = true;
+
+vbNet
+
+' Add launch sequence and retrieve the IAgVAMCSManeuver interface
+Dim segment As IAgVAMCSSegment = driver.MainSequence.Insert(AgEVASegmentType.eVASegmentTypeManeuver, "MyManeuver", "-")
+Dim maneuver As IAgVAMCSManeuver = TryCast(segment, IAgVAMCSManeuver)
+
+' Set Maneuver to Impulsive
+maneuver.SetManeuverType(AgEVAManeuverType.eVAManeuverTypeImpulsive)
+Dim impulse As IAgVAManeuverImpulsive = TryCast(maneuver.Maneuver, IAgVAManeuverImpulsive)
+
+' Set Impulsive attitude to VelocityVector
+impulse.SetAttitudeControlType(AgEVAAttitudeControl.eVAAttitudeControlVelocityVector)
+Dim velVec As IAgVAAttitudeControlImpulsiveVelocityVector = TryCast(impulse.AttitudeControl, IAgVAAttitudeControlImpulsiveVelocityVector)
+velVec.DeltaVMagnitude = 1
+
+impulse.SetPropulsionMethod(AgEVAPropulsionMethod.eVAPropulsionMethodThrusterSet, "Thruster Set")
+impulse.UpdateMass = True

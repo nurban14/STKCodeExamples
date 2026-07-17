@@ -1,0 +1,19 @@
+C#
+// IAgFacility facility: An instance of a facility
+
+object lat = 0, lon = 0;
+double alt = 0;
+
+facility.Position.QueryPlanetodetic(out lat, out lon, out alt);
+IAgCrdnPointFixedInSystem origin = provider.Points.CommonTasks.CreateFixedInSystemCartographic(provider.Systems["Fixed"], lat, lon, alt);
+IAgCrdnAxesFixed eastNorthUp = provider.Axes.CommonTasks.CreateTopocentricAxesQuaternion((IAgCrdnPoint)origin, 0.0, 0.0, 0.0, 1.0);
+
+vbNet
+// IAgFacility facility: An instance of a facility
+
+Dim lat As Object = 0, lon As Object = 0
+Dim alt As Double = 0
+
+facility.Position.QueryPlanetodetic(lat, lon, alt)
+Dim origin As IAgCrdnPointFixedInSystem = provider.Points.CommonTasks.CreateFixedInSystemCartographic(provider.Systems("Fixed"), lat, lon, alt)
+Dim eastNorthUp As IAgCrdnAxesFixed = provider.Axes.CommonTasks.CreateTopocentricAxesQuaternion(DirectCast(origin, IAgCrdnPoint), 0, 0, 0, 1)

@@ -1,0 +1,28 @@
+Matlab
+%% Extracting All Ungrouped Time Dependent Data Elements at Discrete Times
+% IAgStkObjectRoot root: STK Object Model root
+% IAgScenario scenario: STK Current Scenario
+% IAgSatellite satellite: Satellite object
+% Change DateFormat dimension to epoch seconds to make the data easier to handle in MATLAB
+root.UnitPreferences.Item('DateFormat').SetCurrentUnit('EpSec');
+times = {0;15000;20000;55000};
+
+% IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+%Need to Create Time Array element to Retrieve Data Elements
+vgtSat = satellite.Vgt;
+
+%Checks if Time array already exists. Retrieve array if it exists else create a new one
+if(~vgtSat.EventArrays.Contains("Input_Times"))
+    timeArrayFactory = vgtSat.EventArrays.Factory;
+    timeArray = timeArrayFactory.CreateEventArrayFixedTimes("Input_Times",'');
+    timeArray.SetArrayTimes(times);
+else
+    timeArray = vgtSat.EventArrays.GetItemByName("Input_Times");
+    timeArray.SetArrayTimes(times);
+end
+
+%Retrieves data at the time instants of 0, 15000, 20000, and 55000 epSecs
+satPassDP = satellite.DataProviders.Item('Precision Passes').ExecEventArray(timeArray,scenario.StartTime, scenario.StopTime);
+passTimes = cell2mat(satPassDP.DataSets.GetDataSetByName('Time').GetValues);
+pass = cell2mat(satPassDP.DataSets.GetDataSetByName('Precision Pass Number').GetValues);
+path = cell2mat(satPassDP.DataSets.GetDataSetByName('Precision Path Number').GetValues);

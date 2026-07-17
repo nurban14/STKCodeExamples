@@ -1,0 +1,17 @@
+Matlab
+% IAgAntenna antenna: Antenna object
+
+antenna.VO.ShowContours = true;
+antenna.VO.VolumeGraphics.Show = true;
+antenna.VO.VolumeGraphics.GainOffset = 15; %db
+antenna.VO.VolumeGraphics.GainScale = 0.005; %km
+Python
+
+# IAgAntenna antenna: Antenna object
+contours = antenna.Graphics.ContourGraphics
+contours.SetContourType(0) # eAntennaContourTypeGain
+contours.Show = True
+for i in range(-30,30,5):
+    contours.Contour.Levels.Add(i)
+antenna.VO.ShowContours = True
+antenna.VO.VolumeGraphics.Show = True

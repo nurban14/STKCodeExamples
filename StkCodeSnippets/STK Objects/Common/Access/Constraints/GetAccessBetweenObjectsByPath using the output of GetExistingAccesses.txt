@@ -1,0 +1,27 @@
+C#
+
+IAgScenario scenario = stkRoot.CurrentScenario as IAgScenario;
+Array accesses = scenario.GetExistingAccesses();
+
+int numAccesses = accesses.GetLength(0);  // number of accesses
+
+string object1 = accesses.GetValue(0, 0).ToString();    // e.g. "Facility/Fac1"
+string object2 = accesses.GetValue(0, 1).ToString();    // e.g. "Satellite/Sat1"
+bool computed = (bool)accesses.GetValue(0, 2);          // e.g. true  (if access has been computed)
+
+IAgStkAccess access = scenario.GetAccessBetweenObjectsByPath(object1, object2);
+
+vbNet
+
+Dim scenario As IAgScenario = TryCast(stkRoot.CurrentScenario, IAgScenario)
+Dim accesses As Array = scenario.GetExistingAccesses()
+
+Dim numAccesses As Integer = accesses.GetLength(0)
+' number of accesses
+Dim object1 As String = accesses.GetValue(0, 0).ToString()
+' e.g. "Facility/Fac1"
+Dim object2 As String = accesses.GetValue(0, 1).ToString()
+' e.g. "Satellite/Sat1"
+Dim computed As Boolean = DirectCast(accesses.GetValue(0, 2), Boolean)
+' e.g. true  (if access has been computed)
+Dim access As IAgStkAccess = scenario.GetAccessBetweenObjectsByPath(object1, object2)

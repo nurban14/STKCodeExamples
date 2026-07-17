@@ -1,0 +1,31 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+
+IAgStkGraphicsSceneManager manager = ((IAgScenario)root.CurrentScenario).SceneManager;
+Array center = new object[] { 39.88, -75.25, 0.0 }; // Philadelphia
+
+IAgStkGraphicsSurfaceShapesResult shape = manager.Initializers.SurfaceShapes.ComputeCircleCartographic("Earth", ref center, 10000);
+Array positions = shape.Positions;
+
+IAgStkGraphicsPolylinePrimitive line = manager.Initializers.PolylinePrimitive.InitializeWithType(shape.PolylineType);
+line.Set(ref positions);
+line.Width = 2;
+((IAgStkGraphicsPrimitive)line).Color = Color.White;
+
+manager.Primitives.Add((IAgStkGraphicsPrimitive)line);
+
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+
+Dim manager As IAgStkGraphicsSceneManager = DirectCast(root.CurrentScenario, IAgScenario).SceneManager
+Dim philadelphia As Array = New Object() {39.88, -75.25, 0.0}
+
+Dim shape As IAgStkGraphicsSurfaceShapesResult = manager.Initializers.SurfaceShapes.ComputeCircleCartographic("Earth", philadelphia, 10000)
+Dim positions As Array = shape.Positions
+
+Dim line As IAgStkGraphicsPolylinePrimitive = manager.Initializers.PolylinePrimitive.InitializeWithType(shape.PolylineType)
+line.Set(positions)
+line.Width = 2
+DirectCast(line, IAgStkGraphicsPrimitive).Color = Color.White
+
+manager.Primitives.Add(DirectCast(line, IAgStkGraphicsPrimitive))

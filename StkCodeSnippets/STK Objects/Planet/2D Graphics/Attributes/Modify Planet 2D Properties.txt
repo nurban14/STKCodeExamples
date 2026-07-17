@@ -1,0 +1,16 @@
+Matlab
+# IAgPlanet planet: Planet object
+planet2D = planet.Graphics
+planet2D.Color = 255   # Red
+planet2D.Inherit = False
+planet2D.OrbitVisible = True
+planet2D.SubPlanetPointVisible = False
+planet2D.SubPlanetLabelVisible = False
+Python
+# IAgPlanet planet: Planet object
+planet2D = planet.Graphics
+planet2D.Color = 255   # Red
+planet2D.Inherit = False
+planet2D.OrbitVisible = True
+planet2D.SubPlanetPointVisible = False
+planet2D.SubPlanetLabelVisible = False

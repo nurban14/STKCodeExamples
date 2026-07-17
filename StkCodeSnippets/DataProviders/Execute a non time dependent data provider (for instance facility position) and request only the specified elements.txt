@@ -1,0 +1,20 @@
+C#
+
+Array elems = new object[]
+              {
+                  "x", "z"
+              };
+
+IAgDataPrvFixed dpInfo = facility.DataProviders["Cartesian Position"] as IAgDataPrvFixed;
+
+// ExecElements expects a one dimensional array of element names
+IAgDrResult resInfo = dpInfo.ExecElements(ref elems);
+
+vbNet
+
+Dim elems As Array = New Object() {"x", "z"}
+
+Dim dpInfo As IAgDataPrvFixed = TryCast(facility.DataProviders("Cartesian Position"), IAgDataPrvFixed)
+
+' ExecElements expects a one dimensional array of element names
+Dim resInfo As IAgDrResult = dpInfo.ExecElements(elems)

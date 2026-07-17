@@ -1,0 +1,24 @@
+Python
+## Extracting All Group Time Dependent Data at a Single Point in Time
+# IAgStkObjectRoot root: STK Object Model root
+# IAgSatellite satellite: Satellite object
+# IAgScenario scenario: Scenario object
+
+# Change DateFormat dimension to epoch seconds to make the data easier to handle in Python
+root.UnitPreferences.Item('DateFormat').SetCurrentUnit('EpSec')
+
+satPosDP = satellite.DataProviders.Item('Cartesian Position').Group.Item('ICRF').ExecSingle(5000)
+satx = satPosDP.DataSets.GetDataSetByName('x').GetValues()
+saty = satPosDP.DataSets.GetDataSetByName('y').GetValues()
+satz = satPosDP.DataSets.GetDataSetByName('z').GetValues()
+
+#Alternatively...
+satVelDP = satellite.DataProviders.GetDataPrvTimeVarFromPath('Cartesian Velocity/ICRF').ExecSingle(5000)
+# There are 4 Methods to get DP From a Path depending on the kind of DP:
+#   GetDataPrvTimeVarFromPath
+#   GetDataPrvIntervalFromPath
+#   GetDataPrvInfoFromPath
+#   GetDataPrvFixedFromPath
+satvx = satVelDP.DataSets.GetDataSetByName('x').GetValues()
+satvy = satVelDP.DataSets.GetDataSetByName('y').GetValues()
+satvz = satVelDP.DataSets.GetDataSetByName('z').GetValues()

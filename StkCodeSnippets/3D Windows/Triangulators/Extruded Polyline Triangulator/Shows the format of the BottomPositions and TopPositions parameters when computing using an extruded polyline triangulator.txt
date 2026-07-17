@@ -1,0 +1,32 @@
+C#
+
+Array bottomPositions = new object[]
+{
+    6578.14, 0, 0,
+    6512.79, 653.458, 652.476,
+    6545.27, 656.718, 0,
+    6578.14, 0, 0
+};
+
+Array topPositions = new object[]
+{
+    7205.81, 722.992, 722.36,
+    6991.68, 1417.28, 1437.63,
+    7097.63, 1438.76, 722.36,
+    7205.81, 722.992, 722.36
+};
+
+IAgStkGraphicsExtrudedPolylineTriangulatorResult result = sceneManager.Initializers.ExtrudedPolylineTriangulator.Compute(
+    "Earth",
+    ref bottomPositions,
+    ref topPositions);
+
+vbNet
+
+Dim bottomPositions As Array = New Object() {6578.14, 0, 0, 6512.79, 653.458, 652.476, _
+	6545.27, 656.718, 0, 6578.14, 0, 0}
+
+Dim topPositions As Array = New Object() {7205.81, 722.992, 722.36, 6991.68, 1417.28, 1437.63, _
+	7097.63, 1438.76, 722.36, 7205.81, 722.992, 722.36}
+
+Dim result As IAgStkGraphicsExtrudedPolylineTriangulatorResult = sceneManager.Initializers.ExtrudedPolylineTriangulator.Compute("Earth", bottomPositions, topPositions)

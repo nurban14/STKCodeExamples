@@ -1,0 +1,28 @@
+Python
+## Extracting Specific Ungrouped Interval Data
+# IAgStkObjectRoot root: STK Object Model root
+# IAgSatellite satellite: Satellite object
+# IAgFacility facility: Facility object
+
+# Change DateFormat dimension to epoch seconds to make the data easier to handle in Python
+root.UnitPreferences.Item('DateFormat').SetCurrentUnit('EpSec')
+
+# Get the current scenario
+scenario = root.CurrentScenario
+# Set up the access object
+access = satellite.GetAccessToObject(facility)
+access.ComputeAccess()
+
+#Only return Start Time and Duration DataSets from Access Data Provider
+elems = [['Start Time'],['Duration']]
+# Get the Access AER Data Provider
+accessDP = access.DataProviders.Item('Access Data').ExecElements(scenario.StartTime, scenario.StopTime,elems)
+
+#Order in which datasets are imported matches how the order they are in STK
+#Integer in Item should align with this
+accessStartTimes = accessDP.DataSets.Item(0).GetValues()
+accessDuration = accessDP.DataSets.Item(1).GetValues()
+
+#Alternatively can use .GetDataSetByName() method
+accessStartTimes_2 = accessDP.DataSets.GetDataSetByName('Start Time').GetValues()
+accessDuration_2 = accessDP.DataSets.GetDataSetByName('Duration').GetValues()

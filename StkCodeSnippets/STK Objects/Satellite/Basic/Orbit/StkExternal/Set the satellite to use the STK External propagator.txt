@@ -1,0 +1,15 @@
+C#
+
+// Set propagator to STK External
+satellite.SetPropagatorType(AgEVePropagatorType.ePropagatorStkExternal);
+
+// Get the STK External propagator
+IAgVePropagatorStkExternal propagator = satellite.Propagator as IAgVePropagatorStkExternal;
+
+vbNet
+
+' Set propagator to STK External
+satellite.SetPropagatorType(AgEVePropagatorType.ePropagatorStkExternal)
+
+' Get the STK External propagator
+Dim propagator As IAgVePropagatorStkExternal = TryCast(satellite.Propagator, IAgVePropagatorStkExternal)

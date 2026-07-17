@@ -1,0 +1,33 @@
+C#
+
+IAgCvPointDefinition pointDefinition = coverageDefinition.PointDefinition;
+
+// Set facility as object seed instance
+pointDefinition.GridClass = AgECvGridClass.eGridClassFacility;
+pointDefinition.UseGridSeed = true;
+pointDefinition.SeedInstance = "Facility/North";
+
+// Configure Altitude
+pointDefinition.AltitudeMethod = AgECvAltitudeMethod.eAltitude;
+pointDefinition.Altitude = 0.0;
+coverageDefinition.PointDefinition.GroundAltitudeMethod = AgECvGroundAltitudeMethod.eCvGroundAltitudeMethodUsePointAlt;
+
+Matlab
+
+% IAgCoverageDefinition coverage: Coverage object
+coverage.PointDefinition.GridClass = 'eGridClassFacility';
+coverage.PointDefinition.UseGridSeed =  true;
+coverage.PointDefinition.SeedInstance = 'Facility/MyFacility';
+vbNet
+
+Dim pointDefinition As IAgCvPointDefinition = coverageDefinition.PointDefinition
+
+' Set facility as object seed instance
+pointDefinition.GridClass = AgECvGridClass.eGridClassFacility
+pointDefinition.UseGridSeed = True
+pointDefinition.SeedInstance = "Facility/North"
+
+' Configure Altitude
+pointDefinition.AltitudeMethod = AgECvAltitudeMethod.eAltitude
+pointDefinition.Altitude = 0
+coverageDefinition.PointDefinition.GroundAltitudeMethod = AgECvGroundAltitudeMethod.eCvGroundAltitudeMethodUsePointAlt

@@ -1,0 +1,18 @@
+C#
+
+Array position = new object[]
+{
+    39.88,
+    -75.25,
+    0
+};
+
+model.SetPositionCartographic(
+    "Earth",
+    ref position);
+
+vbNet
+
+Dim position As Array = New Object() {39.88, -75.25, 0}
+
+model.SetPositionCartographic("Earth", position)

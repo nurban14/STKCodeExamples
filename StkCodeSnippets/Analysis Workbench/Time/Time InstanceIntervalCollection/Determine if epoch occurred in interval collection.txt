@@ -1,0 +1,47 @@
+C#
+
+string eventCollName = "LightingIntervals";
+IAgCrdnEventIntervalCollection intervalVectorCollection = provider.EventIntervalCollections[ eventCollName];
+
+// any time that the vehicle has ephemeris its time will occur in the LightingIntervals collection (as a sunlit, penumbra or umbra time)
+string dateDuringEphem = "1 Jan 2012 20:00:00";
+
+IAgCrdnEventIntervalCollectionOccurredResult occurredResult = intervalVectorCollection.Occurred( dateDuringEphem);
+
+Assert.IsTrue(occurredResult.IsValid);
+
+Console.WriteLine("Occurred at {0} index", occurredResult.Index);
+
+// Use the index from IAgCrdnEventIntervalCollectionOccurredResult as the index to IAgCrdnIntervalsVectorResult.IntervalCollections
+IAgCrdnIntervalsVectorResult intervalResult = intervalVectorCollection.FindIntervalCollection();
+IAgCrdnIntervalCollection intervalCollection = intervalResult.IntervalCollections[occurredResult.Index];
+
+string dateNotDuringEphem = "1 May 1980 04:30:00.000";
+IAgCrdnEventIntervalCollectionOccurredResult occurredResult2 = intervalVectorCollection.Occurred( dateNotDuringEphem);
+
+Assert.IsFalse(occurredResult2.IsValid);
+Console.WriteLine("Did not find time {0} during eventIntervalCollection {1}'s times.", dateNotDuringEphem, eventCollName);
+
+vbNet
+
+Dim eventCollName As String = "LightingIntervals"
+Dim intervalVectorCollection As IAgCrdnEventIntervalCollection = provider.EventIntervalCollections(eventCollName)
+
+' any time that the vehicle has ephemeris its time will occur in the LightingIntervals collection (as a sunlit, penumbra or umbra time)
+Dim dateDuringEphem As String = "1 Jan 2012 20:00:00"
+
+Dim occurredResult As IAgCrdnEventIntervalCollectionOccurredResult = intervalVectorCollection.Occurred(dateDuringEphem)
+
+Assert.IsTrue(occurredResult.IsValid)
+
+Console.WriteLine("Occurred at {0} index", occurredResult.Index)
+
+' Use the index from IAgCrdnEventIntervalCollectionOccurredResult as the index to IAgCrdnIntervalsVectorResult.IntervalCollections
+Dim intervalResult As IAgCrdnIntervalsVectorResult = intervalVectorCollection.FindIntervalCollection()
+Dim intervalCollection As IAgCrdnIntervalCollection = intervalResult.IntervalCollections(occurredResult.Index)
+
+Dim dateNotDuringEphem As String = "1 May 1980 04:30:00.000"
+Dim occurredResult2 As IAgCrdnEventIntervalCollectionOccurredResult = intervalVectorCollection.Occurred(dateNotDuringEphem)
+
+Assert.IsFalse(occurredResult2.IsValid)
+Console.WriteLine("Did not find time {0} during eventIntervalCollection {1}'s times.", dateNotDuringEphem, eventCollName)

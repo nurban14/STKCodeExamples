@@ -1,0 +1,17 @@
+Matlab
+
+% IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+% IAgCrdnVectorDisplacement Sat2EarthCenter: vector component
+% IAgCrdnVectorFixedInAxes bodyYSat: vector component
+AngFactory = vgtSat.Angles.Factory;
+betwVect = AngFactory.Create('SatEarth2Y','Displacement Vector to Sat Body Y','eCrdnAngleTypeBetweenVectors');
+betwVect.FromVector.SetVector(Sat2EarthCenter);
+betwVect.ToVector.SetVector(bodyYSat);
+Python
+# IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+# IAgCrdnVectorDisplacement Sat2EarthCenter: vector component
+# IAgCrdnVectorFixedInAxes bodyYSat: vector component
+AngFactory = vgtSat.Angles.Factory
+betwVect = AngFactory.Create('SatEarth2Y', 'Displacement Vector to Sat Body Y', AgECrdnAngleType.eCrdnAngleTypeBetweenVectors)
+betwVect.FromVector.SetVector(Sat2EarthCenter)
+betwVect.ToVector.SetVector(bodyYSat)

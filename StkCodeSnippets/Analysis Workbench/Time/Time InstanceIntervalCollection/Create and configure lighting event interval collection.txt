@@ -1,0 +1,42 @@
+C#
+
+IAgCrdnEventIntervalCollection intervalCollection = provider.EventIntervalCollections.Factory.CreateEventIntervalCollectionLighting("MyIntervalCollectionLightning",  "MyDescription");
+IAgCrdnEventIntervalCollectionLighting asCollectionLightning = intervalCollection as IAgCrdnEventIntervalCollectionLighting;
+
+// Optionally use a separate central body
+asCollectionLightning.UseObjectEclipsingBodies = true;
+asCollectionLightning.Location = provider.Points["Center"];
+asCollectionLightning.EclipsingBodies = new object[] { "Saturn", "Jupiter" };
+
+IAgCrdnIntervalsVectorResult intervalResult = intervalCollection.FindIntervalCollection();
+if (intervalResult.IsValid)
+{
+    foreach (IAgCrdnIntervalCollection intervals in intervalResult.IntervalCollections)
+    {
+        foreach (IAgCrdnInterval interval in intervals)
+        {
+            Console.WriteLine("Start: " + interval.Start);
+            Console.WriteLine("Start: " + interval.Stop);
+        }
+    }
+}
+
+vbNet
+
+Dim intervalCollection As IAgCrdnEventIntervalCollection = provider.EventIntervalCollections.Factory.CreateEventIntervalCollectionLighting("MyIntervalCollectionLightning", "MyDescription")
+Dim asCollectionLightning As IAgCrdnEventIntervalCollectionLighting = TryCast(intervalCollection, IAgCrdnEventIntervalCollectionLighting)
+
+' Optionally use a separate central body
+asCollectionLightning.UseObjectEclipsingBodies = True
+asCollectionLightning.Location = provider.Points("Center")
+asCollectionLightning.EclipsingBodies = New Object() {"Saturn", "Jupiter"}
+
+Dim intervalResult As IAgCrdnIntervalsVectorResult = intervalCollection.FindIntervalCollection()
+If intervalResult.IsValid Then
+	For Each intervals As IAgCrdnIntervalCollection In intervalResult.IntervalCollections
+		For Each interval As IAgCrdnInterval In intervals
+			Console.WriteLine("Start: " + interval.Start)
+			Console.WriteLine("Start: " + interval.[Stop])
+		Next
+	Next
+End If

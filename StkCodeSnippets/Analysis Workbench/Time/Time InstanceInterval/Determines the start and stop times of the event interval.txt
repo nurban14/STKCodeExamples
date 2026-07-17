@@ -1,0 +1,22 @@
+C#
+
+IAgCrdnEventInterval eventInterval = provider.EventIntervals["AvailabilityTimeSpan"];
+
+IAgCrdnEventIntervalResult interval = eventInterval.FindInterval();
+
+if (interval.IsValid)
+{
+    Console.WriteLine("Interval Start: " + interval.Interval.Start);
+    Console.WriteLine("Interval Stop: " + interval.Interval.Stop);
+}
+
+vbNet
+
+Dim eventInterval As IAgCrdnEventInterval = provider.EventIntervals("AvailabilityTimeSpan")
+
+Dim interval As IAgCrdnEventIntervalResult = eventInterval.FindInterval()
+
+If interval.IsValid Then
+	Console.WriteLine("Interval Start: " + interval.Interval.Start)
+	Console.WriteLine("Interval Stop: " + interval.Interval.[Stop])
+End If

@@ -1,0 +1,7 @@
+C#
+
+stkObject.InstanceName = "NewObjectName";
+
+vbNet
+
+stkObject.InstanceName = "NewObjectName"

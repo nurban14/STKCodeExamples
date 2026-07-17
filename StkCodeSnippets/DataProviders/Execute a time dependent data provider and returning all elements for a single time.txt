@@ -1,0 +1,9 @@
+C#
+
+IAgDataPrvTimeVar dp = satellite.DataProviders["Precision Passes"] as IAgDataPrvTimeVar;
+IAgDrResult resInfo = dp.ExecSingle("1 Jan 2012 12:00:00.000");
+
+vbNet
+
+Dim dp As IAgDataPrvTimeVar = TryCast(satellite.DataProviders("Precision Passes"), IAgDataPrvTimeVar)
+Dim resInfo As IAgDrResult = dp.ExecSingle("1 Jan 2012 12:00:00.000")

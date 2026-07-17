@@ -1,0 +1,69 @@
+C#
+
+// Get the advanced fixed wing tool
+IAgAvtrAdvFixedWingTool advFixedWingTool = aviatorAircraft.AdvFixedWingTool;
+// Set the basic geometry
+advFixedWingTool.WingArea = 300;
+advFixedWingTool.FlapsArea = 50;
+advFixedWingTool.SpeedbrakesArea = 10;
+// Set the structural and human factor limits
+advFixedWingTool.MaxAltitude = 65000;
+advFixedWingTool.MaxMach = 0.98;
+advFixedWingTool.MaxEAS = 460;
+advFixedWingTool.MinLoadFactor = -2.5;
+advFixedWingTool.MaxLoadFactor = 4.5;
+
+// Opt to enforce the max temperature limit
+advFixedWingTool.UseMaxTemperatureLimit = true;
+advFixedWingTool.MaxTemperature = 900;
+
+// Use a subsonic aerodynamic strategy
+advFixedWingTool.AeroStrategy = AgEAvtrAdvFixedWingAeroStrategy.eSubsonicAero;
+// Cache the aerodynamic data to improve calculation speed
+advFixedWingTool.CacheAeroData = true;
+// Use a high bypass turbofan
+advFixedWingTool.PowerplantStrategy = AgEAvtrAdvFixedWingPowerplantStrategy.eTurbofanHighBypass;
+// Cache the fuel flow data to improve calculation speed
+advFixedWingTool.CacheFuelFlow = true;
+
+// Create the corresponding performance models that reference the advanced fixed wing tool
+// Specify the name, whether to override any existing models with the same name, and whether to set the new models as the default performance models
+advFixedWingTool.CreateAllPerfModels("AdvancedModels", true, true);
+
+// Save the changes in the catalog
+aviatorAircraft.GetAsCatalogItem().Save();
+
+vbNet
+
+' Get the advanced fixed wing tool
+Dim advFixedWingTool As IAgAvtrAdvFixedWingTool = aviatorAircraft.AdvFixedWingTool
+' Set the basic geometry
+advFixedWingTool.WingArea = 300
+advFixedWingTool.FlapsArea = 50
+advFixedWingTool.SpeedbrakesArea = 10
+' Set the structural and human factor limits
+advFixedWingTool.MaxAltitude = 65000
+advFixedWingTool.MaxMach = 0.98
+advFixedWingTool.MaxEAS = 460
+advFixedWingTool.MinLoadFactor = -2.5
+advFixedWingTool.MaxLoadFactor = 4.5
+
+' Opt to enforce the max temperature limit
+advFixedWingTool.UseMaxTemperatureLimit = True
+advFixedWingTool.MaxTemperature = 900
+
+' Use a subsonic aerodynamic strategy
+advFixedWingTool.AeroStrategy = AgEAvtrAdvFixedWingAeroStrategy.eSubsonicAero
+' Cache the aerodynamic data to improve calculation speed
+advFixedWingTool.CacheAeroData = True
+' Use a high bypass turbofan
+advFixedWingTool.PowerplantStrategy = AgEAvtrAdvFixedWingPowerplantStrategy.eTurbofanHighBypass
+' Cache the fuel flow data to improve calculation speed
+advFixedWingTool.CacheFuelFlow = True
+
+' Create the corresponding performance models that reference the advanced fixed wing tool
+' Specify the name, whether to override any existing models with the same name, and whether to set the new models as the default performance models
+advFixedWingTool.CreateAllPerfModels("AdvancedModels", True, True)
+
+' Save the changes in the catalog
+aviatorAircraft.GetAsCatalogItem().Save()

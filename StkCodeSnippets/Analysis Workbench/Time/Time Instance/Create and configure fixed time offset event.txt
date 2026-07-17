@@ -1,0 +1,30 @@
+C#
+
+IAgCrdnEvent timeEvent = provider.Events.Factory.CreateEventTimeOffset("MyEventTimeOffset", "MyDescription");
+IAgCrdnEventTimeOffset asTimeOffset = timeEvent as IAgCrdnEventTimeOffset;
+
+asTimeOffset.ReferenceTimeInstant = provider.Events["AvailabilityStartTime"];
+
+// Uses current Time unit preference, this code snippet assumes seconds.
+asTimeOffset.TimeOffset2 = 3;
+
+IAgCrdnEventFindOccurrenceResult occurrence = timeEvent.FindOccurrence();
+if (occurrence.IsValid)
+{
+    Console.WriteLine("Event occurred at: " + occurrence.Epoch);
+}
+
+vbNet
+
+Dim timeEvent As IAgCrdnEvent = provider.Events.Factory.CreateEventTimeOffset("MyEventTimeOffset", "MyDescription")
+Dim asTimeOffset As IAgCrdnEventTimeOffset = TryCast(timeEvent, IAgCrdnEventTimeOffset)
+
+asTimeOffset.ReferenceTimeInstant = provider.Events("AvailabilityStartTime")
+
+' Uses current Time unit preference, this code snippet assumes seconds.
+asTimeOffset.TimeOffset2 = 3
+
+Dim occurrence As IAgCrdnEventFindOccurrenceResult = timeEvent.FindOccurrence()
+If occurrence.IsValid Then
+	Console.WriteLine("Event occurred at: " + occurrence.Epoch)
+End If

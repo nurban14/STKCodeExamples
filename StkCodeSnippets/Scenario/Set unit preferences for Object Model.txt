@@ -1,0 +1,11 @@
+Matlab
+
+% IAgStkObjectRoot root: STK Object Model Root
+root.UnitPreferences.Item('DateFormat').SetCurrentUnit('UTCG');
+root.UnitPreferences.Item('Distance').SetCurrentUnit('km');
+
+Python
+
+# IAgStkObjectRoot root: STK Object Model Root
+root.UnitPreferences.Item('DateFormat').SetCurrentUnit('UTCG')
+root.UnitPreferences.Item('Distance').SetCurrentUnit('km')

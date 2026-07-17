@@ -1,0 +1,15 @@
+Matlab
+
+% IAgScenario scenario: Scenario object
+% Turn off the stars and water texture
+manager = scenario.SceneManager;
+manager.Scenes.Item(0).ShowStars = false;
+manager.Scenes.Item(0).ShowWaterSurface = false;
+
+Python
+
+# IAgScenario scenario: Scenario object
+# Turn off the stars and water texture
+manager = scenario.SceneManager
+manager.Scenes.Item(0).ShowStars = False
+manager.Scenes.Item(0).ShowWaterSurface = False

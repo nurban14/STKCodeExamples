@@ -1,0 +1,9 @@
+Matlab
+% IAgVADriverMCS driver: MCS driver interface
+transferEllipse = driver.MainSequence.Insert('eVASegmentTypePropagate', 'Transfer Ellipse', '-');
+
+transferEllipse.Properties.Color = 255; % Red
+transferEllipse.PropagatorName = 'Earth Point Mass';
+transferEllipse.StoppingConditions.Add('Apoapsis');
+transferEllipse.StoppingConditions.Remove('Duration');
+

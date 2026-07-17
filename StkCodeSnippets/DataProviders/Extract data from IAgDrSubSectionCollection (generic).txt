@@ -1,0 +1,43 @@
+C#
+
+foreach (IAgDrSubSection section in subSection)
+{
+    Console.WriteLine(section.Title);
+
+    foreach (IAgDrInterval interval in section.Intervals)
+    {
+        Console.WriteLine("\tTime {0} - {1}", interval.StartTime, interval.StopTime);
+
+        foreach (IAgDrDataSet dataset in interval.DataSets)
+        {
+            Array values = dataset.GetValues();
+
+            Console.WriteLine("\t{0}", dataset.ElementName);
+
+            foreach (object value in values)
+            {
+                Console.WriteLine("\t\t{0}", value.ToString());
+            }
+        }
+    }
+}
+
+vbNet
+
+For Each section As IAgDrSubSection In subSection
+	Console.WriteLine(section.Title)
+
+	For Each interval As IAgDrInterval In section.Intervals
+		Console.WriteLine(vbTab &amp;&amp;#160;"Time {0} - {1}", interval.StartTime, interval.StopTime)
+
+		For Each dataset As IAgDrDataSet In interval.DataSets
+			Dim values As Array = dataset.GetValues()
+
+			Console.WriteLine(vbTab &amp;&amp;#160;"{0}", dataset.ElementName)
+
+			For Each value As Object In values
+				Console.WriteLine(vbTab &amp;&amp;#160;vbTab &amp;&amp;#160;"{0}", value.ToString())
+			Next
+		Next
+	Next
+Next

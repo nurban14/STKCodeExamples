@@ -1,0 +1,6 @@
+Matlab
+% IAgSTKObject satellite: STK object
+receiver = satellite.Children.New('eReceiver', 'MyReceiver');
+Python
+# IAgSTKObject satellite: STK object
+receiver = satellite.Children.New(17, 'MyReceiver') # eReceiver

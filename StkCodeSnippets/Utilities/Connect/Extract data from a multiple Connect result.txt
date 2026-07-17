@@ -1,0 +1,26 @@
+C#
+
+for (int i = 0; i &lt; result.Count; i++)
+{
+    if (result[i].IsSucceeded)
+    {
+        for (int j = 0; j &lt; result[i].Count; j++)
+        {
+            Console.WriteLine(result[j]);
+        }
+    }
+}
+
+vbNet
+
+Dim i As Integer = 0
+While i &lt; result.Count
+	If result(i).IsSucceeded Then
+		Dim j As Integer = 0
+		While j &lt; result(i).Count
+			Console.WriteLine(result(j))
+			System.Math.Max(System.Threading.Interlocked.Increment(j),j - 1)
+		End While
+	End If
+	System.Math.Max(System.Threading.Interlocked.Increment(i),i - 1)
+End While

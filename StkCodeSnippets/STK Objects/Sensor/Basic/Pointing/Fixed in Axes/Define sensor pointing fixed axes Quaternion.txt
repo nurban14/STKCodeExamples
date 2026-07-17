@@ -1,0 +1,5 @@
+Python
+
+# IAgSensor sensor: Sensor object
+# Change pointing and set
+sensor.CommonTasks.SetPointingFixedAxesQuat('CentralBody/Sun J2000 Axes', 0.1, 0.2, 0.3, 0.4)

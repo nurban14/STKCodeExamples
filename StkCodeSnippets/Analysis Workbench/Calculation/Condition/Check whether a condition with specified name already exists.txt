@@ -1,0 +1,14 @@
+C#
+
+//Check if a condition with the specified name already exists.
+if (provider.Conditions.Contains("ConditionName"))
+{
+    Console.WriteLine("The condition \"{0}\" already exists!", "ConditionName");
+}
+
+vbNet
+
+'Check if a condition with the specified name already exists.
+If provider.Conditions.Contains("ConditionName") Then
+	Console.WriteLine("The condition ""{0}"" already exists!", "ConditionName")
+End If

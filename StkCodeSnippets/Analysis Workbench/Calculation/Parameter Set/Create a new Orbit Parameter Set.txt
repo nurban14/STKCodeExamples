@@ -1,0 +1,17 @@
+Matlab
+
+% IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+paraFactory = vgtSat.ParameterSets.Factory;
+paraSetOribit = paraFactory.Create('orbitSun','Orbit','eCrdnParameterSetTypeOrbit');
+paraSetOribit.OrbitingPoint = vgtSat.Points.Item('Center');
+paraSetOribit.CentralBody = 'Sun';
+paraSetOribit.UseCentralBodyGravitationalParameter = false;
+paraSetOribit.GravitationalParameter = 398600; %km^3/sec^2
+Python
+# IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+paraFactory = vgtSat.ParameterSets.Factory
+paraSetOribit = paraFactory.Create('orbitSun', 'Orbit', AgECrdnParameterSetType.eCrdnParameterSetTypeOrbit)
+paraSetOribit.OrbitingPoint = vgtSat.Points.Item('Center')
+paraSetOribit.CentralBody = 'Sun'
+paraSetOribit.UseCentralBodyGravitationalParameter = False
+paraSetOribit.GravitationalParameter = 398600  # km^3/sec^2

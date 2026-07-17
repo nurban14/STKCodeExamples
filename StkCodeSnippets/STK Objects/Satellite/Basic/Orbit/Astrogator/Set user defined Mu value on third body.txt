@@ -1,0 +1,19 @@
+C#
+
+IAgComponentInfoCollection compInfoCol = scenario.ComponentDirectory.GetComponents(AgEComponent.eComponentAstrogator);
+IAgComponentInfoCollection thirdBodyFolder = compInfoCol.GetFolder("Propagator Functions").GetFolder("Third Bodies");
+IAgVAThirdBodyFunction newMoon = thirdBodyFolder.DuplicateComponent("Moon", "NewMoon") as IAgVAThirdBodyFunction;
+newMoon.SetModeType(AgEVAThirdBodyMode.eVAThirdBodyModePointMass);
+IAgVAPointMassFunction pointMass = newMoon.Mode as IAgVAPointMassFunction;
+pointMass.GravSource = AgEVAGravParamSource.eVAGravParamSourceUser;
+pointMass.Mu = 390000.0;
+
+vbNet
+
+Dim compInfoCol As IAgComponentInfoCollection = scenario.ComponentDirectory.GetComponents(AgEComponent.eComponentAstrogator)
+Dim thirdBodyFolder As IAgComponentInfoCollection = compInfoCol.GetFolder("Propagator Functions").GetFolder("Third Bodies")
+Dim newMoon As IAgVAThirdBodyFunction = TryCast(thirdBodyFolder.DuplicateComponent("Moon", "NewMoon"), IAgVAThirdBodyFunction)
+newMoon.SetModeType(AgEVAThirdBodyMode.eVAThirdBodyModePointMass)
+Dim pointMass As IAgVAPointMassFunction = TryCast(newMoon.Mode, IAgVAPointMassFunction)
+pointMass.GravSource = AgEVAGravParamSource.eVAGravParamSourceUser
+pointMass.Mu = 390000

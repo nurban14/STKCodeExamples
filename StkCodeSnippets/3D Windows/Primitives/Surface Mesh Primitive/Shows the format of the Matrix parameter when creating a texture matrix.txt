@@ -1,0 +1,18 @@
+C#
+// IAgStkGraphicsSurfaceMeshPrimitive surfaceMesh: A surface mesh primitive
+
+Array transformationArray = new object[]
+{
+    1.0, 0.0, 0.0,
+    1.0, 0.0, 0.0
+};
+
+surfaceMesh.TextureMatrix = sceneManager.Initializers.TextureMatrix.InitializeWithAffineTransform(
+    ref transformationArray);
+
+vbNet
+// IAgStkGraphicsSurfaceMeshPrimitive surfaceMesh: A surface mesh primitive
+
+Dim transformationArray As Array = New Object() {1, 0, 0, 1, 0, 0}
+
+surfaceMesh.TextureMatrix = sceneManager.Initializers.TextureMatrix.InitializeWithAffineTransform(transformationArray)

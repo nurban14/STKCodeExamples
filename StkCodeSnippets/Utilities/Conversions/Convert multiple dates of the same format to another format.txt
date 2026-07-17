@@ -1,0 +1,41 @@
+C#
+
+IAgConversionUtility converter = root.ConversionUtility;
+
+// In batches
+// ConvertDateArray expects a one dimensional array of dates
+// An array of UTCG dates
+Array tempDates = new object[]
+                  {
+                      "1 Jan 2012 12:00:00.000", "1 Jan 2012 14:00:00.000"
+                  };
+
+// Convert UTCG array to EpSec
+// ConvertDateArray returns a one dimensional array of converted dates
+Array converted = converter.ConvertDateArray("UTCG", "Epsec", ref tempDates);
+
+// Print results
+for (int i = 0; i &lt; converted.Length; i++)
+{
+    Console.WriteLine("Date: {0}", converted.GetValue(i));
+}
+
+vbNet
+
+Dim converter As IAgConversionUtility = root.ConversionUtility
+
+' In batches
+' ConvertDateArray expects a one dimensional array of dates
+' An array of UTCG dates
+Dim tempDates As Array = New Object() {"1 Jan 2012 12:00:00.000", "1 Jan 2012 14:00:00.000"}
+
+' Convert UTCG array to EpSec
+' ConvertDateArray returns a one dimensional array of converted dates
+Dim converted As Array = converter.ConvertDateArray("UTCG", "Epsec", tempDates)
+
+' Print results
+Dim i As Integer = 0
+While i &lt; converted.Length
+	Console.WriteLine("Date: {0}", converted.GetValue(i))
+	System.Math.Max(System.Threading.Interlocked.Increment(i),i - 1)
+End While

@@ -1,0 +1,30 @@
+C#
+
+satellite.SetPropagatorType(AgEVePropagatorType.ePropagatorAstrogator);
+
+IAgVADriverMCS driver = satellite.Propagator as IAgVADriverMCS;
+
+// Remove if necessary
+driver.MainSequence.RemoveAll();
+// Configure properties as necessarily
+driver.Options.DrawTrajectoryIn3D = true;
+driver.Options.GraphicsUpdateRate = 0.90;
+driver.Options.UpdateAnimationTimeForAllObjects = false;
+driver.Options.StoppingConditionTimeTolerance = 0.00000005;
+driver.Options.EnableLogging = true;
+
+vbNet
+
+satellite.SetPropagatorType(AgEVePropagatorType.ePropagatorAstrogator)
+
+Dim driver As IAgVADriverMCS = TryCast(satellite.Propagator, IAgVADriverMCS)
+
+' Remove if necessary
+driver.MainSequence.RemoveAll()
+
+' Configure properties as necessarily
+driver.Options.DrawTrajectoryIn3D = True
+driver.Options.GraphicsUpdateRate = 0.9
+driver.Options.UpdateAnimationTimeForAllObjects = False
+driver.Options.StoppingConditionTimeTolerance = 5E-08
+driver.Options.EnableLogging = True

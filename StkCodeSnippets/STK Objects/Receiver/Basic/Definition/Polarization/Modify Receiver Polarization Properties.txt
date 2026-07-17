@@ -1,0 +1,8 @@
+Matlab
+% IAgReceiver receiver: Receiver object
+recModel = receiver.Model;
+recModel.EnablePolarization = true;
+recModel.SetPolarizationType('ePolarizationTypeLinear');
+polarization = recModel.Polarization;
+polarization.ReferenceAxis = 'ePolarizationReferenceAxisZ';
+polarization.CrossPolLeakage = -60; %dB

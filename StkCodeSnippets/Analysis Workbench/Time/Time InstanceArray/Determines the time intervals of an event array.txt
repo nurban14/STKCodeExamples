@@ -1,0 +1,40 @@
+C#
+
+IAgCrdnEventArray eventArray = provider.EventArrays["Orbit.Classical.SemimajorAxis.TimesOfLocalMax"];
+
+IAgCrdnFindTimesResult foundTimes = eventArray.FindTimes();
+if (foundTimes.IsValid)
+{
+    Console.WriteLine("Times");
+    int numTimes = foundTimes.Times.GetLength(0);
+    for (int i = 0; i &lt; numTimes; ++i)
+    {
+        Console.WriteLine(foundTimes.Times.GetValue(i));
+    }
+
+    foreach (IAgCrdnInterval timeArray in foundTimes.Intervals)
+    {
+        Console.WriteLine("Start: " + timeArray.Start);
+        Console.WriteLine("Stop: " + timeArray.Stop);
+    }
+}
+
+vbNet
+
+Dim eventArray As IAgCrdnEventArray = provider.EventArrays("Orbit.Classical.SemimajorAxis.TimesOfLocalMax")
+
+Dim foundTimes As IAgCrdnFindTimesResult = eventArray.FindTimes()
+If foundTimes.IsValid Then
+	Console.WriteLine("Times")
+	Dim numTimes As Integer = foundTimes.Times.GetLength(0)
+	Dim i As Integer = 0
+	While i &lt; numTimes
+		Console.WriteLine(foundTimes.Times.GetValue(i))
+		System.Threading.Interlocked.Increment(i)
+	End While
+
+	For Each timeArray As IAgCrdnInterval In foundTimes.Intervals
+		Console.WriteLine("Start: " + timeArray.Start)
+		Console.WriteLine("Stop: " + timeArray.[Stop])
+	Next
+End If

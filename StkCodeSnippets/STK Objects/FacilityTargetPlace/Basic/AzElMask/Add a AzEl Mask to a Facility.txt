@@ -1,0 +1,4 @@
+Matlab
+
+% IAgFacility facility: Facility Object
+facility.SetAzElMask('eTerrainData',0);

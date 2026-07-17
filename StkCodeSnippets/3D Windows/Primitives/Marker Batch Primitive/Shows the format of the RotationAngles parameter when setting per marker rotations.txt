@@ -1,0 +1,19 @@
+C#
+
+Array rotations = new object[]
+{
+    15,
+    30,
+    45,
+    60
+};
+
+IAgStkGraphicsMarkerBatchPrimitiveOptionalParameters parameters = sceneManager.Initializers.MarkerBatchPrimitiveOptionalParameters.Initialize();
+parameters.SetRotations(ref rotations);
+
+vbNet
+
+Dim rotations As Array = New Object() {15, 30, 45, 60}
+
+Dim parameters As IAgStkGraphicsMarkerBatchPrimitiveOptionalParameters = sceneManager.Initializers.MarkerBatchPrimitiveOptionalParameters.Initialize()
+parameters.SetRotations(rotations)

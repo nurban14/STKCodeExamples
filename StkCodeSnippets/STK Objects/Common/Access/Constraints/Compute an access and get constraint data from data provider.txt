@@ -1,0 +1,95 @@
+C#
+
+// Compute Access between the facility and the satellite
+IAgStkObject sat1 = root.GetObjectFromPath("Satellite/Satellite1");
+IAgStkObject fac1 = root.GetObjectFromPath("Facility/Facility1");
+IAgStkAccess access = sat1.GetAccessToObject(fac1);
+access.ComputeAccess();
+
+// Get the access intervals
+IAgIntervalCollection accessIntervals = access.ComputedAccessIntervalTimes;
+
+// Set unit preferences - change to get your preferred units
+root.UnitPreferences.SetCurrentUnit("Distance", "km");
+root.UnitPreferences.SetCurrentUnit("Angle", "deg");
+root.UnitPreferences.SetCurrentUnit("Time", "sec");
+root.UnitPreferences.SetCurrentUnit("DateFormat", "UTCG");
+
+// Extract the access intervals and the range information for each access interval
+Array dataPrvElements = new object[]
+    {
+        "Time", "FromAngularRate", "FromRange"
+    };
+
+IAgDataPrvTimeVar dp = access.DataProviders["Constraint Data"] as IAgDataPrvTimeVar;
+
+for (int index0 = 0; index0 &lt; accessIntervals.Count; ++index0)
+{
+    object startTime = null, stopTime = null;
+
+    accessIntervals.GetInterval(index0, out startTime, out stopTime);
+
+    Console.WriteLine("Access Interval #{0} - Start={1} Stop={2}", index0, startTime, stopTime);
+
+    IAgDrResult result = dp.ExecElements(startTime, stopTime, 60, ref dataPrvElements);
+
+    Array timeValues = result.DataSets[0].GetValues();
+    Array fromAngularRateValues = result.DataSets[1].GetValues();
+    Array fromRangeValues = result.DataSets[2].GetValues();
+
+    for (int index1 = 0; index1 &lt; timeValues.GetLength(0); ++index1)
+    {
+        Console.WriteLine("{0}: FromAngularRate={1} FromRange={2}",
+            timeValues.GetValue(index1),
+            fromAngularRateValues.GetValue(index1),
+            fromRangeValues.GetValue(index1));
+    }
+
+    Console.WriteLine();
+}
+
+vbNet
+
+' Compute Access between the facility and the satellite
+Dim sat1 As IAgStkObject = root.GetObjectFromPath("Satellite/Satellite1")
+Dim fac1 As IAgStkObject = root.GetObjectFromPath("Facility/Facility1")
+Dim access As IAgStkAccess = sat1.GetAccessToObject(fac1)
+access.ComputeAccess()
+
+' Get the access intervals
+Dim accessIntervals As IAgIntervalCollection = access.ComputedAccessIntervalTimes
+
+' Set unit preferences - change to get your preferred units
+root.UnitPreferences.SetCurrentUnit("Distance", "km")
+root.UnitPreferences.SetCurrentUnit("Angle", "deg")
+root.UnitPreferences.SetCurrentUnit("Time", "sec")
+root.UnitPreferences.SetCurrentUnit("DateFormat", "UTCG")
+
+' Extract the access intervals and the range information for each access interval
+Dim dataPrvElements As Array = New Object() {"Time", "FromAngularRate", "FromRange"}
+
+Dim dp As IAgDataPrvTimeVar = TryCast(access.DataProviders("Constraint Data"), IAgDataPrvTimeVar)
+
+Dim index0 As Integer = 0
+While index0 &lt; accessIntervals.Count
+	Dim startTime As Object = Nothing, stopTime As Object = Nothing
+
+	accessIntervals.GetInterval(index0, startTime, stopTime)
+
+	Console.WriteLine("Access Interval #{0} - Start={1} Stop={2}", index0, startTime, stopTime)
+
+	Dim result As IAgDrResult = dp.ExecElements(startTime, stopTime, 60, dataPrvElements)
+
+	Dim timeValues As Array = result.DataSets(0).GetValues()
+	Dim fromAngularRateValues As Array = result.DataSets(1).GetValues()
+	Dim fromRangeValues As Array = result.DataSets(2).GetValues()
+
+	Dim index1 As Integer = 0
+	While index1 &lt; timeValues.GetLength(0)
+		Console.WriteLine("{0}: FromAngularRate={1} FromRange={2}", timeValues.GetValue(index1), fromAngularRateValues.GetValue(index1), fromRangeValues.GetValue(index1))
+		System.Threading.Interlocked.Increment(index1)
+	End While
+
+	Console.WriteLine()
+	System.Threading.Interlocked.Increment(index0)
+End While

@@ -1,0 +1,21 @@
+C#
+
+// Set new ModelFile.Filename
+model.ModelType = AgEModelType.eModelFile;
+IAgVOModelFile modelFile = model.ModelData as IAgVOModelFile;
+modelFile.Filename = @"\STKData\VO\Models\Space\alexis.glb";
+
+// Configure basic settings
+model.Visible = true;
+model.ScaleValue = 4.800;
+
+vbNet
+
+' Set new ModelFile.Filename
+model.ModelType = AgEModelType.eModelFile
+Dim modelFile As IAgVOModelFile = TryCast(model.ModelData, IAgVOModelFile)
+modelFile.Filename = "\STKData\VO\Models\Space\alexis.glb"
+
+' Configure basic settings
+model.Visible = True
+model.ScaleValue = 4.8

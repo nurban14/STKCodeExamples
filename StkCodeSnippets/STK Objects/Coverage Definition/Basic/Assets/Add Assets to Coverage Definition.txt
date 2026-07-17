@@ -1,0 +1,68 @@
+C#
+
+IAgCvAssetListCollection assetCollection = coverageDefinition.AssetList;
+string satAssetName = "Satellite/sat1";
+string facAssetName = "Facility/North";
+
+// Remove asset collection if necessary
+assetCollection.RemoveAll();
+
+IAgCvAssetListElement satAsset1 = null;
+
+// AvailableAssets returns a one dimensional array of assets
+if (Array.IndexOf(assetCollection.AvailableAssets, satAssetName) != -1)
+{
+    // Add assets to coverageDefinition
+    if (assetCollection.CanAssignAsset(satAssetName))
+    {
+        satAsset1 = assetCollection.Add(satAssetName);
+
+        // Configure asset element
+        satAsset1.Required = true;
+    }
+}
+
+// AvailableAssets returns a one dimensional array of assets
+if (Array.IndexOf(assetCollection.AvailableAssets, facAssetName) != -1)
+{
+    // Add assets to coverageDefinition
+    if (assetCollection.CanAssignAsset(facAssetName))
+    {
+        assetCollection.Add(facAssetName);
+    }
+}
+
+Python
+#IAgCoverageDefinition coverage: Coverage Definition object
+
+#Set the satellite as the Asset
+coverage.AssetList.Add('Satellite/MySatellite')
+vbNet
+
+Dim assetCollection As IAgCvAssetListCollection = coverageDefinition.AssetList
+Dim satAssetName As String = "Satellite/sat1"
+Dim facAssetName As String = "Facility/North"
+
+' Remove asset collection if necessary
+assetCollection.RemoveAll()
+
+Dim satAsset1 As IAgCvAssetListElement = Nothing
+
+' AvailableAssets returns a one dimensional array of assets
+If Array.IndexOf(assetCollection.AvailableAssets, satAssetName) &lt;&gt; -1 Then
+	' Add assets to coverageDefinition
+	If assetCollection.CanAssignAsset(satAssetName) Then
+		satAsset1 = assetCollection.Add(satAssetName)
+
+		' Configure asset element
+		satAsset1.Required = True
+	End If
+End If
+
+' AvailableAssets returns a one dimensional array of assets
+If Array.IndexOf(assetCollection.AvailableAssets, facAssetName) &lt;&gt; -1 Then
+	' Add assets to coverageDefinition
+	If assetCollection.CanAssignAsset(facAssetName) Then
+		assetCollection.Add(facAssetName)
+	End If
+End If

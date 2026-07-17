@@ -1,0 +1,20 @@
+C#
+// AgECrdnEventIntervalCollectionType eventIntervalCollectionType: A event interval collection type.
+
+// Check if the specified event interval collection type is supported.
+if (provider.EventIntervalCollections.Factory.IsTypeSupported(eventIntervalCollectionType))
+{
+    //Create an EventIntervalCollection with the supported Type
+    IAgCrdnEventIntervalCollection eventIntervalCollection = provider.EventIntervalCollections.Factory.Create(
+        "MyEventIntervalCollection", string.Empty,
+        eventIntervalCollectionType);
+}
+
+vbNet
+// AgECrdnEventIntervalCollectionType eventIntervalCollectionType: A event interval collection type.
+
+' Check if the specified event interval collection type is supported.
+If provider.EventIntervalCollections.Factory.IsTypeSupported(eventIntervalCollectionType) Then
+	'Create an EventIntervalCollection with the supported Type
+	Dim eventIntervalCollection As IAgCrdnEventIntervalCollection = provider.EventIntervalCollections.Factory.Create("MyEventIntervalCollection", String.Empty, eventIntervalCollectionType)
+End If

@@ -1,0 +1,26 @@
+C#
+// IAgAvtrCatalog catalog: Aviator Catalog object
+
+// Get the source of user runways
+IAgAvtrUserRunwaySource userRunways = catalog.RunwayCategory.UserRunways;
+// Check that the runway exists in the catalog
+if (userRunways.GetAsCatalogSource().Contains("New User Runway"))
+{
+    // If so, get the user runway with the given name
+    IAgAvtrUserRunway runwayFromCatalog = userRunways.GetUserRunway("New User Runway");
+    // Copy the parameters of that runway
+    runway.CopyFromCatalog(runwayFromCatalog as IAgAvtrCatalogRunway);
+}
+
+vbNet
+// IAgAvtrCatalog catalog: Aviator Catalog object
+
+' Get the source of user runways
+Dim userRunways As IAgAvtrUserRunwaySource = catalog.RunwayCategory.UserRunways
+' Check that the runway exists in the catalog
+If userRunways.GetAsCatalogSource().Contains("New User Runway") Then
+	' If so, get the user runway with the given name
+	Dim runwayFromCatalog As IAgAvtrUserRunway = userRunways.GetUserRunway("New User Runway")
+	' Copy the parameters of that runway
+	runway.CopyFromCatalog(TryCast(runwayFromCatalog, IAgAvtrCatalogRunway))
+End If

@@ -1,0 +1,43 @@
+C#
+
+Array positions = new object[]
+{
+    1247.87, -4739.74, 4067.77,
+    1115.48, -4847.09, 3979.36,
+    -24.12, -5529.31, 3168.45,
+    -2683.42, -4307.74, 3850.11
+};
+
+Array colors = new object[]
+{
+    Color.Red.ToArgb(),
+    Color.Green.ToArgb(),
+    Color.Blue.ToArgb(),
+    Color.White.ToArgb()
+};
+
+Array indices = new object[]
+{
+    0,
+    1,
+    2,
+    3
+};
+
+pointBatch.SetPartialWithColorsIndicesOrderAndRenderPass(
+    ref positions,
+    ref colors,
+    ref indices,
+    AgEStkGraphicsIndicesOrderHint.eStkGraphicsIndicesOrderHintSortedAscending,
+    AgEStkGraphicsRenderPassHint.eStkGraphicsRenderPassHintOpaque);
+
+vbNet
+
+Dim positions As Array = New Object() {1247.87, -4739.74, 4067.77, 1115.48, -4847.09, 3979.36, _
+	-24.12, -5529.31, 3168.45, -2683.42, -4307.74, 3850.11}
+
+Dim colors As Array = New Object() {Color.Red.ToArgb(), Color.Green.ToArgb(), Color.Blue.ToArgb(), Color.White.ToArgb()}
+
+Dim indices As Array = New Object() {0, 1, 2, 3}
+
+pointBatch.SetPartialWithColorsIndicesOrderAndRenderPass(positions, colors, indices, AgEStkGraphicsIndicesOrderHint.eStkGraphicsIndicesOrderHintSortedAscending, AgEStkGraphicsRenderPassHint.eStkGraphicsRenderPassHintOpaque)

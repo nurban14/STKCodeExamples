@@ -1,0 +1,25 @@
+Matlab
+%% Extracting Specific Ungrouped Time Dependent Data at a Specified Interval
+% IAgStkObjectRoot root: STK Object Model root
+% IAgSatellite satellite: Satellite object
+
+% Change DateFormat dimension to epoch seconds to make the data easier to handle in MATLAB
+root.UnitPreferences.Item('DateFormat').SetCurrentUnit('EpSec');
+
+%Retrieving only Precision Path Number and Precision Pass Number from Precision Pass Data Provider
+elems = {'Precision Path Number';'Precision Pass Number'};
+
+
+%.ExecElements(StartTime,StopTime,TimeStep, element names)
+%Start Time: 5000 epSec, Stop Time: 27500 epSec, Time Step: 100 sec
+satPassDP = satellite.DataProviders.Item('Precision Passes').ExecElements(5000,27500, 100, elems);
+
+
+%Order in which datasets are imported matches how the order they are in STK
+%Integer in cast should align with this
+path = cell2mat(satPassDP.DataSets.Item(cast(1, 'int32')).GetValues);
+pass = cell2mat(satPassDP.DataSets.Item(cast(0, 'int32')).GetValues);
+
+%Or can bypass this by just using .GetDataSetByName() method
+path_2 = cell2mat(satPassDP.DataSets.GetDataSetByName('Precision Path Number').GetValues);
+pass_2 = cell2mat(satPassDP.DataSets.GetDataSetByName('Precision Pass Number').GetValues);

@@ -1,0 +1,23 @@
+Matlab
+%% Extracting Specific Grouped Interval Data
+% IAgStkObjectRoot root: STK Object Model root
+% IAgScenario scenario: Scenario object
+% IAgFacility facility: Facility object
+
+% Change DateFormat dimension to epoch seconds to make the data easier to handle in MATLAB
+root.UnitPreferences.Item('DateFormat').SetCurrentUnit('EpSec');
+
+%Retrieve only Start Time, Stop Time, and Duration datasets from Data providers
+elems = {'Start Time'; 'Stop Time'; 'Duration'};
+facDP = facility.DataProviders.Item('Lighting Times').Group.Item('Sunlight').ExecElements(scenario.StartTime,scenario.StopTime,elems);
+
+startTimes = cell2mat(facDP.DataSets.GetDataSetByName('Start Time').GetValues);
+stopTimes = cell2mat(facDP.DataSets.GetDataSetByName('Stop Time').GetValues);
+duration = cell2mat(facDP.DataSets.GetDataSetByName('Duration').GetValues);
+
+% Alternatively...
+facDP = facility.DataProviders.GetDataPrvIntervalFromPath('Lighting Times/Sunlight').ExecElements(scenario.StartTime,scenario.StopTime,elems);
+
+startTimes = cell2mat(facDP.DataSets.GetDataSetByName('Start Time').GetValues);
+stopTimes = cell2mat(facDP.DataSets.GetDataSetByName('Stop Time').GetValues);
+duration = cell2mat(facDP.DataSets.GetDataSetByName('Duration').GetValues);

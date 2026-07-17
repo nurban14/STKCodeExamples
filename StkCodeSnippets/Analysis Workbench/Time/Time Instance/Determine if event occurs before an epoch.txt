@@ -1,0 +1,37 @@
+C#
+
+// The event you are interested in.
+IAgCrdnEvent timeEvent1 = provider.Events["GroundTrajectory.Detic.LLA.Altitude.TimeOfMax"];
+
+// The reference event you want to determine if event of interest happened before.
+IAgCrdnEvent timeEvent2 = provider.Events["GroundTrajectory.Detic.LLA.Altitude.TimeOfMin"];
+IAgCrdnEventFindOccurrenceResult occurrence2 = timeEvent2.FindOccurrence();
+
+if (occurrence2.IsValid)
+{
+    if (timeEvent1.OccursBefore(occurrence2.Epoch))
+    {
+        Console.WriteLine("The time of maximum altitude happend before time of minimum altitude");
+    }
+    else
+    {
+        Console.WriteLine("The time of minimum altitude happend before time of maximum altitude");
+    }
+}
+
+vbNet
+
+' The event you are interested in.
+Dim timeEvent1 As IAgCrdnEvent = provider.Events("GroundTrajectory.Detic.LLA.Altitude.TimeOfMax")
+
+' The reference event you want to determine if event of interest happened before.
+Dim timeEvent2 As IAgCrdnEvent = provider.Events("GroundTrajectory.Detic.LLA.Altitude.TimeOfMin")
+Dim occurrence2 As IAgCrdnEventFindOccurrenceResult = timeEvent2.FindOccurrence()
+
+If occurrence2.IsValid Then
+	If timeEvent1.OccursBefore(occurrence2.Epoch) Then
+		Console.WriteLine("The time of maximum altitude happend before time of minimum altitude")
+	Else
+		Console.WriteLine("The time of minimum altitude happend before time of maximum altitude")
+	End If
+End If

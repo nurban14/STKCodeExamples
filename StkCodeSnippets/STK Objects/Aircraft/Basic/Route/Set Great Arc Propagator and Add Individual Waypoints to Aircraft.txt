@@ -1,0 +1,43 @@
+Matlab
+% IAgAircraft aircraft: Aircraft object
+% Set route to great arc, method and altitude reference
+aircraft.SetRouteType('ePropagatorGreatArc');
+route = aircraft.Route;
+route.Method = 'eDetermineTimeAccFromVel';
+route.SetAltitudeRefType('eWayPtAltRefMSL');
+% Add first point
+waypoint = route.Waypoints.Add();
+waypoint.Latitude = 37.5378;
+waypoint.Longitude = 14.2207;
+waypoint.Altitude = 5;  % km
+waypoint.Speed = .1;    % km/sec
+% Add second point
+waypoint2 = route.Waypoints.Add();
+waypoint2.Latitude = 47.2602;
+waypoint2.Longitude = 30.5517;
+waypoint2.Altitude = 5; % km
+waypoint2.Speed = .1;    % km/sec
+%Propagate the route
+route.Propagate;
+
+Python
+# IAgAircraft aircraft: Aircraft object
+# Set route to great arc, method and altitude reference
+aircraft.SetRouteType(9) # ePropagatorGreatArc
+route = aircraft.Route
+route.Method = 0 # eDetermineTimeAccFromVel
+route.SetAltitudeRefType(0) # eWayPtAltRefMSL
+# Add first point
+waypoint = route.Waypoints.Add()
+waypoint.Latitude = 37.5378
+waypoint.Longitude = 14.2207
+waypoint.Altitude = 5  # km
+waypoint.Speed = .1    # km/sec
+# Add second point
+waypoint2 = route.Waypoints.Add()
+waypoint2.Latitude = 47.2602
+waypoint2.Longitude = 30.5517
+waypoint2.Altitude = 5  # km
+waypoint2.Speed = .1    # km/sec
+#Propagate the route
+route.Propagate()

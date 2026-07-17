@@ -1,0 +1,17 @@
+C#
+
+Array size = new object[]
+{
+    300,
+    300,
+    AgEStkGraphicsScreenOverlayUnit.eStkGraphicsScreenOverlayUnitPixels,
+    AgEStkGraphicsScreenOverlayUnit.eStkGraphicsScreenOverlayUnitPixels
+};
+
+overlay.Size = size;
+
+vbNet
+
+Dim size As Array = New Object() {300, 300, AgEStkGraphicsScreenOverlayUnit.eStkGraphicsScreenOverlayUnitPixels, AgEStkGraphicsScreenOverlayUnit.eStkGraphicsScreenOverlayUnitPixels}
+
+overlay.Size = size

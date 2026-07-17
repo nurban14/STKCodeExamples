@@ -1,0 +1,15 @@
+C#
+
+// Import object from database using Connect
+string command = "ImportFromDB * Star ScenarioCollection VisualMagnitude 0 1.0 RightAsc 200.0 230.0 Constellation ImportedFromStarDB";
+root.ExecuteCommand(command);
+
+IAgStar star = root.GetObjectFromPath("Star/Star-65474") as IAgStar;
+
+vbNet
+
+' Import object from database using Connect
+Dim command As String = "ImportFromDB * Star ScenarioCollection VisualMagnitude 0 1.0 RightAsc 200.0 230.0 Constellation ImportedFromStarDB"
+root.ExecuteCommand(command)
+
+Dim star As IAgStar = TryCast(root.GetObjectFromPath("Star/Star-65474"), IAgStar)

@@ -1,0 +1,14 @@
+C#
+
+IAgDataProvider dataProvider = satellite.DataProviders.GetDataPrvInfoFromPath("LLR State/Fixed") as IAgDataProvider;
+if (dataProvider.IsTimeVarExtremumAvailable(AgETimeVarExtremum.eMax, "Lat"))
+{
+    // Calculate statistics from Data Set
+}
+
+vbNet
+
+Dim dataProvider As IAgDataProvider = TryCast(satellite.DataProviders.GetDataPrvInfoFromPath("LLR State/Fixed"), IAgDataProvider)
+		' Calculate statistics from Data Set
+If dataProvider.IsTimeVarExtremumAvailable(AgETimeVarExtremum.eMax, "Lat") Then
+End If

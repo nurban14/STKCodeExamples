@@ -1,0 +1,22 @@
+Matlab
+%% Extracting Specific Ungrouped Time Dependent Data Separated by Sections
+% IAgStkObjectRoot root: STK Object Model root
+% IAgScenario scenario: STK Current Scenario
+% IAgSatellite satellite: Satellite object
+
+root.UnitPreferences.Item('Power').SetCurrentUnit('W');
+
+%Retrieving only Time and Power from Solar Panel Power Data Provider
+elems = {"Time"; "Power"};
+
+solarPanelData = satellite.DataProviders.Item("Solar Panel Power").ExecElements(scenario.StartTime,scenario.StopTime, 3600, elems);
+
+%solarPanelData will not contain the Solar Intensity dataset
+time = cell2mat(solarPanelData.Intervals.Item(cast(0, 'int32')).DataSets.GetDataSetByName('Time').GetValues);
+power = cell2mat(solarPanelData.Intervals.Item(cast(0, 'int32')).DataSets.GetDataSetByName('Power').GetValues);
+
+for i = 1:1:solarPanelData.Interval.Count-1
+    time = [time; cell2mat(solarPanelData.Interval.Item(cast(i, 'int32')).DataSets.GetDataSetByName('Time').GetValues)];
+    power = [power; cell2mat(solarPanelData.Interval.Item(cast(i, 'int32')).DataSets.GetDataSetByName('Power').GetValues)];
+    
+end

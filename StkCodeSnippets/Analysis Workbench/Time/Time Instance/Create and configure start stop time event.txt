@@ -1,0 +1,28 @@
+C#
+
+IAgCrdnEvent timeEvent = provider.Events.Factory.CreateEventStartStopTime("MyEventStartStopTime", "MyDescription");
+IAgCrdnEventStartStopTime asStartStopTime = timeEvent as IAgCrdnEventStartStopTime;
+
+asStartStopTime.ReferenceEventInterval = provider.EventIntervals["EphemerisTimeSpan"];
+
+asStartStopTime.UseStart = true;
+
+IAgCrdnEventFindOccurrenceResult occurrence = timeEvent.FindOccurrence();
+if (occurrence.IsValid)
+{
+    Console.WriteLine("Event occurred at: " + occurrence.Epoch);
+}
+
+vbNet
+
+Dim timeEvent As IAgCrdnEvent = provider.Events.Factory.CreateEventStartStopTime("MyEventStartStopTime", "MyDescription")
+Dim asStartStopTime As IAgCrdnEventStartStopTime = TryCast(timeEvent, IAgCrdnEventStartStopTime)
+
+asStartStopTime.ReferenceEventInterval = provider.EventIntervals("EphemerisTimeSpan")
+
+asStartStopTime.UseStart = True
+
+Dim occurrence As IAgCrdnEventFindOccurrenceResult = timeEvent.FindOccurrence()
+If occurrence.IsValid Then
+	Console.WriteLine("Event occurred at: " + occurrence.Epoch)
+End If

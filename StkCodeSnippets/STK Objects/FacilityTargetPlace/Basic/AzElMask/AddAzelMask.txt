@@ -1,0 +1,3 @@
+Python
+# IAgFacility facility: Facility Object
+facility.SetAzElMask(AgEAzElMaskType.eTerrainData, 0)

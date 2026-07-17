@@ -1,0 +1,26 @@
+Matlab
+% IAgSatellite satellite: Satellite object
+attitudeSlewing = satellite.Attitude.Pointing.TargetSlew;
+attitudeSlewing.SetSlewModeType('eVeSlewModeConstrained2ndOrderSpline');
+
+constrainedSlew = attitudeSlewing.SlewMode;
+constrainedSlew.MaximumSlewTime = 20; % sec
+constrainedSlew.SlewTimingBetweenTargets = 'eVeSlewTimingBetweenTargetsOptimal';
+
+maxRate = constrainedSlew.MaximumSlewRate;
+maxRate.Magnitude = 10; % deg/sec
+maxRate.PerAxisXEnabled = 1;
+maxRate.PerAxisX = 5; % deg/sec
+maxRate.PerAxisYEnabled = 1;
+maxRate.PerAxisY = 5; % deg/sec
+maxRate.PerAxisZEnabled = 1;
+maxRate.PerAxisZ = 5; % deg/sec
+
+maxAcceleration = constrainedSlew.MaximumSlewAcceleration;
+maxAcceleration.Magnitude = 10; % deg/sec^2
+maxAcceleration.PerAxisXAccelEnabled = 1;
+maxAcceleration.PerAxisXAccel = 5; % deg/sec^2
+maxAcceleration.PerAxisYAccelEnabled = 1;
+maxAcceleration.PerAxisYAccel = 5; % deg/sec^2
+maxAcceleration.PerAxisZAccelEnabled = 1;
+maxAcceleration.PerAxisZAccel = 5; % deg/sec^2

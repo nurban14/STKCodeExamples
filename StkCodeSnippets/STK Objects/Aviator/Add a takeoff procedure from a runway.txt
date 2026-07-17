@@ -1,0 +1,45 @@
+C#
+
+// Add a takeoff procedure with a runway as a site
+IAgAvtrProcedureTakeoff takeoff = procedures.Add(AgEAvtrSiteType.eSiteRunway, AgEAvtrProcedureType.eProcTakeoff) as IAgAvtrProcedureTakeoff;
+
+// Get the runway heading options
+IAgAvtrRunwayHeadingOptions headingOptions = takeoff.RunwayHeadingOptions;
+// Opt to use the headwind runway
+headingOptions.RunwayMode = AgEAvtrRunwayHighLowEnd.eHeadwind;
+
+// Set the takeoff mode and get that interface
+takeoff.TakeoffMode = AgEAvtrTakeoffMode.eTakeoffNormal;
+IAgAvtrTakeoffNormal takeoffNormal = takeoff.ModeAsNormal;
+
+// Set the takeoff climb angle
+takeoffNormal.TakeoffClimbAngle = 5;
+// Set the departure altitude above the runway
+takeoffNormal.DepartureAltitude = 600;
+// Set the altitude offset for the runway
+takeoffNormal.RunwayAltitudeOffset = 10;
+// Use terrain for the runway's altitude
+takeoffNormal.UseRunwayTerrain = true;
+
+vbNet
+
+' Add a takeoff procedure with a runway as a site
+Dim takeoff As IAgAvtrProcedureTakeoff = TryCast(procedures.Add(AgEAvtrSiteType.eSiteRunway, AgEAvtrProcedureType.eProcTakeoff), IAgAvtrProcedureTakeoff)
+
+' Get the runway heading options
+Dim headingOptions As IAgAvtrRunwayHeadingOptions = takeoff.RunwayHeadingOptions
+' Opt to use the headwind runway
+headingOptions.RunwayMode = AgEAvtrRunwayHighLowEnd.eHeadwind
+
+' Set the takeoff mode and get that interface
+takeoff.TakeoffMode = AgEAvtrTakeoffMode.eTakeoffNormal
+Dim takeoffNormal As IAgAvtrTakeoffNormal = takeoff.ModeAsNormal
+
+' Set the takeoff climb angle
+takeoffNormal.TakeoffClimbAngle = 5
+' Set the departure altitude above the runway
+takeoffNormal.DepartureAltitude = 600
+' Set the altitude offset for the runway
+takeoffNormal.RunwayAltitudeOffset = 10
+' Use terrain for the runway's altitude
+takeoffNormal.UseRunwayTerrain = True

@@ -1,0 +1,8 @@
+Matlab
+
+% IAgCoverageDefinition coverage: Coverage object
+coverage.ComputeAccesses;
+
+Python
+# IAgCoverageDefinition coverage: Coverage object
+coverage.ComputeAccesses()

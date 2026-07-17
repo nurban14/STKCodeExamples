@@ -1,0 +1,57 @@
+Matlab
+% IAgVADriverMCS driver: MCS driver interface
+ts = driver.MainSequence.Insert('eVASegmentTypeTargetSequence', 'Start Transfer', '-');
+dv1 = ts.Segments.Insert('eVASegmentTypeManeuver', 'DV1', '-');
+%Insert maneuver into target sequence and target thrust vector
+dv1.SetManeuverType('eVAManeuverTypeImpulsive');
+impulsive = dv1.Maneuver;
+impulsive.SetAttitudeControlType('eVAAttitudeControlThrustVector');
+thrustVector = impulsive.AttitudeControl;
+thrustVector.ThrustAxesName = 'Satellite/MySatellite VNC(Earth)';
+dv1.EnableControlParameter('eVAControlManeuverImpulsiveCartesianX');
+dv1.Results.Add('Keplerian Elems/Radius of Apoapsis');
+%Handle to differential corrector profile
+dc = ts.Profiles.Item('Differential Corrector');
+%Set up control parameter
+xControlParam = dc.ControlParameters.GetControlByPaths('DV1','ImpulsiveMnvr.Cartesian.X');
+xControlParam.Enable = true;
+xControlParam.MaxStep = 0.3;
+%Set up result for control parameter
+roaResult = dc.Results.GetResultByPaths('DV1', 'Radius Of Apoapsis');
+roaResult.Enable = true;
+roaResult.DesiredValue = 42238;
+roaResult.Tolerance = 0.1;
+
+dc.MaxIterations = 50;
+ts.Action = 'eVATargetSeqActionRunActiveProfiles';
+Python
+
+# IAgVADriverMCS driver: MCS driver interface
+ts = driver.MainSequence.Insert(AgEVASegmentType.eVASegmentTypeTargetSequence, 'Start Transfer', '-')
+dv1 = ts.Segments.Insert(AgEVASegmentType.eVASegmentTypeManeuver, 'DV1', '-')
+
+#Insert maneuver into target sequence and target thrust vector
+dv1.SetManeuverType(AgEVAManeuverType.eVAManeuverTypeImpulsive)
+impulsive = dv1.Maneuver
+impulsive.SetAttitudeControlType(AgEVAAttitudeControl.eVAAttitudeControlThrustVector)
+thrustVector = impulsive.AttitudeControl
+thrustVector.ThrustAxesName = 'Satellite/MySatellite VNC(Earth)'
+dv1.EnableControlParameter(AgEVAControlManeuver.eVAControlManeuverImpulsiveCartesianX)
+dv1.Results.Add('Keplerian Elems/Radius of Apoapsis')
+
+#Handle to differential corrector profile
+dc = ts.Profiles.Item('Differential Corrector')
+
+#Set up control parameter
+xControlParam = dc.ControlParameters.GetControlByPaths('DV1','ImpulsiveMnvr.Cartesian.X')
+xControlParam.Enable = True
+xControlParam.MaxStep = 0.3
+
+#Set up result for control parameter
+roaResult = dc.Results.GetResultByPaths('DV1', 'Radius Of Apoapsis')
+roaResult.Enable = True
+roaResult.DesiredValue = 42238
+roaResult.Tolerance = 0.1
+
+dc.MaxIterations = 50
+ts.Action = AgEVATargetSeqAction.eVATargetSeqActionRunActiveProfiles

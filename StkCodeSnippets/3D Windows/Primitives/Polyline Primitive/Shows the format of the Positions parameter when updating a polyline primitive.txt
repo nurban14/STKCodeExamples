@@ -1,0 +1,21 @@
+C#
+
+Array positions = new object[]
+{
+    1247.87, -4739.74, 4067.77,
+    1115.48, -4847.09, 3979.36,
+    -24.12, -5529.31, 3168.45,
+    -2683.42, -4307.74, 3850.11
+};
+
+polyline.SetSubset(
+    ref positions,
+    1,
+    2);
+
+vbNet
+
+Dim positions As Array = New Object() {1247.87, -4739.74, 4067.77, 1115.48, -4847.09, 3979.36, _
+	-24.12, -5529.31, 3168.45, -2683.42, -4307.74, 3850.11}
+
+polyline.SetSubset(positions, 1, 2)

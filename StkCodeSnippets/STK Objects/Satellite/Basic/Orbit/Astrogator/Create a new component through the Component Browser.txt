@@ -1,0 +1,18 @@
+Matlab
+% IAgVADriverMCS driver: MCS driver interface
+% IAgScenario scenario: Scenario object
+%Get the Prop Funct Folder
+compBrowser = scenario.ComponentDirectory.GetComponents('eComponentAstrogator').GetFolder('Propagator Functions');
+%Get the Atmospheric Models Folder
+atmos = compBrowser.GetFolder('Atmospheric Models');
+%Grab the Mars Exponential Model
+mars = atmos.Item('Exponential - Mars');
+%Make a copy of the Model to Edit it
+marsClone = mars.CloneObject;
+
+%Grab a handle of the new Mars Model and edit properties
+newMars = atmos.Item('Exponential - Mars1');
+newMars.Name = 'New Mars';
+newMars.ReferenceAltitude = 0; %km
+newMars.ReferenceDensity = 20000000; %kg/km^3
+newMars.ScaleAltitude = 11.1; %km

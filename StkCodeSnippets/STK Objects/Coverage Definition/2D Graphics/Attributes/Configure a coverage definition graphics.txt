@@ -1,0 +1,33 @@
+C#
+
+// Configure animation
+IAgCvGfxAnimation cvAnimation = cvGraphics.Animation;
+cvAnimation.IsSatisfactionVisible = true;
+cvAnimation.Color = Color.Green;
+
+// Configure progress
+IAgCvGfxProgress cvProgress = cvGraphics.Progress;
+cvProgress.IsVisible = true;
+cvProgress.Color = Color.Red;
+
+// Configure static
+IAgCvGfxStatic cvStatic = cvGraphics.Static;
+cvStatic.Color = Color.Blue;
+cvStatic.MarkerStyle = "Star";
+
+vbNet
+
+' Configure animation
+Dim cvAnimation As IAgCvGfxAnimation = cvGraphics.Animation
+cvAnimation.IsSatisfactionVisible = True
+cvAnimation.Color = Color.Green
+
+' Configure progress
+Dim cvProgress As IAgCvGfxProgress = cvGraphics.Progress
+cvProgress.IsVisible = True
+cvProgress.Color = Color.Red
+
+' Configure static
+Dim cvStatic As IAgCvGfxStatic = cvGraphics.[Static]
+cvStatic.Color = Color.Blue
+cvStatic.MarkerStyle = "Star"

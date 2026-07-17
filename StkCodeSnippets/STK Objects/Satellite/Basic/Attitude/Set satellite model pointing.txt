@@ -1,0 +1,3 @@
+Matlab
+% IAgSatellite satellite: Satellite object
+satellite.VO.ModelPointing.AddInterval('SPP_Arrays-000000', 'Sun', root.CurrentScenario.StartTime, root.CurrentScenario.StopTime);

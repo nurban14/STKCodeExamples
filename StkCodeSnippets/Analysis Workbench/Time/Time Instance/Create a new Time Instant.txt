@@ -1,0 +1,19 @@
+Matlab
+
+% IAgStkObjectRoot root: STK Object Model Root
+% IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+% Change DateFormat dimension to epoch seconds to make the time easier to handle in
+% MATLAB
+root.UnitPreferences.Item('DateFormat').SetCurrentUnit('EpSec');
+timeInstFactory = vgtSat.Events.Factory;
+timeEpoch = timeInstFactory.CreateEventEpoch('FixedTime','Fixed Epoch Time');
+timeEpoch.Epoch = 3600;
+Python
+# IAgStkObjectRoot root: STK Object Model Root
+# IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+# Change DateFormat dimension to epoch seconds to make the time easier to handle in
+# Python
+root.UnitPreferences.Item('DateFormat').SetCurrentUnit('EpSec')
+timeInstFactory = vgtSat.Events.Factory
+timeEpoch = timeInstFactory.CreateEventEpoch('FixedTime', 'Fixed Epoch Time')
+timeEpoch.Epoch = 3600

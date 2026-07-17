@@ -1,0 +1,93 @@
+C#
+
+// Add launch sequence and retrieve the
+IAgVAMCSSegment segment = driver.MainSequence.Insert(AgEVASegmentType.eVASegmentTypeSequence, "MySequence", "-");
+IAgVAMCSSequence sequence = segment as IAgVAMCSSequence;
+
+IAgVAScriptingTool scriptTool = sequence.ScriptingTool;
+scriptTool.Enable = true;
+scriptTool.LanguageType = AgEVALanguage.eVALanguageVBScript;
+scriptTool.ScriptText(
+@"
+DeltaArg = dArg
+
+REM  Set the optimizers desired results
+DEOdArgUB = DeltaArg
+DEOdArgLB = DeltaArg
+
+
+REM  Initial guess tool:
+REM  Assume transfer orbit is something like a circular orbit linking apoapse of initial orbit to apoapse of final orbit
+REM  Constants:
+mu = 398600
+pi = 3.14159265358979
+
+REM  Step 1:  propagate to apoapsis
+Prop1Dur = Period_0/2
+
+REM  Step 2:  conditions at end of initial orbit:
+SMA_0 = 0.5*(RadApo_0 + RadPeri_0)
+VelApo_0 = sqr( (RadPeri_0*mu) / (RadApo_0*SMA_0) )
+
+REM  Step 3:  evaluate properties of the circular transfer orbit
+Rcirc = RadApo_0
+Vcirc = sqr(mu/Rcirc)
+PeriodCirc = 2*pi*Sqr( Rcirc*Rcirc*Rcirc / mu)
+
+REM  Step 4:  set first maneuver to enter transfer orbit
+Burn1X = Vcirc - VelApo_0
+Burn1Z = 0
+
+REM  Step 5:  propagate along transfer orbit the desired change in argument of periapse
+If DeltaArg &gt;= 0 Then
+ TransferDur = PeriodCirc*(DeltaArg/360)
+Else
+ TransferDur = PeriodCirc*(360+DeltaArg)/360
+End If
+
+REM Step 6:  set second maneuver to enter desired final orbit
+Burn2X = -Burn1X
+Burn2Z = 0
+");
+
+// Configure the script tool's segments
+
+IAgVAScriptingSegment burn1X = scriptTool.SegmentProperties.Add("Burn1X");
+
+if (Array.IndexOf(burn1X.AvailableObjectNames, "Optimize_Delta_w.Burn1") != -1)
+{
+    burn1X.ObjectName = "Optimize_Delta_w.Burn1";
+    burn1X.Attribute = "ImpulsiveMnvr.Cartesian.X";
+    burn1X.Unit = "km/sec";
+}
+
+IAgVAScriptingCalcObject period0 = scriptTool.CalcObjects.Add("Period_0");
+period0.CalcObjectName = "Segments/Value At Segment";
+IAgVAStateCalcValueAtSegment valAtSeg = period0.CalcObject as IAgVAStateCalcValueAtSegment;
+valAtSeg.CalcObjectName = "Keplerian Elems/Orbit Period";
+
+vbNet
+
+' Add launch sequence and retrieve the
+Dim segment As IAgVAMCSSegment = driver.MainSequence.Insert(AgEVASegmentType.eVASegmentTypeSequence, "MySequence", "-")
+Dim sequence As IAgVAMCSSequence = TryCast(segment, IAgVAMCSSequence)
+
+Dim scriptTool As IAgVAScriptingTool = sequence.ScriptingTool
+scriptTool.Enable = True
+scriptTool.LanguageType = AgEVALanguage.eVALanguageVBScript
+scriptTool.ScriptText(vbCr &amp;&amp;#160;vbLf &amp;&amp;#160;"            DeltaArg = dArg" &amp;&amp;#160;vbCr &amp;&amp;#160;vbLf &amp;&amp;#160;vbCr &amp;&amp;#160;vbLf &amp;&amp;#160;"            REM  Set the optimizers desired results" &amp;&amp;#160;vbCr &amp;&amp;#160;vbLf &amp;&amp;#160;"            DEOdArgUB = DeltaArg" &amp;&amp;#160;vbCr &amp;&amp;#160;vbLf &amp;&amp;#160;"            DEOdArgLB = DeltaArg" &amp;&amp;#160;vbCr &amp;&amp;#160;vbLf &amp;&amp;#160;vbCr &amp;&amp;#160;vbLf &amp;&amp;#160;vbCr &amp;&amp;#160;vbLf &amp;&amp;#160;"            REM  Initial guess tool:" &amp;&amp;#160;vbCr &amp;&amp;#160;vbLf &amp;&amp;#160;"            REM  Assume transfer orbit is something like a circular orbit linking apoapse of initial orbit to apoapse of final orbit" &amp;&amp;#160;vbCr &amp;&amp;#160;vbLf &amp;&amp;#160;"            REM  Constants:" &amp;&amp;#160;vbCr &amp;&amp;#160;vbLf &amp;&amp;#160;"            mu = 398600" &amp;&amp;#160;vbCr &amp;&amp;#160;vbLf &amp;&amp;#160;"            pi = 3.14159265358979" &amp;&amp;#160;vbCr &amp;&amp;#160;vbLf &amp;&amp;#160;vbCr &amp;&amp;#160;vbLf &amp;&amp;#160;"            REM  Step 1:  propagate to apoapsis" &amp;&amp;#160;vbCr &amp;&amp;#160;vbLf &amp;&amp;#160;"            Prop1Dur = Period_0/2" &amp;&amp;#160;vbCr &amp;&amp;#160;vbLf &amp;&amp;#160;vbCr &amp;&amp;#160;vbLf &amp;&amp;#160;"            REM  Step 2:  conditions at end of initial orbit:" &amp;&amp;#160;vbCr &amp;&amp;#160;vbLf &amp;&amp;#160;"            SMA_0 = 0.5*(RadApo_0 + RadPeri_0)" &amp;&amp;#160;vbCr &amp;&amp;#160;vbLf &amp;&amp;#160;"            VelApo_0 = sqr( (RadPeri_0*mu) / (RadApo_0*SMA_0) )" &amp;&amp;#160;vbCr &amp;&amp;#160;vbLf &amp;&amp;#160;vbCr &amp;&amp;#160;vbLf &amp;&amp;#160;"            REM  Step 3:  evaluate properties of the circular transfer orbit" &amp;&amp;#160;vbCr &amp;&amp;#160;vbLf &amp;&amp;#160;"            Rcirc = RadApo_0" &amp;&amp;#160;vbCr &amp;&amp;#160;vbLf &amp;&amp;#160;"            Vcirc = sqr(mu/Rcirc)" &amp;&amp;#160;vbCr &amp;&amp;#160;vbLf &amp;&amp;#160;"            PeriodCirc = 2*pi*Sqr( Rcirc*Rcirc*Rcirc / mu)" &amp;&amp;#160;vbCr &amp;&amp;#160;vbLf &amp;&amp;#160;vbCr &amp;&amp;#160;vbLf &amp;&amp;#160;"            REM  Step 4:  set first maneuver to enter transfer orbit" &amp;&amp;#160;vbCr &amp;&amp;#160;vbLf &amp;&amp;#160;"            Burn1X = Vcirc - VelApo_0" &amp;&amp;#160;vbCr &amp;&amp;#160;vbLf &amp;&amp;#160;"            Burn1Z = 0" &amp;&amp;#160;vbCr &amp;&amp;#160;vbLf &amp;&amp;#160;vbCr &amp;&amp;#160;vbLf &amp;&amp;#160;"            REM  Step 5:  propagate along transfer orbit the desired change in argument of periapse" &amp;&amp;#160;vbCr &amp;&amp;#160;vbLf &amp;&amp;#160;"            If DeltaArg &gt;= 0 Then" &amp;&amp;#160;vbCr &amp;&amp;#160;vbLf &amp;&amp;#160;"             TransferDur = PeriodCirc*(DeltaArg/360)" &amp;&amp;#160;vbCr &amp;&amp;#160;vbLf &amp;&amp;#160;"            Else" &amp;&amp;#160;vbCr &amp;&amp;#160;vbLf &amp;&amp;#160;"             TransferDur = PeriodCirc*(360+DeltaArg)/360" &amp;&amp;#160;vbCr &amp;&amp;#160;vbLf &amp;&amp;#160;"            End If" &amp;&amp;#160;vbCr &amp;&amp;#160;vbLf &amp;&amp;#160;vbCr &amp;&amp;#160;vbLf &amp;&amp;#160;"            REM Step 6:  set second maneuver to enter desired final orbit" &amp;&amp;#160;vbCr &amp;&amp;#160;vbLf &amp;&amp;#160;"            Burn2X = -Burn1X" &amp;&amp;#160;vbCr &amp;&amp;#160;vbLf &amp;&amp;#160;"            Burn2Z = 0" &amp;&amp;#160;vbCr &amp;&amp;#160;vbLf &amp;&amp;#160;"            ")
+
+' Configure the script tool's segments
+
+Dim burn1X As IAgVAScriptingSegment = scriptTool.SegmentProperties.Add("Burn1X")
+
+If Array.IndexOf(burn1X.AvailableObjectNames, "Optimize_Delta_w.Burn1") &lt;&gt; -1 Then
+	burn1X.ObjectName = "Optimize_Delta_w.Burn1"
+	burn1X.Attribute = "ImpulsiveMnvr.Cartesian.X"
+	burn1X.Unit = "km/sec"
+End If
+
+Dim period0 As IAgVAScriptingCalcObject = scriptTool.CalcObjects.Add("Period_0")
+period0.CalcObjectName = "Segments/Value At Segment"
+Dim valAtSeg As IAgVAStateCalcValueAtSegment = TryCast(period0.CalcObject, IAgVAStateCalcValueAtSegment)
+valAtSeg.CalcObjectName = "Keplerian Elems/Orbit Period"

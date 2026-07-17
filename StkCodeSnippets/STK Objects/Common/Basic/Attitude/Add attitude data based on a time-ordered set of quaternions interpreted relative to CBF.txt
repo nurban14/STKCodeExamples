@@ -1,0 +1,29 @@
+C#
+// IAgSatellite satellite: Satellite object
+// Array cpfQuaternion: Array that contains CPF Quaternion data
+
+satellite.SetAttitudeType(AgEVeAttitude.eAttitudeRealTime);
+IAgVeAttitudeRealTime realtime = satellite.Attitude as IAgVeAttitudeRealTime;
+
+for (int i = 0; i &lt;= cpfQuaternion.GetUpperBound(0); i++)
+{
+    realtime.AddCBFQuaternion(
+        cpfQuaternion.GetValue(i, 0),
+        (double)cpfQuaternion.GetValue(i, 1),
+        (double)cpfQuaternion.GetValue(i, 2),
+        (double)cpfQuaternion.GetValue(i, 3),
+        (double)cpfQuaternion.GetValue(i, 4));
+}
+
+vbNet
+// IAgSatellite satellite: Satellite object
+// Array cpfQuaternion: Array that contains CPF Quaternion data
+
+satellite.SetAttitudeType(AgEVeAttitude.eAttitudeRealTime)
+Dim realtime As IAgVeAttitudeRealTime = TryCast(satellite.Attitude, IAgVeAttitudeRealTime)
+
+Dim i As Integer = 0
+While i &lt;= cpfQuaternion.GetUpperBound(0)
+	realtime.AddCBFQuaternion(cpfQuaternion.GetValue(i, 0), DirectCast(cpfQuaternion.GetValue(i, 1), Double), DirectCast(cpfQuaternion.GetValue(i, 2), Double), DirectCast(cpfQuaternion.GetValue(i, 3), Double), DirectCast(cpfQuaternion.GetValue(i, 4), Double))
+	System.Math.Max(System.Threading.Interlocked.Increment(i),i - 1)
+End While

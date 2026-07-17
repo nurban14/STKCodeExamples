@@ -1,0 +1,14 @@
+C#
+
+// Check if the specified system exists.
+if (provider.Systems.Contains("SystemName"))
+{
+    provider.Systems.Remove("SystemName");
+}
+
+vbNet
+
+' Check if the specified system exists.
+If provider.Systems.Contains("SystemName") Then
+	provider.Systems.Remove("SystemName")
+End If

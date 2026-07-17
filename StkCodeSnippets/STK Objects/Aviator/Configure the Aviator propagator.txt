@@ -1,0 +1,33 @@
+C#
+
+// Set to Propagator to Aviator
+aircraft.SetRouteType(AgEVePropagatorType.ePropagatorAviator);
+// Get the aircraft's route
+IAgVePropagatorAviator aircraftRoute = aircraft.Route as IAgVePropagatorAviator;
+// Get the Aviator propagator
+IAgAvtrPropagator propagator = aircraftRoute.AvtrPropagator as IAgAvtrPropagator;
+// Get the Aviator mission
+IAgAvtrMission mission = propagator.AvtrMission;
+// Get the list of phases from the mission
+IAgAvtrPhaseCollection phases = mission.Phases;
+// Get the list of procedures from the first phase
+IAgAvtrProcedureCollection procedures = phases[0].Procedures;
+// Propagate the route
+propagator.Propagate();
+
+vbNet
+
+' Set to Propagator to Aviator
+aircraft.SetRouteType(AgEVePropagatorType.ePropagatorAviator)
+' Get the aircraft's route
+Dim aircraftRoute As IAgVePropagatorAviator = TryCast(aircraft.Route, IAgVePropagatorAviator)
+' Get the Aviator propagator
+Dim propagator As IAgAvtrPropagator = TryCast(aircraftRoute.AvtrPropagator, IAgAvtrPropagator)
+' Get the Aviator mission
+Dim mission As IAgAvtrMission = propagator.AvtrMission
+' Get the list of phases from the mission
+Dim phases As IAgAvtrPhaseCollection = mission.Phases
+' Get the list of procedures from the first phase
+Dim procedures As IAgAvtrProcedureCollection = phases(0).Procedures
+' Propagate the route
+propagator.Propagate()

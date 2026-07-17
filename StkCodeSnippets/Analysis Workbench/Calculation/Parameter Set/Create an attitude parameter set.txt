@@ -1,0 +1,10 @@
+C#
+
+//Create an attitude parameter set.
+IAgCrdnParameterSetAttitude parameterSet = (IAgCrdnParameterSetAttitude)provider.ParameterSets.Factory.Create(
+    "ParameterSetName", "Attitude parameter set.", AgECrdnParameterSetType.eCrdnParameterSetTypeAttitude);
+
+vbNet
+
+'Create an attitude parameter set.
+Dim parameterSet As IAgCrdnParameterSetAttitude = DirectCast(provider.ParameterSets.Factory.Create("ParameterSetName", "Attitude parameter set.", AgECrdnParameterSetType.eCrdnParameterSetTypeAttitude), IAgCrdnParameterSetAttitude)

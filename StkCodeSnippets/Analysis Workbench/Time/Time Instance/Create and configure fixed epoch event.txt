@@ -1,0 +1,34 @@
+C#
+
+IAgCrdnEvent timeEvent = provider.Events.Factory.CreateEventEpoch("MyEventFixed", "MyDescription");
+IAgCrdnEventEpoch asEpoch = timeEvent as IAgCrdnEventEpoch;
+
+// Epoch can be set explicitly (Uses current DateTime unit preference, this code snippet assumes UTCG)
+asEpoch.Epoch = "1 May 2016 04:00:00.000";
+
+// Epoch can also be set with the epoch of another event
+IAgCrdnEventFindOccurrenceResult startTime = provider.Events["AvailabilityStartTime"].FindOccurrence();
+asEpoch.Epoch = startTime.Epoch;
+
+IAgCrdnEventFindOccurrenceResult occurrence = timeEvent.FindOccurrence();
+if (occurrence.IsValid)
+{
+    Console.WriteLine("Event occurred at: " + occurrence.Epoch);
+}
+
+vbNet
+
+Dim timeEvent As IAgCrdnEvent = provider.Events.Factory.CreateEventEpoch("MyEventFixed", "MyDescription")
+Dim asEpoch As IAgCrdnEventEpoch = TryCast(timeEvent, IAgCrdnEventEpoch)
+
+' Epoch can be set explicitly (Uses current DateTime unit preference, this code snippet assumes UTCG)
+asEpoch.Epoch = "1 May 2016 04:00:00.000"
+
+' Epoch can also be set with the epoch of another event
+Dim startTime As IAgCrdnEventFindOccurrenceResult = provider.Events("AvailabilityStartTime").FindOccurrence()
+asEpoch.Epoch = startTime.Epoch
+
+Dim occurrence As IAgCrdnEventFindOccurrenceResult = timeEvent.FindOccurrence()
+If occurrence.IsValid Then
+	Console.WriteLine("Event occurred at: " + occurrence.Epoch)
+End If

@@ -1,0 +1,14 @@
+C#
+
+IAgVeOrbitAttitudeStandard standard = satellite.Attitude as IAgVeOrbitAttitudeStandard;
+if (standard.Basic.IsProfileTypeSupported(AgEVeProfile.eProfileSpinning))
+{
+    standard.Basic.SetProfileType(AgEVeProfile.eProfileSpinning);
+}
+
+vbNet
+
+Dim standard As IAgVeOrbitAttitudeStandard = TryCast(satellite.Attitude, IAgVeOrbitAttitudeStandard)
+If standard.Basic.IsProfileTypeSupported(AgEVeProfile.eProfileSpinning) Then
+	standard.Basic.SetProfileType(AgEVeProfile.eProfileSpinning)
+End If

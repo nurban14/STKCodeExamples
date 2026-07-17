@@ -1,0 +1,43 @@
+C#
+// IAgVeAttitudeExportTool attitudeExport: Attitude Export Tool
+
+// Set and configure attitude coordinate axes
+attitudeExport.SetCoordinateAxesType(AgEAttCoordinateAxes.eAttCoordinateAxesCustom);
+IAgVeCoordinateAxesCustom customAxes = attitudeExport.CoordinateAxes as IAgVeCoordinateAxesCustom;
+customAxes.ReferenceAxesName = "CentralBody/Sun J2000 Axes";
+
+attitudeExport.VersionFormat = AgEExportToolVersionFormat.eExportToolVersionFormatCurrent;
+attitudeExport.Include = AgEAttInclude.eAttIncludeQuaternionsAngularVelocity;
+
+// Set the attitude file to use Scenario start and stop time
+attitudeExport.TimePeriod.TimePeriodType = AgEExportToolTimePeriod.eExportToolTimePeriodSpecify;
+attitudeExport.TimePeriod.Start = scenario.StartTime;
+attitudeExport.TimePeriod.Stop = scenario.StopTime;
+
+attitudeExport.StepSize.StepSizeType = AgEExportToolStepSize.eExportToolStepSizeSpecify;
+attitudeExport.StepSize.Value = 3600;
+
+// Save Attitude File
+attitudeExport.Export("OMExternalFileAttitude.a");
+
+vbNet
+// IAgVeAttitudeExportTool attitudeExport: Attitude Export Tool
+
+' Set and configure attitude coordinate axes
+attitudeExport.SetCoordinateAxesType(AgEAttCoordinateAxes.eAttCoordinateAxesCustom)
+Dim customAxes As IAgVeCoordinateAxesCustom = TryCast(attitudeExport.CoordinateAxes, IAgVeCoordinateAxesCustom)
+customAxes.ReferenceAxesName = "CentralBody/Sun J2000 Axes"
+
+attitudeExport.VersionFormat = AgEExportToolVersionFormat.eExportToolVersionFormatCurrent
+attitudeExport.Include = AgEAttInclude.eAttIncludeQuaternionsAngularVelocity
+
+' Set the attitude file to use Scenario start and stop time
+attitudeExport.TimePeriod.TimePeriodType = AgEExportToolTimePeriod.eExportToolTimePeriodSpecify
+attitudeExport.TimePeriod.Start = scenario.StartTime
+attitudeExport.TimePeriod.[Stop] = scenario.StopTime
+
+attitudeExport.StepSize.StepSizeType = AgEExportToolStepSize.eExportToolStepSizeSpecify
+attitudeExport.StepSize.Value = 3600
+
+' Save Attitude File
+attitudeExport.Export("OMExternalFileAttitude.a")

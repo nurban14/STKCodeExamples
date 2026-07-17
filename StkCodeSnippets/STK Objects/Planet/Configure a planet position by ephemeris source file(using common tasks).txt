@@ -1,0 +1,11 @@
+C#
+// String planetEphemeris: Planet Ephemeris file
+
+// Position source files traditionally have .pe extensions
+planet.CommonTasks.SetPositionSourceFile(planetEphemeris);
+
+vbNet
+// String planetEphemeris: Planet Ephemeris file
+
+' Position source files traditionally have .pe extensions
+planet.CommonTasks.SetPositionSourceFile(planetEphemeris)

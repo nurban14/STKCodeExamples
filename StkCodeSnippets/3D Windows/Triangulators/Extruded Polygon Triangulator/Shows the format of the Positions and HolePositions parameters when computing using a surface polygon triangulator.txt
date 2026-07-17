@@ -1,0 +1,36 @@
+C#
+
+Array positions = new object[]
+{
+    1097959.63, -5171334.09, 3556288,
+    1007572.15, -5150349.71, 3612667.74,
+    978879.05, -5195164.23, 3556326.55,
+    1037389.68, -5188523.96, 3549473.77,
+    1097959.63, -5171334.09, 3556288
+};
+
+Array holePositions = new object[]
+{
+    1079859.69, -5169944.96, 3563791.24,
+    1030755, -5179965.11, 3563781.97,
+    1028569.57, -5145251.03, 3614006.53,
+    1039944.33, -5153880.71, 3598525.9,
+    1027115.87, -5150522.49, 3606951.77,
+    1026998.55, -5162243.13, 3590303.25,
+    1079859.69, -5169944.96, 3563791.24
+};
+
+IAgStkGraphicsSurfaceTriangulatorResult result = sceneManager.Initializers.SurfacePolygonTriangulator.ComputeWithHole("Earth", ref positions, ref holePositions);
+
+vbNet
+
+Dim positions As Array = New Object() {1097959.63, -5171334.09, 3556288, 1007572.15, -5150349.71, 3612667.74, _
+	978879.05, -5195164.23, 3556326.55, 1037389.68, -5188523.96, 3549473.77, _
+	1097959.63, -5171334.09, 3556288}
+
+Dim holePositions As Array = New Object() {1079859.69, -5169944.96, 3563791.24, 1030755, -5179965.11, 3563781.97, _
+	1028569.57, -5145251.03, 3614006.53, 1039944.33, -5153880.71, 3598525.9, _
+	1027115.87, -5150522.49, 3606951.77, 1026998.55, -5162243.13, 3590303.25, _
+	1079859.69, -5169944.96, 3563791.24}
+
+Dim result As IAgStkGraphicsSurfaceTriangulatorResult = sceneManager.Initializers.SurfacePolygonTriangulator.ComputeWithHole("Earth", positions, holePositions)

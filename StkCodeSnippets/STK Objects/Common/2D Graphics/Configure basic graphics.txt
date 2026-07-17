@@ -1,0 +1,17 @@
+C#
+
+// Change display
+basicAttributes.IsVisible = true;
+basicAttributes.Color = Color.Red;
+basicAttributes.Line.Style = AgELineStyle.eDotted;
+basicAttributes.Line.Width = AgELineWidth.e3;
+basicAttributes.MarkerStyle = "Square";
+
+vbNet
+
+' Change display
+basicAttributes.IsVisible = True
+basicAttributes.Color = Color.Red
+basicAttributes.Line.Style = AgELineStyle.eDotted
+basicAttributes.Line.Width = AgELineWidth.e3
+basicAttributes.MarkerStyle = "Square"

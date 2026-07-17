@@ -1,0 +1,9 @@
+C#
+
+// Create a place on current scenario central body
+IAgPlace place = root.CurrentScenario.Children.New(AgESTKObjectType.ePlace, "MyPlace") as IAgPlace;
+
+vbNet
+
+' Create a place on current scenario central body
+Dim place As IAgPlace = TryCast(root.CurrentScenario.Children.[New](AgESTKObjectType.ePlace, "MyPlace"), IAgPlace)

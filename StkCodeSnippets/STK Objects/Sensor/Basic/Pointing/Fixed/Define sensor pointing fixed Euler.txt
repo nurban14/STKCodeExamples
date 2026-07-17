@@ -1,0 +1,4 @@
+Python
+# IAgSensor sensor: Sensor object
+# Change pointing and set
+sensor.CommonTasks.SetPointingFixedEuler(AgEEulerOrientationSequence.e132, 30, 40, 50)

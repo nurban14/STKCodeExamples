@@ -1,0 +1,17 @@
+C#
+
+Array minimumSize = new object[]
+{
+    5,
+    5,
+    AgEStkGraphicsScreenOverlayUnit.eStkGraphicsScreenOverlayUnitPixels,
+    AgEStkGraphicsScreenOverlayUnit.eStkGraphicsScreenOverlayUnitPixels
+};
+
+overlay.MinimumSize = minimumSize;
+
+vbNet
+
+Dim minimumSize As Array = New Object() {5, 5, AgEStkGraphicsScreenOverlayUnit.eStkGraphicsScreenOverlayUnitPixels, AgEStkGraphicsScreenOverlayUnit.eStkGraphicsScreenOverlayUnitPixels}
+
+overlay.MinimumSize = minimumSize

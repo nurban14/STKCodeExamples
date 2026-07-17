@@ -1,0 +1,24 @@
+C#
+
+if (graphics.IsAttributesTypeSupported(AgEVeGfxAttributes.eAttributesCustom))
+{
+    // Set graphics to custom
+    graphics.SetAttributesType(AgEVeGfxAttributes.eAttributesCustom);
+
+    // Get IAgVeGfxAttributesCustom interface
+    IAgVeGfxAttributesCustom customAttributes = graphics.Attributes as IAgVeGfxAttributesCustom;
+
+    // adjust the custom intervals graphics
+}
+
+vbNet
+
+If graphics.IsAttributesTypeSupported(AgEVeGfxAttributes.eAttributesCustom) Then
+	' Set graphics to custom
+	graphics.SetAttributesType(AgEVeGfxAttributes.eAttributesCustom)
+
+	' Get IAgVeGfxAttributesCustom interface
+
+		' adjust the custom intervals graphics
+	Dim customAttributes As IAgVeGfxAttributesCustom = TryCast(graphics.Attributes, IAgVeGfxAttributesCustom)
+End If

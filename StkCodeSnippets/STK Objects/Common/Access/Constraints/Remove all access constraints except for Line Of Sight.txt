@@ -1,0 +1,22 @@
+Matlab
+% IAgAccessConstraintCollection accessConstraints: Access Constraint collection
+for i=accessConstraints.Count - 1:-1:0
+    constraint = accessConstraints.Item(i).ConstraintName;
+
+    if (strcmp(constraint,'LineOfSight')) == false
+        if (strcmp(constraint,'ThirdBodyObstruction'))
+            thirdBodyConstraint = accessConstraints.GetActiveNamedConstraint('ThirdBodyObstruction');
+            assignedArray = thirdBodyConstraint.AssignedObstructions;
+
+            for j=1:length(assignedArray)
+                thirdBodyConstraint.RemoveObstruction(assignedArray{j});
+            end
+
+        elseif (strcmp(constraint,'ExclusionZone'))
+            accessConstraints.GetActiveNamedConstraint('ExclusionZone').RemoveAll;
+
+        else
+            accessConstraints.RemoveNamedConstraint(constraint);
+        end
+    end
+end

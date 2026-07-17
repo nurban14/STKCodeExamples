@@ -1,0 +1,28 @@
+C#
+// IAgCrdnPoint OriginPoint: Defines the vector origin.
+// IAgCrdnPoint DestinationPoint: Defines the vector destination.
+
+//Create a displacement vector with two specified points
+IAgCrdnVectorDisplacement vector = provider.Vectors.Factory.CreateDisplacementVector(
+    "VectorName", OriginPoint, DestinationPoint);
+
+Matlab
+
+% IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+% IAgCrdnPoint centerPtSat: point component
+% IAgCrdnPoint centerPtEarth: point component
+VectFactory = vgtSat.Vectors.Factory;
+Sat2EarthCenter = VectFactory.CreateDisplacementVector('Sat2EarthCenter',centerPtSat,centerPtEarth);
+
+Python
+# IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+# IAgCrdnPoint centerPtSat: point component
+# IAgCrdnPoint centerPtEarth: point component
+VectFactory = vgtSat.Vectors.Factory
+Sat2EarthCenter = VectFactory.CreateDisplacementVector('Sat2EarthCenter', centerPtSat, centerPtEarth)
+vbNet
+// IAgCrdnPoint OriginPoint: Defines the vector origin.
+// IAgCrdnPoint DestinationPoint: Defines the vector destination.
+
+'Create a displacement vector with two specified points
+Dim vector As IAgCrdnVectorDisplacement = provider.Vectors.Factory.CreateDisplacementVector("VectorName", OriginPoint, DestinationPoint)

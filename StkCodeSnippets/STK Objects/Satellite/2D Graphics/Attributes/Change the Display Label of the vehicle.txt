@@ -1,0 +1,10 @@
+Matlab
+
+% IAgSatellite satellite: Satellite object
+satellite.Graphics.UseInstNameLabel = false;
+satellite.Graphics.LabelName = 'Matlab Satellite';
+
+Python
+# IAgSatellite satellite: Satellite object
+satellite.Graphics.UseInstNameLabel = False
+satellite.Graphics.LabelName = 'Python Satellite'

@@ -1,0 +1,17 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+// String globeOverlayFile: The globe overlay file
+
+//
+// Either jp2 or pdttx can be used here
+//
+IAgStkGraphicsGlobeImageOverlay overlay = scene.CentralBodies.Earth.Imagery.AddUriString(globeOverlayFile);
+
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+// String globeOverlayFile: The globe overlay file
+
+'
+' Either jp2 or pdttx can be used here
+'
+Dim overlay As IAgStkGraphicsGlobeImageOverlay = scene.CentralBodies.Earth.Imagery.AddUriString(globeOverlayFile)

@@ -1,0 +1,24 @@
+C#
+
+if (graphics.IsAttributesTypeSupported(AgEVeGfxAttributes.eAttributesBasic))
+{
+    // Set graphics to basic
+    graphics.SetAttributesType(AgEVeGfxAttributes.eAttributesBasic);
+
+    // Get IAgVeGfxAttributesBasic interface
+    IAgVeGfxAttributesBasic basicAttributes = graphics.Attributes as IAgVeGfxAttributesBasic;
+
+    // adjust the basic graphics
+}
+
+vbNet
+
+If graphics.IsAttributesTypeSupported(AgEVeGfxAttributes.eAttributesBasic) Then
+	' Set graphics to basic
+	graphics.SetAttributesType(AgEVeGfxAttributes.eAttributesBasic)
+
+	' Get IAgVeGfxAttributesBasic interface
+
+		' adjust the basic graphics
+	Dim basicAttributes As IAgVeGfxAttributesBasic = TryCast(graphics.Attributes, IAgVeGfxAttributesBasic)
+End If

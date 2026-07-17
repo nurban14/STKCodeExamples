@@ -1,0 +1,21 @@
+C#
+
+foreach (IAgUiWindow window in application.Windows)
+{
+    object oSvc = window.GetServiceByName("Map");
+    IAgUiWindowMapObject mapObject = oSvc as IAgUiWindowMapObject;
+    if (mapObject != null)
+    {
+        Console.WriteLine("Window Title: {0}, scene ID: {1}", window.Caption, mapObject.MapID);
+    }
+}
+
+vbNet
+
+For Each window As IAgUiWindow In application.Windows
+	Dim oSvc As Object = window.GetServiceByName("Map")
+	Dim mapObject As IAgUiWindowMapObject = TryCast(oSvc, IAgUiWindowMapObject)
+	If mapObject IsNot Nothing Then
+		Console.WriteLine("Window Title: {0}, scene ID: {1}", window.Caption, mapObject.MapID)
+	End If
+Next

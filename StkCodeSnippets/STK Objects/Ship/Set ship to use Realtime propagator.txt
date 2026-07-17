@@ -1,0 +1,15 @@
+C#
+
+// Set ship route to STK External propagator
+ship.SetRouteType(AgEVePropagatorType.ePropagatorRealtime);
+
+// Retrieve propagator interface if necessary
+IAgVePropagatorRealtime propagator = ship.Route as IAgVePropagatorRealtime;
+
+vbNet
+
+' Set ship route to STK External propagator
+ship.SetRouteType(AgEVePropagatorType.ePropagatorRealtime)
+
+' Retrieve propagator interface if necessary
+Dim propagator As IAgVePropagatorRealtime = TryCast(ship.Route, IAgVePropagatorRealtime)

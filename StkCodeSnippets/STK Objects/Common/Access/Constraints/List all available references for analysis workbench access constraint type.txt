@@ -1,0 +1,14 @@
+C#
+
+IAgAccessCnstrAWBCollection awbaccessconstraints = stkobject.AccessConstraints.AWBConstraints;
+foreach (string availableReference in awbaccessconstraints.GetAvailableReferences(AgEAWBAccessConstraints.eCstrAWBAngle) )
+{
+    Console.WriteLine("Available Reference: {0}", availableReference);
+}
+
+vbNet
+
+Dim awbaccessconstraints As IAgAccessCnstrAWBCollection = stkobject.AccessConstraints.AWBConstraints
+For Each availableReference As String In awbaccessconstraints.GetAvailableReferences(AgEAWBAccessConstraints.eCstrAWBAngle)
+	Console.WriteLine("Available Reference: {0}", availableReference)
+Next

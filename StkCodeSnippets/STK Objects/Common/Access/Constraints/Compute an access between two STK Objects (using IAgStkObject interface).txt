@@ -1,0 +1,17 @@
+C#
+// IAgStkObject stkObject2: STK Object
+
+// Get access by STK Object
+IAgStkAccess access = stkObject1.GetAccessToObject(stkObject2);
+
+// Compute access
+access.ComputeAccess();
+
+vbNet
+// IAgStkObject stkObject2: STK Object
+
+' Get access by STK Object
+Dim access As IAgStkAccess = stkObject1.GetAccessToObject(stkObject2)
+
+' Compute access
+access.ComputeAccess()

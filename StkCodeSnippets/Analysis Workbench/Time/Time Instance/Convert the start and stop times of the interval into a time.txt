@@ -1,0 +1,15 @@
+C#
+
+smartInterval.SetStartTimeAndDuration("Now", "+100 day");
+object startTime = smartInterval.FindStartTime();
+object stopTime = smartInterval.FindStopTime();
+
+Console.WriteLine("StartTime = {0}, StopTime = {1}", startTime, stopTime);
+
+vbNet
+
+smartInterval.SetStartTimeAndDuration("Now", "+100 day")
+Dim startTime As Object = smartInterval.FindStartTime()
+Dim stopTime As Object = smartInterval.FindStopTime()
+
+Console.WriteLine("StartTime = {0}, StopTime = {1}", startTime, stopTime)

@@ -1,0 +1,28 @@
+C#
+
+// Iterate through the the group of existing event intervals associated
+// with the specified CrdnProvider.
+for (int i = 0; i &lt; provider.EventIntervals.Count; i++)
+{
+    IAgCrdnEventInterval eventInterval = provider.EventIntervals[i];
+    // All event intervals implement IAgCrdn interface which provides
+    // information about the event interval's instance and its type.
+    IAgCrdn crdn = provider.EventIntervals[i] as IAgCrdn;
+    // Print the event interval's name and type to the standard output.
+    Console.WriteLine("Name: {0}, type: {1}", crdn.Name, eventInterval.Type);
+}
+
+vbNet
+
+' Iterate through the the group of existing event intervals associated
+' with the specified CrdnProvider.
+Dim i As Integer = 0
+While i &lt; provider.EventIntervals.Count
+	Dim eventInterval As IAgCrdnEventInterval = provider.EventIntervals(i)
+	' All event intervals implement IAgCrdn interface which provides
+	' information about the event interval's instance and its type.
+	Dim crdn As IAgCrdn = TryCast(provider.EventIntervals(i), IAgCrdn)
+	' Print the event interval's name and type to the standard output.
+	Console.WriteLine("Name: {0}, type: {1}", crdn.Name, eventInterval.Type)
+	System.Math.Max(System.Threading.Interlocked.Increment(i),i - 1)
+End While

@@ -1,0 +1,9 @@
+C#
+
+// Add object to constellation
+constellation.Objects.Add("Satellite/Cameo");
+
+vbNet
+
+' Add object to constellation
+constellation.Objects.Add("Satellite/Cameo")

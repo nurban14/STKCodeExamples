@@ -1,0 +1,16 @@
+Matlab
+% IAgSatellite satellite: Satellite object
+%Set the contours in the 2D properties
+contours = satellite.Graphics.ElevContours;
+contours.IsVisible = true;
+contours.NumOfDecimalDigits = 0;
+contours.Elevations.AddLevelRange(0,90,10); %   Min, Max, Step
+
+Python
+
+# IAgSatellite satellite: Satellite object
+# Set the contours in the 2D properties
+contours = satellite.Graphics.ElevContours
+contours.IsVisible = True
+contours.NumOfDecimalDigits = 0
+contours.Elevations.AddLevelRange(0, 90, 10)  # Min, Max, Step

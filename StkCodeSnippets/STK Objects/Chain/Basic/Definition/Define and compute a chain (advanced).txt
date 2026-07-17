@@ -1,0 +1,52 @@
+Matlab
+% IAgChain chain: Chain object
+% IAgSatellite satellite: Satellite object
+
+% Remove all previous accesses
+chain.ClearAccess();
+
+% Add some objects to chain
+chain.Objects.Add('Facility/MyFacility');
+chain.Objects.AddObject(satellite);
+
+% Configure chain parameters
+chain.AutoRecompute = false;
+chain.EnableLightTimeDelay = false;
+chain.TimeConvergence = 0.001;
+chain.DataSaveMode = 'eSaveAccesses';
+
+% Specify our own time period
+chain.SetTimePeriodType('eUserSpecifiedTimePeriod');
+
+% Get chain time period interface
+chainUserTimePeriod = chain.TimePeriod;
+chainUserTimePeriod.SetTimePeriod(root.CurrentScenario.StartTime, root.CurrentScenario.StopTime); % Set to scenario period
+
+% Compute the chain
+chain.ComputeAccess();
+Python
+# IAgChain chain: Chain object
+# IAgSatellite satellite: Satellite object
+
+# Remove all previous accesses
+chain.ClearAccess()
+
+# Add some objects to chain
+chain.Objects.Add('Facility/MyFacility')
+chain.Objects.AddObject(satellite)
+
+# Configure chain parameters - Properties in Basic/Advanced
+chain.AutoRecompute = False
+chain.EnableLightTimeDelay = False
+chain.TimeConvergence = 0.001
+chain.DataSaveMode = 2 # eSaveAccesses
+
+# Specify our own time period
+chain.SetTimePeriodType(2) # eUserSpecifiedTimePeriod
+
+# Get chain time period interface
+chainUserTimePeriod = chain.TimePeriod
+chainUserTimePeriod.SetTimePeriod(root.CurrentScenario.StartTime, root.CurrentScenario.StopTime) # Set to scenario period
+
+# Compute the chain
+chain.ComputeAccess()

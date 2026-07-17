@@ -1,0 +1,56 @@
+C#
+
+IAgSc3dFont fonts = scenario.VO.LargeFont;
+
+fonts.Bold = true;
+fonts.Italic = true;
+fonts.PtSize = AgESc3dPtSize.eSc3dFontSize36;
+
+if (fonts.IsFontAvailable("Impact"))
+{
+    fonts.Name = "Impact";
+}
+
+// AvailableFonts returns a one dimensional array of font strings
+Array allFonts = fonts.AvailableFonts;
+int index = Array.IndexOf(allFonts, "Courier");
+if (index != -1)
+{
+    fonts.Name = allFonts.GetValue(index) as string;
+}
+
+Matlab
+
+% IAgStkObjectRoot root: STK Object Model Root
+scenario = root.CurrentScenario;
+scenario.VO.MediumFont.Name = 'Arial';
+scenario.VO.MediumFont.PtSize = 18;
+scenario.VO.MediumFont.Bold = true;
+scenario.VO.MediumFont.Italic = false;
+Python
+
+# IAgStkObjectRoot root: STK Object Model Root
+scenario = root.CurrentScenario
+scenario.VO.MediumFont.Name = 'Arial'
+scenario.VO.MediumFont.PtSize = 18
+scenario.VO.MediumFont.Bold = True
+scenario.VO.MediumFont.Italic = False
+
+vbNet
+
+Dim fonts As IAgSc3dFont = scenario.VO.LargeFont
+
+fonts.Bold = True
+fonts.Italic = True
+fonts.PtSize = AgESc3dPtSize.eSc3dFontSize36
+
+If fonts.IsFontAvailable("Impact") Then
+	fonts.Name = "Impact"
+End If
+
+' AvailableFonts returns a one dimensional array of font strings
+Dim allFonts As Array = fonts.AvailableFonts
+Dim index As Integer = Array.IndexOf(allFonts, "Courier")
+If index &lt;&gt; -1 Then
+	fonts.Name = TryCast(allFonts.GetValue(index), String)
+End If

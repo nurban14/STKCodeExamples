@@ -1,0 +1,10 @@
+Python
+## Compute an access between two STK Objects (using object path)
+
+# IAgSatellite satellite: Satellite object
+
+# Get access by object path
+access = satellite.GetAccess('Facility/MyFacility')
+
+# Compute access
+access.ComputeAccess()

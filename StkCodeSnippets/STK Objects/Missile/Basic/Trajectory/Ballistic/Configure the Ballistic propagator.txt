@@ -1,0 +1,51 @@
+C#
+
+propagator.Step = 30;
+propagator.SetLaunchType(AgEVeLaunch.eLaunchLLA);
+
+IAgVeLaunchLLA launch = propagator.Launch as IAgVeLaunchLLA;
+launch.Lat = 40.040;
+launch.Lon = -76.304;
+launch.Alt = 1.5;
+
+propagator.SetImpactLocationType(AgEVeImpactLocation.eImpactLocationPoint);
+
+IAgVeImpactLocationPoint impactLocation = propagator.ImpactLocation as IAgVeImpactLocationPoint;
+impactLocation.SetImpactType(AgEVeImpact.eImpactLLA);
+impactLocation.SetLaunchControlType(AgEVeLaunchControl.eLaunchControlFixedDeltaV);
+
+IAgVeImpactLLA impact = impactLocation.Impact as IAgVeImpactLLA;
+impact.Lat = 40.337;
+impact.Lon = -75.922;
+impact.Alt = 0.0;
+
+IAgVeLaunchControlFixedDeltaV fixedDeltaV = impactLocation.LaunchControl as IAgVeLaunchControlFixedDeltaV;
+fixedDeltaV.DeltaV = 7.545;
+
+propagator.Propagate();
+
+vbNet
+
+propagator.[Step] = 30
+propagator.SetLaunchType(AgEVeLaunch.eLaunchLLA)
+
+Dim launch As IAgVeLaunchLLA = TryCast(propagator.Launch, IAgVeLaunchLLA)
+launch.Lat = 40.04
+launch.Lon = -76.304
+launch.Alt = 1.5
+
+propagator.SetImpactLocationType(AgEVeImpactLocation.eImpactLocationPoint)
+
+Dim impactLocation As IAgVeImpactLocationPoint = TryCast(propagator.ImpactLocation, IAgVeImpactLocationPoint)
+impactLocation.SetImpactType(AgEVeImpact.eImpactLLA)
+impactLocation.SetLaunchControlType(AgEVeLaunchControl.eLaunchControlFixedDeltaV)
+
+Dim impact As IAgVeImpactLLA = TryCast(impactLocation.Impact, IAgVeImpactLLA)
+impact.Lat = 40.337
+impact.Lon = -75.922
+impact.Alt = 0
+
+Dim fixedDeltaV As IAgVeLaunchControlFixedDeltaV = TryCast(impactLocation.LaunchControl, IAgVeLaunchControlFixedDeltaV)
+fixedDeltaV.DeltaV = 7.545
+
+propagator.Propagate()

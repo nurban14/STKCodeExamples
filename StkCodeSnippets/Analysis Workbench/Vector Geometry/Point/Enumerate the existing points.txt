@@ -1,0 +1,20 @@
+C#
+
+// Enumerate the existing points using specified CrdnProvider.
+foreach (IAgCrdnPoint point in provider.Points)
+{
+    // All points implement IAgCrdn interface which provides
+    // information about the point instance and its type.
+    IAgCrdn crdn = point as IAgCrdn;
+    Console.WriteLine("Name: {0}, type: {1}", crdn.Name, point.Type);
+}
+
+vbNet
+
+' Enumerate the existing points using specified CrdnProvider.
+For Each point As IAgCrdnPoint In provider.Points
+	' All points implement IAgCrdn interface which provides
+	' information about the point instance and its type.
+	Dim crdn As IAgCrdn = TryCast(point, IAgCrdn)
+	Console.WriteLine("Name: {0}, type: {1}", crdn.Name, point.Type)
+Next

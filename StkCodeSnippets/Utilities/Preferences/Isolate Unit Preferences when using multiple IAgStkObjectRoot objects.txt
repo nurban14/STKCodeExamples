@@ -1,0 +1,122 @@
+C#
+// IAgStkObjectRoot root2: STK Object Model Root
+
+// First root configured to use km
+root1.UnitPreferences.SetCurrentUnit("Distance", "km");
+
+// Second root configured to use miles
+root2.Isolate();
+root2.UnitPreferences.SetCurrentUnit("Distance", "mi");
+
+// Create new scenario and ship object
+// Close current scenario
+if (root1.CurrentScenario != null)
+{
+    root1.CloseScenario();
+}
+root1.NewScenario("Test");
+root1.CurrentScenario.Children.New(AgESTKObjectType.eShip, "Ship1");
+
+// Obtain references to the ship object from each root
+IAgShip shipFromRoot1 = root1.GetObjectFromPath("Ship/Ship1") as IAgShip;
+IAgShip shipFromRoot2 = root2.GetObjectFromPath("Ship/Ship1") as IAgShip;
+
+shipFromRoot1.SetRouteType(AgEVePropagatorType.ePropagatorGreatArc);
+
+IAgVePropagatorGreatArc greatArcFromRoot1 = shipFromRoot1.Route as IAgVePropagatorGreatArc;
+IAgVePropagatorGreatArc greatArcFromRoot2 = shipFromRoot2.Route as IAgVePropagatorGreatArc;
+
+IAgVeWaypointsElement waypointsFromRoot1 = greatArcFromRoot1.Waypoints.Add();
+
+waypointsFromRoot1.Altitude = 1; // 1 km
+
+IAgVeWaypointsElement waypointsFromRoot2 = greatArcFromRoot2.Waypoints.Add();
+
+waypointsFromRoot2.Altitude = 1; // 1 mile
+
+greatArcFromRoot1.Propagate();
+
+int i = 1;
+foreach (IAgVeWaypointsElement wpt in greatArcFromRoot1.Waypoints)
+{
+    Console.WriteLine("Point #{0} Altitude {1} {2}", i, wpt.Altitude, root1.UnitPreferences.GetCurrentUnitAbbrv("Distance"));
+    ++i;
+}
+Console.WriteLine();
+
+//Sample Output
+//Point #1 Altitude 1 km
+//Point #2 Altitude 1.609344 km
+
+i = 1;
+foreach (IAgVeWaypointsElement wpt in greatArcFromRoot2.Waypoints)
+{
+    Console.WriteLine("Point #{0} Altitude {1} {2}", i, wpt.Altitude, root2.UnitPreferences.GetCurrentUnitAbbrv("Distance"));
+    ++i;
+}
+
+//Sample Output
+//Point #1 Altitude 0.621371192237334 mi
+//Point #2 Altitude 1 mi
+
+root1.CloseScenario();
+
+vbNet
+// IAgStkObjectRoot root2: STK Object Model Root
+
+' First root configured to use km
+root1.UnitPreferences.SetCurrentUnit("Distance", "km")
+
+' Second root configured to use miles
+root2.Isolate()
+root2.UnitPreferences.SetCurrentUnit("Distance", "mi")
+
+' Create new scenario and ship object
+' Close current scenario
+If root1.CurrentScenario IsNot Nothing Then
+	root1.CloseScenario()
+End If
+root1.NewScenario("Test")
+root1.CurrentScenario.Children.[New](AgESTKObjectType.eShip, "Ship1")
+
+' Obtain references to the ship object from each root
+Dim shipFromRoot1 As IAgShip = TryCast(root1.GetObjectFromPath("Ship/Ship1"), IAgShip)
+Dim shipFromRoot2 As IAgShip = TryCast(root2.GetObjectFromPath("Ship/Ship1"), IAgShip)
+
+shipFromRoot1.SetRouteType(AgEVePropagatorType.ePropagatorGreatArc)
+
+Dim greatArcFromRoot1 As IAgVePropagatorGreatArc = TryCast(shipFromRoot1.Route, IAgVePropagatorGreatArc)
+Dim greatArcFromRoot2 As IAgVePropagatorGreatArc = TryCast(shipFromRoot2.Route, IAgVePropagatorGreatArc)
+
+Dim waypointsFromRoot1 As IAgVeWaypointsElement = greatArcFromRoot1.Waypoints.Add()
+
+waypointsFromRoot1.Altitude = 1
+' 1 km
+Dim waypointsFromRoot2 As IAgVeWaypointsElement = greatArcFromRoot2.Waypoints.Add()
+
+waypointsFromRoot2.Altitude = 1
+' 1 mile
+greatArcFromRoot1.Propagate()
+
+Dim i As Integer = 1
+For Each wpt As IAgVeWaypointsElement In greatArcFromRoot1.Waypoints
+	Console.WriteLine("Point #{0} Altitude {1} {2}", i, wpt.Altitude, root1.UnitPreferences.GetCurrentUnitAbbrv("Distance"))
+	System.Threading.Interlocked.Increment(i)
+Next
+Console.WriteLine()
+
+'Sample Output
+'Point #1 Altitude 1 km
+'Point #2 Altitude 1.609344 km
+
+i = 1
+For Each wpt As IAgVeWaypointsElement In greatArcFromRoot2.Waypoints
+	Console.WriteLine("Point #{0} Altitude {1} {2}", i, wpt.Altitude, root2.UnitPreferences.GetCurrentUnitAbbrv("Distance"))
+	System.Threading.Interlocked.Increment(i)
+Next
+
+'Sample Output
+'Point #1 Altitude 0.621371192237334 mi
+'Point #2 Altitude 1 mi
+
+root1.CloseScenario()

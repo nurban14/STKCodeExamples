@@ -1,0 +1,7 @@
+Matlab
+% IAgSatellite satellite: Satellite object
+accessConstraints = satellite.AccessConstraints;
+Python
+
+# IAgSatellite satellite: Satellite object
+accessConstraints = satellite.AccessConstraints

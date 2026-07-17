@@ -1,0 +1,92 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+// List&lt;IAgStkGraphicsModelPrimitive&gt; SelectedModels: The previously selected models
+
+IAgStkGraphicsSceneManager manager = ((IAgScenario)root.CurrentScenario).SceneManager;
+//
+// Get a collection of picked objects in a 100 by 100 rectangular region.
+// The collection is sorted with the closest object at index zero.
+//
+const int halfRegionSize = 50;
+List&lt;IAgStkGraphicsModelPrimitive&gt; newModels = new List&lt;IAgStkGraphicsModelPrimitive&gt;();
+IAgStkGraphicsPickResultCollection collection = scene.PickRectangular(
+    mouseX - halfRegionSize, mouseY + halfRegionSize,
+    mouseX + halfRegionSize, mouseY - halfRegionSize);
+foreach (IAgStkGraphicsPickResult pickResult in collection)
+{
+    IAgStkGraphicsObjectCollection objects = pickResult.Objects;
+    IAgStkGraphicsCompositePrimitive composite = objects[0] as IAgStkGraphicsCompositePrimitive;
+
+    //
+    // Was a model in our composite picked?
+    //
+    if (composite == m_Models)
+    {
+        IAgStkGraphicsModelPrimitive model = objects[1] as IAgStkGraphicsModelPrimitive;
+
+        //
+        // Selected Model
+        //
+        if (model != null)
+        {
+            model.Articulations.GetByName("ColorCycle").GetByName("Seconds").CurrentValue = 4.0; // place.glb's cyan
+            newModels.Add(model);
+        }
+    }
+}
+//
+// Reset color of models that were previous selected but were not in this pick.
+//
+foreach (IAgStkGraphicsModelPrimitive selectedModel in m_SelectedModels)
+{
+    if (!newModels.Contains(selectedModel))
+    {
+        selectedModel.Articulations.GetByName("ColorCycle").GetByName("Seconds").CurrentValue = 0.0; // place.glb's red
+    }
+}
+m_SelectedModels = newModels;
+
+manager.Render();
+
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+// List&lt;IAgStkGraphicsModelPrimitive&gt; SelectedModels: The previously selected models
+
+Dim manager As IAgStkGraphicsSceneManager = DirectCast(root.CurrentScenario, IAgScenario).SceneManager
+'
+' Get a collection of picked objects in a 100 by 100 rectangular region.
+' The collection is sorted with the closest object at index zero.
+'
+Dim newModels As New List(Of IAgStkGraphicsModelPrimitive)()
+Dim halfRegionSize = 50
+Dim collection As IAgStkGraphicsPickResultCollection = scene.PickRectangular(
+	mouseX - halfRegionSize, mouseY + halfRegionSize,
+	mouseX + halfRegionSize, mouseY - halfRegionSize)
+For Each pickResult As IAgStkGraphicsPickResult In collection
+	Dim objects As IAgStkGraphicsObjectCollection = pickResult.Objects
+	Dim composite As IAgStkGraphicsCompositePrimitive = TryCast(objects(0), IAgStkGraphicsCompositePrimitive)
+
+	'
+	' Was a model in our composite picked?
+	'
+	If composite Is m_Models Then
+		Dim model As IAgStkGraphicsModelPrimitive = TryCast(objects(1), IAgStkGraphicsModelPrimitive)
+
+		'
+		' Selected Model
+		'
+		If model IsNot Nothing Then
+			model.Articulations.GetByName("ColorCycle").GetByName("Seconds").CurrentValue = 4.0 ' place.glb's cyan
+		End If
+		newModels.Add(model)
+	End If
+Next
+'
+' Reset color of models that were previous selected but were not in this pick.
+'
+For Each selectedModel As IAgStkGraphicsModelPrimitive In m_selectedModels
+	If Not newModels.Contains(selectedModel) Then
+		selectedModel.Articulations.GetByName("ColorCycle").GetByName("Seconds").CurrentValue = 0.0 ' place.glb's red
+	End If
+Next
+m_selectedModels = newModels

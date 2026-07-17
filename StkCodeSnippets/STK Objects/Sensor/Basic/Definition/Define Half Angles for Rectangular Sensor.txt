@@ -1,0 +1,4 @@
+Python
+# IAgSensor sensor: Sensor object
+# Change pattern and set
+sensor.CommonTasks.SetPatternRectangular(20, 25)

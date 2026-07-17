@@ -1,0 +1,16 @@
+C#
+
+Array radii = new object[]
+{
+    2000,
+    1000,
+    1000
+};
+
+IAgStkGraphicsSolidTriangulatorResult result = sceneManager.Initializers.EllipsoidTriangulator.ComputeSimple(ref radii);
+
+vbNet
+
+Dim radii As Array = New Object() {2000, 1000, 1000}
+
+Dim result As IAgStkGraphicsSolidTriangulatorResult = sceneManager.Initializers.EllipsoidTriangulator.ComputeSimple(radii)

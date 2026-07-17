@@ -1,0 +1,28 @@
+C#
+
+// Close current scenario
+if (root.CurrentScenario != null)
+{
+    root.CloseScenario();
+}
+root.NewScenario("Scenario1");
+
+// Get IAgScenario interface
+IAgScenario scenario = root.CurrentScenario as IAgScenario;
+
+// Set scenario start and stop times
+scenario.SetTimePeriod("1 Jun 1999 12:00:00.00", "2 Jun 1999 12:00:00.00");
+
+vbNet
+
+' Close current scenario
+If root.CurrentScenario IsNot Nothing Then
+	root.CloseScenario()
+End If
+root.NewScenario("Scenario1")
+
+' Get IAgScenario interface
+Dim scenario As IAgScenario = TryCast(root.CurrentScenario, IAgScenario)
+
+' Set scenario start and stop times
+scenario.SetTimePeriod("1 Jun 1999 12:00:00.00", "2 Jun 1999 12:00:00.00")

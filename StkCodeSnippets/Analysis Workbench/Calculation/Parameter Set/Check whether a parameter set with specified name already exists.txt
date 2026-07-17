@@ -1,0 +1,14 @@
+C#
+
+//Check if a parameter set with the specified name already exists.
+if (provider.ParameterSets.Contains("ParameterSetName"))
+{
+    Console.WriteLine("The parameter set \"{0}\" already exists!", "ParameterSetName");
+}
+
+vbNet
+
+'Check if a parameter set with the specified name already exists.
+If provider.ParameterSets.Contains("ParameterSetName") Then
+	Console.WriteLine("The parameter set ""{0}"" already exists!", "ParameterSetName")
+End If

@@ -1,0 +1,15 @@
+Matlab
+% IAgStkObjectRoot root: STK Object Model root
+
+satellite = root.GetObjectFromPath('/Satellite/MySatellite');
+facility = root.GetObjectFromPath('/Facility/MyFacility');
+access = satellite.GetAccessToObject(facility);
+
+access.AccessTimePeriod = 'eUserSpecAccessTime';
+accessTimePeriod = access.AccessTimePeriodData;
+
+if (satellite.Vgt.EventIntervals.Contains('AvailabilityTimeSpan'))
+    availabilityTimeSpan = satellite.Vgt.EventIntervals.Item('AvailabilityTimeSpan');
+    accessTimePeriod.AccessInterval.SetImplicitInterval(availabilityTimeSpan);
+end
+

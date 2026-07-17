@@ -1,0 +1,26 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+// Array positions: The positions used to compute triangulation
+
+IAgStkGraphicsSceneManager manager = ((IAgScenario)root.CurrentScenario).SceneManager;
+
+IAgStkGraphicsSurfaceTriangulatorResult triangles =
+    manager.Initializers.SurfacePolygonTriangulator.Compute("Earth", ref positions);
+
+IAgStkGraphicsTriangleMeshPrimitive mesh = manager.Initializers.TriangleMeshPrimitive.Initialize();
+mesh.SetTriangulator((IAgStkGraphicsTriangulatorResult)triangles);
+((IAgStkGraphicsPrimitive)mesh).Color = Color.Red;
+manager.Primitives.Add((IAgStkGraphicsPrimitive)mesh);
+
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+// Array positions: The positions used to compute triangulation
+
+Dim manager As IAgStkGraphicsSceneManager = DirectCast(root.CurrentScenario, IAgScenario).SceneManager
+
+Dim triangles As IAgStkGraphicsSurfaceTriangulatorResult = manager.Initializers.SurfacePolygonTriangulator.Compute("Earth", positions)
+
+Dim mesh As IAgStkGraphicsTriangleMeshPrimitive = manager.Initializers.TriangleMeshPrimitive.Initialize()
+mesh.SetTriangulator(DirectCast(triangles, IAgStkGraphicsTriangulatorResult))
+DirectCast(mesh, IAgStkGraphicsPrimitive).Color = Color.Red
+manager.Primitives.Add(DirectCast(mesh, IAgStkGraphicsPrimitive))

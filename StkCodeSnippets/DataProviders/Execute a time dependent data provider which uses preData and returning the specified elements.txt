@@ -1,0 +1,27 @@
+C#
+
+Array elems = new object[]
+{ "Range", "Radial Rate" };
+IAgDataPrvTimeVar RICdp = satObj.DataProviders["Relative Motion"] as IAgDataPrvTimeVar;
+(RICdp as IAgDataProvider).PreData = "Satellite/Satellite123";
+IAgDrResult result = RICdp.ExecElements("26 Jan 2015 17:00:00.000", "27 Jan 2015 17:00:00.000", 120, ref elems);
+IAgDrDataSetCollection datasets = result.DataSets;
+
+if (result.DataSets.Count &gt; 0)
+{
+    System.Array arrayRange = datasets[0].GetValues();
+    System.Array arrayRadialRate = datasets[1].GetValues();
+}
+
+vbNet
+
+Dim elems As Array = New Object() {"Range", "Radial Rate"}
+Dim RICdp As IAgDataPrvTimeVar = TryCast(satObj.DataProviders("Relative Motion"), IAgDataPrvTimeVar)
+TryCast(RICdp, IAgDataProvider).PreData = "Satellite/Satellite123"
+Dim result As IAgDrResult = RICdp.ExecElements("26 Jan 2015 17:00:00.000", "27 Jan 2015 17:00:00.000", 120, elems)
+Dim datasets As IAgDrDataSetCollection = result.DataSets
+
+If result.DataSets.Count &gt; 0 Then
+	Dim arrayRange As System.Array = datasets(0).GetValues()
+	Dim arrayRadialRate As System.Array = datasets(1).GetValues()
+End If

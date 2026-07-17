@@ -1,0 +1,14 @@
+C#
+
+IAgAccessCnstrAWBCollection awbaccessconstraints = stkobject.AccessConstraints.AWBConstraints;
+foreach (IAgAccessCnstrAWB awbConstraint in awbaccessconstraints)
+{
+    Console.WriteLine("Reference: {0}", awbConstraint.Reference);
+}
+
+vbNet
+
+Dim awbaccessconstraints As IAgAccessCnstrAWBCollection = stkobject.AccessConstraints.AWBConstraints
+For Each awbConstraint As IAgAccessCnstrAWB In awbaccessconstraints
+	Console.WriteLine("Reference: {0}", awbConstraint.Reference)
+Next

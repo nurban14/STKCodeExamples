@@ -1,0 +1,12 @@
+C#
+
+if (stkObject.Metadata.Contains("test"))
+{
+    Console.WriteLine("The collection contains the test element.");
+}
+
+vbNet
+
+If stkObject.Metadata.Contains("test") Then
+	Console.WriteLine("The collection contains the test element.")
+End If

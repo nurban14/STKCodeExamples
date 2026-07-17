@@ -1,0 +1,28 @@
+C#
+
+// Iterate through the the group of existing angles associated
+// with the specified CrdnProvider.
+for (int i = 0; i &lt; provider.Angles.Count; i++)
+{
+    IAgCrdnAngle angle = provider.Angles[i];
+    // All angles implement IAgCrdn interface which provides
+    // information about the angle instance and its type.
+    IAgCrdn crdn = provider.Angles[i] as IAgCrdn;
+    // Print the angle name and type to the standard output.
+    Console.WriteLine("Name: {0}, type: {1}", crdn.Name, angle.Type);
+}
+
+vbNet
+
+' Iterate through the the group of existing angles associated
+' with the specified CrdnProvider.
+Dim i As Integer = 0
+While i &lt; provider.Angles.Count
+	Dim angle As IAgCrdnAngle = provider.Angles(i)
+	' All angles implement IAgCrdn interface which provides
+	' information about the angle instance and its type.
+	Dim crdn As IAgCrdn = TryCast(provider.Angles(i), IAgCrdn)
+	' Print the angle name and type to the standard output.
+	Console.WriteLine("Name: {0}, type: {1}", crdn.Name, angle.Type)
+	System.Math.Max(System.Threading.Interlocked.Increment(i),i - 1)
+End While

@@ -1,0 +1,14 @@
+Matlab
+result = root.ExecuteCommand('Report_RM */Place/MyPlace Style "Cartesian Position"');
+
+for i = 0:result.Count-1
+    cmdRes = result.Item(i);
+    fprintf(' %s \n', cmdRes);
+end
+Python
+
+result = root.ExecuteCommand('Report_RM */Place/MyPlace Style "Cartesian Position"')
+
+for i in range(0,result.Count):
+    cmdRes = result.Item(i)
+    print(cmdRes)

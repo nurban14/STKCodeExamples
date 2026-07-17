@@ -1,0 +1,5 @@
+Python
+
+# IAgSensor sensor: Sensor object
+# Change pointing and set
+sensor.CommonTasks.SetPointingFixedAxesYPR('CentralBody/Sun J2000 Axes', AgEYPRAnglesSequence.eRYP, 11, 22, 33)

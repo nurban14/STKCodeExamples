@@ -1,0 +1,19 @@
+C#
+
+Array extent = new object[]
+{
+    90,
+    30,
+    -77,
+    39
+};
+
+scene.Camera.ViewExtent(
+    "Earth",
+    ref extent);
+
+vbNet
+
+Dim extent As Array = New Object() {90, 30, -77, 39}
+
+scene.Camera.ViewExtent("Earth", extent)

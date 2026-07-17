@@ -1,0 +1,10 @@
+C#
+
+// Create a plane normal to vector.
+IAgCrdnPlaneNormal p = (IAgCrdnPlaneNormal)provider.Planes.Factory.Create(
+    "PlaneName", "A plane normal to vector.", AgECrdnPlaneType.eCrdnPlaneTypeNormal);
+
+vbNet
+
+' Create a plane normal to vector.
+Dim p As IAgCrdnPlaneNormal = DirectCast(provider.Planes.Factory.Create("PlaneName", "A plane normal to vector.", AgECrdnPlaneType.eCrdnPlaneTypeNormal), IAgCrdnPlaneNormal)

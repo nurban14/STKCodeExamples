@@ -1,0 +1,20 @@
+C#
+// IAgStkObject areatarget: Area Target STK Object
+
+IAgStkAccess access = satellite.GetAccessToObject(areatarget) as IAgStkAccess;
+access.ComputeAccess();
+
+IAgDataPrvInterval dpInfo = access.DataProviders["Access Data"] as IAgDataPrvInterval;
+IAgDrResult resInfo = dpInfo.Exec(
+    "1 Jan 2012 12:00:00.000",
+    "2 Jan 2012 12:00:00.000");
+
+vbNet
+// IAgStkObject areatarget: Area Target STK Object
+
+Dim access As IAgStkAccess = TryCast(satellite.GetAccessToObject(areatarget), IAgStkAccess)
+access.ComputeAccess()
+
+Dim dpInfo As IAgDataPrvInterval = TryCast(access.DataProviders("Access Data"), IAgDataPrvInterval)
+
+Dim resInfo As IAgDrResult = dpInfo.Exec("1 Jan 2012 12:00:00.000", "2 Jan 2012 12:00:00.000")

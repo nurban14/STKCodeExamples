@@ -1,0 +1,15 @@
+Matlab
+% IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+% IAgCrdnIntervalCollection custom: collection of interval list component
+timeCollListFactory = vgtSat.EventIntervalCollections.Factory;
+timeColl = timeCollListFactory.CreateEventIntervalCollectionLighting('LightingList','Collection of lighting intervals');
+timeColl.UseObjectEclipsingBodies = true;
+timeColl.Location = centerPtSat;
+
+Python
+# IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+# IAgCrdnPoint centerPtSat: point component
+timeCollListFactory = vgtSat.EventIntervalCollections.Factory
+timeColl = timeCollListFactory.CreateEventIntervalCollectionLighting('LightingList', 'Collection of lighting intervals')
+timeColl.UseObjectEclipsingBodies = True
+timeColl.Location = centerPtSat

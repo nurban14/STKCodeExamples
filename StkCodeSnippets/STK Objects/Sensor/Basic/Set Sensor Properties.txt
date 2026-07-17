@@ -1,0 +1,9 @@
+Matlab
+% IAgSensor sensor: Sensor object
+% Change pattern and set
+sensor.CommonTasks.SetPatternRectangular(20,25);
+% Change pointing and set
+sensor.CommonTasks.SetPointingFixedAzEl(90,60,'eAzElAboutBoresightRotate');
+% Change location and set
+sensor.SetLocationType('eSnFixed');
+sensor.LocationData.AssignCartesian(-.0004,-.0004,.004);

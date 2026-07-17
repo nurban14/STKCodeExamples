@@ -1,0 +1,55 @@
+C#
+
+// Add realtime LLA points in batches
+Array times = new object[]
+              {
+                  "1 Jan 2012 12:00:00.000",
+                  "1 Jan 2012 12:01:00.000",
+                  "1 Jan 2012 12:02:00.000"
+              };
+Array lat = new object[]
+            {
+                39.693, 41.061, 39.925
+            };
+Array lon = new object[]
+            {
+                -76.399, -74.266, -78.578
+            };
+Array alt = new object[]
+            {
+                0.039, 0.0420, 0.281
+            };
+Array latrate = new object[]
+                {
+                    0.03458, 0.03215, 0.03188
+                };
+Array lonrate = new object[]
+                {
+                    0.01223, 0.01148, 0.01075
+                };
+Array altrate = new object[]
+                {
+                    0.05402, 0.05210, 0.05075
+                };
+
+IAgVeRealtimeLLAPoints points = propagator.PointBuilder.LLA;
+
+// AddBatch expects each parameter to be a one dimensional array and all of the same length
+points.AddBatch(ref times, ref lat, ref lon, ref alt, ref latrate, ref lonrate, ref altrate);
+
+vbNet
+
+' Add realtime LLA points in batches
+Dim times As Array = New Object() {"1 Jan 2012 12:00:00.000", "1 Jan 2012 12:01:00.000", "1 Jan 2012 12:02:00.000"}
+Dim lat As Array = New Object() {39.693, 41.061, 39.925}
+Dim lon As Array = New Object() {-76.399, -74.266, -78.578}
+Dim alt As Array = New Object() {0.039, 0.042, 0.281}
+Dim latrate As Array = New Object() {0.03458, 0.03215, 0.03188}
+Dim lonrate As Array = New Object() {0.01223, 0.01148, 0.01075}
+Dim altrate As Array = New Object() {0.05402, 0.0521, 0.05075}
+
+Dim points As IAgVeRealtimeLLAPoints = propagator.PointBuilder.LLA
+
+' AddBatch expects each parameter to be a one dimensional array and all of the same length
+points.AddBatch(times, lat, lon, alt, latrate, lonrate, _
+	altrate)

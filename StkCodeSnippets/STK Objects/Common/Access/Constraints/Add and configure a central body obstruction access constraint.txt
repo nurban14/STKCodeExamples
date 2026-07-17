@@ -1,0 +1,53 @@
+C#
+
+// Get IAgAccessCnstrCbObstruction interface
+IAgAccessCnstrCbObstruction cbObstrConstraint = accessconstraints.AddConstraint(AgEAccessConstraints.eCstrCbObstruction) as IAgAccessCnstrCbObstruction;
+
+// AvailableObstructions returns a one dimensional array of obstruction paths
+Array availableArray = cbObstrConstraint.AvailableObstructions;
+
+// In this example add all available obstructions
+Console.WriteLine("Available obstructions");
+foreach (string available in availableArray)
+{
+    Console.WriteLine(available);
+    if ("Sun" != available)  // Don't add "Sun". It was already added.
+    {
+        cbObstrConstraint.AddObstruction(available);
+    }
+}
+
+// AssignedObstructions returns a one dimensional array of obstruction paths
+Array assignedArray = cbObstrConstraint.AssignedObstructions;
+
+Console.WriteLine("Assigned obstructions");
+foreach (string assigned in assignedArray)
+{
+    Console.WriteLine(assigned);
+}
+
+vbNet
+
+' Get IAgAccessCnstrCbObstruction interface
+Dim cbObstrConstraint As IAgAccessCnstrCbObstruction = TryCast(accessconstraints.AddConstraint(AgEAccessConstraints.eCstrCbObstruction), IAgAccessCnstrCbObstruction)
+
+' AvailableObstructions returns a one dimensional array of obstruction paths
+Dim availableArray As Array = cbObstrConstraint.AvailableObstructions
+
+' In this example add all available obstructions
+Console.WriteLine("Available obstructions")
+For Each available As String In availableArray
+	Console.WriteLine(available)
+	If "Sun" &lt;&gt; available Then
+		' Don't add "Sun". It was already added.
+		cbObstrConstraint.AddObstruction(available)
+	End If
+Next
+
+' AssignedObstructions returns a one dimensional array of obstruction paths
+Dim assignedArray As Array = cbObstrConstraint.AssignedObstructions
+
+Console.WriteLine("Assigned obstructions")
+For Each assigned As String In assignedArray
+	Console.WriteLine(assigned)
+Next

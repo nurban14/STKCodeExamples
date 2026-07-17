@@ -1,0 +1,21 @@
+C#
+
+IAgMtoVOMarker marker = track.Marker;
+marker.PixelSize = 12;
+marker.OrientationMode = AgEVOMarkerOrientation.eVOMarkerOrientationAngle;
+marker.XOrigin = AgEVOMarkerOriginType.eRight;
+marker.YOrigin = AgEVOMarkerOriginType.eBottom;
+marker.Angle = 1.23;
+marker.MarkerType = AgEMarkerType.eImageFile;
+marker.SetMarkerImageFile(@"STKData\VO\Markers\Fire.ppm");
+
+vbNet
+
+Dim marker As IAgMtoVOMarker = track.Marker
+marker.PixelSize = 12
+marker.OrientationMode = AgEVOMarkerOrientation.eVOMarkerOrientationAngle
+marker.XOrigin = AgEVOMarkerOriginType.eRight
+marker.YOrigin = AgEVOMarkerOriginType.eBottom
+marker.Angle = 1.23
+marker.MarkerType = AgEMarkerType.eImageFile
+marker.SetMarkerImageFile("STKData\VO\Markers\Fire.ppm")

@@ -1,0 +1,9 @@
+C#
+
+// Create the Launch vehicle
+IAgLaunchVehicle launchVehicle = root.CurrentScenario.Children.New(AgESTKObjectType.eLaunchVehicle,  "MyLaunchVehicle") as IAgLaunchVehicle;
+
+vbNet
+
+' Create the Launch vehicle
+Dim launchVehicle As IAgLaunchVehicle = TryCast(root.CurrentScenario.Children.[New](AgESTKObjectType.eLaunchVehicle, "MyLaunchVehicle"), IAgLaunchVehicle)

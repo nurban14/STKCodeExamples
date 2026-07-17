@@ -1,0 +1,62 @@
+C#
+// IAgStkGraphicsTextBatchPrimitive textBatch: A text batch primitive
+
+Array colors = new object[]
+{
+    Color.Red.ToArgb(),
+    Color.Green.ToArgb(),
+    Color.Blue.ToArgb(),
+    Color.White.ToArgb()
+};
+
+IAgStkGraphicsTextBatchPrimitiveOptionalParameters parameters = sceneManager.Initializers.TextBatchPrimitiveOptionalParameters.Initialize();
+parameters.SetColors(ref colors);
+
+Array text = new object[]
+{
+    "Philadelphia",
+    "Washington D.C.",
+    "New Orleans",
+    "San Jose"
+};
+
+Array positions = new object[]
+{
+    1247.87, -4739.74, 4067.77,
+    1115.48, -4847.09, 3979.36,
+    -24.12, -5529.31, 3168.45,
+    -2683.42, -4307.74, 3850.11
+};
+
+Array indices = new object[]
+{
+    0,
+    1,
+    2,
+    3
+};
+
+textBatch.SetPartialWithOptionalParametersIndicesOrderAndRenderPass(
+    ref positions,
+    ref text,
+    parameters,
+    ref indices,
+    AgEStkGraphicsIndicesOrderHint.eStkGraphicsIndicesOrderHintSortedAscending,
+    AgEStkGraphicsRenderPassHint.eStkGraphicsRenderPassHintOpaque);
+
+vbNet
+// IAgStkGraphicsTextBatchPrimitive textBatch: A text batch primitive
+
+Dim colors As Array = New Object() {Color.Red.ToArgb(), Color.Green.ToArgb(), Color.Blue.ToArgb(), Color.White.ToArgb()}
+
+Dim parameters As IAgStkGraphicsTextBatchPrimitiveOptionalParameters = sceneManager.Initializers.TextBatchPrimitiveOptionalParameters.Initialize()
+parameters.SetColors(colors)
+
+Dim text As Array = New Object() {"Philadelphia", "Washington D.C.", "New Orleans", "San Jose"}
+
+Dim positions As Array = New Object() {1247.87, -4739.74, 4067.77, 1115.48, -4847.09, 3979.36, _
+	-24.12, -5529.31, 3168.45, -2683.42, -4307.74, 3850.11}
+
+Dim indices As Array = New Object() {0, 1, 2, 3}
+
+textBatch.SetPartialWithOptionalParametersIndicesOrderAndRenderPass(positions, text, parameters, indices, AgEStkGraphicsIndicesOrderHint.eStkGraphicsIndicesOrderHintSortedAscending, AgEStkGraphicsRenderPassHint.eStkGraphicsRenderPassHintOpaque)

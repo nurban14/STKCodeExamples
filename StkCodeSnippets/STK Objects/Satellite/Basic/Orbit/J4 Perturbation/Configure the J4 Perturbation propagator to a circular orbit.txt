@@ -1,0 +1,51 @@
+C#
+// Double incl: Inclination (default 45.0)
+// Double altitude: Atitude (default 500 km)
+
+satellite.SetPropagatorType(AgEVePropagatorType.ePropagatorJ4Perturbation);
+IAgVePropagatorJ4Perturbation prop = satellite.Propagator as IAgVePropagatorJ4Perturbation;
+
+IAgOrbitStateClassical keplerian = prop.InitialState.Representation.ConvertTo(AgEOrbitStateType.eOrbitStateClassical) as IAgOrbitStateClassical;
+
+keplerian.SizeShapeType = AgEClassicalSizeShape.eSizeShapeAltitude;
+IAgClassicalSizeShapeAltitude size = keplerian.SizeShape as IAgClassicalSizeShapeAltitude;
+
+size.ApogeeAltitude = altitude;
+size.PerigeeAltitude = altitude;
+
+keplerian.Orientation.Inclination = incl;
+keplerian.Orientation.ArgOfPerigee = 0;
+keplerian.Orientation.AscNodeType = AgEOrientationAscNode.eAscNodeRAAN;
+(keplerian.Orientation.AscNode as IAgOrientationAscNodeRAAN).Value = 0;
+
+keplerian.LocationType = AgEClassicalLocation.eLocationTrueAnomaly;
+(keplerian.Location as IAgClassicalLocationTrueAnomaly).Value = 0;
+
+prop.InitialState.Representation.Assign(keplerian);
+prop.Propagate();
+
+vbNet
+// Double incl: Inclination (default 45.0)
+// Double altitude: Atitude (default 500 km)
+
+satellite.SetPropagatorType(AgEVePropagatorType.ePropagatorJ4Perturbation)
+Dim prop As IAgVePropagatorJ4Perturbation = TryCast(satellite.Propagator, IAgVePropagatorJ4Perturbation)
+
+Dim keplerian As IAgOrbitStateClassical = TryCast(prop.InitialState.Representation.ConvertTo(AgEOrbitStateType.eOrbitStateClassical), IAgOrbitStateClassical)
+
+keplerian.SizeShapeType = AgEClassicalSizeShape.eSizeShapeAltitude
+Dim size As IAgClassicalSizeShapeAltitude = TryCast(keplerian.SizeShape, IAgClassicalSizeShapeAltitude)
+
+size.ApogeeAltitude = altitude
+size.PerigeeAltitude = altitude
+
+keplerian.Orientation.Inclination = incl
+keplerian.Orientation.ArgOfPerigee = 0
+keplerian.Orientation.AscNodeType = AgEOrientationAscNode.eAscNodeRAAN
+TryCast(keplerian.Orientation.AscNode, IAgOrientationAscNodeRAAN).Value = 0
+
+keplerian.LocationType = AgEClassicalLocation.eLocationTrueAnomaly
+TryCast(keplerian.Location, IAgClassicalLocationTrueAnomaly).Value = 0
+
+prop.InitialState.Representation.Assign(keplerian)
+prop.Propagate()

@@ -1,0 +1,25 @@
+C#
+
+// Configure level of details
+IAgVODetailThreshold detail = model.DetailThreshold;
+detail.EnableDetailThreshold = true;
+
+// (assuming unit preferences set to km)
+detail.All = 2.51189;
+detail.ModelLabel = 158489;
+detail.MarkerLabel = 2.51189e+006;
+detail.Marker = 2.511e+007;
+detail.Point = 1e+012;
+
+vbNet
+
+' Configure level of details
+Dim detail As IAgVODetailThreshold = model.DetailThreshold
+detail.EnableDetailThreshold = True
+
+' (assuming unit preferences set to km)
+detail.All = 2.51189
+detail.ModelLabel = 158489
+detail.MarkerLabel = 2511890
+detail.Marker = 25110000
+detail.Point = 1000000000000

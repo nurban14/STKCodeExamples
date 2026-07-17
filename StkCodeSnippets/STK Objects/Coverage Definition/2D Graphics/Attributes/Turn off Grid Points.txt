@@ -1,0 +1,5 @@
+Python
+#IAgCoverageDefinition coverage: Coverage Defintition object
+
+# Turn off Show Grid Points
+coverage.Graphics.Static.IsPointsVisible = False

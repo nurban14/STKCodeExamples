@@ -1,0 +1,28 @@
+C#
+
+// Iterate through the the group of existing planes associated
+// with the specified CrdnProvider.
+for (int i = 0; i &lt; provider.Planes.Count; i++)
+{
+    IAgCrdnPlane plane = provider.Planes[i];
+    // All planes implement IAgCrdn interface which provides
+    // information about the plane's instance and its type.
+    IAgCrdn crdn = provider.Planes[i] as IAgCrdn;
+    // Print the plane's name and type to the standard output.
+    Console.WriteLine("Name: {0}, type: {1}", crdn.Name, plane.Type);
+}
+
+vbNet
+
+' Iterate through the the group of existing planes associated
+' with the specified CrdnProvider.
+Dim i As Integer = 0
+While i &lt; provider.Planes.Count
+	Dim plane As IAgCrdnPlane = provider.Planes(i)
+	' All planes implement IAgCrdn interface which provides
+	' information about the plane's instance and its type.
+	Dim crdn As IAgCrdn = TryCast(provider.Planes(i), IAgCrdn)
+	' Print the plane's name and type to the standard output.
+	Console.WriteLine("Name: {0}, type: {1}", crdn.Name, plane.Type)
+	System.Math.Max(System.Threading.Interlocked.Increment(i),i - 1)
+End While

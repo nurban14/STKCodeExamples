@@ -1,0 +1,25 @@
+Matlab
+% IAgVADriverMCS driver: MCS driver interface
+initState = driver.MainSequence.Insert('eVASegmentTypeInitialState', 'Inner Orbit', '-');
+initState.InitialState.Epoch = scenario.StartTime;
+initState.SetElementType('eVAElementTypeKeplerian');
+kep = initState.Element;
+kep.PeriapsisRadiusSize = 6700;
+kep.ArgOfPeriapsis = 0;
+kep.Eccentricity = 0;
+kep.Inclination = 0;
+kep.RAAN = 0;
+kep.TrueAnomaly = 0;
+Python
+
+# IAgVADriverMCS driver: MCS driver interface
+initState = driver.MainSequence.Insert(AgEVASegmentType.eVASegmentTypeInitialState, 'Inner Orbit', '-')
+initState.InitialState.Epoch = scenario.StartTime
+initState.SetElementType(AgEVAElementType.eVAElementTypeKeplerian)
+kep = initState.Element
+kep.PeriapsisRadiusSize = 6700
+kep.ArgOfPeriapsis = 0
+kep.Eccentricity = 0
+kep.Inclination = 0
+kep.RAAN = 0
+kep.TrueAnomaly = 0

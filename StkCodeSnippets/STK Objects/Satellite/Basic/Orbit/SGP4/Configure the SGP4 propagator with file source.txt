@@ -1,0 +1,17 @@
+C#
+// String tleFilePath: Path to the external TLE data file
+
+// Configure propagator's TLE file path
+propagator.CommonTasks.AddSegsFromFile("2215", tleFilePath);
+
+// Propagate
+propagator.Propagate();
+
+vbNet
+// String tleFilePath: Path to the external TLE data file
+
+' Configure propagator's TLE file path
+propagator.CommonTasks.AddSegsFromFile("2215", tleFilePath)
+
+' Propagate
+propagator.Propagate()

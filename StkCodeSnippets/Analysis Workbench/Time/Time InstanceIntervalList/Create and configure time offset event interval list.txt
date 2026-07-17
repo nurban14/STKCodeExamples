@@ -1,0 +1,37 @@
+C#
+
+IAgCrdnEventIntervalList intervalList = provider.EventIntervalLists.Factory.CreateEventIntervalListTimeOffset("MyIntervalListFixedTimeOffset",  "MyDescription");
+IAgCrdnEventIntervalListTimeOffset asTimeOffset = intervalList as IAgCrdnEventIntervalListTimeOffset;
+
+asTimeOffset.ReferenceIntervals = provider.EventIntervalLists["AfterStart.SatisfactionIntervals"];
+
+// Uses current Time unit preference, this code snippet assumes seconds.
+asTimeOffset.TimeOffset = 300;
+
+IAgCrdnIntervalListResult intervals = intervalList.FindIntervals();
+if (intervals.IsValid)
+{
+    foreach (IAgCrdnInterval interval in intervals.Intervals)
+    {
+        Console.WriteLine("Start: " + interval.Start);
+        Console.WriteLine("Stop: " + interval.Stop);
+    }
+}
+
+vbNet
+
+Dim intervalList As IAgCrdnEventIntervalList = provider.EventIntervalLists.Factory.CreateEventIntervalListTimeOffset("MyIntervalListFixedTimeOffset", "MyDescription")
+Dim asTimeOffset As IAgCrdnEventIntervalListTimeOffset = TryCast(intervalList, IAgCrdnEventIntervalListTimeOffset)
+
+asTimeOffset.ReferenceIntervals = provider.EventIntervalLists("AfterStart.SatisfactionIntervals")
+
+' Uses current Time unit preference, this code snippet assumes seconds.
+asTimeOffset.TimeOffset = 300
+
+Dim intervals As IAgCrdnIntervalListResult = intervalList.FindIntervals()
+If intervals.IsValid Then
+	For Each interval As IAgCrdnInterval In intervals.Intervals
+		Console.WriteLine("Start: " + interval.Start)
+		Console.WriteLine("Stop: " + interval.[Stop])
+	Next
+End If

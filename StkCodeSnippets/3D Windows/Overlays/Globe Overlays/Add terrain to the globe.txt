@@ -1,0 +1,13 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+// String terrainOverlayFile: The terrain overlay file
+
+IAgStkGraphicsTerrainOverlay overlay = scene.CentralBodies.Earth.Terrain.AddUriString(
+    terrainOverlayFile);
+
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+// String terrainOverlayFile: The terrain overlay file
+
+Dim overlay As IAgStkGraphicsTerrainOverlay = scene.CentralBodies.Earth.Terrain.AddUriString( _
+    terrainOverlayFile)

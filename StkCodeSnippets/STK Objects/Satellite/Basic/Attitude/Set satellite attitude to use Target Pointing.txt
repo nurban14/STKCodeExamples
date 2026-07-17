@@ -1,0 +1,7 @@
+Python
+# IAgSatellite satellite: Satellite object
+attitudePointing = satellite.Attitude.Pointing
+attitudePointing.UseTargetPointing = True
+attitudePointing.Targets.RemoveAll()
+attitudePointing.Targets.Add('AreaTarget/MyAreaTarget')
+attitudePointing.TargetTimes.UseAccessTimes = True

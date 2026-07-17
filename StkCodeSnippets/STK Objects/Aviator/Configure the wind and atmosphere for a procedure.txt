@@ -1,0 +1,47 @@
+C#
+
+// Get the wind model for the procedure
+IAgAvtrWindModel windModel = procedure.WindModel;
+// Use the procedure model
+windModel.WindModelSource = AgEAvtrWindAtmosModelSource.eProcedureModel;
+// Let's use constant wind
+windModel.WindModelType = AgEAvtrWindModelType.eConstantWind;
+// Get the constant wind model options
+IAgAvtrWindModelConstant constantWind = windModel.ModeAsConstant;
+// Set the wind bearing
+constantWind.WindBearing = 30;
+// Set the wind speed
+constantWind.WindSpeed = 5;
+
+// Get the atmosphere model used for the procedure
+IAgAvtrAtmosphereModel atmosphere = procedure.AtmosphereModel;
+// Let's use the procedure model
+atmosphere.AtmosphereModelSource = AgEAvtrWindAtmosModelSource.eProcedureModel;
+// Get the basic atmosphere options
+IAgAvtrAtmosphereModelBasic basicAtmosphere = atmosphere.ModeAsBasic;
+// Use standard 1976 atmosphere
+basicAtmosphere.BasicModelType = AgEAvtrAtmosphereModel.eStandard1976;
+
+vbNet
+
+' Get the wind model for the procedure
+Dim windModel As IAgAvtrWindModel = procedure.WindModel
+' Use the procedure model
+windModel.WindModelSource = AgEAvtrWindAtmosModelSource.eProcedureModel
+' Let's use constant wind
+windModel.WindModelType = AgEAvtrWindModelType.eConstantWind
+' Get the constant wind model options
+Dim constantWind As IAgAvtrWindModelConstant = windModel.ModeAsConstant
+' Set the wind bearing
+constantWind.WindBearing = 30
+' Set the wind speed
+constantWind.WindSpeed = 5
+
+' Get the atmosphere model used for the procedure
+Dim atmosphere As IAgAvtrAtmosphereModel = procedure.AtmosphereModel
+' Let's use the procedure model
+atmosphere.AtmosphereModelSource = AgEAvtrWindAtmosModelSource.eProcedureModel
+' Get the basic atmosphere options
+Dim basicAtmosphere As IAgAvtrAtmosphereModelBasic = atmosphere.ModeAsBasic
+' Use standard 1976 atmosphere
+basicAtmosphere.BasicModelType = AgEAvtrAtmosphereModel.eStandard1976

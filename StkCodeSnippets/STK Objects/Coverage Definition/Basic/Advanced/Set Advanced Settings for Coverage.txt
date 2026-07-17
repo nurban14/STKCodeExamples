@@ -1,0 +1,12 @@
+Matlab
+% IAgCoverageDefinition coverage: Coverage object
+advanced = coverage.Advanced;
+advanced.AutoRecompute = false;
+advanced.DataRetention = 'eAllData';
+advanced.SaveMode = 'eSaveAccesses';
+Python
+# IAgCoverageDefinition coverage: Coverage object
+advanced = coverage.Advanced
+advanced.AutoRecompute = False
+advanced.DataRetention = 0 # eAllData
+advanced.SaveMode = 2 # eSaveAccesses

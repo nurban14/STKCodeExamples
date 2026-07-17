@@ -1,0 +1,9 @@
+C#
+
+IAgCrdnAxes ecfAxes = provider.WellKnownAxes.Earth.Fixed;
+IAgCrdnAxesFixed axesFixed = provider.Axes.CommonTasks.CreateFixed(ecfAxes);
+
+vbNet
+
+Dim ecfAxes As IAgCrdnAxes = provider.WellKnownAxes.Earth.Fixed
+Dim axesFixed As IAgCrdnAxesFixed = provider.Axes.CommonTasks.CreateFixed(ecfAxes)

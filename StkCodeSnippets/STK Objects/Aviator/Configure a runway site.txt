@@ -1,0 +1,45 @@
+C#
+
+// Set the latitude, longitude, and altitude
+runway.Latitude = 41;
+runway.Longitude = 77;
+runway.Altitude = 5;
+
+// Set the altitude reference
+runway.AltitudeRef = AgEAvtrAGLMSL.eAltMSL;
+
+// Set the heading
+runway.HighEndHeading = 195;
+// Opt to use true heading
+runway.IsMagnetic = false;
+
+// Set the length of the runway
+runway.Length = 5;
+
+// Rename the runway
+runway.GetAsSite().Name = "New User Runway";
+// Add the runway to the catalog to use it for next time
+runway.AddToCatalog(true);
+
+vbNet
+
+' Set the latitude, longitude, and altitude
+runway.Latitude = 41
+runway.Longitude = 77
+runway.Altitude = 5
+
+' Set the altitude reference
+runway.AltitudeRef = AgEAvtrAGLMSL.eAltMSL
+
+' Set the heading
+runway.HighEndHeading = 195
+' Opt to use true heading
+runway.IsMagnetic = False
+
+' Set the length of the runway
+runway.Length = 5
+
+' Rename the runway
+runway.GetAsSite().Name = "New User Runway"
+' Add the runway to the catalog to use it for next time
+runway.AddToCatalog(True)

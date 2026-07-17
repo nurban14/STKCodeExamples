@@ -1,0 +1,14 @@
+C#
+// String TargetBody: A target central body
+
+// Create a B-Plane point using selected target body
+IAgCrdnPointBPlane point = (IAgCrdnPointBPlane)provider.Points.Factory.Create(
+    "PointName", string.Empty, AgECrdnPointType.eCrdnPointTypeBPlane);
+point.TargetBody.SetPath(TargetBody);
+
+vbNet
+// String TargetBody: A target central body
+
+' Create a B-Plane point using selected target body
+Dim point As IAgCrdnPointBPlane = DirectCast(provider.Points.Factory.Create("PointName", String.Empty, AgECrdnPointType.eCrdnPointTypeBPlane), IAgCrdnPointBPlane)
+point.TargetBody.SetPath(TargetBody)

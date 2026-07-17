@@ -1,0 +1,13 @@
+Matlab
+%% Extracting All Ungrouped Time Dependent Data Elements at all Times
+% IAgStkObjectRoot root: STK Object Model root
+% IAgScenario scenario: STK Current Scenario
+% IAgSatellite satellite: Satellite object
+
+% Change DateFormat dimension to epoch seconds to make the data easier to handle in MATLAB
+root.UnitPreferences.Item('DateFormat').SetCurrentUnit('EpSec');
+
+satPassDP = satellite.DataProviders.Item('Precision Passes').Exec(scenario.StartTime, scenario.StopTime, 100);
+passTimes = cell2mat(satPassDP.DataSets.GetDataSetByName('Time').GetValues);
+pass = cell2mat(satPassDP.DataSets.GetDataSetByName('Precision Pass Number').GetValues);
+path = cell2mat(satPassDP.DataSets.GetDataSetByName('Precision Path Number').GetValues);

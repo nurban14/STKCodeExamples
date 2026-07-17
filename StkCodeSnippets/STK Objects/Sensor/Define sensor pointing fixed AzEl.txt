@@ -1,0 +1,7 @@
+C#
+
+IAgSnPtFixed fixedSensor = sensor.CommonTasks.SetPointingFixedAzEl(4.5, -45.0, AgEAzElAboutBoresight.eAzElAboutBoresightRotate);
+
+vbNet
+
+Dim fixedSensor As IAgSnPtFixed = sensor.CommonTasks.SetPointingFixedAzEl(4.5, -45, AgEAzElAboutBoresight.eAzElAboutBoresightRotate)

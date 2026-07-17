@@ -1,0 +1,10 @@
+Matlab
+%% Getting Data for a Single Point in Time
+% IAgStkObjectRoot root: STK Object Model root
+% IAgSatellite satellite: Satellite object
+
+% Change DateFormat dimension to epoch seconds to make the data easier to handle in MATLAB
+root.UnitPreferences.Item('DateFormat').SetCurrentUnit('EpSec');
+
+satPassDP = satellite.DataProviders.Item('Precision Passes').ExecSingle(2600);
+pass = cell2mat(satPassDP.DataSets.GetDataSetByName('Precision Pass Number').GetValues);

@@ -1,0 +1,10 @@
+C#
+
+//Create a calc scalar constant.
+IAgCrdnCalcScalarConstant calcScalar = (IAgCrdnCalcScalarConstant)provider.CalcScalars.Factory.Create(
+    "CalcScalarName", "Calc scalar constant.", AgECrdnCalcScalarType.eCrdnCalcScalarTypeConstant);
+
+vbNet
+
+'Create a calc scalar constant.
+Dim calcScalar As IAgCrdnCalcScalarConstant = DirectCast(provider.CalcScalars.Factory.Create("CalcScalarName", "Calc scalar constant.", AgECrdnCalcScalarType.eCrdnCalcScalarTypeConstant), IAgCrdnCalcScalarConstant)

@@ -1,0 +1,55 @@
+C#
+
+// Get the wind model used for the mission
+IAgAvtrWindModel windModel = mission.WindModel;
+// Let's use the mission model
+windModel.WindModelSource = AgEAvtrWindAtmosModelSource.eMissionModel;
+// Let's use constant wind
+windModel.WindModelType = AgEAvtrWindModelType.eConstantWind;
+// Get the constant wind model options
+IAgAvtrWindModelConstant constantWind = windModel.ModeAsConstant;
+// Set the wind bearing
+constantWind.WindBearing = 30;
+// Set the wind speed
+constantWind.WindSpeed = 5;
+
+// Get the atmosphere model used for the mission
+IAgAvtrAtmosphereModel atmosphere = mission.AtmosphereModel;
+// Let's use the mission model
+atmosphere.AtmosphereModelSource = AgEAvtrWindAtmosModelSource.eMissionModel;
+// Get the basic atmosphere options
+IAgAvtrAtmosphereModelBasic basicAtmosphere = atmosphere.ModeAsBasic;
+// Use standard 1976 atmosphere
+basicAtmosphere.BasicModelType = AgEAvtrAtmosphereModel.eStandard1976;
+// Opt to override the values
+basicAtmosphere.UseNonStandardAtmosphere = true;
+// Override the temperature
+basicAtmosphere.Temperature = 290;
+
+vbNet
+
+' Get the wind model used for the mission
+Dim windModel As IAgAvtrWindModel = mission.WindModel
+' Let's use the mission model
+windModel.WindModelSource = AgEAvtrWindAtmosModelSource.eMissionModel
+' Let's use constant wind
+windModel.WindModelType = AgEAvtrWindModelType.eConstantWind
+' Get the constant wind model options
+Dim constantWind As IAgAvtrWindModelConstant = windModel.ModeAsConstant
+' Set the wind bearing
+constantWind.WindBearing = 30
+' Set the wind speed
+constantWind.WindSpeed = 5
+
+' Get the atmosphere model used for the mission
+Dim atmosphere As IAgAvtrAtmosphereModel = mission.AtmosphereModel
+' Let's use the mission model
+atmosphere.AtmosphereModelSource = AgEAvtrWindAtmosModelSource.eMissionModel
+' Get the basic atmosphere options
+Dim basicAtmosphere As IAgAvtrAtmosphereModelBasic = atmosphere.ModeAsBasic
+' Use standard 1976 atmosphere
+basicAtmosphere.BasicModelType = AgEAvtrAtmosphereModel.eStandard1976
+' Opt to override the values
+basicAtmosphere.UseNonStandardAtmosphere = True
+' Override the temperature
+basicAtmosphere.Temperature = 290

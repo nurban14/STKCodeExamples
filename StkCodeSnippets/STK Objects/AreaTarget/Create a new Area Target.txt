@@ -1,0 +1,12 @@
+Matlab
+%IAgStkObjectRoot root: STK Object Model Root
+
+% Create the AreaTarget on the current scenario central body (use
+% NewOnCentralBody to specify explicitly the central body)
+areaTarget = root.CurrentScenario.Children.New('eAreaTarget', 'MyAreaTarget');
+Python
+# IAgStkObjectRoot root: STK Object Model Root
+
+# Create the AreaTarget on the current scenario central body (use
+# NewOnCentralBody to specify explicitly the central body)
+areaTarget = root.CurrentScenario.Children.New(AgESTKObjectType.eAreaTarget, 'MyAreaTarget')

@@ -1,0 +1,5 @@
+Python
+# IAgSensor sensor: Sensor object
+# Change location and set
+sensor.SetLocationType(AgESnLocation.eSnFixed)
+sensor.LocationData.AssignCartesian(-.0004, -.0004, .004)

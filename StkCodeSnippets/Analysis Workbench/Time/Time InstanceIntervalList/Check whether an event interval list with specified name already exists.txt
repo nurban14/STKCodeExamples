@@ -1,0 +1,14 @@
+C#
+
+//Check if an event interval list with the specified name already exists.
+if (provider.EventIntervalLists.Contains("EventIntervalListName"))
+{
+    Console.WriteLine("The event interval list \"{0}\" already exists!", "EventIntervalListName");
+}
+
+vbNet
+
+'Check if an event interval list with the specified name already exists.
+If provider.EventIntervalLists.Contains("EventIntervalListName") Then
+	Console.WriteLine("The event interval list ""{0}"" already exists!", "EventIntervalListName")
+End If

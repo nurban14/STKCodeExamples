@@ -1,0 +1,10 @@
+Matlab
+
+% IAgSatellite satellite: Satellite object
+% IAgFacility facility: Facility object
+
+% Get access by STK Object
+access = satellite.GetAccessToObject(facility);
+
+% Compute access
+access.ComputeAccess();

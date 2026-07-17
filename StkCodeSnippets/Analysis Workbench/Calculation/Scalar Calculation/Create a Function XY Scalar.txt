@@ -1,0 +1,14 @@
+Matlab
+% IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+% IAgCrdnCalcScalar displScalar: calc scalar component
+% IAgCrdnCalcScalar trueAnom: calc scalar component
+calcFactory = vgtSat.CalcScalars.Factory;
+functionScalar = calcFactory.CreateCalcScalarFunction2Var('FunctionXY','Difference between the 2 scalars');
+
+functionScalar.X = displScalar;
+functionScalar.Y = trueAnom;
+functionScalar.A = 1;
+functionScalar.B = 1;
+functionScalar.C = 1;
+functionScalar.SelectedFunction = 'a*x-b*y';
+functionScalar.OutputDimensionInheritance = 'eCrdnDimensionInheritanceFromX';

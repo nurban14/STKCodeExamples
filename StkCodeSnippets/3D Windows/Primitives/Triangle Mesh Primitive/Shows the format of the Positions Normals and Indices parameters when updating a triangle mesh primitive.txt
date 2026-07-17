@@ -1,0 +1,36 @@
+C#
+
+Array positions = new object[]
+{
+    0, 0, 0,
+    70000, 0, 0,
+    0, 70000, 0
+};
+
+Array normals = new object[]
+{
+    0, 0, 1,
+    0, 0, 1,
+    0, 0, 1
+};
+
+Array indices = new object[]
+{
+    0,
+    1,
+    2
+};
+
+triangleMesh.Set(ref positions, ref normals, ref indices);
+
+vbNet
+
+Dim positions As Array = New Object() {0, 0, 0, 70000, 0, 0, _
+	0, 70000, 0}
+
+Dim normals As Array = New Object() {0, 0, 1, 0, 0, 1, _
+	0, 0, 1}
+
+Dim indices As Array = New Object() {0, 1, 2}
+
+triangleMesh.[Set](positions, normals, indices)

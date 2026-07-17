@@ -1,0 +1,15 @@
+C#
+
+Array pixelOffset = new object[]
+{
+    1,
+    2
+};
+
+markerBatch.PixelOffset = pixelOffset;
+
+vbNet
+
+Dim pixelOffset As Array = New Object() {1, 2}
+
+markerBatch.PixelOffset = pixelOffset

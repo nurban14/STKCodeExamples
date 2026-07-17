@@ -1,0 +1,18 @@
+C#
+
+IAgMtoTrackCollection trackCollection = mto.Tracks;
+
+// RemoveTracksById expects a one dimensional array of mto track ids
+Array tracks = new object[]
+               {
+                   1, 4
+               };
+trackCollection.RemoveTracksById(ref tracks);
+
+vbNet
+
+Dim trackCollection As IAgMtoTrackCollection = mto.Tracks
+
+' RemoveTracksById expects a one dimensional array of mto track ids
+Dim tracks As Array = New Object() {1, 4}
+trackCollection.RemoveTracksById(tracks)

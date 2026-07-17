@@ -1,0 +1,18 @@
+Matlab
+
+% IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+% IAgCrdnSystemAssembled icrf: system component
+PtFactory = vgtSat.Points.Factory;
+timeInstantPt = PtFactory.Create('AtTimePt','Point at time instant','eCrdnPointTypeAtTimeInstant');
+timeInstantPt.SourcePoint = vgtSat.Points.Item('Center');
+timeInstantPt.ReferenceSystem = icrf;
+timeInstantPt.ReferenceTimeInstant = vgtSat.Events.Item('AvailabilityStartTime');
+
+Python
+# IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+# IAgCrdnSystemAssembled icrf: system component
+PtFactory = vgtSat.Points.Factory
+timeInstantPt = PtFactory.Create('AtTimePt', 'Point at time instant', AgECrdnPointType.eCrdnPointTypeAtTimeInstant)
+timeInstantPt.SourcePoint = vgtSat.Points.Item('Center')
+timeInstantPt.ReferenceSystem = icrf
+timeInstantPt.ReferenceTimeInstant = vgtSat.Events.Item('AvailabilityStartTime')

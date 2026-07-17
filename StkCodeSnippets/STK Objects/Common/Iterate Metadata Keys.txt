@@ -1,0 +1,12 @@
+C#
+
+foreach (string key in stkObject.Metadata.Keys)
+{
+    Console.WriteLine("Key: {0}, Value: {1}", key, stkObject.Metadata[key]);
+}
+
+vbNet
+
+For Each key As String In stkObject.Metadata.Keys
+	Console.WriteLine("Key: {0}, Value: {1}", key, stkObject.Metadata(key))
+Next

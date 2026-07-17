@@ -1,0 +1,17 @@
+C#
+
+// Get the IAgFmDefAgeOfData interface
+fom.SetDefinitionType(AgEFmDefinitionType.eFmAgeOfData);
+IAgFmDefAgeOfData ageOfData = fom.Definition as IAgFmDefAgeOfData;
+
+// Set the minimum number of assets for computing
+ageOfData.MinAssets = 2;
+
+vbNet
+
+' Get the IAgFmDefAgeOfData interface
+fom.SetDefinitionType(AgEFmDefinitionType.eFmAgeOfData)
+Dim ageOfData As IAgFmDefAgeOfData = TryCast(fom.Definition, IAgFmDefAgeOfData)
+
+' Set the minimum number of assets for computing
+ageOfData.MinAssets = 2

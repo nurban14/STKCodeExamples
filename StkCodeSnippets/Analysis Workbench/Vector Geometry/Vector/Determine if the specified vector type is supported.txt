@@ -1,0 +1,19 @@
+C#
+// AgECrdnVectorType vectorType: A vector type.
+
+//Check if the specified vector type is supported.
+if (provider.Vectors.Factory.IsTypeSupported(vectorType))
+{
+    // Create a custom vector.
+    IAgCrdnVector vector = provider.Vectors.Factory.Create(
+        "myVector", string.Empty, vectorType);
+}
+
+vbNet
+// AgECrdnVectorType vectorType: A vector type.
+
+'Check if the specified vector type is supported.
+If provider.Vectors.Factory.IsTypeSupported(vectorType) Then
+	' Create a custom vector.
+	Dim vector As IAgCrdnVector = provider.Vectors.Factory.Create("myVector", String.Empty, vectorType)
+End If

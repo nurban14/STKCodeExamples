@@ -1,0 +1,25 @@
+C#
+
+// Set access constraint definition to altitude
+fom.SetAccessConstraintDefinition(AgEFmConstraintName.eFmAltitude);
+
+// Get IAgFmDefAccessConstraint interface
+IAgFmDefAccessConstraint defAccessCnstr = fom.Definition as IAgFmDefAccessConstraint;
+
+// Confiure access constraint properties
+defAccessCnstr.SetComputeType(AgEFmCompute.eMaximum);
+defAccessCnstr.AcrossAssets = AgEFmAcrossAssets.eFmMinimum;
+defAccessCnstr.TimeStep = 60.0;
+
+vbNet
+
+' Set access constraint definition to altitude
+fom.SetAccessConstraintDefinition(AgEFmConstraintName.eFmAltitude)
+
+' Get IAgFmDefAccessConstraint interface
+Dim defAccessCnstr As IAgFmDefAccessConstraint = TryCast(fom.Definition, IAgFmDefAccessConstraint)
+
+' Confiure access constraint properties
+defAccessCnstr.SetComputeType(AgEFmCompute.eMaximum)
+defAccessCnstr.AcrossAssets = AgEFmAcrossAssets.eFmMinimum
+defAccessCnstr.TimeStep = 60

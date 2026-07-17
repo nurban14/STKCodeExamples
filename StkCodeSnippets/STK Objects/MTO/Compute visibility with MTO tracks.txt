@@ -1,0 +1,24 @@
+C#
+// IAgMto mto: MTO object to use for visibility analysis
+
+// Are all the tracks visible from the other STK Object at the specified time?
+
+IAgMtoAnalysisVisibility mtoVisibility = mto.Analysis.Visibility;
+mtoVisibility.UseTerrain = false; // Set to true to use terrain instead of line of sight.
+mtoVisibility.Entirety = AgEMtoEntirety.eMtoEntiretyPartial; // Only applies if MTO is static (i.e. non time dependent).
+
+mtoVisibility.StkObjectPath = "Satellite/J2Satellite";
+bool allTracksAreVisible = mtoVisibility.AreAllTracksVisible("1 Jan 2012 14:02:00.000");
+
+vbNet
+// IAgMto mto: MTO object to use for visibility analysis
+
+' Are all the tracks visible from the other STK Object at the specified time?
+
+Dim mtoVisibility As IAgMtoAnalysisVisibility = mto.Analysis.Visibility
+mtoVisibility.UseTerrain = False
+' Set to true to use terrain instead of line of sight.
+mtoVisibility.Entirety = AgEMtoEntirety.eMtoEntiretyPartial
+' Only applies if MTO is static (i.e. non time dependent).
+mtoVisibility.StkObjectPath = "Satellite/J2Satellite"
+Dim allTracksAreVisible As Boolean = mtoVisibility.AreAllTracksVisible("1 Jan 2012 14:02:00.000")

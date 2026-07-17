@@ -1,0 +1,61 @@
+C#
+// IAgChain chain: Chain object
+
+// Remove all previous accesses
+chain.ClearAccess();
+
+// Add some objects to chain
+chain.StartObject = scenarioObj.Children.GetItemByName("fac1");
+chain.EndObject = scenarioObj.Children.GetItemByName("air1");
+
+IAgChConnectionCollection connections = chain.Connections;
+connections.Add(scenarioObj.Children.GetItemByName("sat2"), scenarioObj.Children.GetItemByName("air1"), 1, 1);
+connections.Add(scenarioObj.Children.GetItemByName("fac1"), scenarioObj.Children.GetItemByName("sat1"), 1, 1);
+connections.Add(scenarioObj.Children.GetItemByName("sat1"), scenarioObj.Children.GetItemByName("sat2"), 1, 1);
+
+// Configure chain parameters
+chain.AutoRecompute = false;
+chain.EnableLightTimeDelay = false;
+chain.TimeConvergence = 0.001;
+chain.DataSaveMode = AgEDataSaveMode.eSaveAccesses;
+
+// Specify our own time period
+chain.SetTimePeriodType(AgEChTimePeriodType.eUserSpecifiedTimePeriod);
+
+// Get chain time period interface
+IAgChUserSpecifiedTimePeriod chainUserTimePeriod = chain.TimePeriod as IAgChUserSpecifiedTimePeriod;
+chainUserTimePeriod.TimeInterval.SetExplicitInterval("1 Jul 2005 12:00:00", "2 Jul 2005 12:00:00");
+
+// Compute the chain
+chain.ComputeAccess();
+
+vbNet
+// IAgChain chain: Chain object
+
+' Remove all previous accesses
+chain.ClearAccess()
+
+' Add some objects to chain
+chain.StartObject = scenarioObj.Children.GetItemByName("fac1")
+chain.EndObject = scenarioObj.Children.GetItemByName("air1")
+
+Dim connections As IAgChConnectionCollection = chain.Connections
+connections.Add(scenarioObj.Children.GetItemByName("sat2"), scenarioObj.Children.GetItemByName("air1"), 1, 1)
+connections.Add(scenarioObj.Children.GetItemByName("fac1"), scenarioObj.Children.GetItemByName("sat1"), 1, 1)
+connections.Add(scenarioObj.Children.GetItemByName("sat1"), scenarioObj.Children.GetItemByName("sat2"), 1, 1)
+
+' Configure chain parameters
+chain.AutoRecompute = False
+chain.EnableLightTimeDelay = False
+chain.TimeConvergence = 0.001
+chain.DataSaveMode = AgEDataSaveMode.eSaveAccesses
+
+' Specify our own time period
+chain.SetTimePeriodType(AgEChTimePeriodType.eUserSpecifiedTimePeriod)
+
+' Get chain time period interface
+Dim chainUserTimePeriod As IAgChUserSpecifiedTimePeriod = TryCast(chain.TimePeriod, IAgChUserSpecifiedTimePeriod)
+chainUserTimePeriod.TimeInterval.SetExplicitInterval("1 Jul 2005 12:00:00", "2 Jul 2005 12:00:00")
+
+' Compute the chain
+chain.ComputeAccess()

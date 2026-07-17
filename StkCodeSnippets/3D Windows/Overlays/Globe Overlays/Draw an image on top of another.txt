@@ -1,0 +1,27 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+// String topOverlayFile: The top globe overlay file
+// String bottomOverlayFile: The bottom globe overlay file
+
+IAgStkGraphicsGlobeImageOverlay topOverlay = scene.CentralBodies.Earth.Imagery.AddUriString(topOverlayFile);
+IAgStkGraphicsGlobeImageOverlay bottomOverlay = scene.CentralBodies.Earth.Imagery.AddUriString(bottomOverlayFile);
+
+//
+// Since bottom.jp2 was added after top.jp2, bottom.jp2 will be
+// drawn on top.  In order to draw top.jp2 on top, we swap the Overlays.
+//
+scene.CentralBodies.Earth.Imagery.Swap(topOverlay, bottomOverlay);
+
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+// String topOverlayFile: The top globe overlay file
+// String bottomOverlayFile: The bottom globe overlay file
+
+Dim topOverlay As IAgStkGraphicsGlobeImageOverlay = scene.CentralBodies.Earth.Imagery.AddUriString(topOverlayFile)
+Dim bottomOverlay As IAgStkGraphicsGlobeImageOverlay = scene.CentralBodies.Earth.Imagery.AddUriString(bottomOverlayFile)
+
+'
+' Since bottom.jp2 was added after top.jp2, bottom.jp2 will be
+' drawn on top.  In order to draw top.jp2 on top, we swap the Overlays.
+'
+scene.CentralBodies.Earth.Imagery.Swap(topOverlay, bottomOverlay)

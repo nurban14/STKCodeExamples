@@ -1,0 +1,64 @@
+C#
+
+IAgCrdnEventArray eventArray = provider.EventArrays.Factory.CreateEventArrayFixedStep("MyEventArrayFixedStep",  "MyDescription");
+IAgCrdnEventArrayFixedStep asFixedStep = eventArray as IAgCrdnEventArrayFixedStep;
+
+asFixedStep.BoundingIntervalList = provider.EventIntervalLists["AfterStart.SatisfactionIntervals"];
+asFixedStep.IncludeIntervalEdges = true;
+
+// Uses current Time unit preference, this code snippet assumes seconds.
+asFixedStep.SamplingTimeStep = 240;
+asFixedStep.ReferenceType = AgECrdnSampledReferenceTime.eCrdnSampledReferenceTimeStartOfIntervalList;
+
+// or using time instants
+asFixedStep.ReferenceType = AgECrdnSampledReferenceTime.eCrdnSampledReferenceTimeReferenceEvent;
+asFixedStep.ReferenceTimeInstant = provider.Events["EphemerisStartTime"];
+
+IAgCrdnFindTimesResult timeArrays = eventArray.FindTimes();
+if (timeArrays.IsValid)
+{
+    Console.WriteLine("Times");
+    int numTimes = timeArrays.Times.GetLength(0);
+    for (int i = 0; i &lt; numTimes; ++i)
+    {
+        Console.WriteLine(timeArrays.Times.GetValue(i));
+    }
+
+    foreach (IAgCrdnInterval timeArray in timeArrays.Intervals)
+    {
+        Console.WriteLine("Start: " + timeArray.Start);
+        Console.WriteLine("Stop: " + timeArray.Stop);
+    }
+}
+
+vbNet
+
+Dim eventArray As IAgCrdnEventArray = provider.EventArrays.Factory.CreateEventArrayFixedStep("MyEventArrayFixedStep", "MyDescription")
+Dim asFixedStep As IAgCrdnEventArrayFixedStep = TryCast(eventArray, IAgCrdnEventArrayFixedStep)
+
+asFixedStep.BoundingIntervalList = provider.EventIntervalLists("AfterStart.SatisfactionIntervals")
+asFixedStep.IncludeIntervalEdges = True
+
+' Uses current Time unit preference, this code snippet assumes seconds.
+asFixedStep.SamplingTimeStep = 240
+asFixedStep.ReferenceType = AgECrdnSampledReferenceTime.eCrdnSampledReferenceTimeStartOfIntervalList
+
+' or using time instants
+asFixedStep.ReferenceType = AgECrdnSampledReferenceTime.eCrdnSampledReferenceTimeReferenceEvent
+asFixedStep.ReferenceTimeInstant = provider.Events("EphemerisStartTime")
+
+Dim timeArrays As IAgCrdnFindTimesResult = eventArray.FindTimes()
+If timeArrays.IsValid Then
+	Console.WriteLine("Times")
+	Dim numTimes As Integer = timeArrays.Times.GetLength(0)
+	Dim i As Integer = 0
+	While i &lt; numTimes
+		Console.WriteLine(timeArrays.Times.GetValue(i))
+		System.Threading.Interlocked.Increment(i)
+	End While
+
+	For Each timeArray As IAgCrdnInterval In timeArrays.Intervals
+		Console.WriteLine("Start: " + timeArray.Start)
+		Console.WriteLine("Stop: " + timeArray.[Stop])
+	Next
+End If

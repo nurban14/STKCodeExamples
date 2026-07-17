@@ -1,0 +1,27 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+// String modelFile: The model file
+
+IAgStkGraphicsSceneManager manager = ((IAgScenario)root.CurrentScenario).SceneManager;
+IAgStkGraphicsModelPrimitive model = manager.Initializers.ModelPrimitive.InitializeWithStringUri(
+    modelFile);
+
+Array position = new object[] { 39.88, -75.25, 500000.0 };
+model.SetPositionCartographic("Earth", ref position);
+model.Scale = Math.Pow(10, 2);
+
+manager.Primitives.Add((IAgStkGraphicsPrimitive)model);
+
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+// String modelFile: The model file
+
+Dim manager As IAgStkGraphicsSceneManager = DirectCast(root.CurrentScenario, IAgScenario).SceneManager
+Dim model As IAgStkGraphicsModelPrimitive = manager.Initializers.ModelPrimitive.InitializeWithStringUri( _
+    modelFile)
+
+Dim position As Array = New Object() {39.88, -75.25, 500000.0}
+model.SetPositionCartographic("Earth", position)
+model.Scale = Math.Pow(10, 2)
+
+manager.Primitives.Add(DirectCast(model, IAgStkGraphicsPrimitive))

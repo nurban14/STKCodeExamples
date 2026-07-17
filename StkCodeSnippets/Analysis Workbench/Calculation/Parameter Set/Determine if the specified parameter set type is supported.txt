@@ -1,0 +1,20 @@
+C#
+// AgECrdnParameterSetType parameterSetType: A parameter set type.
+
+// Check if the specified parameter set type is supported.
+if (provider.ParameterSets.Factory.IsTypeSupported(parameterSetType))
+{
+    //Create a ParameterSet with the supported Type
+    IAgCrdnParameterSet parameterSet = provider.ParameterSets.Factory.Create(
+        "MyParameterSet", string.Empty,
+        parameterSetType);
+}
+
+vbNet
+// AgECrdnParameterSetType parameterSetType: A parameter set type.
+
+' Check if the specified parameter set type is supported.
+If provider.ParameterSets.Factory.IsTypeSupported(parameterSetType) Then
+	'Create a ParameterSet with the supported Type
+	Dim parameterSet As IAgCrdnParameterSet = provider.ParameterSets.Factory.Create("MyParameterSet", String.Empty, parameterSetType)
+End If

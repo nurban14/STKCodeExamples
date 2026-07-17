@@ -1,0 +1,25 @@
+Matlab
+% IAgStkObjectRoot root: STK Object Model root
+scenario = root.CurrentScenario;
+accesses = scenario.GetExistingAccesses();
+
+[row, col] = size(accesses);  % number of accesses
+
+object1 = accesses{1,1};   % e.g. "Satellite/MySatellite"
+object2 = accesses{1,2};  % e.g.  "Facility/MyFacility"
+computed = accesses{1,3};          % e.g. true  (if access has been computed)
+
+access = scenario.GetAccessBetweenObjectsByPath(object1, object2);
+
+Python
+# IAgStkObjectRoot root: STK Object Model root
+scenario = root.CurrentScenario
+accesses = scenario.GetExistingAccesses()
+
+size = len(accesses)  # number of accesses
+
+object1 = accesses[0][0]   # e.g. "Satellite/MySatellite"
+object2 = accesses[0][1]   # e.g.  "Facility/MyFacility"
+computed = accesses[0][2]  # e.g. True  (if access has been computed)
+
+access = scenario.GetAccessBetweenObjectsByPath(object1, object2)

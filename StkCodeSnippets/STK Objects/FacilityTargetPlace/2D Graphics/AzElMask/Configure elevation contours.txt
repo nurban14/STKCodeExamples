@@ -1,0 +1,47 @@
+C#
+// IAgVeVOElevContours voContours: VO contours
+
+gfxContours.IsVisible = true;
+gfxContours.IsFillVisible = true;
+gfxContours.FillStyle = AgEFillStyle.eFillStyleHorizontalStripe;
+gfxContours.NumOfDecimalDigits = 5;
+
+// Add contour elevation level
+IAgVeGfxElevationsElement elevation = gfxContours.Elevations.AddLevel(25.0);
+
+// Configure contour elevation element
+elevation.Color = Color.Red;
+elevation.DistanceVisible = true;
+elevation.LineStyle = AgELineStyle.eDotted;
+elevation.LineWidth = AgELineWidth.e3;
+elevation.UserTextVisible = true;
+elevation.UserText = "My new elevation";
+
+// Set contours to visible on scenario
+voContours.IsVisible = true;
+voContours.Fill = true;
+voContours.FillTranslucency = 80.0;
+
+vbNet
+// IAgVeVOElevContours voContours: VO contours
+
+gfxContours.IsVisible = True
+gfxContours.IsFillVisible = True
+gfxContours.FillStyle = AgEFillStyle.eFillStyleHorizontalStripe
+gfxContours.NumOfDecimalDigits = 5
+
+' Add contour elevation level
+Dim elevation As IAgVeGfxElevationsElement = gfxContours.Elevations.AddLevel(25)
+
+' Configure contour elevation element
+elevation.Color = Color.Red
+elevation.DistanceVisible = True
+elevation.LineStyle = AgELineStyle.eDotted
+elevation.LineWidth = AgELineWidth.e3
+elevation.UserTextVisible = True
+elevation.UserText = "My new elevation"
+
+' Set contours to visible on scenario
+voContours.IsVisible = True
+voContours.Fill = True
+voContours.FillTranslucency = 80

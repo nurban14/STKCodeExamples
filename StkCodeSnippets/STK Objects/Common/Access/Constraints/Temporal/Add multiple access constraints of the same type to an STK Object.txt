@@ -1,0 +1,19 @@
+Matlab
+% IAgAccessConstraintCollection accessConstraints: Access Constraint collection
+
+% Add constraints
+% Only the eCstrApparentTime, eCstrDuration, eCstrGMT, eCstrIntervals, eCstrLocalTime constraint
+% types can be added multiple times to the constraint collection.
+time1 = accessConstraints.AddConstraint('eCstrLocalTime');
+time1.Min = '00:00:00.000';
+time1.Max = '23:00:00.000';
+Python
+## Add multiple access constraints of the same type to an STK Object
+# IAgAccessConstraintCollection accessConstraints: Access Constraint collection
+
+# Add constraints
+# Only the eCstrApparentTime (4), eCstrDuration (13), eCstrGMT (16), eCstrIntervals (22), eCstrLocalTime (27) constraint
+# types can be added multiple times to the constraint collection.
+time1 = accessConstraints.AddConstraint(AgEAccessConstraints.eCstrLocalTime)
+time1.Min = '00:00:00.000'
+time1.Max = '23:00:00.000'

@@ -1,0 +1,8 @@
+Matlab
+
+% IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+% IAgCrdnEventArray custom: Time Array Component
+timeArrayFactory = vgtSat.EventArrays.Factory;
+timeArray = timeArrayFactory.CreateEventArrayStartStopTimes('StartTimes','Start Times of Custom Intervals');
+timeArray.ReferenceIntervals = Custom;
+timeArray.StartStopOption = 'eCrdnStartStopOptionCountStartOnly';

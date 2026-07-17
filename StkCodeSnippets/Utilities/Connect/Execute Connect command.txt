@@ -1,0 +1,7 @@
+C#
+
+IAgExecCmdResult result = root.ExecuteCommand("New / */Satellite JeffSAT");
+
+vbNet
+
+Dim result As IAgExecCmdResult = root.ExecuteCommand("New / */Satellite JeffSAT")

@@ -1,0 +1,37 @@
+C#
+
+// The event you are interested in.
+IAgCrdnEventInterval timeEventInterval = provider.EventIntervals["LightingIntervals.Sunlight.First"];
+
+// The reference event you want to determine if event occurred in the interval.
+IAgCrdnEvent timeEvent = provider.Events["GroundTrajectory.Detic.LLA.Altitude.TimeOfMax"];
+IAgCrdnEventFindOccurrenceResult occurrence = timeEvent.FindOccurrence();
+
+if (occurrence.IsValid)
+{
+    if (timeEventInterval.Occurred(occurrence.Epoch))
+    {
+        Console.WriteLine("Our highest altitude was reached on the first lighting pass");
+    }
+    else
+    {
+        Console.WriteLine("Our highest altitude was not reached on the first lighting pass");
+    }
+}
+
+vbNet
+
+' The event you are interested in.
+Dim timeEventInterval As IAgCrdnEventInterval = provider.EventIntervals("LightingIntervals.Sunlight.First")
+
+' The reference event you want to determine if event occurred in the interval.
+Dim timeEvent As IAgCrdnEvent = provider.Events("GroundTrajectory.Detic.LLA.Altitude.TimeOfMax")
+Dim occurrence As IAgCrdnEventFindOccurrenceResult = timeEvent.FindOccurrence()
+
+If occurrence.IsValid Then
+	If timeEventInterval.Occurred(occurrence.Epoch) Then
+		Console.WriteLine("Our highest altitude was reached on the first lighting pass")
+	Else
+		Console.WriteLine("Our highest altitude was not reached on the first lighting pass")
+	End If
+End If

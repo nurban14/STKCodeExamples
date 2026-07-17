@@ -1,0 +1,7 @@
+C#
+
+IAgFmDefAccessConstraint acd = fom.SetAccessConstraintDefinition(AgEFmConstraintName.eFmAzimuthRate);
+
+vbNet
+
+Dim acd As IAgFmDefAccessConstraint = fom.SetAccessConstraintDefinition(AgEFmConstraintName.eFmAzimuthRate)

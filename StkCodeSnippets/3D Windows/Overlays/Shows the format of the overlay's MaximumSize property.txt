@@ -1,0 +1,17 @@
+C#
+
+Array maximumSize = new object[]
+{
+    500,
+    500,
+    AgEStkGraphicsScreenOverlayUnit.eStkGraphicsScreenOverlayUnitPixels,
+    AgEStkGraphicsScreenOverlayUnit.eStkGraphicsScreenOverlayUnitPixels
+};
+
+overlay.MaximumSize = maximumSize;
+
+vbNet
+
+Dim maximumSize As Array = New Object() {500, 500, AgEStkGraphicsScreenOverlayUnit.eStkGraphicsScreenOverlayUnitPixels, AgEStkGraphicsScreenOverlayUnit.eStkGraphicsScreenOverlayUnitPixels}
+
+overlay.MaximumSize = maximumSize

@@ -1,0 +1,24 @@
+C#
+
+//The AngleUnit is expected to be in degrees
+Array center = new object[]
+{
+    6403.14,
+    0,
+    0
+};
+
+IAgStkGraphicsSurfaceShapesResult shape = sceneManager.Initializers.SurfaceShapes.ComputeSector(
+    "Earth",
+    ref center,
+    100,
+    350,
+    -30,
+    30);
+
+vbNet
+
+'The AngleUnit is expected to be in degrees
+Dim center As Array = New Object() {6403.14, 0, 0}
+
+Dim shape As IAgStkGraphicsSurfaceShapesResult = sceneManager.Initializers.SurfaceShapes.ComputeSector("Earth", center, 100, 350, -30, 30)

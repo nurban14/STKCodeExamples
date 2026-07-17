@@ -1,0 +1,21 @@
+C#
+
+IAgCrdnEvent referencedEvent = provider.Events["AvailabilityStartTime"];
+IAgCrdnEventSmartEpoch smartEpoch = provider.Events.Factory.CreateSmartEpochFromEvent(referencedEvent);
+
+// Smart epochs can be set implicitly using the another epoch.
+IAgCrdnEvent anotherEvent = provider.Events["AvailabilityStopTime"];
+smartEpoch.SetImplicitTime(anotherEvent);
+
+Console.WriteLine("Event occurred at: " + smartEpoch.TimeInstant);
+
+vbNet
+
+Dim referencedEvent As IAgCrdnEvent = provider.Events("AvailabilityStartTime")
+Dim smartEpoch As IAgCrdnEventSmartEpoch = provider.Events.Factory.CreateSmartEpochFromEvent(referencedEvent)
+
+' Smart epochs can be set implicitly using the another epoch.
+Dim anotherEvent As IAgCrdnEvent = provider.Events("AvailabilityStopTime")
+smartEpoch.SetImplicitTime(anotherEvent)
+
+Console.WriteLine("Event occurred at: " + smartEpoch.TimeInstant)

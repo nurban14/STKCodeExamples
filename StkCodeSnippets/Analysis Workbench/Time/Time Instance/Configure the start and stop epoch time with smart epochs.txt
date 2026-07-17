@@ -1,0 +1,27 @@
+C#
+// IAgCrdnEvent startEventEpoch: Start event epoch
+// IAgCrdnEvent stopEventEpoch: Stop event epoch
+
+smartInterval.State = AgECrdnSmartIntervalState.eCrdnSmartIntervalStateStartStop;
+
+IAgCrdnEventSmartEpoch accessStartEpoch = smartInterval.GetStartEpoch();
+accessStartEpoch.SetImplicitTime(startEventEpoch);
+smartInterval.SetStartEpoch(accessStartEpoch);
+
+IAgCrdnEventSmartEpoch accessStopEpoch = smartInterval.GetStopEpoch();
+accessStopEpoch.SetImplicitTime(stopEventEpoch);
+smartInterval.SetStopEpoch(accessStopEpoch);
+
+vbNet
+// IAgCrdnEvent startEventEpoch: Start event epoch
+// IAgCrdnEvent stopEventEpoch: Stop event epoch
+
+smartInterval.State = AgECrdnSmartIntervalState.eCrdnSmartIntervalStateStartStop
+
+Dim accessStartEpoch As IAgCrdnEventSmartEpoch = smartInterval.GetStartEpoch()
+accessStartEpoch.SetImplicitTime(startEventEpoch)
+smartInterval.SetStartEpoch(accessStartEpoch)
+
+Dim accessStopEpoch As IAgCrdnEventSmartEpoch = smartInterval.GetStopEpoch()
+accessStopEpoch.SetImplicitTime(stopEventEpoch)
+smartInterval.SetStopEpoch(accessStopEpoch)

@@ -1,0 +1,38 @@
+C#
+// IAgStkObject areatarget: Area Target STK Object
+
+IAgStkAccess access = satellite.GetAccessToObject(areatarget) as IAgStkAccess;
+access.ComputeAccess();
+
+IAgDataPrvInterval dp = access.DataProviders["Access Data"] as IAgDataPrvInterval;
+
+Array elems = new object[]
+              {
+                  "Start Time",
+                  "Stop Time",
+                  "Access Number",
+                  "From Pass Number",
+                  "To Pass Number",
+                  "From Start Alt",
+                  "From Stop Alt"
+              };
+
+// ExecElements expects the third parameter to be a one dimensional array of element names
+IAgDrResult resInfo = dp.ExecElements(
+    "1 Jan 2012 12:00:00.000",
+    "2 Jan 2012 12:00:00.000",
+    ref elems);
+
+vbNet
+// IAgStkObject areatarget: Area Target STK Object
+
+Dim access As IAgStkAccess = TryCast(satellite.GetAccessToObject(areatarget), IAgStkAccess)
+access.ComputeAccess()
+
+Dim dp As IAgDataPrvInterval = TryCast(access.DataProviders("Access Data"), IAgDataPrvInterval)
+
+Dim elems As Array = New Object() {"Start Time", "Stop Time", "Access Number", "From Pass Number", "To Pass Number", "From Start Alt", _
+	"From Stop Alt"}
+
+' ExecElements expects the third parameter to be a one dimensional array of element names
+Dim resInfo As IAgDrResult = dp.ExecElements("1 Jan 2012 12:00:00.000", "2 Jan 2012 12:00:00.000", elems)

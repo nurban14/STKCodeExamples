@@ -1,0 +1,46 @@
+Matlab
+% IAgStkObjectRoot root: STK Object Model root
+% IAgSatellite satellite: Satellite object
+root.UnitPreferences.Item('DateFormat').SetCurrentUnit('EpSec');
+graphics = satellite.Graphics;
+graphics.SetAttributesType('eAttributesCustom');
+graphics.Attributes.Default.IsVisible = false;
+
+interval1 = graphics.Attributes.Intervals.Add(0,3600);
+interval1.GfxAttributes.IsVisible = true;
+interval1.GfxAttributes.Inherit = false;
+interval1.GfxAttributes.Line.Width = 1;
+interval1.GfxAttributes.Line.Style = 'eLongDash';
+interval1.GfxAttributes.Color = 16711935;
+interval1.GfxAttributes.MarkerStyle = 'X';
+
+interval2 = satellite.Graphics.Attributes.Intervals.Add(7200,86400);
+interval2.GfxAttributes.IsVisible = true;
+interval2.GfxAttributes.Inherit = false;
+interval2.GfxAttributes.Line.Width = 1;
+interval2.GfxAttributes.Line.Style = 'eDashed';
+interval2.GfxAttributes.Color = 65280;
+interval2.GfxAttributes.MarkerStyle = 'Point';
+Python
+# IAgStkObjectRoot root: STK Object Model root
+# IAgSatellite satellite: Satellite object
+root.UnitPreferences.Item('DateFormat').SetCurrentUnit('EpSec')
+graphics = satellite.Graphics
+graphics.SetAttributesType(AgEVeGfxAttributes.eAttributesCustom)
+graphics.Attributes.Default.IsVisible = False
+
+interval1 = graphics.Attributes.Intervals.Add(0, 3600)
+interval1.GfxAttributes.IsVisible = True
+interval1.GfxAttributes.Inherit = False
+interval1.GfxAttributes.Line.Width = AgELineWidth.e2
+interval1.GfxAttributes.Line.Style = AgELineStyle.eLongDash
+interval1.GfxAttributes.Color = Colors.Fuchsia
+interval1.GfxAttributes.MarkerStyle = 'X'
+
+interval2 = satellite.Graphics.Attributes.Intervals.Add(7200, 86400)
+interval2.GfxAttributes.IsVisible = True
+interval2.GfxAttributes.Inherit = False
+interval2.GfxAttributes.Line.Width = AgELineWidth.e2
+interval2.GfxAttributes.Line.Style = AgELineStyle.eDashed
+interval2.GfxAttributes.Color = Colors.Lime
+interval2.GfxAttributes.MarkerStyle = 'Point'

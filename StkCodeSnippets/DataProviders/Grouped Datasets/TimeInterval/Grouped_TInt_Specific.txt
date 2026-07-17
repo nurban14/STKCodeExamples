@@ -1,0 +1,24 @@
+Python
+## Extracting Specific Group Interval Data
+# IAgStkObjectRoot root: STK Object Model root
+# IAgScenario scenario: Scenario object
+# IAgFacility facility: Facility object
+
+# Change DateFormat dimension to epoch seconds to make the data easier to handle in Python
+root.UnitPreferences.Item('DateFormat').SetCurrentUnit('EpSec')
+
+#Retrieve only Start Time, Stop Time, and Duration DataSets from Data Provider
+elems = [['Start Time'],['Stop Time'],['Duration']]
+
+facDP = facility.DataProviders.Item('Lighting Times').Group.Item('Sunlight').ExecElements(scenario.StartTime,scenario.StopTime, elems)
+
+startTimes = facDP.DataSets.GetDataSetByName('Start Time').GetValues()
+stopTimes = facDP.DataSets.GetDataSetByName('Stop Time').GetValues()
+duration = facDP.DataSets.GetDataSetByName('Duration').GetValues()
+
+# Alternatively...
+facDP = facility.DataProviders.GetDataPrvIntervalFromPath('Lighting Times/Sunlight').ExecElements(scenario.StartTime,scenario.StopTime, elems)
+
+startTimes_2 = facDP.DataSets.GetDataSetByName('Start Time').GetValues()
+stopTimes_2 = facDP.DataSets.GetDataSetByName('Stop Time').GetValues()
+duration_2 = facDP.DataSets.GetDataSetByName('Duration').GetValues()

@@ -1,0 +1,12 @@
+C#
+
+foreach (object messagei in message.Messages)
+{
+    Console.WriteLine(messagei);
+}
+
+vbNet
+
+For Each messagei As Object In message.Messages
+	Console.WriteLine(messagei)
+Next

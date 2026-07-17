@@ -1,0 +1,59 @@
+C#
+
+IAgOnePtAccess onePtAccess = facility.CreateOnePointAccess("Satellite/Satellite1");
+
+// Configure properties (if necessary)
+onePtAccess.StartTime = "1 Jan 2012 12:00:00.000";
+onePtAccess.StopTime = "1 Jan 2012 13:00:00.000";
+onePtAccess.StepSize = 120;
+onePtAccess.SummaryOption = AgEOnePtAccessSummary.eOnePtAccessSummaryDetailed;
+
+// Compute results
+IAgOnePtAccessResultCollection results = onePtAccess.Compute();
+
+// Print results
+for (int i = 0; i &lt; results.Count; i++)
+{
+    IAgOnePtAccessResult result = results[i];
+
+    Console.WriteLine("Time: {0}, HasAccess: {1}", result.Time, result.AccessSatisfied);
+
+    for (int j = 0; j &lt; result.Constraints.Count; j++)
+    {
+        IAgOnePtAccessConstraint constraint = result.Constraints[j];
+        Console.WriteLine("Constraint: {0}, Object {1}, Status {2}, Value {3}",
+            constraint.Constraint,
+            constraint.ObjectPath,
+            constraint.Status,
+            constraint.Value);
+    }
+}
+
+vbNet
+
+Dim onePtAccess As IAgOnePtAccess = facility.CreateOnePointAccess("Satellite/Satellite1")
+
+' Configure properties (if necessary)
+onePtAccess.StartTime = "1 Jan 2012 12:00:00.000"
+onePtAccess.StopTime = "1 Jan 2012 13:00:00.000"
+onePtAccess.StepSize = 120
+onePtAccess.SummaryOption = AgEOnePtAccessSummary.eOnePtAccessSummaryDetailed
+
+' Compute results
+Dim results As IAgOnePtAccessResultCollection = onePtAccess.Compute()
+
+' Print results
+Dim i As Integer = 0
+While i &lt; results.Count
+	Dim result As IAgOnePtAccessResult = results(i)
+
+	Console.WriteLine("Time: {0}, HasAccess: {1}", result.Time, result.AccessSatisfied)
+
+	Dim j As Integer = 0
+	While j &lt; result.Constraints.Count
+		Dim constraint As IAgOnePtAccessConstraint = result.Constraints(j)
+		Console.WriteLine("Constraint: {0}, Object {1}, Status {2}, Value {3}", constraint.Constraint, constraint.ObjectPath, constraint.Status, constraint.Value)
+		System.Math.Max(System.Threading.Interlocked.Increment(j),j - 1)
+	End While
+	System.Math.Max(System.Threading.Interlocked.Increment(i),i - 1)
+End While

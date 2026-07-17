@@ -1,0 +1,19 @@
+Matlab
+
+% IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+% IAgCrdnAxes bodyAxes: axes component
+% IAgCrdnAxes icrfAxes: axes component
+paraFactory = vgtSat.ParameterSets.Factory;
+paraSet = paraFactory.Create('attitudeICRF','Attitude Set','eCrdnParameterSetTypeAttitude');
+paraSet.Axes = bodyAxes;
+paraSet.ReferenceAxes = icrfAxes;
+
+Python
+
+# IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+# IAgCrdnAxes bodyAxes: axes component
+# IAgCrdnAxes icrfAxes: axes component
+paraFactory = vgtSat.ParameterSets.Factory
+paraSet = paraFactory.Create('attitudeICRF', 'Attitude Set', AgECrdnParameterSetType.eCrdnParameterSetTypeAttitude)
+paraSet.Axes = bodyAxes
+paraSet.ReferenceAxes = icrfAxes

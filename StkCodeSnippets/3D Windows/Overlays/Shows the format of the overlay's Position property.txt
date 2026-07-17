@@ -1,0 +1,17 @@
+C#
+
+Array position = new object[]
+{
+    50,
+    50,
+    AgEStkGraphicsScreenOverlayUnit.eStkGraphicsScreenOverlayUnitPixels,
+    AgEStkGraphicsScreenOverlayUnit.eStkGraphicsScreenOverlayUnitPixels
+};
+
+overlay.Position = position;
+
+vbNet
+
+Dim position As Array = New Object() {50, 50, AgEStkGraphicsScreenOverlayUnit.eStkGraphicsScreenOverlayUnitPixels, AgEStkGraphicsScreenOverlayUnit.eStkGraphicsScreenOverlayUnitPixels}
+
+overlay.Position = position

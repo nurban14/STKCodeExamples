@@ -1,0 +1,13 @@
+Python
+# IAgStkObjectRoot root: STK Object Model root
+
+satellite = root.GetObjectFromPath('Satellite/MySatellite')
+facility = root.GetObjectFromPath('Facility/MyFacility')
+access = satellite.GetAccessToObject(facility)
+
+access.AccessTimePeriod = AgEAccessTimeType.eUserSpecAccessTime
+accessTimePeriod = access.AccessTimePeriodData
+
+if (satellite.Vgt.EventIntervals.Contains('AvailabilityTimeSpan')):
+    availabilityTimeSpan = satellite.Vgt.EventIntervals.Item('AvailabilityTimeSpan')
+    accessTimePeriod.AccessInterval.SetImplicitInterval(availabilityTimeSpan)

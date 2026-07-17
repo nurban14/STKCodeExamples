@@ -1,0 +1,29 @@
+Python
+## Extracting All Ungrouped Time Dependent Data Elements at Discrete Times
+# IAgStkObjectRoot root: STK Object Model root
+# IAgScenario scenario: STK Current Scenario
+# IAgSatellite satellite: Satellite object
+
+# Change DateFormat dimension to epoch seconds to make the data easier to handle in Python
+root.UnitPreferences.Item('DateFormat').SetCurrentUnit('EpSec')
+times = [[0],[15000],[20000],[55000]]
+
+# IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+#Need to Create Time Array element to Retrieve Data Elements
+vgtSat = satellite.Vgt
+
+#Checks if Time array already exists. Retrieve array if it exists else
+#create a new one
+if not vgtSat.EventArrays.Contains("Input_Times"):
+    timeArrayFactory = vgtSat.EventArrays.Factory
+    timeArray = timeArrayFactory.CreateEventArrayFixedTimes("Input_Times",'')
+    timeArray.SetArrayTimes(times)
+else:
+    timeArray = vgtSat.EventArrays.GetItemByName("Input_Times")
+    timeArray.SetArrayTimes(times)
+
+
+satPassDP = satellite.DataProviders.Item('Precision Passes').ExecEventArray(timeArray,scenario.StartTime, scenario.StopTime)
+passTimes = satPassDP.DataSets.GetDataSetByName('Time').GetValues()
+passes = satPassDP.DataSets.GetDataSetByName('Precision Pass Number').GetValues()
+path = satPassDP.DataSets.GetDataSetByName('Precision Path Number').GetValues()

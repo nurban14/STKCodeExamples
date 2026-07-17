@@ -1,0 +1,9 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+
+scene.Camera.ViewCentralBody("Earth", root.VgtRoot.WellKnownAxes.Earth.Fixed);
+
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+
+scene.Camera.ViewCentralBody("Earth", root.VgtRoot.WellKnownAxes.Earth.Fixed)

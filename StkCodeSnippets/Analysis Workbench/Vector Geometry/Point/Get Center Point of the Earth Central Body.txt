@@ -1,0 +1,3 @@
+Matlab
+% IAgStkObjectRoot root: STK Object Model root
+centerPtEarth = root.CentralBodies.Earth.Vgt.Points.Item('Center');

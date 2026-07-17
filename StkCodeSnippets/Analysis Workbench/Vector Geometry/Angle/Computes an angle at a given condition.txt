@@ -1,0 +1,14 @@
+C#
+
+IAgCrdnAngleFindAngleResult result = angle.FindAngle(0);
+if (result.IsValid)
+{
+    Console.WriteLine("Angle: {0}", result.Angle);
+}
+
+vbNet
+
+Dim result As IAgCrdnAngleFindAngleResult = angle.FindAngle(0)
+If result.IsValid Then
+	Console.WriteLine("Angle: {0}", result.Angle)
+End If

@@ -1,0 +1,16 @@
+C#
+
+Array position = new object[]
+{
+    6700,
+    0,
+    0
+};
+
+condition.Position = position;
+
+vbNet
+
+Dim position As Array = New Object() {6700, 0, 0}
+
+condition.Position = position

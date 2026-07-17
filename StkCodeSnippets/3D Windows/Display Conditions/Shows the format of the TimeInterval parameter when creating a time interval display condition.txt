@@ -1,0 +1,15 @@
+C#
+
+Array timeInterval = new object[]
+{
+    "1 Jan 2012 12:00:00.000",
+    "1 Jan 2012 14:00:00.000"
+};
+
+sceneManager.Initializers.TimeIntervalDisplayCondition.InitializeWithTimeInterval(ref timeInterval);
+
+vbNet
+
+Dim timeInterval As Array = New Object() {"1 Jan 2012 12:00:00.000", "1 Jan 2012 14:00:00.000"}
+
+sceneManager.Initializers.TimeIntervalDisplayCondition.InitializeWithTimeInterval(timeInterval)

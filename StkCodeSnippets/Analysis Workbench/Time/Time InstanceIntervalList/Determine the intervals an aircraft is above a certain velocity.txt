@@ -1,0 +1,47 @@
+C#
+
+IAgCrdnProvider aircraftVgtProvider = stkRoot.GetObjectFromPath("Aircraft/UAV").Vgt;
+
+IAgCrdnEventIntervalList intervalList = aircraftVgtProvider.EventIntervalLists.Factory.CreateEventIntervalListCondition("IntervalsAboveCertainVelocity",  "MyDescription");
+IAgCrdnEventIntervalListCondition asListCondition = intervalList as IAgCrdnEventIntervalListCondition;
+
+IAgCrdnCondition aboveBoundCondition = aircraftVgtProvider.Conditions.Factory.CreateConditionScalarBounds("AboveCertainBound", "MyDescription");
+IAgCrdnConditionScalarBounds asScalarBounds = aboveBoundCondition as IAgCrdnConditionScalarBounds;
+asScalarBounds.Operation = AgECrdnConditionThresholdOption.eCrdnConditionThresholdOptionAboveMin;
+asScalarBounds.Scalar = aircraftVgtProvider.CalcScalars["Trajectory(CBI).Cartesian.Z"];
+//asScalarBounds.Minimum = 4082;
+
+asListCondition.Condition = aboveBoundCondition;
+
+IAgCrdnIntervalListResult intervals = intervalList.FindIntervals();
+if (intervals.IsValid)
+{
+    foreach (IAgCrdnInterval interval in intervals.Intervals)
+    {
+        Console.WriteLine("Start: " + interval.Start);
+        Console.WriteLine("Stop: " + interval.Stop);
+    }
+}
+
+vbNet
+
+Dim aircraftVgtProvider As IAgCrdnProvider = stkRoot.GetObjectFromPath("Aircraft/UAV").Vgt
+
+Dim intervalList As IAgCrdnEventIntervalList = aircraftVgtProvider.EventIntervalLists.Factory.CreateEventIntervalListCondition("IntervalsAboveCertainVelocity", "MyDescription")
+Dim asListCondition As IAgCrdnEventIntervalListCondition = TryCast(intervalList, IAgCrdnEventIntervalListCondition)
+
+Dim aboveBoundCondition As IAgCrdnCondition = aircraftVgtProvider.Conditions.Factory.CreateConditionScalarBounds("AboveCertainBound", "MyDescription")
+Dim asScalarBounds As IAgCrdnConditionScalarBounds = TryCast(aboveBoundCondition, IAgCrdnConditionScalarBounds)
+asScalarBounds.Operation = AgECrdnConditionThresholdOption.eCrdnConditionThresholdOptionAboveMin
+asScalarBounds.Scalar = aircraftVgtProvider.CalcScalars("Trajectory(CBI).Cartesian.Z")
+'asScalarBounds.Minimum = 4082;
+
+asListCondition.Condition = aboveBoundCondition
+
+Dim intervals As IAgCrdnIntervalListResult = intervalList.FindIntervals()
+If intervals.IsValid Then
+	For Each interval As IAgCrdnInterval In intervals.Intervals
+		Console.WriteLine("Start: " + interval.Start)
+		Console.WriteLine("Stop: " + interval.[Stop])
+	Next
+End If

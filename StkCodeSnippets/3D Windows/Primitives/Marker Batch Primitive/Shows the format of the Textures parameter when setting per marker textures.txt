@@ -1,0 +1,27 @@
+C#
+// String texturePath1: Path to the first texture file
+// String texturePath2: Path to the second texture file
+// String texturePath3: Path to the third texture file
+// String texturePath4: Path to the fourth texture file
+
+Array textures = new object[]
+{
+    sceneManager.Textures.LoadFromStringUri(texturePath1),
+    sceneManager.Textures.LoadFromStringUri(texturePath2),
+    sceneManager.Textures.LoadFromStringUri(texturePath3),
+    sceneManager.Textures.LoadFromStringUri(texturePath4)
+};
+
+IAgStkGraphicsMarkerBatchPrimitiveOptionalParameters parameters = sceneManager.Initializers.MarkerBatchPrimitiveOptionalParameters.Initialize();
+parameters.SetTextures(ref textures);
+
+vbNet
+// String texturePath1: Path to the first texture file
+// String texturePath2: Path to the second texture file
+// String texturePath3: Path to the third texture file
+// String texturePath4: Path to the fourth texture file
+
+Dim textures As Array = New Object() {sceneManager.Textures.LoadFromStringUri(texturePath1), sceneManager.Textures.LoadFromStringUri(texturePath2), sceneManager.Textures.LoadFromStringUri(texturePath3), sceneManager.Textures.LoadFromStringUri(texturePath4)}
+
+Dim parameters As IAgStkGraphicsMarkerBatchPrimitiveOptionalParameters = sceneManager.Initializers.MarkerBatchPrimitiveOptionalParameters.Initialize()
+parameters.SetTextures(textures)

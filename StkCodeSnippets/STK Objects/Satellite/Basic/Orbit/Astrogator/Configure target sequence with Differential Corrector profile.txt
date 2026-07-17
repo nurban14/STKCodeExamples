@@ -1,0 +1,58 @@
+C#
+
+IAgVAMCSTargetSequence startTransfer = driver.MainSequence["Start Transfer"] as IAgVAMCSTargetSequence;
+
+string dcString = "Differential Corrector";
+
+if (Array.IndexOf(startTransfer.Profiles.AvailableProfiles, dcString) != -1)
+{
+    IAgVAProfileDifferentialCorrector dc = startTransfer.Profiles.Add(dcString) as IAgVAProfileDifferentialCorrector;
+
+    // Configure differential corrector
+    dc.ClearCorrectionsBeforeRun = true;
+    dc.ConvergenceCriteria = AgEVAConvergenceCriteria.eVAConvervenceCriteriaEitherEqualityConstraintsOrControlParams;
+    dc.EnableBPlaneNominal = false;
+    dc.EnableBPlanePerturbations = false;
+    dc.EnableDisplayStatus = true;
+    dc.EnableHomotopy = true;
+    dc.HomotopySteps = 2;
+    dc.EnableHomotopy = false;
+    dc.EnableLineSearch = true;
+    dc.LineSearchLowerBound = 0.001;
+    dc.LineSearchTolerance = 0.001;
+    dc.LineSearchUpperBound = 5.0;
+    dc.MaxLineSearchIterations = 5;
+    dc.MaxIterations = 20;
+
+    // Apply
+    startTransfer.ApplyProfiles();
+}
+
+vbNet
+
+Dim startTransfer As IAgVAMCSTargetSequence = TryCast(driver.MainSequence("Start Transfer"), IAgVAMCSTargetSequence)
+
+Dim dcString As String = "Differential Corrector"
+
+If Array.IndexOf(startTransfer.Profiles.AvailableProfiles, dcString) &lt;&gt; -1 Then
+	Dim dc As IAgVAProfileDifferentialCorrector = TryCast(startTransfer.Profiles.Add(dcString), IAgVAProfileDifferentialCorrector)
+
+	' Configure differential corrector
+	dc.ClearCorrectionsBeforeRun = True
+	dc.ConvergenceCriteria = AgEVAConvergenceCriteria.eVAConvervenceCriteriaEitherEqualityConstraintsOrControlParams
+	dc.EnableBPlaneNominal = False
+	dc.EnableBPlanePerturbations = False
+	dc.EnableDisplayStatus = True
+	dc.EnableHomotopy = True
+	dc.HomotopySteps = 2
+	dc.EnableHomotopy = False
+	dc.EnableLineSearch = True
+	dc.LineSearchLowerBound = 0.001
+	dc.LineSearchTolerance = 0.001
+	dc.LineSearchUpperBound = 5
+	dc.MaxLineSearchIterations = 5
+	dc.MaxIterations = 20
+
+	' Apply
+	startTransfer.ApplyProfiles()
+End If

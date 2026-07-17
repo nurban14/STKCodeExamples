@@ -1,0 +1,14 @@
+Matlab
+
+% IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+% IAgScenario scenario: Scenario object
+deticLatitude = vgtSat.CalcScalars.Item('GroundTrajectory.Detic.LLA.Latitude');
+result = deticLatitude.Evaluate(scenario.StartTime);
+disp(['The value of detic latitude is ' num2str(result.Value)]);
+
+Python
+# IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+# IAgScenario scenario: Scenario object
+deticLatitude = vgtSat.CalcScalars.Item('GroundTrajectory.Detic.LLA.Latitude')
+result = deticLatitude.Evaluate(scenario.StartTime)
+print('The value of detic latitude is %s' % result.Value)

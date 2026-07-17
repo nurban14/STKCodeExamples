@@ -1,0 +1,11 @@
+Matlab
+% IAgSatellite satellite: Satellite object
+vector = satellite.VO.Vector;
+angVel = vector.RefCrdns.Add('eVectorElem', 'Satellite/MySatellite AngVelocity');
+angVel.LabelVisible = true;
+
+Python
+# IAgSatellite satellite: Satellite object
+vector = satellite.VO.Vector
+angVel = vector.RefCrdns.Add(0, 'Satellite/MySatellite AngVelocity')
+angVel.LabelVisible = True

@@ -1,0 +1,16 @@
+C#
+// IAgCrdnVector vector: A vector to check against reference vector.
+
+//Check if the reference vector has a cyclic dependency on another vector.
+if (vectorRefTo.HasCyclicDependency(vector))
+{
+    Console.WriteLine("The vector {0} has a cyclic dependency on vector {1}.", ((IAgCrdn)vectorRefTo.GetVector()).Name, ((IAgCrdn)vector).Name);
+}
+
+vbNet
+// IAgCrdnVector vector: A vector to check against reference vector.
+
+'Check if the reference vector has a cyclic dependency on another vector.
+If vectorRefTo.HasCyclicDependency(vector) Then
+	Console.WriteLine("The vector {0} has a cyclic dependency on vector {1}.", DirectCast(vectorRefTo.GetVector(), IAgCrdn).Name, DirectCast(vector, IAgCrdn).Name)
+End If

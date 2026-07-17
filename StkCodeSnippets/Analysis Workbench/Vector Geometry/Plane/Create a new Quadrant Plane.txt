@@ -1,0 +1,8 @@
+Matlab
+
+% IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+% IAgCrdnSystemAssembled icrf: system component
+PlaneFactory = vgtSat.Planes.Factory;
+yzQuad = PlaneFactory.Create('YZQuad','YZ Quadrant','eCrdnPlaneTypeQuadrant');
+yzQuad.ReferenceSystem.SetSystem(icrf);
+yzQuad.Quadrant = 'eCrdnQuadrantYZ';

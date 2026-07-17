@@ -1,0 +1,7 @@
+C#
+
+root.CurrentScenario.Children.New(AgESTKObjectType.eShip, "Ship1");
+
+vbNet
+
+root.CurrentScenario.Children.[New](AgESTKObjectType.eShip, "Ship1")

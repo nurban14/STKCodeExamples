@@ -1,0 +1,18 @@
+Matlab
+% IAgSatellite satellite: Satellite object
+details = satellite.VO.Model.DetailThreshold;
+details.EnableDetailThreshold = true;
+details.All = 1;    %   km
+details.ModelLabel = 2; %   km
+details.MarkerLabel = 40000;    %   km
+details.Marker = 500000;    %   km
+details.Point = 500000; %   km
+Python
+# IAgSatellite satellite: Satellite object
+details = satellite.VO.Model.DetailThreshold
+details.EnableDetailThreshold = True
+details.All = 1                # km
+details.ModelLabel = 2         # km
+details.MarkerLabel = 40000    # km
+details.Marker = 500000        # km
+details.Point = 500000         # km

@@ -1,0 +1,9 @@
+Matlab
+
+% IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+% IAgStkObjectRoot root: STK Object Model root
+AxesFactory = vgtSat.Axes.Factory;
+fixed = AxesFactory.Create('Fixed','Axes fixed in Earth Fixed frame using Euler 321 sequence','eCrdnAxesTypeFixed');
+earthFixed = root.CentralBodies.Earth.Vgt.Axes.Item('Fixed');
+fixed.ReferenceAxes.SetAxes(earthFixed);
+fixed.FixedOrientation.AssignEulerAngles('e321',45,35,0);

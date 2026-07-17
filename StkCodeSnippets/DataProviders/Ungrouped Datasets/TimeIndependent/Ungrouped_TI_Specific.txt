@@ -1,0 +1,22 @@
+Python
+## Extracting Specific Ungrouped Time Independent Data
+# IAgStkObjectRoot root: STK Object Model root
+# IAgFacility facility: Facility object
+
+# Change DateFormat dimension to epoch seconds to make the data easier to handle in Python
+root.UnitPreferences.Item('DateFormat').SetCurrentUnit('EpSec')
+
+#Imports only these Data Sets from All Position Data Providers
+elems = [['Spherical-Lat'], ['Spherical-Lon'],['Spherical-Rad']]
+facDP = facility.DataProviders.Item('All Position').ExecElements(elems)
+
+#Order in which datasets are imported matches how the order they are in STK
+#Integer should align with this
+lat = facDP.DataSets.Item(0).GetValues()
+lon = facDP.DataSets.Item(1).GetValues()
+rad = facDP.DataSets.Item(2).GetValues()
+
+#Alternatively you can also use .GetDataSetByName()
+lat_2 = facDP.DataSets.GetDataSetByName('Spherical-Lat').GetValues()
+lon_2 = facDP.DataSets.GetDataSetByName('Spherical-Lon').GetValues()
+rad_2 = facDP.DataSets.GetDataSetByName('Spherical-Rad').GetValues()

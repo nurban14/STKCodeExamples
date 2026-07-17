@@ -1,0 +1,11 @@
+C#
+
+IAgDrTimeVarExtremumResult result = dataSet.Statistics.ComputeTimeVarExtremum(AgETimeVarExtremum.eMax);
+Console.WriteLine("{0}", dataSet.ElementName);
+Console.WriteLine("\tTime: {0}, Max: {1}", result.Time, result.Value);
+
+vbNet
+
+Dim result As IAgDrTimeVarExtremumResult = dataSet.Statistics.ComputeTimeVarExtremum(AgETimeVarExtremum.eMax)
+Console.WriteLine("{0}", dataSet.ElementName)
+Console.WriteLine(vbTab &amp;&amp;#160;"Time: {0}, Max: {1}", result.Time, result.Value)

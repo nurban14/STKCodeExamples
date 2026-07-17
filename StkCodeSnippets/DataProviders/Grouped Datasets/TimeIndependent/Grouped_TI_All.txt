@@ -1,0 +1,17 @@
+Python
+## Extracting All Group Time Independent Data
+# IAgStkObjectRoot root: STK Object Model root
+# IAgFacility facility: Facility object
+# Change DateFormat dimension to epoch seconds to make the data easier to handle in Python
+
+root.UnitPreferences.Item('DateFormat').SetCurrentUnit('EpSec')
+facDP = facility.DataProviders.Item('Terrain Info').Group.Item('Topocentric').Exec()
+normZ = facDP.DataSets.GetDataSetByName('Normal z').GetValues()
+terrainSlope = facDP.DataSets.GetDataSetByName('Slope').GetValues()
+terrainAz = facDP.DataSets.GetDataSetByName('Azimuth').GetValues()
+
+#Alternatively...
+facDP = facility.DataProviders.GetDataPrvFixedFromPath('Terrain Info/Topocentric').Exec()
+normZ_2 = facDP.DataSets.GetDataSetByName('Normal z').GetValues()
+terrainSlope_2 = facDP.DataSets.GetDataSetByName('Slope').GetValues()
+terrainAz_2 = facDP.DataSets.GetDataSetByName('Azimuth').GetValues()

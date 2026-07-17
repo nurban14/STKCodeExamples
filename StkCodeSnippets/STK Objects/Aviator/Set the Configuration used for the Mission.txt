@@ -1,0 +1,68 @@
+C#
+
+// Get the configuration used for the mission
+IAgAvtrConfiguration configuration = mission.Configuration;
+// Set the max landing weight
+configuration.MaxLandingWeight = 300000;
+// Set the empty weight
+configuration.EmptyWeight = 210000;
+// Update the center of gravity of the aircraft when empty
+configuration.SetEmptyCG(2, 0, 1);
+
+// Get the stations
+IAgAvtrStationCollection stations = configuration.GetStations();
+// Check if there is an internal fuel station
+bool hasInternalFuel = stations.ContainsStation("Internal Fuel");
+
+if (hasInternalFuel)
+{
+    // Get the fuel tank
+    IAgAvtrFuelTankInternal fuelTank = stations.GetInternalFuelTankByName("Internal Fuel");
+    // Set the capacity of the fuel tank
+    fuelTank.Capacity = 175000;
+    // Set the initial state of the fuel tank
+    fuelTank.InitialFuelState = 125000;
+}
+
+// Add a new payload station
+IAgAvtrPayloadStation newPayload = stations.AddPayloadStation();
+// Set the position of the payload station
+newPayload.SetPosition(0, 2, 0);
+// Add an external fuel tank
+IAgAvtrFuelTankExternal externalTank = newPayload.AddExternalFuelTank();
+// Set the empty weight of the tank
+externalTank.EmptyWeight = 2000;
+
+vbNet
+
+' Get the configuration used for the mission
+Dim configuration As IAgAvtrConfiguration = mission.Configuration
+' Set the max landing weight
+configuration.MaxLandingWeight = 300000
+' Set the empty weight
+configuration.EmptyWeight = 210000
+' Update the center of gravity of the aircraft when empty
+configuration.SetEmptyCG(2, 0, 1)
+
+' Get the stations
+Dim stations As IAgAvtrStationCollection = configuration.GetStations()
+' Check if there is an internal fuel station
+Dim hasInternalFuel As Boolean = stations.ContainsStation("Internal Fuel")
+
+If hasInternalFuel Then
+	' Get the fuel tank
+	Dim fuelTank As IAgAvtrFuelTankInternal = stations.GetInternalFuelTankByName("Internal Fuel")
+	' Set the capacity of the fuel tank
+	fuelTank.Capacity = 175000
+	' Set the initial state of the fuel tank
+	fuelTank.InitialFuelState = 125000
+End If
+
+' Add a new payload station
+Dim newPayload As IAgAvtrPayloadStation = stations.AddPayloadStation()
+' Set the position of the payload station
+newPayload.SetPosition(0, 2, 0)
+' Add an external fuel tank
+Dim externalTank As IAgAvtrFuelTankExternal = newPayload.AddExternalFuelTank()
+' Set the empty weight of the tank
+externalTank.EmptyWeight = 2000

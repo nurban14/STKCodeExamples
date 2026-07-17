@@ -1,0 +1,51 @@
+C#
+
+IAgStkObject uav = stkRoot.GetObjectFromPath("/Aircraft/UAV");
+IAgStkObject sensor = stkRoot.GetObjectFromPath("/Aircraft/UAV/Sensor/UAVSensor");
+IAgStkObject coloradoSprings = stkRoot.GetObjectFromPath("/Place/ColoradoSprings");
+
+// For this code snippet, let's use the time interval when the UAV reached min and max altitude values.
+// Note, this assumes time at min happens before time at max.
+IAgCrdnEvent timeOfAltMin = uav.Vgt.Events["GroundTrajectory.Detic.LLA.Altitude.TimeOfMin"];
+IAgCrdnEvent timeOfAltMax = uav.Vgt.Events["GroundTrajectory.Detic.LLA.Altitude.TimeOfMax"];
+
+// Set the access time period with the times we figured out above.
+IAgStkAccess access = sensor.GetAccessToObject(coloradoSprings);
+access.AccessTimePeriod = AgEAccessTimeType.eUserSpecAccessTime;
+IAgAccessTimePeriod accessTimePeriod = access.AccessTimePeriodData as IAgAccessTimePeriod;
+
+accessTimePeriod.AccessInterval.State = AgECrdnSmartIntervalState.eCrdnSmartIntervalStateStartStop;
+
+IAgCrdnEventSmartEpoch accessStartEpoch = accessTimePeriod.AccessInterval.GetStartEpoch();
+accessStartEpoch.SetImplicitTime(timeOfAltMin);
+accessTimePeriod.AccessInterval.SetStartEpoch(accessStartEpoch);
+
+IAgCrdnEventSmartEpoch accessStopEpoch = accessTimePeriod.AccessInterval.GetStopEpoch();
+accessStopEpoch.SetImplicitTime(timeOfAltMax);
+accessTimePeriod.AccessInterval.SetStopEpoch(accessStopEpoch);
+
+vbNet
+
+Dim uav As IAgStkObject = stkRoot.GetObjectFromPath("/Aircraft/UAV")
+Dim sensor As IAgStkObject = stkRoot.GetObjectFromPath("/Aircraft/UAV/Sensor/UAVSensor")
+Dim coloradoSprings As IAgStkObject = stkRoot.GetObjectFromPath("/Place/ColoradoSprings")
+
+' For this code snippet, let's use the time interval when the UAV reached min and max altitude values.
+' Note, this assumes time at min happens before time at max.
+Dim timeOfAltMin As IAgCrdnEvent = uav.Vgt.Events("GroundTrajectory.Detic.LLA.Altitude.TimeOfMin")
+Dim timeOfAltMax As IAgCrdnEvent = uav.Vgt.Events("GroundTrajectory.Detic.LLA.Altitude.TimeOfMax")
+
+' Set the access time period with the times we figured out above.
+Dim access As IAgStkAccess = sensor.GetAccessToObject(coloradoSprings)
+access.AccessTimePeriod = AgEAccessTimeType.eUserSpecAccessTime
+Dim accessTimePeriod As IAgAccessTimePeriod = TryCast(access.AccessTimePeriodData, IAgAccessTimePeriod)
+
+accessTimePeriod.AccessInterval.State = AgECrdnSmartIntervalState.eCrdnSmartIntervalStateStartStop
+
+Dim accessStartEpoch As IAgCrdnEventSmartEpoch = accessTimePeriod.AccessInterval.GetStartEpoch()
+accessStartEpoch.SetImplicitTime(timeOfAltMin)
+accessTimePeriod.AccessInterval.SetStartEpoch(accessStartEpoch)
+
+Dim accessStopEpoch As IAgCrdnEventSmartEpoch = accessTimePeriod.AccessInterval.GetStopEpoch()
+accessStopEpoch.SetImplicitTime(timeOfAltMax)
+accessTimePeriod.AccessInterval.SetStopEpoch(accessStopEpoch)

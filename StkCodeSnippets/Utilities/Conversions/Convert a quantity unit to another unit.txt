@@ -1,0 +1,13 @@
+C#
+
+IAgConversionUtility converter = root.ConversionUtility;
+
+// Old value in miles, new value in km
+double newValue = converter.ConvertQuantity("DistanceUnit", "mi", "km", 1.0);
+
+vbNet
+
+Dim converter As IAgConversionUtility = root.ConversionUtility
+
+' Old value in miles, new value in km
+Dim newValue As Double = converter.ConvertQuantity("DistanceUnit", "mi", "km", 1)

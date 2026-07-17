@@ -1,0 +1,67 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+
+IAgStkGraphicsSceneManager manager = ((IAgScenario)root.CurrentScenario).SceneManager;
+Array strings = new object[]
+{
+    "San Francisco",
+    "Sacramento",
+    "Los Angeles",
+    "San Diego"
+};
+
+Array positions = new object[]
+{
+    37.62, -122.38, 0.0,
+    38.52, -121.50, 0.0,
+    33.93, -118.40, 0.0,
+    32.82, -117.13, 0.0
+};
+
+Array colors = new object[]
+{
+    (uint)Color.Red.ToArgb(),
+    (uint)Color.Green.ToArgb(),
+    (uint)Color.Blue.ToArgb(),
+    (uint)Color.White.ToArgb()
+};
+
+IAgStkGraphicsTextBatchPrimitiveOptionalParameters parameters = manager.Initializers.TextBatchPrimitiveOptionalParameters.Initialize();
+parameters.SetColors(ref colors);
+
+IAgStkGraphicsGraphicsFont font = manager.Initializers.GraphicsFont.InitializeWithNameSizeFontStyleOutline("MS Sans Serif", 12, AgEStkGraphicsFontStyle.eStkGraphicsFontStyleBold, false);
+IAgStkGraphicsTextBatchPrimitive textBatch = manager.Initializers.TextBatchPrimitive.InitializeWithGraphicsFont(font);
+textBatch.SetCartographicWithOptionalParameters("Earth", ref positions, ref strings, parameters);
+
+manager.Primitives.Add((IAgStkGraphicsPrimitive)textBatch);
+
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+
+Dim manager As IAgStkGraphicsSceneManager = DirectCast(root.CurrentScenario, IAgScenario).SceneManager
+Dim strings As Array = New Object() {"San Francisco", "Sacramento", "Los Angeles", "San Diego"}
+
+Dim positions As Array = New Object() _
+{ _
+    37.62, -122.38, 0.0, _
+    38.52, -121.5, 0.0, _
+    33.93, -118.4, 0.0, _
+    32.82, -117.13, 0.0 _
+}
+
+Dim colors As Array = New Object() _
+{ _
+    Color.Red.ToArgb(), _
+    Color.Green.ToArgb(), _
+    Color.Blue.ToArgb(), _
+   Color.White.ToArgb() _
+}
+
+Dim parameters As IAgStkGraphicsTextBatchPrimitiveOptionalParameters = manager.Initializers.TextBatchPrimitiveOptionalParameters.Initialize()
+parameters.SetColors(colors)
+
+Dim font As IAgStkGraphicsGraphicsFont = manager.Initializers.GraphicsFont.InitializeWithNameSizeFontStyleOutline("MS Sans Serif", 12, AgEStkGraphicsFontStyle.eStkGraphicsFontStyleBold, False)
+Dim textBatch As IAgStkGraphicsTextBatchPrimitive = manager.Initializers.TextBatchPrimitive.InitializeWithGraphicsFont(font)
+textBatch.SetCartographicWithOptionalParameters("Earth", positions, strings, parameters)
+
+manager.Primitives.Add(DirectCast(textBatch, IAgStkGraphicsPrimitive))

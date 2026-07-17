@@ -1,0 +1,38 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+// String imageFile: The image file
+
+IAgStkGraphicsSceneManager manager = ((IAgScenario)root.CurrentScenario).SceneManager;
+IAgStkGraphicsScreenOverlayCollectionBase overlayManager = (IAgStkGraphicsScreenOverlayCollectionBase)manager.ScreenOverlays.Overlays;
+
+IAgStkGraphicsRendererTexture2D texture2D = manager.Textures.LoadFromStringUri(
+    imageFile);
+
+IAgStkGraphicsTextureScreenOverlay overlay = manager.Initializers.TextureScreenOverlay.InitializeWithXYWidthHeight(
+    10, 0,
+    texture2D.Template.Width / 2,
+    texture2D.Template.Height / 2);
+((IAgStkGraphicsOverlay)overlay).Translucency = 0.1f;
+((IAgStkGraphicsOverlay)overlay).Origin = AgEStkGraphicsScreenOverlayOrigin.eStkGraphicsScreenOverlayOriginCenterRight;
+overlay.Texture = texture2D;
+
+overlayManager.Add((IAgStkGraphicsScreenOverlay)overlay);
+
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+// String imageFile: The image file
+
+Dim manager As IAgStkGraphicsSceneManager = DirectCast(root.CurrentScenario, IAgScenario).SceneManager
+Dim overlayManager As IAgStkGraphicsScreenOverlayCollectionBase = DirectCast(manager.ScreenOverlays.Overlays, IAgStkGraphicsScreenOverlayCollectionBase)
+
+Dim texture2D As IAgStkGraphicsRendererTexture2D = manager.Textures.LoadFromStringUri( _
+    imageFile)
+
+Dim overlay As IAgStkGraphicsTextureScreenOverlay = manager.Initializers.TextureScreenOverlay.InitializeWithXYWidthHeight(10, 0, texture2D.Template.Width / 2, texture2D.Template.Height / 2)
+DirectCast(overlay, IAgStkGraphicsOverlay).X = 10
+DirectCast(overlay, IAgStkGraphicsOverlay).XUnit = AgEStkGraphicsScreenOverlayUnit.eStkGraphicsScreenOverlayUnitPixels
+DirectCast(overlay, IAgStkGraphicsOverlay).Translucency = 0.1F
+DirectCast(overlay, IAgStkGraphicsOverlay).Origin = AgEStkGraphicsScreenOverlayOrigin.eStkGraphicsScreenOverlayOriginBottomRight
+overlay.Texture = texture2D
+
+overlayManager.Add(DirectCast(overlay, IAgStkGraphicsScreenOverlay))

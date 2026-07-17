@@ -1,0 +1,13 @@
+Python
+
+from win32com.client import GetActiveObject
+uiApplication = win32com.client.Dispatch('STK13.Application')
+uiApplication.Visible = True
+
+# Start new instance of STK
+from comtypes.client import CreateObject
+uiApplication = CreateObject('STK13.Application')
+uiApplication.Visible = True
+
+# Get our IAgStkObjectRoot interface
+root = uiApplication.Personality2

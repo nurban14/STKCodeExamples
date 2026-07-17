@@ -1,0 +1,12 @@
+Matlab
+
+% IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+calcFactory = vgtSat.CalcScalars.Factory;
+trueAnom = calcFactory.Create('TrueAnomaly','','eCrdnCalcScalarTypeDataElement');
+trueAnom.SetWithGroup('Classical Elements','ICRF','True Anomaly');
+
+Python
+# IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+calcFactory = vgtSat.CalcScalars.Factory
+trueAnom = calcFactory.Create('TrueAnomaly', '', AgECrdnCalcScalarType.eCrdnCalcScalarTypeDataElement)
+trueAnom.SetWithGroup('Classical Elements', 'ICRF', 'True Anomaly')

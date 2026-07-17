@@ -1,0 +1,33 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+// String modelFile: The model file
+// IAgCrdnSystem referenceFrame: A reference frame for the model
+
+IAgStkGraphicsSceneManager manager = ((IAgScenario)root.CurrentScenario).SceneManager;
+
+IAgStkGraphicsModelPrimitive model = manager.Initializers.ModelPrimitive.InitializeWithStringUri(
+    modelFile);
+((IAgStkGraphicsPrimitive)model).ReferenceFrame = referenceFrame;  // Model is oriented using east-north-up axes.  Use model.Orientation for addition rotation.
+Array zero = new object[] { 0, 0, 0 }; // Origin of reference frame
+model.Position = zero;
+model.Scale = Math.Pow(10, 0.5);
+
+manager.Primitives.Add((IAgStkGraphicsPrimitive)model);
+
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+// String modelFile: The model file
+// IAgCrdnSystem referenceFrame: A reference frame for the model
+
+Dim manager As IAgStkGraphicsSceneManager = DirectCast(root.CurrentScenario, IAgScenario).SceneManager
+
+Dim model As IAgStkGraphicsModelPrimitive = manager.Initializers.ModelPrimitive.InitializeWithStringUri( _
+    modelFile)
+DirectCast(model, IAgStkGraphicsPrimitive).ReferenceFrame = referenceFrame
+' Model is oriented using east-north-up axes.  Use model.Orientation for addition rotation.
+Dim zero As Array = New Object() {0, 0, 0}
+' Origin of reference frame
+model.Position = zero
+model.Scale = Math.Pow(10, 0.5)
+
+manager.Primitives.Add(DirectCast(model, IAgStkGraphicsPrimitive))

@@ -1,0 +1,9 @@
+C#
+
+// Set the Scalar Calculation definition.
+IAgFmDefScalarCalculation scalarCalculation = fom.SetScalarCalculationDefinition("CentralBody/Earth ElapsedTimeFromStart");
+
+vbNet
+
+' Set the Scalar Calculation definition.
+Dim scalarCalculation As IAgFmDefScalarCalculation = fom.SetScalarCalculationDefinition("CentralBody/Earth ElapsedTimeFromStart")

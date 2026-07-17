@@ -1,0 +1,8 @@
+Matlab
+% IAgSatellite satellite: Satellite object
+satellite.SetPropagatorType('ePropagatorSGP4');
+propagator = satellite.Propagator;
+propagator.UseScenarioAnalysisTime;
+propagator.CommonTasks.AddSegsFromOnlineSource('25544'); % International Space Station
+propagator.AutoUpdateEnabled = true;
+propagator.Propagate;

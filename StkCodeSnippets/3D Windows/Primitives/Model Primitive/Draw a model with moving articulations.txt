@@ -1,0 +1,83 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+// String modelFile: The model file
+
+IAgStkGraphicsSceneManager manager = ((IAgScenario)root.CurrentScenario).SceneManager;
+//
+// Create the model
+//
+IAgStkGraphicsModelPrimitive model = manager.Initializers.ModelPrimitive.InitializeWithStringUri(
+    modelFile);
+
+Array position = new object[3] { 36, -116.75, 25000.0 };
+model.SetPositionCartographic("Earth", ref position);
+
+//
+// Rotate the model to be oriented correctly
+//
+model.Articulations.GetByName("C-130").GetByName("Yaw").CurrentValue = 19 * Math.PI / 180.0;
+model.Articulations.GetByName("C-130").GetByName("Pitch").CurrentValue = -5 * Math.PI / 180.0;
+model.Articulations.GetByName("C-130").GetByName("Roll").CurrentValue = 75 * Math.PI / 180.0;
+
+//
+// Put away the landing gear by jumping to the end of a glTF animation
+//
+model.Articulations.GetByName("LandingGear").GetByName("Enable").CurrentValue = 1.0;
+model.Articulations.GetByName("LandingGear").GetByName("Seconds").CurrentValue = 16.0;
+
+manager.Primitives.Add((IAgStkGraphicsPrimitive)model);
+
+
+internal void TimeChanged(double TimeEpSec)
+{
+    //
+    // Rotate the propellors every time the animation updates
+    //
+    if (m_Model != null)
+    {
+        double TwoPI = 2 * Math.PI;
+        double Spin = (TimeEpSec * 0.1) % TwoPI;
+        ((IAgStkGraphicsModelPrimitive)m_Model).Articulations.GetByName("Props").GetByName("Spin").CurrentValue = Spin;
+    }
+}
+
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+// String modelFile: The model file
+
+Dim manager As IAgStkGraphicsSceneManager = DirectCast(root.CurrentScenario, IAgScenario).SceneManager
+'
+' Create the model
+'
+Dim model As IAgStkGraphicsModelPrimitive = manager.Initializers.ModelPrimitive.InitializeWithStringUri( _
+	modelFile)
+
+Dim position As Array = New Object() {36, -116.75, 25000.0}
+model.SetPositionCartographic("Earth", position)
+
+'
+' Rotate the model to be oriented correctly
+'
+model.Articulations.GetByName("C-130").GetByName("Yaw").CurrentValue = 19 * Math.PI / 180.0
+model.Articulations.GetByName("C-130").GetByName("Pitch").CurrentValue = -5 * Math.PI / 180.0
+model.Articulations.GetByName("C-130").GetByName("Roll").CurrentValue = 75 * Math.PI / 180.0
+
+'
+' Put away the landing gear by jumping to the end of a glTF animation
+'
+model.Articulations.GetByName("LandingGear").GetByName("Enable").CurrentValue = 1.0
+model.Articulations.GetByName("LandingGear").GetByName("Seconds").CurrentValue = 16.0
+
+manager.Primitives.Add(DirectCast(model, IAgStkGraphicsPrimitive))
+
+
+Friend Sub TimeChanged(TimeEpSec As Double)
+	'
+	' Rotate the propellors every time the animation updates
+	'
+	If m_Model IsNot Nothing Then
+		Dim TwoPI As Double = 2 * Math.PI
+		Dim Spin As Double = (TimeEpSec * 0.1) Mod TwoPI
+		DirectCast(m_Model, IAgStkGraphicsModelPrimitive).Articulations.GetByName("Props").GetByName("Spin").CurrentValue = Spin
+	End If
+End Sub

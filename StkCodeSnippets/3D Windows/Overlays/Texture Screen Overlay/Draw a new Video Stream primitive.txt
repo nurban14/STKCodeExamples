@@ -1,0 +1,19 @@
+Matlab
+
+% IAgScenario scenario: Scenario object
+manager = scenario.SceneManager;
+video = manager.Initializers.VideoStream.InitializeWithStringUri('<Install Dir>\CodeSamples\CustomApplications\Data\HowTo\Videos\ShenzhouVII_BX1.wmv');
+% Playback options are 'eStkGraphicsVideoPlaybackTimeInterval'
+% 'eStkGraphicsVideoPlaybackRealTime'
+video.Playback = 'eStkGraphicsVideoPlaybackRealTime';
+video.Loop = true;
+overlay = manager.Initializers.TextureScreenOverlay.InitializeWithXYWidthHeight(0,0,video.Width / 3, video.Height / 3);
+overlay.MaintainAspectRatio = true;
+overlay.Translucency = 0;
+overlay.BorderSize = 1;
+overlay.BorderTranslucency = .25;
+overlay.Origin = 'eStkGraphicsScreenOverlayOriginTopRight';
+overlay.Texture = scenario.SceneManager.Textures.FromRaster(video);
+manager.ScreenOverlays.Overlays.Add(overlay);
+%Render the Scene
+manager.Render;

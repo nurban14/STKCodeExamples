@@ -1,0 +1,22 @@
+C#
+
+Array positions = new object[]
+{
+    39.88, -75.25, 0,
+    38.85, -77.04, 0,
+    29.98, -90.25, 0,
+    37.37, -121.92, 0
+};
+
+polyline.SetSubsetCartographic(
+    "Earth",
+    ref positions,
+    1,
+    2);
+
+vbNet
+
+Dim positions As Array = New Object() {39.88, -75.25, 0, 38.85, -77.04, 0, _
+	29.98, -90.25, 0, 37.37, -121.92, 0}
+
+polyline.SetSubsetCartographic("Earth", positions, 1, 2)

@@ -1,0 +1,13 @@
+Matlab
+% IAgTransmitter transmitter: Transmitter object
+txModel = transmitter.Model;
+antennaControl = txModel.AntennaControl;
+antennaControl.SetEmbeddedModel('Isotropic');
+antennaControl.EmbeddedModel.Efficiency = 85; %Percent
+Python
+
+# IAgTransmitter transmitter: Transmitter object
+txModel = transmitter.Model
+antennaControl = txModel.AntennaControl
+antennaControl.SetEmbeddedModel('Isotropic')
+antennaControl.EmbeddedModel.Efficiency = 85 # Percent

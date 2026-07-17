@@ -1,0 +1,19 @@
+C#
+
+Array origins = new object[]
+{
+    AgEStkGraphicsOrigin.eStkGraphicsOriginCenter,
+    AgEStkGraphicsOrigin.eStkGraphicsOriginBottomLeft,
+    AgEStkGraphicsOrigin.eStkGraphicsOriginBottomRight,
+    AgEStkGraphicsOrigin.eStkGraphicsOriginTopLeft
+};
+
+IAgStkGraphicsMarkerBatchPrimitiveOptionalParameters parameters = sceneManager.Initializers.MarkerBatchPrimitiveOptionalParameters.Initialize();
+parameters.SetOrigins(ref origins);
+
+vbNet
+
+Dim origins As Array = New Object() {AgEStkGraphicsOrigin.eStkGraphicsOriginCenter, AgEStkGraphicsOrigin.eStkGraphicsOriginBottomLeft, AgEStkGraphicsOrigin.eStkGraphicsOriginBottomRight, AgEStkGraphicsOrigin.eStkGraphicsOriginTopLeft}
+
+Dim parameters As IAgStkGraphicsMarkerBatchPrimitiveOptionalParameters = sceneManager.Initializers.MarkerBatchPrimitiveOptionalParameters.Initialize()
+parameters.SetOrigins(origins)

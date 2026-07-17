@@ -1,0 +1,11 @@
+C#
+
+// DistanceUnit
+string dimensionName = "Distance";
+string unitAbbreviation = root.UnitPreferences.GetCurrentUnitAbbrv(dimensionName);
+
+vbNet
+
+' DistanceUnit
+Dim dimensionName As String = "Distance"
+Dim unitAbbreviation As String = root.UnitPreferences.GetCurrentUnitAbbrv(dimensionName)

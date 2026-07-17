@@ -1,0 +1,28 @@
+C#
+
+IAgStkObject satellite = stkRoot.GetObjectFromPath("/Satellite/GEO");
+IAgStkObject otherObject = stkRoot.GetObjectFromPath("/Aircraft/UAV/Sensor/UAVSensor");
+IAgStkAccess access = satellite.GetAccessToObject(otherObject);
+
+access.AccessTimePeriod = AgEAccessTimeType.eUserSpecAccessTime;
+IAgAccessTimePeriod accessTimePeriod = access.AccessTimePeriodData as IAgAccessTimePeriod;
+
+if (otherObject.Vgt.EventIntervals.Contains("AvailabilityTimeSpan"))
+{
+    IAgCrdnEventInterval availabilityTimeSpan = otherObject.Vgt.EventIntervals["AvailabilityTimeSpan"];
+    accessTimePeriod.AccessInterval.SetImplicitInterval(availabilityTimeSpan);
+}
+
+vbNet
+
+Dim satellite As IAgStkObject = stkRoot.GetObjectFromPath("/Satellite/GEO")
+Dim otherObject As IAgStkObject = stkRoot.GetObjectFromPath("/Aircraft/UAV/Sensor/UAVSensor")
+Dim access As IAgStkAccess = satellite.GetAccessToObject(otherObject)
+
+access.AccessTimePeriod = AgEAccessTimeType.eUserSpecAccessTime
+Dim accessTimePeriod As IAgAccessTimePeriod = TryCast(access.AccessTimePeriodData, IAgAccessTimePeriod)
+
+If otherObject.Vgt.EventIntervals.Contains("AvailabilityTimeSpan") Then
+	Dim availabilityTimeSpan As IAgCrdnEventInterval = otherObject.Vgt.EventIntervals("AvailabilityTimeSpan")
+	accessTimePeriod.AccessInterval.SetImplicitInterval(availabilityTimeSpan)
+End If

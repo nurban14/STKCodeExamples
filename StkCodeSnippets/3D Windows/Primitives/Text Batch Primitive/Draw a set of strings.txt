@@ -1,0 +1,48 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+
+IAgStkGraphicsSceneManager manager = ((IAgScenario)root.CurrentScenario).SceneManager;
+
+Array text = new object[]
+{
+    "Philadelphia",
+    "Washington, D.C.",
+    "New Orleans",
+    "San Jose"
+};
+
+Array positions = new object[]
+{
+    39.88, -75.25, 0,    // Philadelphia
+    38.85, -77.04, 0, // Washington, D.C.
+    29.98, -90.25, 0, // New Orleans
+    37.37, -121.92, 0    // San Jose
+};
+
+IAgStkGraphicsGraphicsFont font = manager.Initializers.GraphicsFont.InitializeWithNameSizeFontStyleOutline("MS Sans Serif", 12, AgEStkGraphicsFontStyle.eStkGraphicsFontStyleBold, true);
+IAgStkGraphicsTextBatchPrimitive textBatch = manager.Initializers.TextBatchPrimitive.InitializeWithGraphicsFont(font);
+((IAgStkGraphicsPrimitive)textBatch).Color = Color.White;
+textBatch.OutlineColor = Color.Red;
+textBatch.SetCartographic("Earth", ref positions, ref text);
+
+manager.Primitives.Add((IAgStkGraphicsPrimitive)textBatch);
+
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+
+Dim manager As IAgStkGraphicsSceneManager = DirectCast(root.CurrentScenario, IAgScenario).SceneManager
+
+Dim text As Array = New Object() {"Philadelphia", "Washington, D.C.", "New Orleans", "San Jose"}
+
+Dim positions As Array = New Object() {39.88, -75.25, 0, _
+                                       38.85, -77.04, 0, _
+                                       29.98, -90.25, 0, _
+                                      37.37, -121.92, 0}
+
+Dim font As IAgStkGraphicsGraphicsFont = manager.Initializers.GraphicsFont.InitializeWithNameSizeFontStyleOutline("MS Sans Serif", 12, AgEStkGraphicsFontStyle.eStkGraphicsFontStyleBold, True)
+Dim textBatch As IAgStkGraphicsTextBatchPrimitive = manager.Initializers.TextBatchPrimitive.InitializeWithGraphicsFont(font)
+DirectCast(textBatch, IAgStkGraphicsPrimitive).Color = Color.White
+textBatch.OutlineColor = Color.Red
+textBatch.SetCartographic("Earth", positions, text)
+
+manager.Primitives.Add(DirectCast(textBatch, IAgStkGraphicsPrimitive))

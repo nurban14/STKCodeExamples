@@ -1,0 +1,5 @@
+Matlab
+% IAgStkObjectRoot root: STK Object Model Root
+satellite = root.CurrentScenario.Children.New('eSatellite', 'MySatellite');
+Python
+satellite = root.CurrentScenario.Children.New(AgESTKObjectType.eSatellite, 'MySatellite')

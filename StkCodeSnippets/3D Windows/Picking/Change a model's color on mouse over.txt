@@ -1,0 +1,102 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+// IAgStkGraphicsPrimitive m_SelectedModel: The previously selected model
+
+//
+// Get a collection of picked objects under the mouse location.
+// The collection is sorted with the closest object at index zero.
+//
+IAgStkGraphicsPickResultCollection collection = scene.Pick(mouseX, mouseY);
+if (collection.Count != 0)
+{
+    IAgStkGraphicsObjectCollection objects = collection[0].Objects;
+    IAgStkGraphicsCompositePrimitive composite = objects[0] as IAgStkGraphicsCompositePrimitive;
+
+    //
+    // Was a model in our composite picked?
+    //
+    if (composite == m_Models)
+    {
+        IAgStkGraphicsModelPrimitive model = objects[1] as IAgStkGraphicsModelPrimitive;
+
+        //
+        // Selected Model
+        //
+        if (model != null)
+        {
+            model.Articulations.GetByName("ColorCycle").GetByName("Seconds").CurrentValue = 4.0; // place.glb's cyan
+        }
+
+        if (model != m_SelectedModel)
+        {
+            //
+            // Unselect previous model
+            //
+            if (m_SelectedModel != null)
+            {
+                m_SelectedModel.Articulations.GetByName("ColorCycle").GetByName("Seconds").CurrentValue = 0.0; // place.glb's red
+            }
+            m_SelectedModel = model;
+            scene.Render();
+        }
+        return;
+    }
+}
+
+//
+// Unselect previous model
+//
+if (m_SelectedModel != null)
+{
+    m_SelectedModel.Articulations.GetByName("ColorCycle").GetByName("Seconds").CurrentValue = 0.0; // place.glb's red
+    m_SelectedModel = null;
+    scene.Render();
+}
+
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+// IAgStkGraphicsPrimitive m_SelectedModel: The previously selected model
+
+'
+' Get a collection of picked objects under the mouse location.
+' The collection is sorted with the closest object at index zero.
+'
+Dim collection As IAgStkGraphicsPickResultCollection = scene.Pick(mouseX, mouseY)
+If collection.Count &lt;&gt; 0 Then
+	Dim objects As IAgStkGraphicsObjectCollection = collection(0).Objects
+	Dim composite As IAgStkGraphicsCompositePrimitive = TryCast(objects(0), IAgStkGraphicsCompositePrimitive)
+
+	'
+	' Was a model in our composite picked?
+	'
+	If composite Is m_Models Then
+		Dim model As IAgStkGraphicsModelPrimitive = TryCast(objects(1), IAgStkGraphicsModelPrimitive)
+
+		'
+		' Selected Model
+		'
+		If model IsNot Nothing Then
+			model.Articulations.GetByName("ColorCycle").GetByName("Seconds").CurrentValue = 4.0 ' place.glb's cyan
+		End If
+
+		If model IsNot m_SelectedModel Then
+			'
+			' Unselect previous model
+			'
+			If m_SelectedModel IsNot Nothing Then
+				m_SelectedModel.Articulations.GetByName("ColorCycle").GetByName("Seconds").CurrentValue = 0.0 ' place.glb's red
+			End If
+			m_SelectedModel = model
+			scene.Render()
+		End If
+		Return
+	End If
+End If
+
+'
+' Unselect previous model
+'
+If m_SelectedModel IsNot Nothing Then
+	m_SelectedModel.Articulations.GetByName("ColorCycle").GetByName("Seconds").CurrentValue = 0.0 ' place.glb's red
+	m_SelectedModel = Nothing
+	scene.Render()

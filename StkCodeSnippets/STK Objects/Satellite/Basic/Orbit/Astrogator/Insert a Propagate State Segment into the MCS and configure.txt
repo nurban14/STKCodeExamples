@@ -1,0 +1,13 @@
+Matlab
+% IAgVADriverMCS driver: MCS driver interface
+propagate = driver.MainSequence.Insert('eVASegmentTypePropagate', 'Propagate', '-');
+propagate.PropagatorName = 'Earth Point Mass';
+propagate.Properties.Color = 16711680;  % Blue
+propagate.StoppingConditions.Item('Duration').Properties.Trip = 7200;
+Python
+
+# IAgVADriverMCS driver: MCS driver interface
+propagate = driver.MainSequence.Insert(AgEVASegmentType.eVASegmentTypePropagate, 'Propagate', '-')
+propagate.PropagatorName = 'Earth Point Mass'
+propagate.Properties.Color = Colors.Blue
+propagate.StoppingConditions.Item('Duration').Properties.Trip = 7200

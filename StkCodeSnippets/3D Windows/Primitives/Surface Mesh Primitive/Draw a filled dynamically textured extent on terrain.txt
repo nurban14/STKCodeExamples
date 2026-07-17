@@ -1,0 +1,54 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+// String rasterFile: The file to use as the raster
+
+IAgStkGraphicsSceneManager manager = ((IAgScenario)root.CurrentScenario).SceneManager;
+IAgStkGraphicsProjectionRasterStreamPluginActivator activator =
+    manager.Initializers.ProjectionRasterStreamPluginActivator.Initialize();
+IAgStkGraphicsProjectionRasterStreamPluginProxy proxy =
+    activator.CreateFromDisplayName("ProjectionRasterStreamPlugin.CSharp");
+
+//
+// Use reflection to set the plugin's properties
+//
+Type plugin = proxy.RealPluginObject.GetType();
+plugin.GetProperty("RasterPath").SetValue(proxy.RealPluginObject, rasterFile, null);
+
+IAgStkGraphicsRasterStream rasterStream = proxy.RasterStream;
+rasterStream.UpdateDelta = 0.025;
+
+IAgStkGraphicsRendererTexture2D texture = manager.Textures.FromRaster((IAgStkGraphicsRaster)rasterStream);
+Array extent = ((IAgStkGraphicsGlobeOverlay)overlay).Extent;
+IAgStkGraphicsSurfaceTriangulatorResult triangles = manager.Initializers.SurfaceExtentTriangulator.ComputeSimple("Earth", ref extent);
+IAgStkGraphicsSurfaceMeshPrimitive mesh = manager.Initializers.SurfaceMeshPrimitive.Initialize();
+((IAgStkGraphicsPrimitive)mesh).Translucency = 0.2f;
+mesh.Texture = texture;
+mesh.Set(triangles);
+manager.Primitives.Add((IAgStkGraphicsPrimitive)mesh);
+
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+// String rasterFile: The file to use as the raster
+
+Dim manager As IAgStkGraphicsSceneManager = DirectCast(root.CurrentScenario, IAgScenario).SceneManager
+
+Dim activator As IAgStkGraphicsProjectionRasterStreamPluginActivator = manager.Initializers.ProjectionRasterStreamPluginActivator.Initialize()
+Dim proxy As IAgStkGraphicsProjectionRasterStreamPluginProxy = activator.CreateFromDisplayName("ProjectionRasterStreamPlugin.VBNET")
+
+'
+' Use reflection to set the plugin's properties
+'
+Dim plugin As Type = proxy.RealPluginObject.[GetType]()
+plugin.GetProperty("RasterPath").SetValue(proxy.RealPluginObject, rasterFile, Nothing)
+
+Dim rasterStream As IAgStkGraphicsRasterStream = proxy.RasterStream
+rasterStream.UpdateDelta = 0.025
+
+Dim texture As IAgStkGraphicsRendererTexture2D = manager.Textures.FromRaster(DirectCast(rasterStream, IAgStkGraphicsRaster))
+Dim extent As Array = DirectCast(overlay, IAgStkGraphicsGlobeOverlay).Extent
+Dim triangles As IAgStkGraphicsSurfaceTriangulatorResult = manager.Initializers.SurfaceExtentTriangulator.ComputeSimple("Earth", extent)
+Dim mesh As IAgStkGraphicsSurfaceMeshPrimitive = manager.Initializers.SurfaceMeshPrimitive.Initialize()
+DirectCast(mesh, IAgStkGraphicsPrimitive).Translucency = 0.2F
+mesh.Texture = texture
+mesh.Set(triangles)
+manager.Primitives.Add(DirectCast(mesh, IAgStkGraphicsPrimitive))

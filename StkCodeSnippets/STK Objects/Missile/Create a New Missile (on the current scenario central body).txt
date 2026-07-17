@@ -1,0 +1,28 @@
+Matlab
+
+# IAgScenario scenario: Scenario object
+missile = scenario.Children.New(13,'MyMissile') # eMissile
+missile.SetTrajectoryType(10) # ePropagatorBallistic
+trajectory = missile.Trajectory
+trajectory.StartTime = 0
+trajectory.Launch.Lat = 29
+trajectory.Launch.Lon = -81
+trajectory.ImpactLocation.Impact.Lat = 27
+trajectory.ImpactLocation.Impact.Lon = -43
+trajectory.ImpactLocation.SetLaunchControlType(0) # eLaunchControlFixedApogeeAlt
+trajectory.impactLocation.LaunchControl.ApogeeAlt = 1200   # km
+trajectory.Propagate()
+
+Python
+# IAgScenario scenario: Scenario object
+missile = scenario.Children.New(13,'MyMissile') # eMissile
+missile.SetTrajectoryType(10) # ePropagatorBallistic
+trajectory = missile.Trajectory
+trajectory.StartTime = 0
+trajectory.Launch.Lat = 29
+trajectory.Launch.Lon = -81
+trajectory.ImpactLocation.Impact.Lat = 27
+trajectory.ImpactLocation.Impact.Lon = -43
+trajectory.ImpactLocation.SetLaunchControlType(0) # eLaunchControlFixedApogeeAlt
+trajectory.impactLocation.LaunchControl.ApogeeAlt = 1200   # km
+trajectory.Propagate()

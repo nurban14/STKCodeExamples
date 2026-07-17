@@ -1,0 +1,16 @@
+Matlab
+
+#IAgScenario scenario: Scenario object
+lineTarget = scenario.Children.New(11,'MyLineTarget') # eLineTarget
+point1 = lineTarget.Points.Add(34.72, -118.34)
+point2 = lineTarget.Points.Add(30.83, -82.67)
+
+
+Python
+
+#IAgScenario scenario: Scenario object
+lineTarget = scenario.Children.New(11,'MyLineTarget') # eLineTarget
+point1 = lineTarget.Points.Add(34.72, -118.34)
+point2 = lineTarget.Points.Add(30.83, -82.67)
+
+

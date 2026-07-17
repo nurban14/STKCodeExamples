@@ -1,0 +1,17 @@
+Matlab
+% IAgAntenna antenna: Antenna object
+antenna.UseRefractionInAccess = true;
+antenna.Refraction = 'eITU_R_P834_4';
+refraction = antenna.RefractionModel;
+refraction.Ceiling = 5000; %m
+refraction.AtmosAltitude = 10000; %m
+refraction.KneeBendFactor = 0.2;
+
+Python
+# IAgAntenna antenna: Antenna object
+antenna.UseRefractionInAccess = True
+antenna.Refraction = 3 # eITU_R_P834_4
+refraction = antenna.RefractionModel
+refraction.Ceiling = 5000 # m
+refraction.AtmosAltitude = 10000 # m
+refraction.KneeBendFactor = 0.2

@@ -1,0 +1,103 @@
+C#
+
+propagator.Method = AgEVeWayPtCompMethod.eDetermineTimeAccFromVel;
+
+Array waypoints = Array.CreateInstance(typeof(object), 4, 6);
+
+// Point #1
+waypoints.SetValue(0.0, 0, 0); // Lat
+waypoints.SetValue(0.0, 0, 1); // Lon
+waypoints.SetValue(35000, 0, 2); // Alt
+waypoints.SetValue(35, 0, 3); // Vel
+waypoints.SetValue(0.0, 0, 4); // Acc
+waypoints.SetValue(0.0, 0, 5); // Turn radius
+
+// Point #2
+waypoints.SetValue(0.1, 1, 0); // Lat
+waypoints.SetValue(0.1, 1, 1); // Lon
+waypoints.SetValue(35100, 1, 2); // Alt
+waypoints.SetValue(35, 1, 3); // Vel
+waypoints.SetValue(0.0, 1, 4); // Acc
+waypoints.SetValue(0.2, 1, 5); // Turn radius
+
+// Point #3
+waypoints.SetValue(0.2, 2, 0); // Lat
+waypoints.SetValue(0.2, 2, 1); // Lon
+waypoints.SetValue(35200, 2, 2); // Alt
+waypoints.SetValue(35, 2, 3); // Vel
+waypoints.SetValue(0.0, 2, 4); // Acc
+waypoints.SetValue(0.0, 2, 5); // Turn radius
+
+// Point #4
+waypoints.SetValue(0.0, 3, 0); // Lat
+waypoints.SetValue(0.0, 3, 1); // Lon
+waypoints.SetValue(35200, 3, 2); // Alt
+waypoints.SetValue(35, 3, 3); // Vel
+waypoints.SetValue(0.0, 3, 4); // Acc
+waypoints.SetValue(0.0, 3, 5); // Turn radius
+
+propagator.SetPointsSpecifyVelocityAndPropagate(ref waypoints);
+
+Assert.AreEqual(4, propagator.Waypoints.Count);
+
+vbNet
+
+propagator.Method = AgEVeWayPtCompMethod.eDetermineTimeAccFromVel
+
+Dim waypoints As Array = Array.CreateInstance(GetType(Object), 4, 6)
+
+' Point #1
+waypoints.SetValue(0, 0, 0)
+' Lat
+waypoints.SetValue(0, 0, 1)
+' Lon
+waypoints.SetValue(35000, 0, 2)
+' Alt
+waypoints.SetValue(35, 0, 3)
+' Vel
+waypoints.SetValue(0, 0, 4)
+' Acc
+waypoints.SetValue(0, 0, 5)
+' Turn radius
+' Point #2
+waypoints.SetValue(0.1, 1, 0)
+' Lat
+waypoints.SetValue(0.1, 1, 1)
+' Lon
+waypoints.SetValue(35100, 1, 2)
+' Alt
+waypoints.SetValue(35, 1, 3)
+' Vel
+waypoints.SetValue(0, 1, 4)
+' Acc
+waypoints.SetValue(0.2, 1, 5)
+' Turn radius
+' Point #3
+waypoints.SetValue(0.2, 2, 0)
+' Lat
+waypoints.SetValue(0.2, 2, 1)
+' Lon
+waypoints.SetValue(35200, 2, 2)
+' Alt
+waypoints.SetValue(35, 2, 3)
+' Vel
+waypoints.SetValue(0, 2, 4)
+' Acc
+waypoints.SetValue(0, 2, 5)
+' Turn radius
+' Point #4
+waypoints.SetValue(0, 3, 0)
+' Lat
+waypoints.SetValue(0, 3, 1)
+' Lon
+waypoints.SetValue(35200, 3, 2)
+' Alt
+waypoints.SetValue(35, 3, 3)
+' Vel
+waypoints.SetValue(0, 3, 4)
+' Acc
+waypoints.SetValue(0, 3, 5)
+' Turn radius
+propagator.SetPointsSpecifyVelocityAndPropagate(waypoints)
+
+Assert.AreEqual(4, propagator.Waypoints.Count)

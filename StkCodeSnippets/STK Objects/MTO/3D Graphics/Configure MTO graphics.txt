@@ -1,0 +1,52 @@
+C#
+
+IAgMtoVOTrackCollection tracks = mto.VO.Tracks;
+foreach (IAgMtoVOTrack element in tracks)
+{
+    element.Marker.PixelSize = 12;
+    element.Marker.OrientationMode = AgEVOMarkerOrientation.eVOMarkerOrientationAngle;
+    element.Marker.XOrigin = AgEVOMarkerOriginType.eRight;
+    element.Marker.YOrigin = AgEVOMarkerOriginType.eBottom;
+    element.Marker.Angle = 1.23;
+
+    element.Marker.MarkerType = AgEMarkerType.eImageFile;
+    element.Marker.SetMarkerImageFile(@"STKData\VO\Markers\Fire.ppm");
+
+    element.Model.IsVisible = true;
+    element.Model.Filename = @"STKData\VO\Models\Land\ariane-lp.glb";
+    element.Model.InitialBearing = 3.0;
+    element.Model.ScaleValue = 2.0;
+    element.Model.ZPointsNadir = true;
+
+    element.Label.Enable = true;
+    element.Label.X = 33.5;
+    element.Label.Y = 82.2;
+    element.Label.Z = 100.0;
+    element.Label.OffsetFrame = AgEOffsetFrameType.eOffsetFrameCartesian;
+}
+
+vbNet
+
+Dim tracks As IAgMtoVOTrackCollection = mto.VO.Tracks
+For Each element As IAgMtoVOTrack In tracks
+	element.Marker.PixelSize = 12
+	element.Marker.OrientationMode = AgEVOMarkerOrientation.eVOMarkerOrientationAngle
+	element.Marker.XOrigin = AgEVOMarkerOriginType.eRight
+	element.Marker.YOrigin = AgEVOMarkerOriginType.eBottom
+	element.Marker.Angle = 1.23
+
+	element.Marker.MarkerType = AgEMarkerType.eImageFile
+	element.Marker.SetMarkerImageFile("STKData\VO\Markers\Fire.ppm")
+
+	element.Model.IsVisible = True
+	element.Model.Filename = "STKData\VO\Models\Land\ariane-lp.glb"
+	element.Model.InitialBearing = 3
+	element.Model.ScaleValue = 2
+	element.Model.ZPointsNadir = True
+
+	element.Label.Enable = True
+	element.Label.X = 33.5
+	element.Label.Y = 82.2
+	element.Label.Z = 100
+	element.Label.OffsetFrame = AgEOffsetFrameType.eOffsetFrameCartesian
+Next

@@ -1,0 +1,33 @@
+C#
+
+// Create a date representing now
+IAgDate nowDate = root.ConversionUtility.NewDate("DD/MM/YYYY", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"));
+
+// Dates can be modified using Add 52 days
+IAgDate newDate = nowDate.Add("day", 52.0);
+
+// Differences between dates are calculated from Span function
+IAgQuantity span = newDate.Span(nowDate);
+
+// IAgDate also provides formatting functionalities
+span.ConvertToUnit("min");
+Console.WriteLine("Date(now) in UTCG is: {0}", nowDate.Format("UTCG"));
+Console.WriteLine("Date(52 days from now) in UTCG is: {0}", newDate.Format("UTCG"));
+Console.WriteLine("The difference between now and 52 days to come is {0} minutes!", span.Value);
+
+vbNet
+
+' Create a date representing now
+Dim nowDate As IAgDate = root.ConversionUtility.NewDate("DD/MM/YYYY", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"))
+
+' Dates can be modified using Add 52 days
+Dim newDate As IAgDate = nowDate.Add("day", 52)
+
+' Differences between dates are calculated from Span function
+Dim span As IAgQuantity = newDate.Span(nowDate)
+
+' IAgDate also provides formatting functionalities
+span.ConvertToUnit("min")
+Console.WriteLine("Date(now) in UTCG is: {0}", nowDate.Format("UTCG"))
+Console.WriteLine("Date(52 days from now) in UTCG is: {0}", newDate.Format("UTCG"))
+Console.WriteLine("The difference between now and 52 days to come is {0} minutes!", span.Value)

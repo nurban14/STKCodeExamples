@@ -1,0 +1,18 @@
+C#
+
+Array coordinates = new object[]
+{
+    0, 0, 1, 1,
+    0, 0, 1, 1
+};
+
+IAgStkGraphicsTriangleMeshPrimitiveOptionalParameters parameters = sceneManager.Initializers.TriangleMeshPrimitiveOptionalParameters.Initialize();
+parameters.SetTextureCoordinates(ref coordinates);
+
+vbNet
+
+Dim coordinates As Array = New Object() {0, 0, 1, 1, 0, 0, _
+	1, 1}
+
+Dim parameters As IAgStkGraphicsTriangleMeshPrimitiveOptionalParameters = sceneManager.Initializers.TriangleMeshPrimitiveOptionalParameters.Initialize()
+parameters.SetTextureCoordinates(coordinates)

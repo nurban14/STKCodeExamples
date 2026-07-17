@@ -1,0 +1,14 @@
+C#
+
+// Check if the event array with specified name exists
+if (provider.EventArrays.Contains("EventArrayName"))
+{
+    provider.EventArrays.Remove("EventArrayName");
+}
+
+vbNet
+
+' Check if the event array with specified name exists
+If provider.EventArrays.Contains("EventArrayName") Then
+	provider.EventArrays.Remove("EventArrayName")
+End If

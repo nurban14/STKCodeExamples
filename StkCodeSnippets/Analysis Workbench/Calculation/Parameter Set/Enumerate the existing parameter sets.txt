@@ -1,0 +1,20 @@
+C#
+
+// Enumerate the existing ParameterSets using specified CrdnProvider.
+foreach (IAgCrdnParameterSet parameterSet in provider.ParameterSets)
+{
+    // All parameter sets implement IAgCrdn interface which provides
+    // information about the parameter set instance and its type.
+    IAgCrdn crdn = parameterSet as IAgCrdn;
+    Console.WriteLine("Name: {0}, type: {1}", crdn.Name, parameterSet.Type);
+}
+
+vbNet
+
+' Enumerate the existing ParameterSets using specified CrdnProvider.
+For Each parameterSet As IAgCrdnParameterSet In provider.ParameterSets
+	' All parameter sets implement IAgCrdn interface which provides
+	' information about the parameter set instance and its type.
+	Dim crdn As IAgCrdn = TryCast(parameterSet, IAgCrdn)
+	Console.WriteLine("Name: {0}, type: {1}", crdn.Name, parameterSet.Type)
+Next

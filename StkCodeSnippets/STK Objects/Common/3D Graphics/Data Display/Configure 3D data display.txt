@@ -1,0 +1,45 @@
+C#
+
+// Add existing data display
+// See AvailableData property for available data display
+IAgVODataDisplayElement displayElement = datadisplaycol.Add("Solar Intensity");
+
+// Configure data display as needed
+displayElement.TitleText = "Sol. Intensity";
+displayElement.IsVisible = true;
+displayElement.Location = AgEVOLocation.e3DWindow;
+displayElement.FontColor = Color.White;
+displayElement.FontSize = AgEVOFontSize.eSmall;
+displayElement.UseBackground = true;
+displayElement.BgColor = Color.Orange;
+displayElement.UseAutoSizeWidth = false;
+displayElement.UseAutoSizeHeight = false;
+displayElement.BgHeight = 55;
+displayElement.BgWidth = 260;
+displayElement.BackgroundTranslucency = 0.5;
+displayElement.UseBackgroundTexture = false;
+displayElement.UseBackgroundBorder = true;
+displayElement.BackgroundBorderColor = Color.White;
+
+vbNet
+
+' Add existing data display
+' See AvailableData property for available data display
+Dim displayElement As IAgVODataDisplayElement = datadisplaycol.Add("Solar Intensity")
+
+' Configure data display as needed
+displayElement.TitleText = "Sol. Intensity"
+displayElement.IsVisible = True
+displayElement.Location = AgEVOLocation.e3DWindow
+displayElement.FontColor = Color.White
+displayElement.FontSize = AgEVOFontSize.eSmall
+displayElement.UseBackground = True
+displayElement.BgColor = Color.Orange
+displayElement.UseAutoSizeWidth = False
+displayElement.UseAutoSizeHeight = False
+displayElement.BgHeight = 55
+displayElement.BgWidth = 260
+displayElement.BackgroundTranslucency = 0.5
+displayElement.UseBackgroundTexture = False
+displayElement.UseBackgroundBorder = True
+displayElement.BackgroundBorderColor = Color.White

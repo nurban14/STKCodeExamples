@@ -1,0 +1,29 @@
+Matlab
+%% Extracting Specific Grouped Time Dependent Data Elements at Discrete Times
+% IAgStkObjectRoot root: STK Object Model root
+% IAgSatellite satellite: Satellite object
+
+% Change DateFormat dimension to epoch seconds to make the data easier to handle in MATLAB
+root.UnitPreferences.Item('DateFormat').SetCurrentUnit('EpSec');
+times = {0;15000;20000;55000};
+
+elems = {'x';'y';'z'};
+
+%Extract Satellite Position Data at 0, 15000,20000,55000 Epoch Seconds
+satPosDP = satellite.DataProviders.Item('Cartesian Position').Group.Item('ICRF').ExecSingleElementsArray(times,elems);
+
+%Integer parameter in GetArray() matches order of elemenets in "elems"
+satx = cell2mat(satPosDP.GetArray(cast(0, 'int32')));
+saty = cell2mat(satPosDP.GetArray(cast(1, 'int32')));
+satz = cell2mat(satPosDP.GetArray(cast(2, 'int32')));
+
+%Alternatively...
+satVelDP = satellite.DataProviders.GetDataPrvTimeVarFromPath('Cartesian Velocity/ICRF').ExecSingleElementsArray(times,elems);
+% There are 4 Methods to get DP From a Path depending on the kind of DP:
+%   GetDataPrvTimeVarFromPath
+%   GetDataPrvIntervalFromPath
+%   GetDataPrvInfoFromPath
+%   GetDataPrvFixedFromPath
+satvx = cell2mat(satVelDP.GetArray(cast(0, 'int32')));
+satvy = cell2mat(satVelDP.GetArray(cast(1, 'int32')));
+satvz = cell2mat(satVelDP.GetArray(cast(2, 'int32')));

@@ -1,0 +1,45 @@
+C#
+// IAgChain chain: Chain object
+
+chain.StartObject = scenarioObj.Children.GetItemByName("fac1");
+chain.EndObject = scenarioObj.Children.GetItemByName("air1");
+
+IAgChConnectionCollection connections = chain.Connections;
+connections.Add(scenarioObj.Children.GetItemByName("sat2"), scenarioObj.Children.GetItemByName("air1"), 1, 1);
+connections.Add(scenarioObj.Children.GetItemByName("fac1"), scenarioObj.Children.GetItemByName("sat1"), 1, 1);
+connections.Add(scenarioObj.Children.GetItemByName("sat1"), scenarioObj.Children.GetItemByName("sat2"), 1, 1);
+
+// Compute the chain
+chain.ComputeAccess();
+
+Matlab
+% IAgChain chain: Chain object
+
+% Add some objects to chain (using STK path)
+chain.Objects.Add('Facility/MyFacility');
+chain.Objects.Add('Satellite/MySatellite');
+
+% Compute the chain
+chain.ComputeAccess();
+Python
+# IAgChain chain: Chain object
+
+# Add some objects to chain (using STK path)
+chain.Objects.Add('Facility/MyFacility')
+chain.Objects.Add('Satellite/MySatellite')
+
+# Compute the chain
+chain.ComputeAccess()
+vbNet
+// IAgChain chain: Chain object
+
+chain.StartObject = scenarioObj.Children.GetItemByName("fac1")
+chain.EndObject = scenarioObj.Children.GetItemByName("air1")
+
+Dim connections As IAgChConnectionCollection = chain.Connections
+connections.Add(scenarioObj.Children.GetItemByName("sat2"), scenarioObj.Children.GetItemByName("air1"), 1, 1)
+connections.Add(scenarioObj.Children.GetItemByName("fac1"), scenarioObj.Children.GetItemByName("sat1"), 1, 1)
+connections.Add(scenarioObj.Children.GetItemByName("sat1"), scenarioObj.Children.GetItemByName("sat2"), 1, 1)
+
+' Compute the chain
+chain.ComputeAccess()

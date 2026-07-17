@@ -1,0 +1,20 @@
+C#
+// IAgStkGraphicsSceneManager sceneManager: The STK Graphics scene manager
+
+Array position = new object[]
+{
+    1089235,
+    -4800930,
+    4046386
+};
+
+IAgStkGraphicsPathPoint path = sceneManager.Initializers.PathPoint.InitializeWithDateAndPosition(
+    root.ConversionUtility.NewDate("UTCG", ((IAgScenario)root.CurrentScenario).StartTime.ToString()),
+    ref position);
+
+vbNet
+// IAgStkGraphicsSceneManager sceneManager: The STK Graphics scene manager
+
+Dim position As Array = New Object() {1089235, -4800930, 4046386}
+
+Dim path As IAgStkGraphicsPathPoint = sceneManager.Initializers.PathPoint.InitializeWithDateAndPosition(root.ConversionUtility.NewDate("UTCG", DirectCast(root.CurrentScenario, IAgScenario).StartTime.ToString()), position)

@@ -1,0 +1,44 @@
+C#
+
+// Set figure of merit definition to eFmAccessDuration
+fom.SetDefinitionType(AgEFmDefinitionType.eFmAccessDuration);
+
+// Get IAgFmDefCompute interface
+IAgFmDefCompute defComp = fom.Definition as IAgFmDefCompute;
+
+if (defComp.IsComputeTypeSupported(AgEFmCompute.ePercentAbove))
+{
+    // Set Compute type to supported compute option
+    defComp.SetComputeType(AgEFmCompute.ePercentAbove);
+
+    // Get compute option compute interface
+    IAgFmDefDataPercentLevel fomData = defComp.Compute as IAgFmDefDataPercentLevel;
+    fomData.PercentLevel = .25;
+}
+
+Matlab
+# IAgCoverageDefinition coverage: Coverage object
+fom = coverage.Children.New(25, 'AccessDuration') # eFigureOfMerit
+fom.SetDefinitionType(1) # eFmAccessDuration
+fom.Definition.SetComputeType(1) # eMaximum
+Python
+# IAgCoverageDefinition coverage: Coverage object
+fom = coverage.Children.New(25, 'AccessDuration') # eFigureOfMerit
+fom.SetDefinitionType(1) # eFmAccessDuration
+fom.Definition.SetComputeType(1) # eMaximum
+vbNet
+
+' Set figure of merit definition to eFmAccessDuration
+fom.SetDefinitionType(AgEFmDefinitionType.eFmAccessDuration)
+
+' Get IAgFmDefCompute interface
+Dim defComp As IAgFmDefCompute = TryCast(fom.Definition, IAgFmDefCompute)
+
+If defComp.IsComputeTypeSupported(AgEFmCompute.ePercentAbove) Then
+	' Set Compute type to supported compute option
+	defComp.SetComputeType(AgEFmCompute.ePercentAbove)
+
+	' Get compute option compute interface
+	Dim fomData As IAgFmDefDataPercentLevel = TryCast(defComp.Compute, IAgFmDefDataPercentLevel)
+	fomData.PercentLevel = 0.25
+End If

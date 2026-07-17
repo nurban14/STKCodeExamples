@@ -1,0 +1,48 @@
+C#
+
+IAgCrdnProvider provider = stkRoot.GetObjectFromPath("Satellite/LEO").Vgt;
+IAgCrdnEvent timeEvent = provider.Events["PassIntervals.First.Start"];
+
+IAgCrdnEventFindOccurrenceResult occurrence = timeEvent.FindOccurrence();
+
+if (occurrence.IsValid)
+{
+    Console.WriteLine("The first pass interval happened at: " + occurrence.Epoch);
+}
+else
+{
+    Console.WriteLine("The first pass interval never occurred");
+}
+
+// create a satellite with no ephem and find that there's no ocurrence of PassIntervals.First.Start
+IAgStkObject noEphemObj = stkRoot.CurrentScenario.Children.New(AgESTKObjectType.eSatellite, "NoEphem_FindOccurenceTest");
+IAgCrdnProvider provider2 = noEphemObj.Vgt;
+IAgCrdnEvent timeEvent2 = provider2.Events["EphemerisStartTime"];
+IAgCrdnEventFindOccurrenceResult occurrence2 = timeEvent2.FindOccurrence();
+
+Assert.IsFalse(occurrence2.IsValid);
+
+noEphemObj.Unload();
+
+vbNet
+
+Dim provider As IAgCrdnProvider = stkRoot.GetObjectFromPath("Satellite/LEO").Vgt
+Dim timeEvent As IAgCrdnEvent = provider.Events("PassIntervals.First.Start")
+
+Dim occurrence As IAgCrdnEventFindOccurrenceResult = timeEvent.FindOccurrence()
+
+If occurrence.IsValid Then
+	Console.WriteLine("The first pass interval happened at: " + occurrence.Epoch)
+Else
+	Console.WriteLine("The first pass interval never occurred")
+End If
+
+' create a satellite with no ephem and find that there's no ocurrence of PassIntervals.First.Start
+Dim noEphemObj As IAgStkObject = stkRoot.CurrentScenario.Children.[New](AgESTKObjectType.eSatellite, "NoEphem_FindOccurenceTest")
+Dim provider2 As IAgCrdnProvider = noEphemObj.Vgt
+Dim timeEvent2 As IAgCrdnEvent = provider2.Events("EphemerisStartTime")
+Dim occurrence2 As IAgCrdnEventFindOccurrenceResult = timeEvent2.FindOccurrence()
+
+Assert.IsFalse(occurrence2.IsValid)
+
+noEphemObj.Unload()

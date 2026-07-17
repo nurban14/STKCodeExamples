@@ -1,0 +1,9 @@
+C#
+// IAgScenario scenario: Scenario object
+
+scenario.AnalysisInterval.SetStartTimeAndDuration("Today", "+1 Day");
+
+vbNet
+// IAgScenario scenario: Scenario object
+
+scenario.AnalysisInterval.SetStartTimeAndDuration("Today", "+1 Day")

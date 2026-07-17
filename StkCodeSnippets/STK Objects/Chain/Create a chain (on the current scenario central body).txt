@@ -1,0 +1,10 @@
+Matlab
+% IAgStkObjectRoot root: STK Object Model Root
+% Create the Chain on the current scenario central body (use
+% NewOnCentralBody to specify explicitly the central body)
+chain = root.CurrentScenario.Children.New('eChain', 'MyChain');
+Python
+# IAgStkObjectRoot root: STK Object Model Root
+# Create the Chain on the current scenario central body (use
+# NewOnCentralBody to specify explicitly the central body)
+chain = root.CurrentScenario.Children.New(4, 'MyChain') # eChain

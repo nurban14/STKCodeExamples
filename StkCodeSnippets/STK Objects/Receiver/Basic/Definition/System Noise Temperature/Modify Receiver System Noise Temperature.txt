@@ -1,0 +1,9 @@
+Matlab
+% IAgReceiver receiver: Receiver object
+recModel = receiver.Model;
+recModel.SystemNoiseTemperature.ConstantNoiseTemperature = 280; %K
+Python
+
+# IAgReceiver receiver: Receiver object
+recModel = receiver.Model
+recModel.SystemNoiseTemperature.ConstantNoiseTemperature = 280 # K

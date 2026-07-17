@@ -1,0 +1,11 @@
+C#
+// IAgAreaTarget areaTarget: AreaTarget object
+
+// By using the CommonTasks interface
+areaTarget.CommonTasks.SetAreaTypeEllipse(85.25, 80.75, 44);
+
+vbNet
+// IAgAreaTarget areaTarget: AreaTarget object
+
+' By using the CommonTasks interface
+areaTarget.CommonTasks.SetAreaTypeEllipse(85.25, 80.75, 44)

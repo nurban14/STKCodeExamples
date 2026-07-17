@@ -1,0 +1,36 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+// String globeOverlayFile: Location of the globe overlay file
+
+IAgStkGraphicsSceneManager manager = ((IAgScenario)root.CurrentScenario).SceneManager;
+
+IAgStkGraphicsGeospatialImageGlobeOverlay overlay = manager.Initializers.GeospatialImageGlobeOverlay.InitializeWithString(globeOverlayFile);
+
+IAgDate start = root.ConversionUtility.NewDate("UTCG", "30 May 2008 14:30:00.000");
+IAgDate end = root.ConversionUtility.NewDate("UTCG", "30 May 2008 15:00:00.000");
+
+((IAgScenario)root.CurrentScenario).Animation.StartTime = double.Parse(start.Subtract("sec", 3600).Format("epSec"));
+
+IAgStkGraphicsTimeIntervalDisplayCondition condition =
+    manager.Initializers.TimeIntervalDisplayCondition.InitializeWithTimes(start, end);
+((IAgStkGraphicsGlobeOverlay)overlay).DisplayCondition = condition as IAgStkGraphicsDisplayCondition;
+
+scene.CentralBodies.Earth.Imagery.Add((IAgStkGraphicsGlobeImageOverlay)overlay);
+
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+// String globeOverlayFile: Location of the globe overlay file
+
+Dim manager As IAgStkGraphicsSceneManager = DirectCast(root.CurrentScenario, IAgScenario).SceneManager
+
+Dim overlay As IAgStkGraphicsGeospatialImageGlobeOverlay = manager.Initializers.GeospatialImageGlobeOverlay.InitializeWithString(globeOverlayFile)
+
+Dim start As IAgDate = root.ConversionUtility.NewDate("UTCG", "30 May 2008 14:30:00.000")
+Dim [end] As IAgDate = root.ConversionUtility.NewDate("UTCG", "30 May 2008 15:00:00.000")
+
+DirectCast(root.CurrentScenario, IAgScenario).Animation.StartTime = Double.Parse(start.Subtract("sec", 3600).Format("epSec"))
+
+Dim condition As IAgStkGraphicsTimeIntervalDisplayCondition = manager.Initializers.TimeIntervalDisplayCondition.InitializeWithTimes(start, [end])
+DirectCast(overlay, IAgStkGraphicsGlobeOverlay).DisplayCondition = TryCast(condition, IAgStkGraphicsDisplayCondition)
+
+scene.CentralBodies.Earth.Imagery.Add(DirectCast(overlay, IAgStkGraphicsGlobeImageOverlay))

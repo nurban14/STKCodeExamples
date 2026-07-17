@@ -1,0 +1,7 @@
+C#
+
+IAgSnPtFixedAxes fixedAxesSensor = sensor.CommonTasks.SetPointingFixedAxesQuat("CentralBody/Sun J2000 Axes", 0.1, 0.2, 0.3, 0.4);
+
+vbNet
+
+Dim fixedAxesSensor As IAgSnPtFixedAxes = sensor.CommonTasks.SetPointingFixedAxesQuat("CentralBody/Sun J2000 Axes", 0.1, 0.2, 0.3, 0.4)

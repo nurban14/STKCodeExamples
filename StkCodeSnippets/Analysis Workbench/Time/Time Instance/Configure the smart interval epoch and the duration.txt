@@ -1,0 +1,28 @@
+C#
+
+// Change the time interval to 1 week after the dependent interval.
+IAgCrdnEventSmartEpoch epochOfInterest = smartInterval.GetStopEpoch();
+smartInterval.SetStartEpochAndDuration(epochOfInterest, "+1 week");
+
+// Or if you want a specific time, use SetStartTimeAndDuration.
+smartInterval.SetStartTimeAndDuration("1 Jan 2015 16:00:00.000", "+1 day");
+
+// You can find the event times, such as
+Console.WriteLine("Start Time: " + smartInterval.FindStartTime());
+Console.WriteLine("Stop Time: " + smartInterval.FindStopTime());
+Console.WriteLine("Duration: " + smartInterval.DurationAsString); // Note, only works if you specified duration.
+
+vbNet
+
+' Change the time interval to 1 week after the dependent interval.
+Dim epochOfInterest As IAgCrdnEventSmartEpoch = smartInterval.GetStopEpoch()
+smartInterval.SetStartEpochAndDuration(epochOfInterest, "+1 week")
+
+' Or if you want a specific time, use SetStartTimeAndDuration.
+smartInterval.SetStartTimeAndDuration("1 Jan 2015 16:00:00.000", "+1 day")
+
+' You can find the event times, such as
+Console.WriteLine("Start Time: " + smartInterval.FindStartTime())
+Console.WriteLine("Stop Time: " + smartInterval.FindStopTime())
+Console.WriteLine("Duration: " + smartInterval.DurationAsString)
+' Note, only works if you specified duration.

@@ -1,0 +1,20 @@
+C#
+
+// Enumerate the existing Planes using specified CrdnProvider.
+foreach (IAgCrdnPlane plane in provider.Planes)
+{
+    // All planes implement IAgCrdn interface which provides
+    // information about the plane instance and its type.
+    IAgCrdn crdn = plane as IAgCrdn;
+    Console.WriteLine("Name: {0}, type: {1}", crdn.Name, plane.Type);
+}
+
+vbNet
+
+' Enumerate the existing Planes using specified CrdnProvider.
+For Each plane As IAgCrdnPlane In provider.Planes
+	' All planes implement IAgCrdn interface which provides
+	' information about the plane instance and its type.
+	Dim crdn As IAgCrdn = TryCast(plane, IAgCrdn)
+	Console.WriteLine("Name: {0}, type: {1}", crdn.Name, plane.Type)
+Next

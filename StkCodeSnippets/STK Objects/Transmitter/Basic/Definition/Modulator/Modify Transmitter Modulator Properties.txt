@@ -1,0 +1,11 @@
+Matlab
+% IAgTransmitter transmitter: Transmitter object
+txModel = transmitter.Model;
+txModel.SetModulator('BPSK');
+txModel.Modulator.AutoScaleBandwidth = true;
+
+Python
+# IAgTransmitter transmitter: Transmitter object
+txModel = transmitter.Model
+txModel.SetModulator('BPSK')
+txModel.Modulator.AutoScaleBandwidth = True

@@ -1,0 +1,11 @@
+C#
+// IAgStkObject facility: STK Object that contains fixed data provider
+
+IAgDataPrvFixed dp = facility.DataProviders.GetDataPrvFixedFromPath("Terrain Info//LocalHorizontal");
+IAgDrResult result = dp.Exec();
+
+vbNet
+// IAgStkObject facility: STK Object that contains fixed data provider
+
+Dim dp As IAgDataPrvFixed = facility.DataProviders.GetDataPrvFixedFromPath("Terrain Info//LocalHorizontal")
+Dim result As IAgDrResult = dp.Exec()

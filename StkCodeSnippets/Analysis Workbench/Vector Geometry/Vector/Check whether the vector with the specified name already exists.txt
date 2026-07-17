@@ -1,0 +1,16 @@
+C#
+// String VectorName: Name of the vector to check for.
+
+//Check if the vector with specified name already exists.
+if (provider.Vectors.Contains(VectorName))
+{
+    Console.WriteLine("The vector {0} already exists!", VectorName);
+}
+
+vbNet
+// String VectorName: Name of the vector to check for.
+
+'Check if the vector with specified name already exists.
+If provider.Vectors.Contains(VectorName) Then
+	Console.WriteLine("The vector {0} already exists!", VectorName)
+End If

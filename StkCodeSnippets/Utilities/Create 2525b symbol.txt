@@ -1,0 +1,17 @@
+C#
+// String filePath: Saved image file path
+
+// Generate a 2525b symbol
+IAgStdMil2525bSymbols symbol = root.StdMil2525bSymbols;
+
+// Configure symbol properties
+symbol.SymbolImageSize = 128;
+symbol.FillEnabled = true;
+
+// CreateSymbol
+symbol.CreateSymbol("sjgpewrh--mtusg", filePath);
+
+vbNet
+// String filePath: Saved image file path
+
+

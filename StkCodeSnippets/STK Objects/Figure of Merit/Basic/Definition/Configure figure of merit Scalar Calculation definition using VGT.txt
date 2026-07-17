@@ -1,0 +1,21 @@
+C#
+// IAgStkObjectRoot stkRoot: STK Object Model root
+
+// Get the qualified path of a Scalar Calculation (e.g.
+IAgCrdnProvider provider = stkRoot.VgtRoot.GetProvider("CentralBody/Sun");
+IAgCrdnCalcScalar calcScalar = provider.CalcScalars[0];
+string calcScalarQualifiedPath = (calcScalar as IAgCrdn).QualifiedPath;
+
+// Set the Scalar Calculation definition using the qualified path
+IAgFmDefScalarCalculation scalarCalculation = fom.SetScalarCalculationDefinition(calcScalarQualifiedPath);
+
+vbNet
+// IAgStkObjectRoot stkRoot: STK Object Model root
+
+' Get the qualified path of a Scalar Calculation (e.g.
+Dim provider As IAgCrdnProvider = stkRoot.VgtRoot.GetProvider("CentralBody/Sun")
+Dim calcScalar As IAgCrdnCalcScalar = provider.CalcScalars(0)
+Dim calcScalarQualifiedPath As String = TryCast(calcScalar, IAgCrdn).QualifiedPath
+
+' Set the Scalar Calculation definition using the qualified path
+Dim scalarCalculation As IAgFmDefScalarCalculation = fom.SetScalarCalculationDefinition(calcScalarQualifiedPath)

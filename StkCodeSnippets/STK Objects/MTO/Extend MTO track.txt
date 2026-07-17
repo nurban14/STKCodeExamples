@@ -1,0 +1,33 @@
+C#
+
+Array time = new object[]
+             {
+                 "1 Jan 2012 12:20:00.000", "1 Jan 2012 12:30:00.000"
+             };
+Array latitude = new object[]
+                 {
+                     -18.35, 19.55
+                 };
+Array longitude = new object[]
+                  {
+                      -42.10, 83.21
+                  };
+Array altitude = new object[]
+                 {
+                     30.52, 15.81
+                 };
+
+// Extend expects each parameter to be a two dimensional array,
+// all arrays must have the same length
+trackPointCollection.Extend(ref time, ref latitude, ref longitude, ref altitude);
+
+vbNet
+
+Dim time As Array = New Object() {"1 Jan 2012 12:20:00.000", "1 Jan 2012 12:30:00.000"}
+Dim latitude As Array = New Object() {-18.35, 19.55}
+Dim longitude As Array = New Object() {-42.1, 83.21}
+Dim altitude As Array = New Object() {30.52, 15.81}
+
+' Extend expects each parameter to be a two dimensional array,
+' all arrays must have the same length
+trackPointCollection.Extend(time, latitude, longitude, altitude)

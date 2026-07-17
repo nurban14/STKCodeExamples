@@ -1,0 +1,4 @@
+Matlab
+
+% IAgStkObjectRoot root: STK Object Model root
+icrf = root.CentralBodies.Earth.Vgt.Systems.Item('ICRF');

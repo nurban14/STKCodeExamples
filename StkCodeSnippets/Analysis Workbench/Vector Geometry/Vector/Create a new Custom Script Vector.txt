@@ -1,0 +1,25 @@
+Matlab
+
+% IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+VectFactory = vgtSat.Vectors.Factory;
+customScript = VectFactory.Create('Script','Description','eCrdnVectorTypeCustomScript');
+% Initialization script if needed
+% customScript.InitializationScriptFile = '';
+customScript.ScriptFile = '<Install Dir>\CodeSamples\Extend\PluginScripts\VB_CustomVector.vbs';
+if customScript.IsValid == false
+    disp('Script component not valid!');
+    disp(['Copy vbs file from <Install Dir>\CodeSamples\Extend\PluginScripts\VB_CustomVector.vbs to C:\Users\' getenv('USERNAME') '\Documents\STK 13\Config\Scripting\VectorTool']);
+end
+
+
+Python
+# IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+VectFactory = vgtSat.Vectors.Factory
+customScript = VectFactory.Create('Script', 'Description', AgECrdnVectorType.eCrdnVectorTypeCustomScript)
+# Initialization script if needed
+# customScript.InitializationScriptFile = ''
+customScript.ScriptFile = r'C:\Program Files\AGI\STK 12\Data\Resources\stktraining\samples\Heliograph\Scripting\VectorTool\Vector\vector.vbs'
+if customScript.IsValid is False:
+    print('Script component not valid!')
+    from os import getenv
+    print(r'Copy vbs file from C:\Program Files\AGI\STK 12\Data\Resources\stktraining\samples\Heliograph\Scripting\VectorTool\Vector\vector.vbs to C:\Users\%s\Documents\STK 12\Config\Scripting\VectorTool' % getenv('USERNAME'))

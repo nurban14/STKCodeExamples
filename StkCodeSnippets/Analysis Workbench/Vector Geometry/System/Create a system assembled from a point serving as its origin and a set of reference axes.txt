@@ -1,0 +1,20 @@
+C#
+// IAgCrdnPoint OriginPoint: A point of origin.
+// IAgCrdnAxes ReferenceAxes: A reference axes.
+
+IAgCrdnSystemAssembled system = (IAgCrdnSystemAssembled)provider.Systems.Factory.Create(
+    "SystemName", string.Empty, AgECrdnSystemType.eCrdnSystemTypeAssembled);
+// Set the system's origin point.
+system.OriginPoint.SetPoint(OriginPoint);
+// Set the system's reference axes.
+system.ReferenceAxes.SetAxes(ReferenceAxes);
+
+vbNet
+// IAgCrdnPoint OriginPoint: A point of origin.
+// IAgCrdnAxes ReferenceAxes: A reference axes.
+
+Dim system As IAgCrdnSystemAssembled = DirectCast(provider.Systems.Factory.Create("SystemName", String.Empty, AgECrdnSystemType.eCrdnSystemTypeAssembled), IAgCrdnSystemAssembled)
+' Set the system's origin point.
+system.OriginPoint.SetPoint(OriginPoint)
+' Set the system's reference axes.
+system.ReferenceAxes.SetAxes(ReferenceAxes)

@@ -1,0 +1,53 @@
+C#
+
+// Array with waypoints to insert
+// Consists of: altitude, latitude, longitude, speed
+double[,] waypoints = new double[,]
+    {
+        { 20.36, 40.040, -76.304, 10.5 },
+        { 20.30, 40.337, -75.922, 12.5 },
+        { 20.30, 40.028, -75.628, 15.0 }
+    };
+
+propagator.Method = AgEVeWayPtCompMethod.eDetermineTimeAccFromVel;
+
+// Remove any previous waypoints
+propagator.Waypoints.RemoveAll();
+
+// Insert the waypoints
+for (int i = 0; i &lt; waypoints.GetLength(0); i++)
+{
+    IAgVeWaypointsElement waypoint = propagator.Waypoints.Add();
+    waypoint.Altitude = waypoints[i, 0];
+    waypoint.Latitude = waypoints[i, 1];
+    waypoint.Longitude = waypoints[i, 2];
+    waypoint.Speed = waypoints[i, 3];
+}
+
+// Propagate ground vehicle
+propagator.Propagate();
+
+vbNet
+
+' Array with waypoints to insert
+' Consists of: altitude, latitude, longitude, speed
+Dim waypoints As Double(,) = New Double(,) {{20.36, 40.04, -76.304, 10.5}, {20.3, 40.337, -75.922, 12.5}, {20.3, 40.028, -75.628, 15}}
+
+propagator.Method = AgEVeWayPtCompMethod.eDetermineTimeAccFromVel
+
+' Remove any previous waypoints
+propagator.Waypoints.RemoveAll()
+
+' Insert the waypoints
+Dim i As Integer = 0
+While i &lt; waypoints.GetLength(0)
+	Dim waypoint As IAgVeWaypointsElement = propagator.Waypoints.Add()
+	waypoint.Altitude = waypoints(i, 0)
+	waypoint.Latitude = waypoints(i, 1)
+	waypoint.Longitude = waypoints(i, 2)
+	waypoint.Speed = waypoints(i, 3)
+	System.Math.Max(System.Threading.Interlocked.Increment(i),i - 1)
+End While
+
+' Propagate ground vehicle
+propagator.Propagate()

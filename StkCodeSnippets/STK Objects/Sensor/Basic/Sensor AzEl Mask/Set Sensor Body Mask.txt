@@ -1,0 +1,3 @@
+Matlab
+% IAgSensor sensor: Sensor object
+sensor.SetAzElMaskFile('<Install Dir>\Data\Resources\stktraining\text\BodyMask_hga.bmsk');

@@ -1,0 +1,78 @@
+C#
+
+// Set satellite propagator to LOP
+satellite.SetPropagatorType(AgEVePropagatorType.ePropagatorLOP);
+
+// Get IAgVePropagatorLOP interface
+IAgVePropagatorLOP lopProp = satellite.Propagator as IAgVePropagatorLOP;
+
+// Configure time period
+lopProp.EphemerisInterval.SetExplicitInterval("1 Jan 2012 12:00:00.000", "2 Jan 2012 12:00:00.000");
+lopProp.Step = 86400;
+
+// Configure propagator initial state
+IAgOrbitState orbit = lopProp.InitialState.Representation;
+orbit.Epoch = "1 Jan 2012 12:00:00.000";
+orbit.AssignCartesian(
+    AgECoordinateSystem.eCoordinateSystemFixed,
+    -1120.32,          // in km (assuming unit preferences set to km)
+    -9520.84,         // in km
+    0.129,      // in km
+    2.155,      // in km/sec (assuming unit preferences set to km/sec)
+    -1.54416,      // in km/sec
+    5.668412);     // in km/sec
+
+// Configure force model
+IAgVeLOPForceModel lopForceModel = lopProp.ForceModel;
+lopForceModel.CentralBodyGravity.MaxDegree = 15;
+lopForceModel.CentralBodyGravity.MaxOrder = 8;
+lopForceModel.Drag.Use = true;
+lopForceModel.Drag.Cd = 3.55;
+lopForceModel.SolarRadiationPressure.Use = true;
+lopForceModel.SolarRadiationPressure.Cp = 1.1250;
+lopForceModel.SolarRadiationPressure.AtmosHeight = 125;
+lopForceModel.PhysicalData.DragCrossSectionalArea = 0.001555512;
+lopForceModel.PhysicalData.SRPCrossSectionalArea = 0.001810026;
+lopForceModel.PhysicalData.SatelliteMass = 1505.001;
+
+// Propagate
+lopProp.Propagate();
+
+vbNet
+
+' Set satellite propagator to LOP
+satellite.SetPropagatorType(AgEVePropagatorType.ePropagatorLOP)
+
+' Get IAgVePropagatorLOP interface
+Dim lopProp As IAgVePropagatorLOP = TryCast(satellite.Propagator, IAgVePropagatorLOP)
+
+' Configure time period
+lopProp.EphemerisInterval.SetExplicitInterval("1 Jan 2012 12:00:00.000", "2 Jan 2012 12:00:00.000")
+lopProp.[Step] = 86400
+
+' Configure propagator initial state
+Dim orbit As IAgOrbitState = lopProp.InitialState.Representation
+orbit.Epoch = "1 Jan 2012 12:00:00.000"
+' in km (assuming unit preferences set to km)
+' in km
+' in km
+' in km/sec (assuming unit preferences set to km/sec)
+' in km/sec
+orbit.AssignCartesian(AgECoordinateSystem.eCoordinateSystemFixed, -1120.32, -9520.84, 0.129, 2.155, -1.54416, _
+	5.668412)
+' in km/sec
+' Configure force model
+Dim lopForceModel As IAgVeLOPForceModel = lopProp.ForceModel
+lopForceModel.CentralBodyGravity.MaxDegree = 15
+lopForceModel.CentralBodyGravity.MaxOrder = 8
+lopForceModel.Drag.Use = True
+lopForceModel.Drag.Cd = 3.55
+lopForceModel.SolarRadiationPressure.Use = True
+lopForceModel.SolarRadiationPressure.Cp = 1.125
+lopForceModel.SolarRadiationPressure.AtmosHeight = 125
+lopForceModel.PhysicalData.DragCrossSectionalArea = 0.001555512
+lopForceModel.PhysicalData.SRPCrossSectionalArea = 0.001810026
+lopForceModel.PhysicalData.SatelliteMass = 1505.001
+
+' Propagate
+lopProp.Propagate()

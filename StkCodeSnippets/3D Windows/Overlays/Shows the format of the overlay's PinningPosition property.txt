@@ -1,0 +1,17 @@
+C#
+
+Array pinningPosition = new object[]
+{
+    5,
+    5,
+    AgEStkGraphicsScreenOverlayUnit.eStkGraphicsScreenOverlayUnitPixels,
+    AgEStkGraphicsScreenOverlayUnit.eStkGraphicsScreenOverlayUnitPixels
+};
+
+overlay.PinningPosition = pinningPosition;
+
+vbNet
+
+Dim pinningPosition As Array = New Object() {5, 5, AgEStkGraphicsScreenOverlayUnit.eStkGraphicsScreenOverlayUnitPixels, AgEStkGraphicsScreenOverlayUnit.eStkGraphicsScreenOverlayUnitPixels}
+
+overlay.PinningPosition = pinningPosition

@@ -1,0 +1,20 @@
+C#
+
+Array positions = new object[]
+{
+    0, 0, 0,
+    1, 1, 1,
+    2, 2, 2,
+    3, 3, 3,
+    4, 4, 4
+};
+
+path.AddRangeToFront(ref positions);
+
+vbNet
+
+Dim positions As Array = New Object() {0, 0, 0, 1, 1, 1, _
+	2, 2, 2, 3, 3, 3, _
+	4, 4, 4}
+
+path.AddRangeToFront(positions)

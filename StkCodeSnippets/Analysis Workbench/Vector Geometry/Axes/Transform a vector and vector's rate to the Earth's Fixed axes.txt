@@ -1,0 +1,83 @@
+C#
+
+int numEpSec = 180;
+
+// Get the satellite's ICRF cartesian position at 180 EpSec using the data provider interface
+IAgDataProviderGroup dpGroup = sat.DataProviders["Cartesian Position"] as IAgDataProviderGroup;
+Array elements = new object[] { "x", "y", "z" };
+IAgDataPrvTimeVar dp = dpGroup.Group["ICRF"] as IAgDataPrvTimeVar;
+IAgDrResult dpResult = dp.ExecElements(numEpSec, numEpSec, 60, ref elements);
+double xICRF = (double)dpResult.DataSets[0].GetValues().GetValue(0);
+double yICRF = (double)dpResult.DataSets[1].GetValues().GetValue(0);
+double zICRF = (double)dpResult.DataSets[2].GetValues().GetValue(0);
+
+// Get the satellite's ICRF cartesian velocity at 180 EpSec using the data provider interface
+dpGroup = sat.DataProviders["Cartesian Velocity"] as IAgDataProviderGroup;
+dp = dpGroup.Group["ICRF"] as IAgDataPrvTimeVar;
+dpResult = dp.ExecElements(numEpSec, numEpSec, 60, ref elements);
+double xvelICRF = (double)dpResult.DataSets[0].GetValues().GetValue(0);
+double yvelICRF = (double)dpResult.DataSets[1].GetValues().GetValue(0);
+double zvelICRF = (double)dpResult.DataSets[2].GetValues().GetValue(0);
+
+// Create a position vector using the ICRF coordinates
+IAgCrdnAxes axesICRF = sat.Vgt.WellKnownAxes.Earth.ICRF;
+IAgCartesian3Vector vectorICRF = Application.ConversionUtility.NewCartesian3Vector();
+vectorICRF.Set(xICRF, yICRF, zICRF);
+
+// Create a velocity vector using the ICRF coordinates
+IAgCartesian3Vector vectorvelICRF = Application.ConversionUtility.NewCartesian3Vector();
+vectorvelICRF.Set(xvelICRF, yvelICRF, zvelICRF);
+
+// Use the TransformWithRate method to transform ICRF to Fixed
+IAgCrdnAxes axesFixed = sat.Vgt.WellKnownAxes.Earth.Fixed;
+IAgCrdnAxesTransformWithRateResult result = axesICRF.TransformWithRate(numEpSec, axesFixed, vectorICRF, vectorvelICRF);
+
+// Get the Fixed position and velocity coordinates
+double xFixed = result.Vector.X;
+double yFixed = result.Vector.Y;
+double zFixed = result.Vector.Z;
+double xvelFixed = result.Velocity.X;
+double yvelFixed = result.Velocity.Y;
+double zvelFixed = result.Velocity.Z;
+
+vbNet
+
+Dim numEpSec As Integer = 180
+
+' Get the satellite's ICRF cartesian position at 180 EpSec using the data provider interface
+Dim dpGroup As IAgDataProviderGroup = TryCast(sat.DataProviders("Cartesian Position"), IAgDataProviderGroup)
+Dim elements As Array = New Object() {"x", "y", "z"}
+Dim dp As IAgDataPrvTimeVar = TryCast(dpGroup.Group("ICRF"), IAgDataPrvTimeVar)
+Dim dpResult As IAgDrResult = dp.ExecElements(numEpSec, numEpSec, 60, elements)
+Dim xICRF As Double = DirectCast(dpResult.DataSets(0).GetValues().GetValue(0), Double)
+Dim yICRF As Double = DirectCast(dpResult.DataSets(1).GetValues().GetValue(0), Double)
+Dim zICRF As Double = DirectCast(dpResult.DataSets(2).GetValues().GetValue(0), Double)
+
+' Get the satellite's ICRF cartesian velocity at 180 EpSec using the data provider interface
+dpGroup = TryCast(sat.DataProviders("Cartesian Velocity"), IAgDataProviderGroup)
+dp = TryCast(dpGroup.Group("ICRF"), IAgDataPrvTimeVar)
+dpResult = dp.ExecElements(numEpSec, numEpSec, 60, elements)
+Dim xvelICRF As Double = DirectCast(dpResult.DataSets(0).GetValues().GetValue(0), Double)
+Dim yvelICRF As Double = DirectCast(dpResult.DataSets(1).GetValues().GetValue(0), Double)
+Dim zvelICRF As Double = DirectCast(dpResult.DataSets(2).GetValues().GetValue(0), Double)
+
+' Create a position vector using the ICRF coordinates
+Dim axesICRF As IAgCrdnAxes = sat.Vgt.WellKnownAxes.Earth.ICRF
+Dim vectorICRF As IAgCartesian3Vector = Application.ConversionUtility.NewCartesian3Vector()
+vectorICRF.[Set](xICRF, yICRF, zICRF)
+
+' Create a velocity vector using the ICRF coordinates
+Dim vectorvelICRF As IAgCartesian3Vector = Application.ConversionUtility.NewCartesian3Vector()
+vectorvelICRF.[Set](xvelICRF, yvelICRF, zvelICRF)
+
+' Use the TransformWithRate method to transform ICRF to Fixed
+Dim axesFixed As IAgCrdnAxes = sat.Vgt.WellKnownAxes.Earth.Fixed
+Dim result As IAgCrdnAxesTransformWithRateResult = axesICRF.TransformWithRate(numEpSec, axesFixed, vectorICRF, vectorvelICRF)
+
+' Get the Fixed position and velocity coordinates
+Dim xFixed As Double = result.Vector.X
+Dim yFixed As Double = result.Vector.Y
+Dim zFixed As Double = result.Vector.Z
+Dim xvelFixed As Double = result.Velocity.X
+Dim yvelFixed As Double = result.Velocity.Y
+Dim zvelFixed As Double = result.Velocity.Z

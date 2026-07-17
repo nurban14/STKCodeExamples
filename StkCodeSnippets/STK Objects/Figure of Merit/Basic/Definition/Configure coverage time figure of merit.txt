@@ -1,0 +1,34 @@
+C#
+
+// Set figure of merit definition to eFmCoverageTime
+fom.SetDefinitionType(AgEFmDefinitionType.eFmCoverageTime);
+
+// Get IAgFmDefCompute interface
+IAgFmDefCompute defComp = fom.Definition as IAgFmDefCompute;
+
+if (defComp.IsComputeTypeSupported(AgEFmCompute.eTotalTimeAbove))
+{
+    // Set Compute type to supported compute option
+    defComp.SetComputeType(AgEFmCompute.eTotalTimeAbove);
+
+    // Get compute option compute interface
+    IAgFmDefDataMinAssets fomData = defComp.Compute as IAgFmDefDataMinAssets;
+    fomData.MinAssets = 15;
+}
+
+vbNet
+
+' Set figure of merit definition to eFmCoverageTime
+fom.SetDefinitionType(AgEFmDefinitionType.eFmCoverageTime)
+
+' Get IAgFmDefCompute interface
+Dim defComp As IAgFmDefCompute = TryCast(fom.Definition, IAgFmDefCompute)
+
+If defComp.IsComputeTypeSupported(AgEFmCompute.eTotalTimeAbove) Then
+	' Set Compute type to supported compute option
+	defComp.SetComputeType(AgEFmCompute.eTotalTimeAbove)
+
+	' Get compute option compute interface
+	Dim fomData As IAgFmDefDataMinAssets = TryCast(defComp.Compute, IAgFmDefDataMinAssets)
+	fomData.MinAssets = 15
+End If

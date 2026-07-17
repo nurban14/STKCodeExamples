@@ -1,0 +1,15 @@
+C#
+
+IAgAccessConstraintCollection accessConstraints = stkobject.AccessConstraints;
+IAgAccessCnstrAWBCollection awbAccessConstraints = accessConstraints.AWBConstraints;
+
+string objectPath = stkobject.ClassName + "/" + stkobject.InstanceName;
+awbAccessConstraints.RemoveConstraint(AgEAWBAccessConstraints.eCstrAWBVectorMag, objectPath + " East Vector");
+
+vbNet
+
+Dim accessConstraints As IAgAccessConstraintCollection = stkobject.AccessConstraints
+Dim awbAccessConstraints As IAgAccessCnstrAWBCollection = accessConstraints.AWBConstraints
+
+Dim objectPath As String = stkobject.ClassName + "/" + stkobject.InstanceName
+awbAccessConstraints.RemoveConstraint(AgEAWBAccessConstraints.eCstrAWBVectorMag, objectPath + " East Vector")

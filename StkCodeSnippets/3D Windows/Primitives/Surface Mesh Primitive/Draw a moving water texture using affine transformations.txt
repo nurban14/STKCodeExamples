@@ -1,0 +1,94 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+// String textureFile: The file to use as the texture of the surface mesh
+
+IAgStkGraphicsSceneManager manager = ((IAgScenario)root.CurrentScenario).SceneManager;
+Array cartographicExtent = new object[]
+{
+    -96,
+    22,
+    -85,
+    28
+};
+
+IAgStkGraphicsSurfaceTriangulatorResult triangles =
+    manager.Initializers.SurfaceExtentTriangulator.ComputeSimple("Earth", ref cartographicExtent);
+
+IAgStkGraphicsRendererTexture2D texture = manager.Textures.LoadFromStringUri(
+    textureFile);
+IAgStkGraphicsSurfaceMeshPrimitive mesh = manager.Initializers.SurfaceMeshPrimitive.Initialize();
+((IAgStkGraphicsPrimitive)mesh).Translucency = 0.3f;
+mesh.Texture = texture;
+mesh.TextureFilter = manager.Initializers.TextureFilter2D.LinearRepeat;
+mesh.Set(triangles);
+manager.Primitives.Add((IAgStkGraphicsPrimitive)mesh);
+
+
+internal void TimeChanged(IAgStkGraphicsScene scene, AgStkObjectRoot root, double TimeEpSec)
+{
+    //
+    //  Translate the surface mesh every animation update
+    //
+    if (m_Primitive != null)
+    {
+        IAgStkGraphicsSceneManager manager = ((IAgScenario)root.CurrentScenario).SceneManager;
+
+        m_Translation = (float)TimeEpSec;
+        m_Translation /= 1000;
+
+        Matrix transformation = new Matrix();
+        transformation.Translate(-m_Translation, 0); // Sign determines the direction of apparent flow
+
+        // Convert the matrix to an object array
+        Array transformationArray = Array.CreateInstance(typeof(object), transformation.Elements.Length);
+        for (int i = 0; i &lt; transformationArray.Length; ++i)
+        {
+            transformationArray.SetValue((object)transformation.Elements.GetValue(i), i);
+        }
+
+        ((IAgStkGraphicsSurfaceMeshPrimitive)m_Primitive).TextureMatrix =
+            manager.Initializers.TextureMatrix.InitializeWithAffineTransform(ref transformationArray);
+    }
+}
+
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+// String textureFile: The file to use as the texture of the surface mesh
+
+Dim manager As IAgStkGraphicsSceneManager = DirectCast(root.CurrentScenario, IAgScenario).SceneManager
+Dim cartographicExtent As Array = New Object() {-96, 22, -85, 28}
+
+Dim triangles As IAgStkGraphicsSurfaceTriangulatorResult = manager.Initializers.SurfaceExtentTriangulator.ComputeSimple("Earth", cartographicExtent)
+
+Dim texture As IAgStkGraphicsRendererTexture2D = manager.Textures.LoadFromStringUri( _
+	textureFile)
+Dim mesh As IAgStkGraphicsSurfaceMeshPrimitive = manager.Initializers.SurfaceMeshPrimitive.Initialize()
+DirectCast(mesh, IAgStkGraphicsPrimitive).Translucency = 0.3F
+mesh.Texture = texture
+mesh.TextureFilter = manager.Initializers.TextureFilter2D.LinearRepeat
+mesh.Set(triangles)
+manager.Primitives.Add(DirectCast(mesh, IAgStkGraphicsPrimitive))
+
+
+Friend Sub TimeChanged(scene As IAgStkGraphicsScene, root As AgStkObjectRoot, TimeEpSec As Double)
+	'
+	'  Translate the surface mesh every animation update
+	'
+	If m_Primitive IsNot Nothing Then
+		Dim manager As IAgStkGraphicsSceneManager = DirectCast(root.CurrentScenario, IAgScenario).SceneManager
+
+		m_Translation = CSng(TimeEpSec)
+		m_Translation /= 1000
+
+		Dim transformation As New Matrix()
+		transformation.Translate(-m_Translation, 0)
+		' Sign determines the direction of apparent flow
+		' Convert the matrix to an object array
+		Dim transformationArray As Array = Array.CreateInstance(GetType(Object), transformation.Elements.Length)
+		For i As Integer = 0 To transformationArray.Length - 1
+			transformationArray.SetValue(DirectCast(transformation.Elements.GetValue(i), Object), i)
+		Next
+
+		DirectCast(m_Primitive, IAgStkGraphicsSurfaceMeshPrimitive).TextureMatrix = manager.Initializers.TextureMatrix.InitializeWithAffineTransform(transformationArray)
+	End If
+End Sub

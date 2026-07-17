@@ -1,0 +1,30 @@
+C#
+
+IAgCrdnEventIntervalCollection intervalCollection = provider.EventIntervalCollections["LightingIntervals"];
+
+IAgCrdnIntervalsVectorResult intervalResult = intervalCollection.FindIntervalCollection();
+if (intervalResult.IsValid)
+{
+    foreach (IAgCrdnIntervalCollection intervals in intervalResult.IntervalCollections)
+    {
+        foreach (IAgCrdnInterval interval in intervals)
+        {
+            Console.WriteLine("Start: " + interval.Start);
+            Console.WriteLine("Start: " + interval.Stop);
+        }
+    }
+}
+
+vbNet
+
+Dim intervalCollection As IAgCrdnEventIntervalCollection = provider.EventIntervalCollections("LightingIntervals")
+
+Dim intervalResult As IAgCrdnIntervalsVectorResult = intervalCollection.FindIntervalCollection()
+If intervalResult.IsValid Then
+	For Each intervals As IAgCrdnIntervalCollection In intervalResult.IntervalCollections
+		For Each interval As IAgCrdnInterval In intervals
+			Console.WriteLine("Start: " + interval.Start)
+			Console.WriteLine("Start: " + interval.[Stop])
+		Next
+	Next
+End If

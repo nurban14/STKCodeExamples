@@ -1,0 +1,65 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+// String modelFile: Location of the model file
+// IAgCrdnAxesFixed axes: An axes used to orient the model
+
+IAgStkGraphicsSceneManager manager = ((IAgScenario)root.CurrentScenario).SceneManager;
+Array position = new object[] {29.98, -90.25, 0.0 };
+
+IAgStkGraphicsModelPrimitive model = manager.Initializers.ModelPrimitive.InitializeWithStringUri(
+    modelFile);
+model.SetPositionCartographic("Earth", ref position);
+model.Scale = Math.Pow(10, 3.5);
+
+IAgDate start1 = root.ConversionUtility.NewDate("UTCG", "30 May 2008 14:00:00.000");
+IAgDate end1 = root.ConversionUtility.NewDate("UTCG", "30 May 2008 14:30:00.000");
+((IAgAnimation)root).CurrentTime = double.Parse(start1.Format("epSec"));
+IAgDate start2 = root.ConversionUtility.NewDate("UTCG", "30 May 2008 15:00:00.000");
+IAgDate end2 = root.ConversionUtility.NewDate("UTCG", "30 May 2008 15:30:00.000");
+
+IAgStkGraphicsTimeIntervalDisplayCondition time1 = manager.Initializers.TimeIntervalDisplayCondition.InitializeWithTimes(start1, end1);
+IAgStkGraphicsTimeIntervalDisplayCondition time2 = manager.Initializers.TimeIntervalDisplayCondition.InitializeWithTimes(start2, end2);
+IAgStkGraphicsCompositeDisplayCondition composite = manager.Initializers.CompositeDisplayCondition.Initialize();
+
+composite.Add((IAgStkGraphicsDisplayCondition)time1);
+composite.Add((IAgStkGraphicsDisplayCondition)time2);
+composite.LogicOperation = AgEStkGraphicsBinaryLogicOperation.eStkGraphicsBinaryLogicOperationOr;
+((IAgStkGraphicsPrimitive)model).DisplayCondition = composite as IAgStkGraphicsDisplayCondition;
+
+IAgCrdnAxesFindInAxesResult result = root.VgtRoot.WellKnownAxes.Earth.Fixed.FindInAxes(((IAgScenario)root.CurrentScenario).Epoch, ((IAgCrdnAxes)axes));
+model.Orientation = result.Orientation;
+
+manager.Primitives.Add((IAgStkGraphicsPrimitive)model);
+
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+// String modelFile: Location of the model file
+// IAgCrdnAxesFixed axes: An axes used to orient the model
+
+Dim manager As IAgStkGraphicsSceneManager = DirectCast(root.CurrentScenario, IAgScenario).SceneManager
+Dim position As Array = New Object() {29.98, -90.25, 0.0}
+
+Dim model As IAgStkGraphicsModelPrimitive = manager.Initializers.ModelPrimitive.InitializeWithStringUri( _
+    modelFile)
+model.SetPositionCartographic("Earth", position)
+model.Scale = Math.Pow(10, 3.5)
+
+Dim start1 As IAgDate = root.ConversionUtility.NewDate("UTCG", "30 May 2008 14:00:00.000")
+Dim end1 As IAgDate = root.ConversionUtility.NewDate("UTCG", "30 May 2008 14:30:00.000")
+DirectCast(root, IAgAnimation).CurrentTime = Double.Parse(start1.Format("epSec"))
+Dim start2 As IAgDate = root.ConversionUtility.NewDate("UTCG", "30 May 2008 15:00:00.000")
+Dim end2 As IAgDate = root.ConversionUtility.NewDate("UTCG", "30 May 2008 15:30:00.000")
+
+Dim time1 As IAgStkGraphicsTimeIntervalDisplayCondition = manager.Initializers.TimeIntervalDisplayCondition.InitializeWithTimes(start1, end1)
+Dim time2 As IAgStkGraphicsTimeIntervalDisplayCondition = manager.Initializers.TimeIntervalDisplayCondition.InitializeWithTimes(start2, end2)
+Dim composite As IAgStkGraphicsCompositeDisplayCondition = manager.Initializers.CompositeDisplayCondition.Initialize()
+
+composite.Add(DirectCast(time1, IAgStkGraphicsDisplayCondition))
+composite.Add(DirectCast(time2, IAgStkGraphicsDisplayCondition))
+composite.LogicOperation = AgEStkGraphicsBinaryLogicOperation.eStkGraphicsBinaryLogicOperationOr
+DirectCast(model, IAgStkGraphicsPrimitive).DisplayCondition = TryCast(composite, IAgStkGraphicsDisplayCondition)
+
+Dim result As IAgCrdnAxesFindInAxesResult = root.VgtRoot.WellKnownAxes.Earth.Fixed.FindInAxes(DirectCast(root.CurrentScenario, IAgScenario).Epoch, DirectCast(axes, IAgCrdnAxes))
+model.Orientation = result.Orientation
+
+manager.Primitives.Add(DirectCast(model, IAgStkGraphicsPrimitive))

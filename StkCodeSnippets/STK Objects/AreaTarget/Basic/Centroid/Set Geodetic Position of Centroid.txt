@@ -1,0 +1,4 @@
+Python
+#IAgAreaTarget areaTarget: Area Target Object
+#Set Centroid Latitude, Longitude, and Altitude to 25 degree,50 degrees, and 2 km respectively
+areaTarget.Position.AssignGeodetic(25,50,2)

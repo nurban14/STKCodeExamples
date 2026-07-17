@@ -1,0 +1,85 @@
+C#
+
+// Get the acceleration type
+IAgAvtrAircraftAcceleration acceleration = aircraft.Acceleration;
+// Get the build in performance model
+IAgAvtrAircraftBasicAccelerationModel basicAccModel = acceleration.GetBuiltInModel();
+
+// Get the level turns options
+IAgAvtrLevelTurns levelTurns = basicAccModel.LevelTurns;
+// Set a max bank angle of 25
+levelTurns.SetLevelTurn(AgEAvtrTurnMode.eTurnModeBankAngle, 25);
+// Get the climb and descent transition options
+IAgAvtrClimbAndDescentTransitions climbAndDescent = basicAccModel.ClimbAndDescentTransitions;
+// Set the max pull up G to 1
+climbAndDescent.MaxPullUpG = 1.2;
+// Get the attitude transition options
+IAgAvtrAttitudeTransitions attitudeTransitions = basicAccModel.AttitudeTransitions;
+// Set the max roll rate to 25
+attitudeTransitions.RollRate = 25;
+
+// Get the aerodynamics
+IAgAvtrAircraftAero aero = basicAccModel.Aerodynamics;
+// Use simple aerodynamics
+aero.AeroStrategy = AgEAvtrAircraftAeroStrategy.eAircraftAeroSimple;
+// Get the options for the simple aerodynamics and set some parameters
+IAgAvtrAircraftSimpleAero simpleAero = aero.ModeAsSimple;
+simpleAero.SRef = 5;
+simpleAero.ClMax = 3.1;
+simpleAero.Cd = 0.05;
+
+// Get the propulsion
+IAgAvtrAircraftProp prop = basicAccModel.Propulsion;
+// Use simple propulsion
+prop.PropStrategy = AgEAvtrAircraftPropStrategy.eAircraftPropSimple;
+// Get the simple propulsion options and set some parameters
+IAgAvtrAircraftSimpleProp simpleProp = prop.ModeAsSimple;
+simpleProp.MaxThrustAccel = 0.6;
+simpleProp.MinThrustDecel = 0.4;
+simpleProp.SetDensityScaling(true, 0.02);
+
+// Save the changes to the catalog
+aircraft.GetAsCatalogItem().Save();
+
+vbNet
+
+' Get the acceleration type
+Dim acceleration As IAgAvtrAircraftAcceleration = aircraft.Acceleration
+' Get the build in performance model
+Dim basicAccModel As IAgAvtrAircraftBasicAccelerationModel = acceleration.GetBuiltInModel()
+
+' Get the level turns options
+Dim levelTurns As IAgAvtrLevelTurns = basicAccModel.LevelTurns
+' Set a max bank angle of 25
+levelTurns.SetLevelTurn(AgEAvtrTurnMode.eTurnModeBankAngle, 25)
+' Get the climb and descent transition options
+Dim climbAndDescent As IAgAvtrClimbAndDescentTransitions = basicAccModel.ClimbAndDescentTransitions
+' Set the max pull up G to 1
+climbAndDescent.MaxPullUpG = 1.2
+' Get the attitude transition options
+Dim attitudeTransitions As IAgAvtrAttitudeTransitions = basicAccModel.AttitudeTransitions
+' Set the max roll rate to 25
+attitudeTransitions.RollRate = 25
+
+' Get the aerodynamics
+Dim aero As IAgAvtrAircraftAero = basicAccModel.Aerodynamics
+' Use simple aerodynamics
+aero.AeroStrategy = AgEAvtrAircraftAeroStrategy.eAircraftAeroSimple
+' Get the options for the simple aerodynamics and set some parameters
+Dim simpleAero As IAgAvtrAircraftSimpleAero = aero.ModeAsSimple
+simpleAero.SRef = 5
+simpleAero.ClMax = 3.1
+simpleAero.Cd = 0.05
+
+' Get the propulsion
+Dim prop As IAgAvtrAircraftProp = basicAccModel.Propulsion
+' Use simple propulsion
+prop.PropStrategy = AgEAvtrAircraftPropStrategy.eAircraftPropSimple
+' Get the simple propulsion options and set some parameters
+Dim simpleProp As IAgAvtrAircraftSimpleProp = prop.ModeAsSimple
+simpleProp.MaxThrustAccel = 0.6
+simpleProp.MinThrustDecel = 0.4
+simpleProp.SetDensityScaling(True, 0.02)
+
+' Save the changes to the catalog
+aircraft.GetAsCatalogItem().Save()

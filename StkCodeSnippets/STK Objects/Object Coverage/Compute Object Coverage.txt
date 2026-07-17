@@ -1,0 +1,23 @@
+Matlab
+# IAgAircraft aircraft: Aircraft object
+objCoverage = aircraft.ObjectCoverage
+objCoverage.Assets.RemoveAll
+objCoverage.Assets.Add('Satellite/MySatellite')
+objCoverage.UseObjectTimes = True
+objCoverage.Compute()
+
+objCoverageFOM = objCoverage.FOM
+objCoverageFOM.SetDefinitionType(3) # eFmCoverageTime
+objCoverageFOM.Definition.SetComputeType(16) # eTotal
+Python
+
+# IAgAircraft aircraft: Aircraft object
+objCoverage = aircraft.ObjectCoverage
+objCoverage.Assets.RemoveAll
+objCoverage.Assets.Add('Satellite/MySatellite')
+objCoverage.UseObjectTimes = True
+objCoverage.Compute()
+
+objCoverageFOM = objCoverage.FOM
+objCoverageFOM.SetDefinitionType(3) # eFmCoverageTime
+objCoverageFOM.Definition.SetComputeType(16) # eTotal

@@ -1,0 +1,26 @@
+Matlab
+
+% IAgScenario scenario: Scenario object
+manager = scenario.SceneManager;
+overlays = manager.ScreenOverlays.Overlays;
+textureOverlay = manager.Initializers.TextureScreenOverlay.InitializeWithXYWidthHeight(0,0,128,128);
+textureOverlay.Texture = manager.Textures.LoadFromStringUri('<Install Dir>\STKData\VO\Textures\AGI_logo_big.ppm');
+textureOverlay.MaintainAspectRatio = true;
+textureOverlay.Origin = 'eStkGraphicsScreenOverlayOriginTopLeft';
+textureOverlay.Position = {0;20;'eStkGraphicsScreenOverlayUnitPixels';'eStkGraphicsScreenOverlayUnitPixels'};
+overlays.Add(textureOverlay);
+%Render the Scene
+manager.Render;
+Python
+
+# IAgScenario scenario: Scenario object
+manager = scenario.SceneManager
+overlays = manager.ScreenOverlays.Overlays
+textureOverlay = manager.Initializers.TextureScreenOverlay.InitializeWithXYWidthHeight(0,0,128,128)
+textureOverlay.Texture = manager.Textures.LoadFromStringUri(r'C:\Program Files\AGI\STK_ODTK 13\STK\STKData\VO\Textures\AGI_logo_big.ppm')
+textureOverlay.MaintainAspectRatio = True
+textureOverlay.Origin = 6 # eStkGraphicsScreenOverlayOriginTopLeft
+textureOverlay.Position = [ [0],[20],[0],[0] ] # eStkGraphicsScreenOverlayUnitPixels
+overlays.Add(textureOverlay)
+#Render the Scene
+manager.Render()

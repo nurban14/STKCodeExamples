@@ -1,0 +1,15 @@
+C#
+
+// Get access by object path
+IAgStkAccess access = stkObject.GetAccess("Facility/fac1");
+
+// Compute access
+access.ComputeAccess();
+
+vbNet
+
+' Get access by object path
+Dim access As IAgStkAccess = stkObject.GetAccess("Facility/fac1")
+
+' Compute access
+access.ComputeAccess()

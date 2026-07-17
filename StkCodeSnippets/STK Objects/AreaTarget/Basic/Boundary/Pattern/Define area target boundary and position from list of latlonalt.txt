@@ -1,0 +1,28 @@
+Matlab
+% IAgStkObjectRoot root: STK Object Model Root
+% IAgAreaTarget areaTarget: AreaTarget object
+
+% By using the fine grained interfaces,
+% BeginUpdate/EndUpdate prevent intermediate redraws
+root.BeginUpdate();
+areaTarget.AreaType = 'ePattern';
+patterns = areaTarget.AreaTypeData;
+patterns.Add(48.897, 18.637);
+patterns.Add(46.534, 13.919);
+patterns.Add(44.173, 21.476);
+root.EndUpdate();
+areaTarget.AutoCentroid = true;
+Python
+# IAgStkObjectRoot root: STK Object Model Root
+# IAgAreaTarget areaTarget: AreaTarget object
+
+# By using the fine grained interfaces,
+# BeginUpdate/EndUpdate prevent intermediate redraws
+root.BeginUpdate()
+areaTarget.AreaType = AgEAreaType.ePattern
+patterns = areaTarget.AreaTypeData
+patterns.Add(48.897, 18.637)
+patterns.Add(46.534, 13.919)
+patterns.Add(44.173, 21.476)
+root.EndUpdate()
+areaTarget.AutoCentroid = True

@@ -1,0 +1,9 @@
+C#
+
+// Create the Star
+IAgStar star = root.CurrentScenario.Children.New(AgESTKObjectType.eStar, "MyStar") as IAgStar;
+
+vbNet
+
+' Create the Star
+Dim star As IAgStar = TryCast(root.CurrentScenario.Children.[New](AgESTKObjectType.eStar, "MyStar"), IAgStar)

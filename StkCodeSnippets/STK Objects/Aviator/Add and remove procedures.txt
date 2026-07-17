@@ -1,0 +1,49 @@
+C#
+// IAgAvtrPropagator propagator: Aviator Propagator object
+
+// Add a takeoff procedure with a runway as a site. This will add the procedure
+IAgAvtrProcedure takeoff = procedures.Add(AgEAvtrSiteType.eSiteRunway, AgEAvtrProcedureType.eProcTakeoff);
+// Add a procedure at a given index (starting from 0)
+IAgAvtrProcedure enroute = procedures.AddAtIndex(1, AgEAvtrSiteType.eSiteEndOfPrevProcedure, AgEAvtrProcedureType.eProcEnroute);
+
+// Make sure to propagate the mission to calculate the route
+propagator.Propagate();
+// Get the mission
+IAgAvtrMission mission = propagator.AvtrMission;
+// Check to see if the mission is valid (must first be propagated)
+bool isValid = mission.IsValid;
+
+// Get the number of procedures
+int procedureCount = procedures.Count;
+// Remove the procedure at the given index
+procedures.RemoveAtIndex(1);
+// Remove the given procedure
+procedures.Remove(takeoff);
+
+// Propagate the mission
+propagator.Propagate();
+
+vbNet
+// IAgAvtrPropagator propagator: Aviator Propagator object
+
+' Add a takeoff procedure with a runway as a site. This will add the procedure
+Dim takeoff As IAgAvtrProcedure = procedures.Add(AgEAvtrSiteType.eSiteRunway, AgEAvtrProcedureType.eProcTakeoff)
+' Add a procedure at a given index (starting from 0)
+Dim enroute As IAgAvtrProcedure = procedures.AddAtIndex(1, AgEAvtrSiteType.eSiteEndOfPrevProcedure, AgEAvtrProcedureType.eProcEnroute)
+
+' Make sure to propagate the mission to calculate the route
+propagator.Propagate()
+' Get the mission
+Dim mission As IAgAvtrMission = propagator.AvtrMission
+' Check to see if the mission is valid (must first be propagated)
+Dim isValid As Boolean = mission.IsValid
+
+' Get the number of procedures
+Dim procedureCount As Integer = procedures.Count
+' Remove the procedure at the given index
+procedures.RemoveAtIndex(1)
+' Remove the given procedure
+procedures.Remove(takeoff)
+
+' Propagate the mission
+propagator.Propagate()

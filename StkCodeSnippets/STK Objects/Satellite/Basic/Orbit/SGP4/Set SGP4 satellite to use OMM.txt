@@ -1,0 +1,11 @@
+Python
+sc = root.CurrentScenario
+sat = sc.Children.New(AgESTKObjectType.eSatellite, 'OMM_Sat')
+sat.SetPropagatorType(AgEVePropagatorType.ePropagatorSGP4)
+prop = sat.Propagator
+
+prop.AutoUpdateEnabled = True
+prop.AutoUpdate.SelectedSource = AgEVeSGP4AutoUpdateSource.eSGP4AutoUpdateSourceFile
+prop.AutoUpdate.FileSource.Filename = r'C:\temp\1month\ISS.omm'
+
+prop.Propagate()

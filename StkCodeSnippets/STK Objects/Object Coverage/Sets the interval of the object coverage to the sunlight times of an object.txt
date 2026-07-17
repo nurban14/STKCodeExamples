@@ -1,0 +1,35 @@
+C#
+
+// For this example, set the access times to use the light intervals of the area target.
+IAgStkObject uavAircraft = root.GetObjectFromPath("Aircraft/UAV/Sensor/UAV_Camera");
+IAgStkObject airspaceAreaTarget = root.GetObjectFromPath("AreaTarget/Airspace");
+
+IAgCrdnEvent firstSunlightEpoch = airspaceAreaTarget.Vgt.Events["LightingIntervals.Sunlight.First.Start"];
+IAgCrdnEvent lastSunlightEpoch = airspaceAreaTarget.Vgt.Events["LightingIntervals.Sunlight.First.Stop"];
+
+uavAircraft.ObjectCoverage.UseObjectTimes = false;
+IAgCrdnEventSmartEpoch startEpoch = uavAircraft.ObjectCoverage.AccessInterval.GetStartEpoch();
+startEpoch.SetImplicitTime(firstSunlightEpoch);
+
+IAgCrdnEventSmartEpoch stopEpoch = uavAircraft.ObjectCoverage.AccessInterval.GetStopEpoch();
+stopEpoch.SetImplicitTime(lastSunlightEpoch);
+
+uavAircraft.ObjectCoverage.AccessInterval.SetStartAndStopEpochs(startEpoch, stopEpoch);
+
+vbNet
+
+' For this example, set the access times to use the light intervals of the area target.
+Dim uavAircraft As IAgStkObject = root.GetObjectFromPath("Aircraft/UAV/Sensor/UAV_Camera")
+Dim airspaceAreaTarget As IAgStkObject = root.GetObjectFromPath("AreaTarget/Airspace")
+
+Dim firstSunlightEpoch As IAgCrdnEvent = airspaceAreaTarget.Vgt.Events("LightingIntervals.Sunlight.First.Start")
+Dim lastSunlightEpoch As IAgCrdnEvent = airspaceAreaTarget.Vgt.Events("LightingIntervals.Sunlight.First.Stop")
+
+uavAircraft.ObjectCoverage.UseObjectTimes = False
+Dim startEpoch As IAgCrdnEventSmartEpoch = uavAircraft.ObjectCoverage.AccessInterval.GetStartEpoch()
+startEpoch.SetImplicitTime(firstSunlightEpoch)
+
+Dim stopEpoch As IAgCrdnEventSmartEpoch = uavAircraft.ObjectCoverage.AccessInterval.GetStopEpoch()
+stopEpoch.SetImplicitTime(lastSunlightEpoch)
+
+uavAircraft.ObjectCoverage.AccessInterval.SetStartAndStopEpochs(startEpoch, stopEpoch)

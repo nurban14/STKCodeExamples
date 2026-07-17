@@ -1,0 +1,44 @@
+C#
+
+// Set the epoch time to tomorrow.
+IAgCrdnEventSmartEpoch startEpoch = propagator.EphemerisInterval.GetStartEpoch();
+startEpoch.SetExplicitTime("Tomorrow");
+propagator.EphemerisInterval.SetStartEpoch(startEpoch);
+
+// Waypoints time start from explicit start time that we set above.
+Array waypointsAndTimes = new object[,]
+{
+    { 40.329, -76.366, 0, 0.0154, 0 },
+    { 40.380, -76.359, 0, 0.0154, 0 },
+    { 40.406, -76.329, 0, 0.0154, 0 },
+    { 40.417, -76.311, 0, 0.0154, 0 },
+};
+
+propagator.SetPointsSmoothRateAndPropagate(ref waypointsAndTimes);
+
+for (int i = 0; i &lt; propagator.Waypoints.Count; ++i)
+{
+    Console.WriteLine("Waypoint {0}, Lat = {1}, Lon = {2}, Time = {3}",
+        i,
+        propagator.Waypoints[i].Latitude,
+        propagator.Waypoints[i].Longitude,
+        propagator.Waypoints[i].Time);
+}
+
+vbNet
+
+' Set the epoch time to tomorrow.
+Dim startEpoch As IAgCrdnEventSmartEpoch = propagator.EphemerisInterval.GetStartEpoch()
+startEpoch.SetExplicitTime("Tomorrow")
+propagator.EphemerisInterval.SetStartEpoch(startEpoch)
+
+' Waypoints time start from explicit start time that we set above.
+Dim waypointsAndTimes As Array = New Object(,) {{40.329, -76.366, 0, 0.0154, 0}, {40.38, -76.359, 0, 0.0154, 0}, {40.406, -76.329, 0, 0.0154, 0}, {40.417, -76.311, 0, 0.0154, 0}}
+
+propagator.SetPointsSmoothRateAndPropagate(waypointsAndTimes)
+
+Dim i As Integer = 0
+While i &lt; propagator.Waypoints.Count
+	Console.WriteLine("Waypoint {0}, Lat = {1}, Lon = {2}, Time = {3}", i, propagator.Waypoints(i).Latitude, propagator.Waypoints(i).Longitude, propagator.Waypoints(i).Time)
+	System.Threading.Interlocked.Increment(i)
+End While

@@ -1,0 +1,66 @@
+C#
+
+contours.IsVisible = true;
+contours.ContourType = AgEFmGfxContourType.eSmoothFill;
+contours.ColorMethod = AgEFmGfxColorMethod.eExplicit;
+
+// Add level ranges (batch)
+contours.LevelAttributes.AddLevelRange(25, 35, 1);
+IAgFmGfxLevelAttributesElement firstLevel = contours.LevelAttributes[0];
+firstLevel.Color = Color.Blue;
+
+// Add one level (individually)
+IAgFmGfxLevelAttributesElement level = contours.LevelAttributes.AddLevel(55);
+level.Color = Color.Red;
+
+Matlab
+# IAgCoverageDefinition coverage: Coverage object
+# IAgFigureOfMerit fom: Figure Of Merit object
+satisfaction = coverage.Graphics.Static
+satisfaction.IsRegionVisible = False
+Animation = fom.VO.Animation
+Animation.IsVisible = False
+VOcontours = fom.VO.Static
+VOcontours.IsVisible = True
+contours = fom.Graphics.Static.Contours
+contours.IsVisible = True
+contours.ContourType = 1 # eSmoothFill
+contours.ColorMethod = 0 # eColorRamp
+contours.LevelAttributes.RemoveAll()
+
+contours.LevelAttributes.AddLevelRange(590, 660, 10)   #Start, Start, Step
+contours.RampColor.StartColor = 255        #Red
+contours.RampColor.EndColor = 16711680     #Blue
+
+Python
+# IAgCoverageDefinition coverage: Coverage object
+# IAgFigureOfMerit fom: Figure Of Merit object
+satisfaction = coverage.Graphics.Static
+satisfaction.IsRegionVisible = False
+Animation = fom.VO.Animation
+Animation.IsVisible = False
+VOcontours = fom.VO.Static
+VOcontours.IsVisible = True
+contours = fom.Graphics.Static.Contours
+contours.IsVisible = True
+contours.ContourType = 1 # eSmoothFill
+contours.ColorMethod = 0 # eColorRamp
+contours.LevelAttributes.RemoveAll()
+
+contours.LevelAttributes.AddLevelRange(590, 660, 10)   #Start, Start, Step
+contours.RampColor.StartColor = 255        #Red
+contours.RampColor.EndColor = 16711680     #Blue
+vbNet
+
+contours.IsVisible = True
+contours.ContourType = AgEFmGfxContourType.eSmoothFill
+contours.ColorMethod = AgEFmGfxColorMethod.eExplicit
+
+' Add level ranges (batch)
+contours.LevelAttributes.AddLevelRange(25, 35, 1)
+Dim firstLevel As IAgFmGfxLevelAttributesElement = contours.LevelAttributes(0)
+firstLevel.Color = Color.Blue
+
+' Add one level (individually)
+Dim level As IAgFmGfxLevelAttributesElement = contours.LevelAttributes.AddLevel(55)
+level.Color = Color.Red

@@ -1,0 +1,35 @@
+C#
+
+foreach (String name in datasets.ElementNames)
+{
+    //If the data set collection spans multiple intervals then the GetDataSetByName method will only
+    //get the first intervals dataset.  See the Extract data from IAgDrDataSetCollection across
+    //multiple intervals code snippet to see how to access all of the data sets in the result.
+    IAgDrDataSet dataset = datasets.GetDataSetByName(name);
+
+    Array datasetValues = dataset.GetValues();
+
+    Console.WriteLine("{0}", dataset.ElementName);
+
+    foreach (object value in datasetValues)
+    {
+        Console.WriteLine("\t{0}", value.ToString());
+    }
+}
+
+vbNet
+
+For Each name As [String] In datasets.ElementNames
+	'If the data set collection spans multiple intervals then the GetDataSetByName method will only
+	'get the first intervals dataset.  See the Extract data from IAgDrDataSetCollection across
+	'multiple intervals code snippet to see how to access all of the data sets in the result.
+	Dim dataset As IAgDrDataSet = datasets.GetDataSetByName(name)
+
+	Dim datasetValues As Array = dataset.GetValues()
+
+	Console.WriteLine("{0}", dataset.ElementName)
+
+	For Each value As Object In datasetValues
+		Console.WriteLine(vbTab &amp;&amp;#160;"{0}", value.ToString())
+	Next
+Next

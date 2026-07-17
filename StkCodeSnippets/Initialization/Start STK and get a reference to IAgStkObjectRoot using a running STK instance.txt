@@ -1,0 +1,14 @@
+Python
+
+# Get reference to running STK instance
+from win32com.client import GetActiveObject
+uiApplication = win32com.client.GetActiveObject('STK13.Application')
+uiApplication.Visible = True
+
+# if using the comtypes Library
+from comtypes.client import GetActiveObject
+uiApplication=GetActiveObject('STK13.Application')
+uiApplication.Visible=True
+
+# Get our IAgStkObjectRoot interface
+root = uiApplication.Personality2

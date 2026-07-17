@@ -1,0 +1,22 @@
+C#
+
+Array positions = new object[]
+{
+    0, 0, 200000,
+    0.1, 0.1, 200000,
+    0, 0.1, 200000,
+    0, 0, 200000
+};
+
+IAgStkGraphicsExtrudedPolylineTriangulatorResult result = sceneManager.Initializers.ExtrudedPolylineTriangulator.ComputeCartographicWithAltitudes(
+    "Earth",
+    ref positions,
+    0,
+    100);
+
+vbNet
+
+Dim positions As Array = New Object() {0, 0, 200000, 0.1, 0.1, 200000, _
+	0, 0.1, 200000, 0, 0, 200000}
+
+Dim result As IAgStkGraphicsExtrudedPolylineTriangulatorResult = sceneManager.Initializers.ExtrudedPolylineTriangulator.ComputeCartographicWithAltitudes("Earth", positions, 0, 100)

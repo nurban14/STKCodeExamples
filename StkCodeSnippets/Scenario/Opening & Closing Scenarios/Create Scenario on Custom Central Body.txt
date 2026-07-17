@@ -1,0 +1,5 @@
+Matlab
+% IAgStkObjectRoot root: STK Object Model root
+
+%Creates a new scenario named Lunar Sim with the Moon as the Central Body
+scenario = root.Children.NewOnCentralBody('eScenario', 'LunarSim','Moon');

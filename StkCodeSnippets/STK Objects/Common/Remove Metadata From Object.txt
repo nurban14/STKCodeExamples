@@ -1,0 +1,7 @@
+C#
+
+stkObject.Metadata.RemoveKey("key");
+
+vbNet
+
+stkObject.Metadata.RemoveKey("key")

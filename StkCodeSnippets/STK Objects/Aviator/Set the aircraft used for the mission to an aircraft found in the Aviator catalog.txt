@@ -1,0 +1,29 @@
+C#
+
+// Get the Aviator catalog
+IAgAvtrCatalog catalog = propagator.AvtrCatalog;
+// Get the aircraft category
+IAgAvtrAircraftCategory category = catalog.AircraftCategory;
+// Get the user aircraft models
+IAgAvtrAircraftModels aircraftModels = category.AircraftModels;
+// Get the basic fighter
+IAgAvtrAircraft fighter = aircraftModels.GetAircraft("Basic Fighter");
+// Get the mission
+IAgAvtrMission mission = propagator.AvtrMission;
+// Set the vehicle used for the mission
+mission.Vehicle = fighter as IAgAvtrVehicle;
+
+vbNet
+
+' Get the Aviator catalog
+Dim catalog As IAgAvtrCatalog = propagator.AvtrCatalog
+' Get the aircraft category
+Dim category As IAgAvtrAircraftCategory = catalog.AircraftCategory
+' Get the user aircraft models
+Dim aircraftModels As IAgAvtrAircraftModels = category.AircraftModels
+' Get the basic fighter
+Dim fighter As IAgAvtrAircraft = aircraftModels.GetAircraft("Basic Fighter")
+' Get the mission
+Dim mission As IAgAvtrMission = propagator.AvtrMission
+' Set the vehicle used for the mission
+mission.Vehicle = TryCast(fighter, IAgAvtrVehicle)

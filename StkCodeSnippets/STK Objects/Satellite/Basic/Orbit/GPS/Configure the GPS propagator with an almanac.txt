@@ -1,0 +1,89 @@
+C#
+// String almanacPath: Almanac path
+// IAgStkObject scenario: Current scenario
+
+// Configure properties
+// Use the scenario's analysis interval
+propagator.EphemerisInterval.SetImplicitInterval(scenario.Vgt.EventIntervals["AnalysisInterval"]);
+
+// PRN must be set before configuring GPS almanac
+propagator.PRN = Int32.Parse((string)propagator.AvailablePRNs.GetValue(0));
+// Turn the Auto-update off
+propagator.AutoUpdateEnabled = false;
+// Specify a catalog
+propagator.SpecifyCatalog.Filename = almanacPath;
+
+// Configure the properties specific to the chosen almanac
+switch (propagator.SpecifyCatalog.Properties.Type)
+{
+    case AgEVeGPSAlmanacType.eGPSAlmanacTypeSEM:
+        {
+            /* configure the SEM almanac */
+            IAgVeGPSAlmanacPropertiesSEM sem = propagator.SpecifyCatalog.Properties as IAgVeGPSAlmanacPropertiesSEM;
+            sem.ReferenceWeek = AgEGPSReferenceWeek.eGPSReferenceWeek22Aug1999;
+            break;
+        }
+    case AgEVeGPSAlmanacType.eGPSAlmanacTypeSP3:
+        {
+            /* SP3 almanac contains no configurable properties */
+            IAgVeGPSAlmanacPropertiesSP3 sp3 = propagator.SpecifyCatalog.Properties as IAgVeGPSAlmanacPropertiesSP3;
+            break;
+        }
+    case AgEVeGPSAlmanacType.eGPSAlmanacTypeYUMA:
+        {
+            /* configure the YUMA almanac */
+            IAgVeGPSAlmanacPropertiesYUMA yuma = propagator.SpecifyCatalog.Properties as IAgVeGPSAlmanacPropertiesYUMA;
+            yuma.ReferenceWeek = AgEGPSReferenceWeek.eGPSReferenceWeek22Aug1999;
+            break;
+        }
+}
+
+// Propagate
+propagator.Propagate();
+
+vbNet
+// String almanacPath: Almanac path
+// IAgStkObject scenario: Current scenario
+
+' Configure properties
+' Use the scenario's analysis interval
+propagator.EphemerisInterval.SetImplicitInterval(scenario.Vgt.EventIntervals("AnalysisInterval"))
+
+' PRN must be set before configuring GPS almanac
+propagator.PRN = Int32.Parse(DirectCast(propagator.AvailablePRNs.GetValue(0), String))
+
+' Turn the Auto-update off
+propagator.AutoUpdateEnabled = False
+
+' Specify a catalog
+propagator.SpecifyCatalog.Filename = almanacPath
+
+' Configure the properties specific to the chosen almanac
+Select Case propagator.SpecifyCatalog.Properties.Type
+	Case AgEVeGPSAlmanacType.eGPSAlmanacTypeSEM
+		If True Then
+			' configure the SEM almanac
+
+			Dim sem As IAgVeGPSAlmanacPropertiesSEM = TryCast(propagator.SpecifyCatalog.Properties, IAgVeGPSAlmanacPropertiesSEM)
+			sem.ReferenceWeek = AgEGPSReferenceWeek.eGPSReferenceWeek22Aug1999
+			Exit Select
+		End If
+	Case AgEVeGPSAlmanacType.eGPSAlmanacTypeSP3
+		If True Then
+			' SP3 almanac contains no configurable properties
+
+			Dim sp3 As IAgVeGPSAlmanacPropertiesSP3 = TryCast(propagator.SpecifyCatalog.Properties, IAgVeGPSAlmanacPropertiesSP3)
+			Exit Select
+		End If
+	Case AgEVeGPSAlmanacType.eGPSAlmanacTypeYUMA
+		If True Then
+			' configure the YUMA almanac
+
+			Dim yuma As IAgVeGPSAlmanacPropertiesYUMA = TryCast(propagator.SpecifyCatalog.Properties, IAgVeGPSAlmanacPropertiesYUMA)
+			yuma.ReferenceWeek = AgEGPSReferenceWeek.eGPSReferenceWeek22Aug1999
+			Exit Select
+		End If
+End Select
+
+' Propagate
+propagator.Propagate()

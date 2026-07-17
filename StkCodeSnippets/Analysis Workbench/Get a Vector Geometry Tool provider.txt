@@ -1,0 +1,13 @@
+C#
+// String path: A short name referring to an instance of STK Object or Central Body
+
+//Returns a provider associated with the specified
+// instance of an STK Object or a Central Body.
+IAgCrdnProvider provider = root.GetProvider(path);
+
+vbNet
+// String path: A short name referring to an instance of STK Object or Central Body
+
+'Returns a provider associated with the specified
+' instance of an STK Object or a Central Body.
+Dim provider As IAgCrdnProvider = root.GetProvider(path)

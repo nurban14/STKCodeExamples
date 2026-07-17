@@ -1,0 +1,32 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+// Array positions: The area target positions
+
+IAgStkGraphicsSceneManager manager = ((IAgScenario)root.CurrentScenario).SceneManager;
+
+IAgStkGraphicsPolylinePrimitive line = manager.Initializers.PolylinePrimitive.Initialize();
+line.Set(ref positions);
+line.Width = 2;
+((IAgStkGraphicsPrimitive)line).Color = Color.Yellow;
+line.DisplayOutline = true;
+line.OutlineWidth = 2;
+line.OutlineColor = Color.Black;
+
+manager.Primitives.Add((IAgStkGraphicsPrimitive)line);
+
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+// Array positions: The area target positions
+
+Dim manager As IAgStkGraphicsSceneManager = DirectCast(root.CurrentScenario, IAgScenario).SceneManager
+
+Dim line As IAgStkGraphicsPolylinePrimitive = manager.Initializers.PolylinePrimitive.Initialize()
+
+line.Set(positions)
+line.Width = 2
+DirectCast(line, IAgStkGraphicsPrimitive).Color = Color.Yellow
+line.DisplayOutline = True
+line.OutlineWidth = 2
+line.OutlineColor = Color.Black
+
+manager.Primitives.Add(DirectCast(line, IAgStkGraphicsPrimitive))

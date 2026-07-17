@@ -1,0 +1,5 @@
+Python
+
+# IAgSensor sensor: Sensor object
+# Change pointing and set
+sensor.CommonTasks.SetPointingFixedAzEl(4.5, -45.0, AgEAzElAboutBoresight.eAzElAboutBoresightRotate)

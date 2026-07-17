@@ -1,0 +1,34 @@
+C#
+
+if (stkobject.Vgt.Vectors.Contains("East"))
+{
+    IAgCrdnVector vec = stkobject.Vgt.Vectors["East"];
+    IAgCrdn crdnVec = vec as IAgCrdn;
+
+    IAgAccessConstraintCollection accessConstraints = stkobject.AccessConstraints;
+    IAgAccessCnstrAWBCollection awbAccessConstraints = accessConstraints.AWBConstraints;
+
+    IAgAccessCnstrAWB awbConst = awbAccessConstraints.AddConstraint(AgEAWBAccessConstraints.eCstrAWBVectorMag, crdnVec.QualifiedPath) as IAgAccessCnstrAWB;
+    awbConst.EnableMin = true;
+    awbConst.Min = 0.0;
+    awbConst.EnableMax = true;
+    awbConst.Max = 1000.0;
+
+}
+
+vbNet
+
+If stkobject.Vgt.Vectors.Contains("East") Then
+	Dim vec As IAgCrdnVector = stkobject.Vgt.Vectors("East")
+	Dim crdnVec As IAgCrdn = TryCast(vec, IAgCrdn)
+
+	Dim accessConstraints As IAgAccessConstraintCollection = stkobject.AccessConstraints
+	Dim awbAccessConstraints As IAgAccessCnstrAWBCollection = accessConstraints.AWBConstraints
+
+	Dim awbConst As IAgAccessCnstrAWB = TryCast(awbAccessConstraints.AddConstraint(AgEAWBAccessConstraints.eCstrAWBVectorMag, crdnVec.QualifiedPath), IAgAccessCnstrAWB)
+	awbConst.EnableMin = True
+	awbConst.Min = 0
+	awbConst.EnableMax = True
+
+	awbConst.Max = 1000
+End If

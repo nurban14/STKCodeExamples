@@ -1,0 +1,14 @@
+Matlab
+% IAgTransmitter transmitter: Transmitter object
+transmitter.SetModel('Complex Transmitter Model');
+txModel = transmitter.Model;
+txModel.Frequency = 14; %GHz
+txModel.Power = 25; %dBW
+txModel.DataRate = 15; %Mb/sec
+Python
+# IAgTransmitter transmitter: Transmitter object
+transmitter.SetModel('Complex Transmitter Model')
+txModel = transmitter.Model
+txModel.Frequency = 14 # GHz
+txModel.Power = 25 # dBW
+txModel.DataRate = 15 # Mb/sec

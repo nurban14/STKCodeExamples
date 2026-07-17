@@ -1,0 +1,10 @@
+Matlab
+
+% IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+% IAgCrdnPoint centerPtSat: point component
+PtFactory = vgtSat.Points.Factory;
+cbIntersectPt = PtFactory.Create('CBIntersectPt','Point on surface along nadir vector','eCrdnPointTypeCentralBodyIntersect');
+cbIntersectPt.CentralBody = 'Earth';
+cbIntersectPt.ReferencePoint = centerPtSat;
+cbIntersectPt.DirectionVector = vgtSat.Vectors.Item('Nadir(Detic)');
+cbIntersectPt.IntersectionSurface = 'eCrdnIntersectionSurfaceAtCentralBodyEllipsoid';

@@ -1,0 +1,13 @@
+Matlab
+% IAgAccessConstraintCollection accessConstraints: Access Constraint collection
+
+% Angle constraint
+cnstrAngle = accessConstraints.AddConstraint('eCstrLOSSunExclusion');
+cnstrAngle.Angle = 176.0;
+Python
+##Add and configure a LOS sun exclusion access constraint
+# IAgAccessConstraintCollection accessConstraints: Access Constraint collection
+
+# Angle constraint
+cnstrAngle = accessConstraints.AddConstraint(AgEAccessConstraints.eCstrLOSSunExclusion)
+cnstrAngle.Angle = 176.0

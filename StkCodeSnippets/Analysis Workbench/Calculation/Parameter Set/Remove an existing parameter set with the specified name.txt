@@ -1,0 +1,14 @@
+C#
+
+// Check if the parameter set with specified name exists
+if (provider.ParameterSets.Contains("ParameterSetName"))
+{
+    provider.ParameterSets.Remove("ParameterSetName");
+}
+
+vbNet
+
+' Check if the parameter set with specified name exists
+If provider.ParameterSets.Contains("ParameterSetName") Then
+	provider.ParameterSets.Remove("ParameterSetName")
+End If

@@ -1,0 +1,45 @@
+C#
+
+// Configure articulation
+IAgVOModelArtic modelArticulation = model.Articulation;
+modelArticulation.EnableDefaultSave = false;
+modelArticulation.SaveArticFileOnSave = true;
+
+// Set our articulation and transformations
+// For this sample, these articulations exist for a default satellite model
+int levelOfDetail = 0;
+string articulation = "Satellite";
+string transformation = "Size";
+
+
+// Get the current transition value
+double currentTransVal = modelArticulation.GetTransValue(levelOfDetail, articulation, transformation);
+
+// Change the value
+double newTransVal = currentTransVal * 0.50;
+
+// Set our new transition value
+modelArticulation.SetTransValue(levelOfDetail, articulation, transformation, newTransVal);
+
+vbNet
+
+' Configure articulation
+Dim modelArticulation As IAgVOModelArtic = model.Articulation
+modelArticulation.EnableDefaultSave = False
+modelArticulation.SaveArticFileOnSave = True
+
+' Set our articulation and transformations
+' For this sample, these articulations exist for a default satellite model
+Dim levelOfDetail As Integer = 0
+Dim articulation As String = "Satellite"
+Dim transformation As String = "Size"
+
+
+' Get the current transition value
+Dim currentTransVal As Double = modelArticulation.GetTransValue(levelOfDetail, articulation, transformation)
+
+' Change the value
+Dim newTransVal As Double = currentTransVal * 0.5
+
+' Set our new transition value
+modelArticulation.SetTransValue(levelOfDetail, articulation, transformation, newTransVal)

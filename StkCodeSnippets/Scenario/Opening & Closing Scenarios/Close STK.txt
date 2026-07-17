@@ -1,0 +1,10 @@
+Matlab
+
+% AgUiApplication uiApplication: STK Application
+uiApplication.Quit;
+clear uiApplication root
+Python
+
+# AgUiApplication uiApplication: STK Application
+uiApplication.Quit
+clear uiApplication root

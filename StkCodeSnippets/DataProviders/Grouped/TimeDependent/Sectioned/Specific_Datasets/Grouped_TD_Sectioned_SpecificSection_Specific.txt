@@ -1,0 +1,19 @@
+Matlab
+%% Extracting Specific Grouped Time Dependent Data in a Specific Section
+% IAgStkObjectRoot root: STK Object Model root
+% IAgScenario scenario: Scenario object
+% IAgStkAccess access: Access calculation
+
+% Change DateFormat dimension to epoch seconds to make the data easier to handle in MATLAB
+root.UnitPreferences.Item('DateFormat').SetCurrentUnit('EpSec');
+
+%Retrieve only Time,Azimuth, and Elevation datasets from Data providers
+elems = {'Time';'Azimuth';'Elevation'};
+
+accessAER = access.DataProviders.Item('AER Data').Group.Item('BodyFixed').ExecElements(scenario.StartTime, scenario.StopTime, 60,elems);
+
+%%Gets time, azimuth, and elevation for seconds access (Section 2)
+AERTimes = cell2mat(accessAER.Interval.Item(cast(1, 'int32')).DataSets.GetDataSetByName('Time').GetValues);
+Az = cell2mat(accessAER.Interval.Item(cast(1, 'int32')).DataSets.GetDataSetByName('Azimuth').GetValues);
+El = cell2mat(accessAER.Interval.Item(cast(1, 'int32')).DataSets.GetDataSetByName('Elevation').GetValues);
+%% Extracting All Grouped Time Independent Data

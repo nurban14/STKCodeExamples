@@ -1,0 +1,13 @@
+C#
+
+IAgAccessConstraintCollection accessConstraints = stkobject.AccessConstraints;
+
+// Add constraints
+accessConstraints.AddConstraint(AgEAccessConstraints.eCstrSunElevationAngle);
+
+vbNet
+
+Dim accessConstraints As IAgAccessConstraintCollection = stkobject.AccessConstraints
+
+' Add constraints
+accessConstraints.AddConstraint(AgEAccessConstraints.eCstrSunElevationAngle)

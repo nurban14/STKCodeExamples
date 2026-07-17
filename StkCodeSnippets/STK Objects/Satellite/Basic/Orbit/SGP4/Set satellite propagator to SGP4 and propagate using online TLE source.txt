@@ -1,0 +1,8 @@
+Python
+# IAgSatellite satellite: Satellite object
+satellite.SetPropagatorType(AgEVePropagatorType.ePropagatorSGP4)
+propagator = satellite.Propagator
+propagator.EphemerisInterval.SetImplicitInterval(root.CurrentScenario.Vgt.EventIntervals.Item("AnalysisInterval"))  # Link to scenario period
+propagator.CommonTasks.AddSegsFromOnlineSource('25544')  # International Space Station
+propagator.AutoUpdateEnabled = True
+propagator.Propagate()

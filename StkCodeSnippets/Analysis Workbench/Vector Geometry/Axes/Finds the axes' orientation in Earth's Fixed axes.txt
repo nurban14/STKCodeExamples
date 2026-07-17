@@ -1,0 +1,19 @@
+C#
+// IAgCrdnAxes axes: A valid VGT axes object.
+
+IAgCrdnAxesFindInAxesResult result = axes.FindInAxes(0,
+    provider.WellKnownAxes.Earth.Fixed);
+if (result.IsValid)
+{
+    IAgOrientationEulerAngles angles = (IAgOrientationEulerAngles)result.Orientation.ConvertTo(AgEOrientationType.eEulerAngles);
+    Console.WriteLine("Euler Angles [A,B,C,SEQ] =&gt; [{1}, {1}, {2}, {3}]", angles.A, angles.B, angles.C, angles.Sequence);
+}
+
+vbNet
+// IAgCrdnAxes axes: A valid VGT axes object.
+
+Dim result As IAgCrdnAxesFindInAxesResult = axes.FindInAxes(0, provider.WellKnownAxes.Earth.Fixed)
+If result.IsValid Then
+	Dim angles As IAgOrientationEulerAngles = DirectCast(result.Orientation.ConvertTo(AgEOrientationType.eEulerAngles), IAgOrientationEulerAngles)
+	Console.WriteLine("Euler Angles [A,B,C,SEQ] =&gt; [{1}, {1}, {2}, {3}]", angles.A, angles.B, angles.C, angles.Sequence)
+End If

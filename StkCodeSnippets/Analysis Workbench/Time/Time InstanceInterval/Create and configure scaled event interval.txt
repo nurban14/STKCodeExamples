@@ -1,0 +1,38 @@
+C#
+
+IAgCrdnEventInterval eventInterval = provider.EventIntervals.Factory.CreateEventIntervalScaled("MyIntervalScaled",  "MyDescription");
+IAgCrdnEventIntervalScaled asScaled = eventInterval as IAgCrdnEventIntervalScaled;
+
+asScaled.OriginalInterval = provider.EventIntervals["AvailabilityTimeSpan"];
+
+asScaled.AbsoluteIncrement = 30;
+
+// Or use Relative
+asScaled.UseAbsoluteIncrement = false;
+asScaled.RelativeIncrement = 45; // Percentage
+
+IAgCrdnEventIntervalResult intervalResult = eventInterval.FindInterval();
+if (intervalResult.IsValid)
+{
+    Console.WriteLine("Interval Start: " + intervalResult.Interval.Start);
+    Console.WriteLine("Interval Stop: " + intervalResult.Interval.Stop);
+}
+
+vbNet
+
+Dim eventInterval As IAgCrdnEventInterval = provider.EventIntervals.Factory.CreateEventIntervalScaled("MyIntervalScaled", "MyDescription")
+Dim asScaled As IAgCrdnEventIntervalScaled = TryCast(eventInterval, IAgCrdnEventIntervalScaled)
+
+asScaled.OriginalInterval = provider.EventIntervals("AvailabilityTimeSpan")
+
+asScaled.AbsoluteIncrement = 30
+
+' Or use Relative
+asScaled.UseAbsoluteIncrement = False
+asScaled.RelativeIncrement = 45
+' Percentage
+Dim intervalResult As IAgCrdnEventIntervalResult = eventInterval.FindInterval()
+If intervalResult.IsValid Then
+	Console.WriteLine("Interval Start: " + intervalResult.Interval.Start)
+	Console.WriteLine("Interval Stop: " + intervalResult.Interval.[Stop])
+End If

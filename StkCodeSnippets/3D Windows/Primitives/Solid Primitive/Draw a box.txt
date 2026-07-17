@@ -1,0 +1,49 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+// IAgCrdnSystem system: A system for the solid
+
+IAgStkGraphicsSceneManager manager = ((IAgScenario)root.CurrentScenario).SceneManager;
+
+Array size = new object[] {1000, 1000, 2000 };
+IAgStkGraphicsSolidTriangulatorResult result = manager.Initializers.BoxTriangulator.Compute(ref size);
+IAgStkGraphicsSolidPrimitive solid = manager.Initializers.SolidPrimitive.Initialize();
+((IAgStkGraphicsPrimitive)solid).ReferenceFrame = system;
+solid.SetWithResult(result);
+
+manager.Primitives.Add((IAgStkGraphicsPrimitive)solid);
+
+Matlab
+
+% IAgScenario scenario: Scenario object
+manager = scenario.SceneManager;
+originBox = root.ConversionUtility.NewPositionOnEarth();
+originBox.AssignGeodetic(0, 3, 100);
+
+orientBox = root.ConversionUtility.NewOrientation();
+orientBox.AssignAzEl(0,0,'eAzElAboutBoresightRotate');
+
+size = {100; 100; 200};
+result = manager.Initializers.BoxTriangulator.Compute(size);
+solidBox = manager.Initializers.SolidPrimitive.Initialize();
+solidBox.ReferenceFrame = root.CentralBodies.Earth.Vgt.Systems.Item('Fixed');
+solidBox.Position = originBox.QueryCartesianArray;
+solidBox.SetWithResult(result);
+solidBox.Color = 255;
+solidBox.OutlineColor = 16776974;
+solidBox.Translucency = .75;
+solidBox.Rotation = orientBox;
+manager.Primitives.Add(solidBox);
+manager.Render;
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+// IAgCrdnSystem system: A system for the solid
+
+Dim manager As IAgStkGraphicsSceneManager = DirectCast(root.CurrentScenario, IAgScenario).SceneManager
+
+Dim pos As Array = New Object() {1000, 1000, 2000}
+Dim result As IAgStkGraphicsSolidTriangulatorResult = manager.Initializers.BoxTriangulator.Compute(pos)
+Dim solid As IAgStkGraphicsSolidPrimitive = manager.Initializers.SolidPrimitive.Initialize()
+DirectCast(solid, IAgStkGraphicsPrimitive).ReferenceFrame = system
+solid.SetWithResult(result)
+
+manager.Primitives.Add(DirectCast(solid, IAgStkGraphicsPrimitive))

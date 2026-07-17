@@ -1,0 +1,17 @@
+C#
+
+Array coordinates = new object[]
+{
+    0,
+    0,
+    1,
+    1
+};
+
+markerBatch.TextureCoordinate = coordinates;
+
+vbNet
+
+Dim coordinates As Array = New Object() {0, 0, 1, 1}
+
+markerBatch.TextureCoordinate = coordinates

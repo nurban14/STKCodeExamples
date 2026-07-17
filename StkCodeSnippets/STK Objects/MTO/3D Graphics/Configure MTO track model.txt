@@ -1,0 +1,17 @@
+C#
+
+IAgMtoVOModel model = track.Model;
+model.IsVisible = true;
+model.Filename = @"STKData\VO\Models\Land\ariane-lp.glb";
+model.InitialBearing = 3.0;
+model.ScaleValue = 2.0;
+model.ZPointsNadir = true;
+
+vbNet
+
+Dim model As IAgMtoVOModel = track.Model
+model.IsVisible = True
+model.Filename = "STKData\VO\Models\Land\ariane-lp.glb"
+model.InitialBearing = 3
+model.ScaleValue = 2
+model.ZPointsNadir = True

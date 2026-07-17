@@ -1,0 +1,26 @@
+C#
+
+IAgConversionUtility converter = root.ConversionUtility;
+
+// ConvertQuantityArray expects a one dimensional array of values to be converted
+// An array of km/sec units
+Array kmsecUnits = new object[]
+                   {
+                       100, 23
+                   };
+
+// Convert to mi/sec units
+// ConvertQuantityArray returns a one dimensional array of converted values
+Array misecUnits = converter.ConvertQuantityArray("Rate", "km/sec", "mi/sec", ref kmsecUnits);
+
+vbNet
+
+Dim converter As IAgConversionUtility = root.ConversionUtility
+
+' ConvertQuantityArray expects a one dimensional array of values to be converted
+' An array of km/sec units
+Dim kmsecUnits As Array = New Object() {100, 23}
+
+' Convert to mi/sec units
+' ConvertQuantityArray returns a one dimensional array of converted values
+Dim misecUnits As Array = converter.ConvertQuantityArray("Rate", "km/sec", "mi/sec", kmsecUnits)

@@ -1,0 +1,50 @@
+C#
+
+IAgCrdnProvider satelliteVgtProvider = stkRoot.GetObjectFromPath("Satellite/LEO").Vgt;
+IAgCrdnProvider aircraftVgtProvider = stkRoot.GetObjectFromPath("Aircraft/UAV").Vgt;
+
+IAgCrdnEventInterval eventInterval = satelliteVgtProvider.EventIntervals.Factory.CreateEventIntervalSignaled("MyIntervalSignaled",  "MyDescription");
+IAgCrdnEventIntervalSignaled asSignaled = eventInterval as IAgCrdnEventIntervalSignaled;
+
+asSignaled.OriginalInterval = aircraftVgtProvider.EventIntervals["AvailabilityTimeSpan"];
+asSignaled.BaseClockLocation = satelliteVgtProvider.Points["Center"];
+asSignaled.TargetClockLocation = aircraftVgtProvider.Points["Center"];
+
+asSignaled.SignalSense = AgECrdnSignalSense.eCrdnSignalSenseReceive;
+IAgCrdnSignalDelayBasic basicSignalDelay = asSignaled.SignalDelay as IAgCrdnSignalDelayBasic;
+basicSignalDelay.SpeedOption = AgECrdnSpeedOptions.eCrdnLightTransmissionSpeed;
+
+// Uses current Time unit preference, this code snippet assumes seconds.
+basicSignalDelay.TimeDelayConvergence = 0.002;
+
+IAgCrdnEventIntervalResult intervalResult = eventInterval.FindInterval();
+if (intervalResult.IsValid)
+{
+    Console.WriteLine("Interval Start: " + intervalResult.Interval.Start);
+    Console.WriteLine("Interval Stop: " + intervalResult.Interval.Stop);
+}
+
+vbNet
+
+Dim satelliteVgtProvider As IAgCrdnProvider = stkRoot.GetObjectFromPath("Satellite/LEO").Vgt
+Dim aircraftVgtProvider As IAgCrdnProvider = stkRoot.GetObjectFromPath("Aircraft/UAV").Vgt
+
+Dim eventInterval As IAgCrdnEventInterval = satelliteVgtProvider.EventIntervals.Factory.CreateEventIntervalSignaled("MyIntervalSignaled", "MyDescription")
+Dim asSignaled As IAgCrdnEventIntervalSignaled = TryCast(eventInterval, IAgCrdnEventIntervalSignaled)
+
+asSignaled.OriginalInterval = aircraftVgtProvider.EventIntervals("AvailabilityTimeSpan")
+asSignaled.BaseClockLocation = satelliteVgtProvider.Points("Center")
+asSignaled.TargetClockLocation = aircraftVgtProvider.Points("Center")
+
+asSignaled.SignalSense = AgECrdnSignalSense.eCrdnSignalSenseReceive
+Dim basicSignalDelay As IAgCrdnSignalDelayBasic = TryCast(asSignaled.SignalDelay, IAgCrdnSignalDelayBasic)
+basicSignalDelay.SpeedOption = AgECrdnSpeedOptions.eCrdnLightTransmissionSpeed
+
+' Uses current Time unit preference, this code snippet assumes seconds.
+basicSignalDelay.TimeDelayConvergence = 0.002
+
+Dim intervalResult As IAgCrdnEventIntervalResult = eventInterval.FindInterval()
+If intervalResult.IsValid Then
+	Console.WriteLine("Interval Start: " + intervalResult.Interval.Start)
+	Console.WriteLine("Interval Stop: " + intervalResult.Interval.[Stop])
+End If

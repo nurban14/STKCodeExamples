@@ -1,0 +1,20 @@
+C#
+// Get reference to running STK instance
+AgUiApplication uiApplication = System.Runtime.InteropServices.Marshal.GetActiveObject("STK.Application") as AgUiApplication;
+
+// Get our IAgStkObjectRoot interface
+IAgStkObjectRoot stkRoot = uiApplication.Personality2 as IAgStkObjectRoot;
+
+Matlab
+% Get reference to running STK instance
+uiApplication = actxGetRunningServer('STK13.application');
+
+% Get our IAgStkObjectRoot interface
+root = uiApplication.Personality2;
+
+vbNet
+' Get reference to running STK instance
+Dim uiApplication As AgUiApplication = TryCast(System.Runtime.InteropServices.Marshal.GetActiveObject("STK.Application"), AgUiApplication)
+
+' Get our IAgStkObjectRoot interface
+Dim stkRoot As IAgStkObjectRoot = TryCast(uiApplication.Personality2, IAgStkObjectRoot)

@@ -1,0 +1,18 @@
+C#
+
+Array coordinates = new object[]
+{
+    0, 0, 1, 1,
+    1, 1, 0, 0
+};
+
+IAgStkGraphicsMarkerBatchPrimitiveOptionalParameters parameters = sceneManager.Initializers.MarkerBatchPrimitiveOptionalParameters.Initialize();
+parameters.SetTextureCoordinates(ref coordinates);
+
+vbNet
+
+Dim coordinates As Array = New Object() {0, 0, 1, 1, 1, 1, _
+	0, 0}
+
+Dim parameters As IAgStkGraphicsMarkerBatchPrimitiveOptionalParameters = sceneManager.Initializers.MarkerBatchPrimitiveOptionalParameters.Initialize()
+parameters.SetTextureCoordinates(coordinates)

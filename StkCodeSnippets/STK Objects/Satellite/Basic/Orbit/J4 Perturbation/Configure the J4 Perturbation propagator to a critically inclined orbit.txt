@@ -1,0 +1,53 @@
+C#
+// Double apogeeAlt: Apogee altitude (default 12000 km)
+// Double perigeeAlt: Perigee altitude (default 400 km)
+// Double ascNodeLon: Longitude of ascending node (default -100 deg
+
+satellite.SetPropagatorType(AgEVePropagatorType.ePropagatorJ4Perturbation);
+IAgVePropagatorJ4Perturbation prop = satellite.Propagator as IAgVePropagatorJ4Perturbation;
+
+IAgOrbitStateClassical keplerian = prop.InitialState.Representation.ConvertTo(AgEOrbitStateType.eOrbitStateClassical) as IAgOrbitStateClassical;
+
+keplerian.SizeShapeType = AgEClassicalSizeShape.eSizeShapeAltitude;
+IAgClassicalSizeShapeAltitude size = keplerian.SizeShape as IAgClassicalSizeShapeAltitude;
+
+size.ApogeeAltitude = apogeeAlt;
+size.PerigeeAltitude = perigeeAlt;
+
+keplerian.Orientation.Inclination = 63.434949;
+keplerian.Orientation.ArgOfPerigee = 270.000000;
+keplerian.Orientation.AscNodeType = AgEOrientationAscNode.eAscNodeLAN;
+(keplerian.Orientation.AscNode as IAgOrientationAscNodeLAN).Value = ascNodeLon;
+
+keplerian.LocationType = AgEClassicalLocation.eLocationTrueAnomaly;
+(keplerian.Location as IAgClassicalLocationTrueAnomaly).Value = 90.000000;
+
+prop.InitialState.Representation.Assign(keplerian);
+prop.Propagate();
+
+vbNet
+// Double apogeeAlt: Apogee altitude (default 12000 km)
+// Double perigeeAlt: Perigee altitude (default 400 km)
+// Double ascNodeLon: Longitude of ascending node (default -100 deg
+
+satellite.SetPropagatorType(AgEVePropagatorType.ePropagatorJ4Perturbation)
+Dim prop As IAgVePropagatorJ4Perturbation = TryCast(satellite.Propagator, IAgVePropagatorJ4Perturbation)
+
+Dim keplerian As IAgOrbitStateClassical = TryCast(prop.InitialState.Representation.ConvertTo(AgEOrbitStateType.eOrbitStateClassical), IAgOrbitStateClassical)
+
+keplerian.SizeShapeType = AgEClassicalSizeShape.eSizeShapeAltitude
+Dim size As IAgClassicalSizeShapeAltitude = TryCast(keplerian.SizeShape, IAgClassicalSizeShapeAltitude)
+
+size.ApogeeAltitude = apogeeAlt
+size.PerigeeAltitude = perigeeAlt
+
+keplerian.Orientation.Inclination = 63.434949
+keplerian.Orientation.ArgOfPerigee = 270
+keplerian.Orientation.AscNodeType = AgEOrientationAscNode.eAscNodeLAN
+TryCast(keplerian.Orientation.AscNode, IAgOrientationAscNodeLAN).Value = ascNodeLon
+
+keplerian.LocationType = AgEClassicalLocation.eLocationTrueAnomaly
+TryCast(keplerian.Location, IAgClassicalLocationTrueAnomaly).Value = 90
+
+prop.InitialState.Representation.Assign(keplerian)
+prop.Propagate()

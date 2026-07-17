@@ -1,0 +1,18 @@
+C#
+// IAgCrdnPoint point: A valid VGT point object.
+
+IAgCrdnPointLocateInSystemResult result = point.LocateInSystem(0,
+    provider.WellKnownSystems.Earth.Fixed);
+if (result.IsValid)
+{
+    Console.WriteLine("The position of the point in Earth's Fixed reference frame: {0},{1},{2}",
+        result.Position.X, result.Position.Y, result.Position.Z);
+}
+
+vbNet
+// IAgCrdnPoint point: A valid VGT point object.
+
+Dim result As IAgCrdnPointLocateInSystemResult = point.LocateInSystem(0, provider.WellKnownSystems.Earth.Fixed)
+If result.IsValid Then
+	Console.WriteLine("The position of the point in Earth's Fixed reference frame: {0},{1},{2}", result.Position.X, result.Position.Y, result.Position.Z)
+End If

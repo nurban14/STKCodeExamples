@@ -1,0 +1,16 @@
+C#
+
+Array eyeoffset = new object[]
+{
+    2,
+    3,
+    4
+};
+
+markerBatch.EyeOffset = eyeoffset;
+
+vbNet
+
+Dim eyeoffset As Array = New Object() {2, 3, 4}
+
+markerBatch.EyeOffset = eyeoffset

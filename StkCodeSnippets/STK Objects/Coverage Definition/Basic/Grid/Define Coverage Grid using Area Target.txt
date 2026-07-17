@@ -1,0 +1,11 @@
+Python
+IAgCoverageDefinition coverage: Coverage Definition object
+
+coverage.Grid.BoundsType = 0 # eBoundsCustomRegions
+covGrid = coverage.Grid
+bounds = covGrid.Bounds
+bounds.AreaTargets.Add('AreaTarget/MyAreaTarget')
+
+#Define the Grid Resolution
+Res = covGrid.Resolution
+Res.LatLon = .5   #deg

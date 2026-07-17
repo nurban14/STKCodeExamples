@@ -1,0 +1,18 @@
+C#
+// String scenarioLocation: Specified path of scenario
+
+// close current scenario
+if (root.CurrentScenario != null)
+{
+    root.CloseScenario();
+}
+root.LoadScenario(scenarioLocation);
+
+vbNet
+// String scenarioLocation: Specified path of scenario
+
+' close current scenario
+If root.CurrentScenario IsNot Nothing Then
+	root.CloseScenario()
+End If
+root.LoadScenario(scenarioLocation)

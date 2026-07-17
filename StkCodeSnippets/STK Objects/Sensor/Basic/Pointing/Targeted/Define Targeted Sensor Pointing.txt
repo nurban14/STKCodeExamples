@@ -1,0 +1,5 @@
+Python
+IAgSensor sensor: Sensor object
+
+targetedSensor = sensor.CommonTasks.SetPointingTargetedTracking(
+    AgETrackModeType.eTrackModeTransmit, AgEBoresightType.eBoresightLevel, "*/AreaTarget/AreaTarget1")

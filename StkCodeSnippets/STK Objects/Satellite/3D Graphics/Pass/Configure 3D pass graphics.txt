@@ -1,0 +1,29 @@
+C#
+
+// Set lead data type to fraction, retrieved IAgVeGfxLeadData implementation
+veVoPass.TrackData.PassData.GroundTrack.SetLeadDataType(AgELeadTrailData.eDataQuarter);
+
+veVoPass.TrackData.PassData.GroundTrack.SetTrailDataType(AgELeadTrailData.eDataHalf);
+veVoPass.TrackData.PassData.Orbit.SetLeadDataType(AgELeadTrailData.eDataQuarter);
+veVoPass.TrackData.PassData.Orbit.SetTrailSameAsLead();
+
+veVoPass.TickMarks.GroundTrack.IsVisible = true;
+veVoPass.TickMarks.GroundTrack.SetTickDataType(AgETickData.eTickDataRadial);
+veVoPass.TickMarks.Orbit.IsVisible = true;
+veVoPass.TickMarks.Orbit.SetTickDataType(AgETickData.eTickDataRadialAndCrossTrack);
+veVoPass.TickMarks.TimeBetweenTicks = 180;
+
+vbNet
+
+' Set lead data type to fraction, retrieved IAgVeGfxLeadData implementation
+veVoPass.TrackData.PassData.GroundTrack.SetLeadDataType(AgELeadTrailData.eDataQuarter)
+
+veVoPass.TrackData.PassData.GroundTrack.SetTrailDataType(AgELeadTrailData.eDataHalf)
+veVoPass.TrackData.PassData.Orbit.SetLeadDataType(AgELeadTrailData.eDataQuarter)
+veVoPass.TrackData.PassData.Orbit.SetTrailSameAsLead()
+
+veVoPass.TickMarks.GroundTrack.IsVisible = True
+veVoPass.TickMarks.GroundTrack.SetTickDataType(AgETickData.eTickDataRadial)
+veVoPass.TickMarks.Orbit.IsVisible = True
+veVoPass.TickMarks.Orbit.SetTickDataType(AgETickData.eTickDataRadialAndCrossTrack)
+veVoPass.TickMarks.TimeBetweenTicks = 180

@@ -1,0 +1,59 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+// IAgCrdnSystem system: A system for the solid
+
+IAgStkGraphicsSceneManager manager = ((IAgScenario)root.CurrentScenario).SceneManager;
+
+IAgStkGraphicsSolidTriangulatorResult result = manager.Initializers.CylinderTriangulator.CreateSimple(1000, 2000);
+IAgStkGraphicsSolidPrimitive solid = manager.Initializers.SolidPrimitive.Initialize();
+((IAgStkGraphicsPrimitive)solid).ReferenceFrame = system;
+((IAgStkGraphicsPrimitive)solid).Color = Color.Yellow;
+solid.OutlineColor = Color.Black;
+solid.OutlineWidth = 2;
+solid.OutlineAppearance = AgEStkGraphicsOutlineAppearance.eStkGraphicsStylizeBackLines;
+solid.BackLineColor = Color.Black;
+solid.BackLineWidth = 1;
+solid.SetWithResult(result);
+
+manager.Primitives.Add((IAgStkGraphicsPrimitive)solid);
+
+Matlab
+
+% IAgScenario scenario: Scenario object
+manager = scenario.SceneManager;
+originCylinder = root.ConversionUtility.NewPositionOnEarth();
+originCylinder.AssignGeodetic(0, 7, 100);
+
+orientCylinder = root.ConversionUtility.NewOrientation();
+orientCylinder.AssignAzEl(0,0,'eAzElAboutBoresightRotate');
+
+cylinder = manager.Initializers.CylinderTriangulator.CreateSimple(200,100);
+solidCylinder = manager.Initializers.SolidPrimitive.Initialize();
+solidCylinder.ReferenceFrame = root.CentralBodies.Earth.Vgt.Systems.Item('Fixed');
+solidCylinder.Position = originCylinder.QueryCartesianArray;
+solidCylinder.SetWithResult(cylinder);
+solidCylinder.Color = 65280;
+solidCylinder.OutlineColor = 16711680;
+solidCylinder.OutlineWidth = 3;
+solidCylinder.Translucency = .75;
+solidCylinder.Rotation = orientCylinder;
+manager.Primitives.Add(solidCylinder);
+manager.Render;
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+// IAgCrdnSystem system: A system for the solid
+
+Dim manager As IAgStkGraphicsSceneManager = DirectCast(root.CurrentScenario, IAgScenario).SceneManager
+
+Dim result As IAgStkGraphicsSolidTriangulatorResult = manager.Initializers.CylinderTriangulator.CreateSimple(1000, 2000)
+Dim solid As IAgStkGraphicsSolidPrimitive = manager.Initializers.SolidPrimitive.Initialize()
+DirectCast(solid, IAgStkGraphicsPrimitive).ReferenceFrame = system
+DirectCast(solid, IAgStkGraphicsPrimitive).Color = Color.Yellow
+solid.OutlineColor = Color.Black
+solid.OutlineWidth = 2
+solid.OutlineAppearance = AgEStkGraphicsOutlineAppearance.eStkGraphicsStylizeBackLines
+solid.BackLineColor = Color.Black
+solid.BackLineWidth = 1
+solid.SetWithResult(result)
+
+manager.Primitives.Add(DirectCast(solid, IAgStkGraphicsPrimitive))

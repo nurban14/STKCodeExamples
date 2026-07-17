@@ -1,0 +1,8 @@
+Matlab
+
+% IAgStkObjectRoot root: STK Object Model Root
+root.CloseScenario;
+Python
+
+# IAgStkObjectRoot root: STK Object Model Root
+root.CloseScenario

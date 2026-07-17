@@ -1,0 +1,24 @@
+Matlab
+% IAgSatellite satellite: Satellite object
+%Set a contour level in the 2D properties
+rangeContours = satellite.Graphics.RangeContours;
+rangeContours.IsVisible = true;
+rangeLevel = rangeContours.LevelAttributes.AddLevel(2000);  % km
+rangeLevel.Color = 16711935;
+rangeLevel.LineWidth = 4;
+rangeLevel.LabelAngle = 90;
+rangeLevel.UserTextVisible = true;
+rangeLevel.UserText = 'Range';
+
+Python
+# IAgSatellite satellite: Satellite object
+
+# Set a contour level in the 2D properties
+rangeContours = satellite.Graphics.RangeContours
+rangeContours.IsVisible = True
+rangeLevel = rangeContours.LevelAttributes.AddLevel(2000)  # km
+rangeLevel.Color = Colors.Fuchsia
+rangeLevel.LineWidth = AgELineWidth.e5
+rangeLevel.LabelAngle = 90
+rangeLevel.UserTextVisible = True
+rangeLevel.UserText = 'Range'

@@ -1,0 +1,11 @@
+C#
+
+sensorVo.ProjectionType = AgESnVOProjectionType.eProjectionAllIntersections;
+sensorVo.InheritFrom2D = AgESnVOInheritFrom2D.eSnVOInheritFrom2DExtentOnly;
+sensorVo.SpaceProjection = 2000.0;
+
+vbNet
+
+sensorVo.ProjectionType = AgESnVOProjectionType.eProjectionAllIntersections
+sensorVo.InheritFrom2D = AgESnVOInheritFrom2D.eSnVOInheritFrom2DExtentOnly
+sensorVo.SpaceProjection = 2000

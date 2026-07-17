@@ -1,0 +1,47 @@
+Matlab
+
+% IAgScenario scenario: Scenario object
+% 3(n) x 1 cell result: cell of LLA values
+% Create a polyline primitive and sets properties
+manager = scenario.SceneManager;
+polyline = manager.Initializers.PolylinePrimitive.InitializeWithType('eStkGraphicsPolylineTypeLineStrip');
+polyline.SetCartographic('Earth', result);
+polyline.Color = 255; % Red
+polyline.Width = 3;
+polyline.Translucency = 0;
+polyline.Display = true;
+polyline.DisplayOutline = false;
+manager.Primitives.Add(polyline);
+manager.Render;
+
+%%
+path = manager.Initializers.PathPrimitive.Initialize();
+path.Width = 2;
+
+interpolator = manager.Initializers.GreatArcInterpolator.InitializeWithCentralBody('Earth');
+interpolator.Granularity = 1;
+interpolator.PolylineType(1);
+
+result = interpolator.Interpolate({2.383;13.049;10;0.054;35.919;10});
+%path.AddRangeToFront(reshape(result,length(result)/3,3));
+
+counter = 1;
+for i=counter:3:length(result)
+    cartesian = root.ConversionUtility.ConvertPositionArray('eGeodetic',{result{i}, result{i+1}, result{i+2}},'eCartesian');
+    pt = manager.Initializers.PathPoint.Initialize;
+    pt.Position = cartesian';
+    pt.Translucency = .25;
+
+    counter = counter + 1;
+    if (rem(counter,2) == 0)
+        pt.Color = 255;
+    else
+        pt.Color = 65280;
+    end
+    path.AddBack(pt);
+end
+
+manager.Primitives.Add(path);
+manager.Render;
+
+w

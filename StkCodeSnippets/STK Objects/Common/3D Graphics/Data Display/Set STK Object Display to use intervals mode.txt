@@ -1,0 +1,39 @@
+C#
+
+// Attempt to cast STK Object to the IAgDisplayTm interface
+IAgDisplayTm display = stkObject as IAgDisplayTm;
+if (display != null)
+{
+    // Configure display intervals
+    if (display.IsDisplayStatusTypeSupported(AgEDisplayTimesType.eUseIntervals))
+    {
+        display.SetDisplayStatusType(AgEDisplayTimesType.eUseIntervals);
+
+        // Get IAgIntervalCollection interface
+        IAgIntervalCollection intervalCollection = display.DisplayTimesData as IAgIntervalCollection;
+        intervalCollection.RemoveAll();
+
+        // Add subsequent intervals
+        intervalCollection.Add(
+            "1 Jan 2012 12:00:00.00",
+            "1 Jan 2012 13:00:00.000");
+    }
+}
+
+vbNet
+
+' Attempt to cast STK Object to the IAgDisplayTm interface
+Dim display As IAgDisplayTm = TryCast(stkObject, IAgDisplayTm)
+If display IsNot Nothing Then
+	' Configure display intervals
+	If display.IsDisplayStatusTypeSupported(AgEDisplayTimesType.eUseIntervals) Then
+		display.SetDisplayStatusType(AgEDisplayTimesType.eUseIntervals)
+
+		' Get IAgIntervalCollection interface
+		Dim intervalCollection As IAgIntervalCollection = TryCast(display.DisplayTimesData, IAgIntervalCollection)
+		intervalCollection.RemoveAll()
+
+		' Add subsequent intervals
+		intervalCollection.Add("1 Jan 2012 12:00:00.00", "1 Jan 2012 13:00:00.000")
+	End If
+End If

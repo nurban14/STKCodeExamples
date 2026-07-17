@@ -1,0 +1,11 @@
+C#
+
+// Create the Chain on the current scenario central body (use
+// NewOnCentralBody to specify explicitly the central body)
+IAgChain chain = root.CurrentScenario.Children.New(AgESTKObjectType.eChain, "MyChain") as IAgChain;
+
+vbNet
+
+' Create the Chain on the current scenario central body (use
+' NewOnCentralBody to specify explicitly the central body)
+Dim chain As IAgChain = TryCast(root.CurrentScenario.Children.[New](AgESTKObjectType.eChain, "MyChain"), IAgChain)

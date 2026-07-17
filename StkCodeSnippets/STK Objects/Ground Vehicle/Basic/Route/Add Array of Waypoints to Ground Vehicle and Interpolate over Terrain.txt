@@ -1,0 +1,21 @@
+Matlab
+# IAgGroundVehicle grndVehicle: Ground Vehicle object
+route = grndVehicle.Route
+ptsArray = [ [41.97766217,21.44863761,0,0.026,.5],[41.97422351,21.39956154,0,0.026,.5],[41.99173299,21.40796942,0,0.026,.5] ]
+route.SetPointsSmoothRateAndPropagate(ptsArray)
+route.SetAltitudeRefType(1) # eWayPtAltRefTerrain
+route.AltitudeRef.Granularity = .001
+route.altitudeRef.InterpMethod = 1 # eWayPtTerrainHeight
+#Propagate the route
+route.Propagate()
+Python
+
+# IAgGroundVehicle grndVehicle: Ground Vehicle object
+route = grndVehicle.Route
+ptsArray = [ [41.97766217,21.44863761,0,0.026,.5],[41.97422351,21.39956154,0,0.026,.5],[41.99173299,21.40796942,0,0.026,.5] ]
+route.SetPointsSmoothRateAndPropagate(ptsArray)
+route.SetAltitudeRefType(1) # eWayPtAltRefTerrain
+route.AltitudeRef.Granularity = .001
+route.altitudeRef.InterpMethod = 1 # eWayPtTerrainHeight
+#Propagate the route
+route.Propagate()

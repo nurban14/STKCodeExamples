@@ -1,0 +1,6 @@
+Matlab
+% IAgStkObjectRoot root: STK Object Model root
+aircraft = root.CurrentScenario.Children.New('eAircraft', 'MyAircraft');
+Python
+# IAgStkObjectRoot root: STK Object Model root
+aircraft = root.CurrentScenario.Children.New(1, 'MyAircraft') # eAircraft

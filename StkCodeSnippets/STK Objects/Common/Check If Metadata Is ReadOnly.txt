@@ -1,0 +1,12 @@
+C#
+
+if (stkObject.Metadata.GetReadOnly("test"))
+{
+    Console.WriteLine("The test Metadata element is ReadOnly.");
+}
+
+vbNet
+
+If stkObject.Metadata.GetReadOnly("test") Then
+	Console.WriteLine("The test Metadata element is ReadOnly.")
+End If

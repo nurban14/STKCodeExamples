@@ -1,0 +1,16 @@
+Matlab
+
+% IAgScenario scenario: Scenario object
+manager = scenario.SceneManager;
+font = manager.Initializers.GraphicsFont.InitializeWithNameSizeFontStyleOutline('MS Sans Serif', 24, 'eStkGraphicsFontStyleBold', true);
+textBatch = manager.Initializers.TextBatchPrimitive.InitializeWithGraphicsFont(font);
+textBatch.SetCartographic('Earth', {0;0;0},{'Example Text'});   % Lat,Lon,Alt
+manager.Primitives.Add(textBatch);
+Python
+
+# IAgScenario scenario: Scenario object
+manager = scenario.SceneManager
+font = manager.Initializers.GraphicsFont.InitializeWithNameSizeFontStyleOutline('MS Sans Serif', 24, 1, True) # eStkGraphicsFontStyleBold
+textBatch = manager.Initializers.TextBatchPrimitive.InitializeWithGraphicsFont(font)
+textBatch.SetCartographic('Earth', [ [0],[0],[0] ],['Example Text'])  # Lat,Lon,Alt
+manager.Primitives.Add(textBatch)

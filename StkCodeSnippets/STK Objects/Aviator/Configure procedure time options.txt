@@ -1,0 +1,21 @@
+C#
+
+// Get the time in epoch seconds
+Application.UnitPreferences.SetCurrentUnit("DateFormat", "EpSec");
+// Get the time options
+IAgAvtrProcedureTimeOptions timeOptions = procedure.TimeOptions;
+// Get the start time
+Object startTime = timeOptions.StartTime;
+// Set the procedure to interrupt after 15 seconds
+timeOptions.SetInterruptTime(15);
+
+vbNet
+
+' Get the time in epoch seconds
+Application.UnitPreferences.SetCurrentUnit("DateFormat", "EpSec")
+' Get the time options
+Dim timeOptions As IAgAvtrProcedureTimeOptions = procedure.TimeOptions
+' Get the start time
+Dim startTime As [Object] = timeOptions.StartTime
+' Set the procedure to interrupt after 15 seconds
+timeOptions.SetInterruptTime(15)

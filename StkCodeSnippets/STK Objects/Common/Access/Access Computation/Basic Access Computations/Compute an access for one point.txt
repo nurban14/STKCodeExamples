@@ -1,0 +1,23 @@
+Matlab
+% IAgStkObject facility: Facility object
+onePtAccess = facility.CreateOnePointAccess('Satellite/MySatellite');
+
+% Configure properties (if necessary)
+onePtAccess.StartTime = root.CurrentScenario.StartTime;
+onePtAccess.StopTime = root.CurrentScenario.stopTime;
+onePtAccess.StepSize = 600;
+onePtAccess.SummaryOption = 'eOnePtAccessSummaryDetailed';
+
+% Compute results
+results = onePtAccess.Compute();
+
+% Print results
+for i = 0:results.Count - 1
+    result = results.Item(i);
+    disp(['Time: ' result.Time ' HasAccess: ' num2str(result.AccessSatisfied)]);
+
+    for j = 0:result.Constraints.Count - 1
+        constraint = result.Constraints.Item(j);
+        disp(['Constraint: ' constraint.Constraint ' Object: ' constraint.ObjectPath ' Status: ' constraint.Status ' Value: ' num2str(constraint.Value)]);
+    end
+end

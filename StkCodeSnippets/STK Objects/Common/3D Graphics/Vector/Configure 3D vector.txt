@@ -1,0 +1,31 @@
+C#
+
+// See AvailableCrdns for supported elements
+vector.RefCrdns.Add(AgEGeometricElemType.eVectorElem, ((IAgCrdn)m_Root.CentralBodies["Earth"].Vgt.Vectors["Moon"]).QualifiedPath);
+vector.RefCrdns.Add(AgEGeometricElemType.eAxesElem, ((IAgCrdn)m_Root.CentralBodies["Moon"].Vgt.Vectors["Position"]).QualifiedPath);
+vector.RefCrdns.Add(AgEGeometricElemType.eVectorElem, ((IAgCrdn)m_Root.CentralBodies["Sun"].Vgt.Vectors["Velocity(Barycenter)"]).QualifiedPath);
+
+// Draw on Central Body
+IAgVORefCrdnVector body = vector.RefCrdns.GetCrdnByName(AgEGeometricElemType.eAxesElem, ((IAgCrdn)m_Root.CentralBodies["Earth"].Vgt.Vectors["Moon"]).QualifiedPath) as IAgVORefCrdnVector;
+((IAgVORefCrdn)body).Color = Color.Yellow;
+body.DrawAtCB = true;
+body.Axes = "CentralBody/Earth Fixed Axes";
+
+vector.ScaleRelativeToModel = true;
+vector.AngleSizeScale = 4.5;
+
+vbNet
+
+' See AvailableCrdns for supported elements
+vector.RefCrdns.Add(AgEGeometricElemType.eVectorElem, DirectCast(m_Root.CentralBodies("Earth").Vgt.Vectors("Moon"), IAgCrdn).QualifiedPath)
+vector.RefCrdns.Add(AgEGeometricElemType.eAxesElem, DirectCast(m_Root.CentralBodies("Moon").Vgt.Vectors("Position"), IAgCrdn).QualifiedPath)
+vector.RefCrdns.Add(AgEGeometricElemType.eVectorElem, DirectCast(m_Root.CentralBodies("Sun").Vgt.Vectors("Velocity(Barycenter)"), IAgCrdn).QualifiedPath)
+
+' Draw on Central Body
+Dim body As IAgVORefCrdnVector = TryCast(vector.RefCrdns.GetCrdnByName(AgEGeometricElemType.eAxesElem, DirectCast(m_Root.CentralBodies("Earth").Vgt.Vectors("Moon"), IAgCrdn).QualifiedPath), IAgVORefCrdnVector)
+DirectCast(body, IAgVORefCrdn).Color = Color.Yellow
+body.DrawAtCB = True
+body.Axes = "CentralBody/Earth Fixed Axes"
+
+vector.ScaleRelativeToModel = True
+vector.AngleSizeScale = 4.5

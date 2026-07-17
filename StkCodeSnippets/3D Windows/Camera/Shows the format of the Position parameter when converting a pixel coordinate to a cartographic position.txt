@@ -1,0 +1,17 @@
+C#
+
+Array position = new object[]
+{
+    150,
+    116
+};
+
+Array cartographicPos = scene.Camera.WindowToCartographic(
+    "Earth",
+    ref position);
+
+vbNet
+
+Dim position As Array = New Object() {150, 116}
+
+Dim cartographicPos As Array = scene.Camera.WindowToCartographic("Earth", position)

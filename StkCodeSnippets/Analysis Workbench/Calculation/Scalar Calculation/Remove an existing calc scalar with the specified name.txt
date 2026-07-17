@@ -1,0 +1,14 @@
+C#
+
+// Check if the calc scalar with specified name exists
+if (provider.CalcScalars.Contains("CalcScalarName"))
+{
+    provider.CalcScalars.Remove("CalcScalarName");
+}
+
+vbNet
+
+' Check if the calc scalar with specified name exists
+If provider.CalcScalars.Contains("CalcScalarName") Then
+	provider.CalcScalars.Remove("CalcScalarName")
+End If

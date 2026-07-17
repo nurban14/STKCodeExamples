@@ -1,0 +1,17 @@
+Matlab
+
+% IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+% IAgCrdnPointFixedInSystem fixedPt: point component
+% IAgCrdnAxes bodyAxes: axes component
+SysFactory = vgtSat.Systems.Factory;
+assemSys = SysFactory.Create('FixedPtSystem','System with origin at the new point','eCrdnSystemTypeAssembled');
+assemSys.OriginPoint.SetPoint(fixedPt);
+assemSys.ReferenceAxes.SetAxes(bodyAxes);
+Python
+# IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+# IAgCrdnPointFixedInSystem fixedPt: point component
+# IAgCrdnAxes bodyAxes: axes component
+SysFactory = vgtSat.Systems.Factory
+assemSys = SysFactory.Create('FixedPtSystem', 'System with origin at the new point', AgECrdnSystemType.eCrdnSystemTypeAssembled)
+assemSys.OriginPoint.SetPoint(fixedPt)
+assemSys.ReferenceAxes.SetAxes(bodyAxes)

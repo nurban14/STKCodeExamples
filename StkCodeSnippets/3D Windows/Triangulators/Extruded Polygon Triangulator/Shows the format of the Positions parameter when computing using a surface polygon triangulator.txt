@@ -1,0 +1,22 @@
+C#
+
+Array positions = new object[]
+{
+    34.11, -78.01, 0,
+    34.72, -78.93, 0,
+    34.11, -79.33, 0,
+    34.03, -78.69, 0,
+    34.11, -78.01, 0
+};
+
+IAgStkGraphicsSurfaceTriangulatorResult result = sceneManager.Initializers.SurfacePolygonTriangulator.ComputeCartographic(
+    "Earth",
+    ref positions);
+
+vbNet
+
+Dim positions As Array = New Object() {34.11, -78.01, 0, 34.72, -78.93, 0, _
+	34.11, -79.33, 0, 34.03, -78.69, 0, _
+	34.11, -78.01, 0}
+
+Dim result As IAgStkGraphicsSurfaceTriangulatorResult = sceneManager.Initializers.SurfacePolygonTriangulator.ComputeCartographic("Earth", positions)

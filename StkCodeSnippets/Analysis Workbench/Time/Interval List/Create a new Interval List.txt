@@ -1,0 +1,7 @@
+Matlab
+
+% IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+% 2(n) x 1 cell interval: cell of time values
+timeListFactory = vgtSat.EventIntervalLists.Factory;
+custom = timeListFactory.Create('Custom','','eCrdnEventIntervalListTypeFixed');
+custom.SetIntervals(interval);

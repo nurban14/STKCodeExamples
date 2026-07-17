@@ -1,0 +1,56 @@
+C#
+
+// Get the aircraft
+IAgStkObject aircraft = stkRoot.GetObjectFromPath("Aircraft/UAV");
+
+// Configure a fixed step array that samples every 20 seconds.
+IAgCrdnEventArray twentySecondSample = aircraft.Vgt.EventArrays.Factory.CreateEventArrayFixedStep("TwentySecondSample",  "MyDescription");
+IAgCrdnEventArrayFixedStep asFixedStep = twentySecondSample as IAgCrdnEventArrayFixedStep;
+asFixedStep.BoundingIntervalList = aircraft.Vgt.EventIntervalLists["AvailabilityIntervals"];
+asFixedStep.SamplingTimeStep = 20;
+asFixedStep.ReferenceType = AgECrdnSampledReferenceTime.eCrdnSampledReferenceTimeStartOfIntervalList;
+
+// At each time step, get the aircraft's altitude and print the value.
+IAgCrdnFindTimesResult timeArrays = twentySecondSample.FindTimes();
+if (timeArrays.IsValid)
+{
+    Console.WriteLine("Times");
+    int numTimes = timeArrays.Times.GetLength(0);
+    for (int i = 0; i &lt; numTimes; ++i)
+    {
+        object epoch = timeArrays.Times.GetValue(i);
+        Array altitueAtTime = aircraft.Vgt.CalcScalars["GroundTrajectory.Detic.LLA.Altitude"].QuickEvaluate(epoch);
+        if ((bool)altitueAtTime.GetValue(0) == true)
+        {
+            Console.WriteLine("{0}: {1}", epoch, altitueAtTime.GetValue(1));
+        }
+    }
+}
+
+vbNet
+
+' Get the aircraft
+Dim aircraft As IAgStkObject = stkRoot.GetObjectFromPath("Aircraft/UAV")
+
+' Configure a fixed step array that samples every 20 seconds.
+Dim twentySecondSample As IAgCrdnEventArray = aircraft.Vgt.EventArrays.Factory.CreateEventArrayFixedStep("TwentySecondSample", "MyDescription")
+Dim asFixedStep As IAgCrdnEventArrayFixedStep = TryCast(twentySecondSample, IAgCrdnEventArrayFixedStep)
+asFixedStep.BoundingIntervalList = aircraft.Vgt.EventIntervalLists("AvailabilityIntervals")
+asFixedStep.SamplingTimeStep = 20
+asFixedStep.ReferenceType = AgECrdnSampledReferenceTime.eCrdnSampledReferenceTimeStartOfIntervalList
+
+' At each time step, get the aircraft's altitude and print the value.
+Dim timeArrays As IAgCrdnFindTimesResult = twentySecondSample.FindTimes()
+If timeArrays.IsValid Then
+	Console.WriteLine("Times")
+	Dim numTimes As Integer = timeArrays.Times.GetLength(0)
+	Dim i As Integer = 0
+	While i &lt; numTimes
+		Dim epoch As Object = timeArrays.Times.GetValue(i)
+		Dim altitueAtTime As Array = aircraft.Vgt.CalcScalars("GroundTrajectory.Detic.LLA.Altitude").QuickEvaluate(epoch)
+		If DirectCast(altitueAtTime.GetValue(0), Boolean) = True Then
+			Console.WriteLine("{0}: {1}", epoch, altitueAtTime.GetValue(1))
+		End If
+		System.Threading.Interlocked.Increment(i)
+	End While
+End If

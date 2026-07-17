@@ -1,0 +1,8 @@
+C#
+
+IAgCrdnAxesAlignedAndConstrained axes = (IAgCrdnAxesAlignedAndConstrained)provider.Axes.Factory.Create(
+    "AxesName", string.Empty, AgECrdnAxesType.eCrdnAxesTypeAlignedAndConstrained);
+
+vbNet
+
+Dim axes As IAgCrdnAxesAlignedAndConstrained = DirectCast(provider.Axes.Factory.Create("AxesName", String.Empty, AgECrdnAxesType.eCrdnAxesTypeAlignedAndConstrained), IAgCrdnAxesAlignedAndConstrained)

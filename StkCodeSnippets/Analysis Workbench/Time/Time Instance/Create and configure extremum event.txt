@@ -1,0 +1,28 @@
+C#
+
+IAgCrdnEvent timeEvent = provider.Events.Factory.CreateEventExtremum("MyEventExtremum", "MyDescription");
+IAgCrdnEventExtremum asExtremum = timeEvent as IAgCrdnEventExtremum;
+
+// For instance, time at highest altitude
+asExtremum.Calculation = provider.CalcScalars["GroundTrajectory.Detic.LLA.Altitude"];
+asExtremum.ExtremumType = AgECrdnExtremumConstants.eCrdnExtremumMaximum;
+
+IAgCrdnEventFindOccurrenceResult occurrence = timeEvent.FindOccurrence();
+if (occurrence.IsValid)
+{
+    Console.WriteLine("Event occurred at: " + occurrence.Epoch);
+}
+
+vbNet
+
+Dim timeEvent As IAgCrdnEvent = provider.Events.Factory.CreateEventExtremum("MyEventExtremum", "MyDescription")
+Dim asExtremum As IAgCrdnEventExtremum = TryCast(timeEvent, IAgCrdnEventExtremum)
+
+' For instance, time at highest altitude
+asExtremum.Calculation = provider.CalcScalars("GroundTrajectory.Detic.LLA.Altitude")
+asExtremum.ExtremumType = AgECrdnExtremumConstants.eCrdnExtremumMaximum
+
+Dim occurrence As IAgCrdnEventFindOccurrenceResult = timeEvent.FindOccurrence()
+If occurrence.IsValid Then
+	Console.WriteLine("Event occurred at: " + occurrence.Epoch)
+End If

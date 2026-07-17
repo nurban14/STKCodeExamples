@@ -1,0 +1,27 @@
+C#
+
+// Set Attitude to Standard
+satellite.SetAttitudeType(AgEVeAttitude.eAttitudeStandard);
+// Get IAgVeOrbitAttitudeStandard interface
+IAgVeOrbitAttitudeStandard standard = satellite.Attitude as IAgVeOrbitAttitudeStandard;
+
+// Set Profile to Inertially Fixed
+standard.Basic.SetProfileType(AgEVeProfile.eProfileInertiallyFixed);
+// Get IAgVeProfileInertial interface
+IAgVeProfileInertial interfix = standard.Basic.Profile as IAgVeProfileInertial;
+
+interfix.Inertial.AssignEulerAngles(AgEEulerOrientationSequence.e123, 20.1, 50.0, 20.0);
+
+vbNet
+
+' Set Attitude to Standard
+satellite.SetAttitudeType(AgEVeAttitude.eAttitudeStandard)
+' Get IAgVeOrbitAttitudeStandard interface
+Dim standard As IAgVeOrbitAttitudeStandard = TryCast(satellite.Attitude, IAgVeOrbitAttitudeStandard)
+
+' Set Profile to Inertially Fixed
+standard.Basic.SetProfileType(AgEVeProfile.eProfileInertiallyFixed)
+' Get IAgVeProfileInertial interface
+Dim interfix As IAgVeProfileInertial = TryCast(standard.Basic.Profile, IAgVeProfileInertial)
+
+interfix.Inertial.AssignEulerAngles(AgEEulerOrientationSequence.e123, 20.1, 50, 20)

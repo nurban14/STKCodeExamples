@@ -1,0 +1,17 @@
+C#
+
+accessAttributes.AccessObjects.Add("Satellite/sat1");
+
+accessAttributes.DuringAccess.IsVisible = true;
+accessAttributes.DuringAccess.Color = Color.Yellow;
+accessAttributes.NoAccess.IsVisible = true;
+accessAttributes.NoAccess.Color = Color.Red;
+
+vbNet
+
+accessAttributes.AccessObjects.Add("Satellite/sat1")
+
+accessAttributes.DuringAccess.IsVisible = True
+accessAttributes.DuringAccess.Color = Color.Yellow
+accessAttributes.NoAccess.IsVisible = True
+accessAttributes.NoAccess.Color = Color.Red

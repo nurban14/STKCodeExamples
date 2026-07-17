@@ -1,0 +1,12 @@
+C#
+
+foreach (IAgCrdn embeddedComponent in crdn.EmbeddedComponents)
+{
+    Console.WriteLine("Name: {0}, kind: {1}", embeddedComponent.Name, embeddedComponent.Kind);
+}
+
+vbNet
+
+For Each embeddedComponent As IAgCrdn In crdn.EmbeddedComponents
+	Console.WriteLine("Name: {0}, kind: {1}", embeddedComponent.Name, embeddedComponent.Kind)
+Next

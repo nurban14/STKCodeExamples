@@ -1,0 +1,8 @@
+Python
+# IAgSensor sensor: Sensor object
+projection = sensor.Graphics.Projection
+projection.Persistence = 7200  # sec
+projection.ForwardPersistence = True
+projection.FillPersistence = True
+sensor.Graphics.FillVisible = True
+sensor.Graphics.PercentTranslucency = 50

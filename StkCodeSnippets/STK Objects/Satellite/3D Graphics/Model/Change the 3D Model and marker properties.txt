@@ -1,0 +1,20 @@
+Matlab
+
+% IAgSatellite satellite: Satellite object
+model = satellite.VO.Model;
+model.ModelData.Filename = 'STKData\VO\Models\Space\dsp.mdl';
+orbitmarker = model.OrbitMarker;
+orbitmarker.SetMarkerImageFile('<Install Dir>\STKData\VO\Markers\Satellite.ppm');
+orbitmarker.MarkerData.IsTransparent = true;
+orbitmarker.PixelSize = 18;
+orbitmarker.OrientationMode = 'eVOMarkerOrientationFollowDirection';
+
+Python
+# IAgSatellite satellite: Satellite object
+model = satellite.VO.Model
+model.ModelData.Filename = 'STKData\VO\Models\Space\dsp.mdl'
+orbitmarker = model.OrbitMarker
+orbitmarker.SetMarkerImageFile(r'C:\Program Files\AGI\STK 12\STKData\VO\Markers\Satellite.ppm')
+orbitmarker.MarkerData.IsTransparent = True
+orbitmarker.PixelSize = 18
+orbitmarker.OrientationMode = AgEVOMarkerOrientation.eVOMarkerOrientationFollowDirection

@@ -1,0 +1,10 @@
+C#
+
+//Create an angle between two planes.
+IAgCrdnAngleBetweenPlanes angle = (IAgCrdnAngleBetweenPlanes)provider.Angles.Factory.Create(
+    "AngleName", "Angle from one plane to another.", AgECrdnAngleType.eCrdnAngleTypeBetweenPlanes);
+
+vbNet
+
+'Create an angle between two planes.
+Dim angle As IAgCrdnAngleBetweenPlanes = DirectCast(provider.Angles.Factory.Create("AngleName", "Angle from one plane to another.", AgECrdnAngleType.eCrdnAngleTypeBetweenPlanes), IAgCrdnAngleBetweenPlanes)

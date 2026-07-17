@@ -1,0 +1,17 @@
+C#
+
+// Rename the procedure
+procedure.Name = "New Procedure";
+// Get the site corresponding to the procedure
+IAgAvtrSite site = procedure.Site;
+// Rename the site
+site.Name = "New Site";
+
+vbNet
+
+' Rename the procedure
+procedure.Name = "New Procedure"
+' Get the site corresponding to the procedure
+Dim site As IAgAvtrSite = procedure.Site
+' Rename the site
+site.Name = "New Site"

@@ -1,0 +1,10 @@
+Matlab
+% IAgScenario scenario: Scenario object
+% Create a model primitive and sets properties
+manager = scenario.SceneManager;
+model = manager.Initializers.ModelPrimitive.InitializeWithStringUriAndUpAxis('<Install Dir>\STKData\VO\Models\Air\f-22a_raptor.mdl','eStkGraphicsModelUpAxisNegativeX');
+model.SetPositionCartographic('Earth',{0;-3;15});    % Lat,Lon,Alt
+model.Scale = 10000;
+model.Translucency = 0;
+manager.Primitives.Add(model);
+manager.Render;

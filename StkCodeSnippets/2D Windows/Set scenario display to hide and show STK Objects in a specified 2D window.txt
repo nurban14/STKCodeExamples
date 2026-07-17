@@ -1,0 +1,31 @@
+C#
+
+IAgScGraphics gfx = scenario.Graphics;
+
+// Individually
+gfx.HideObject("Facility/facility1", "all");
+gfx.ShowObject("Facility/facility1", "1");
+
+// In Batches
+// HideObjects and ShowObjects expects as the first parameter a one dimensional array of object paths
+Array objects = new object[]
+                {
+                    "Facility/facility1",
+                    "Facility/facility2"
+                };
+gfx.HideObjects(ref objects, "1");
+gfx.ShowObjects(ref objects, "all");
+
+vbNet
+
+Dim gfx As IAgScGraphics = scenario.Graphics
+
+' Individually
+gfx.HideObject("Facility/facility1", "all")
+gfx.ShowObject("Facility/facility1", "1")
+
+' In Batches
+' HideObjects and ShowObjects expects as the first parameter a one dimensional array of object paths
+Dim objects As Array = New Object() {"Facility/facility1", "Facility/facility2"}
+gfx.HideObjects(objects, "1")
+gfx.ShowObjects(objects, "all")

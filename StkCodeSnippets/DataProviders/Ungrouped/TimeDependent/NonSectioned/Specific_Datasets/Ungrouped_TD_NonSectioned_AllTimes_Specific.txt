@@ -1,0 +1,17 @@
+Matlab
+%% Using a Time Dependent Data Provider and requesting only specified elements
+% IAgStkObjectRoot root: STK Object Model root
+% IAgSatellite satellite: Satellite object
+% IAgScenario scenario: Scenario object
+
+% Change DateFormat dimension to epoch seconds to make the data easier to handle in MATLAB
+root.UnitPreferences.Item('DateFormat').SetCurrentUnit('EpSec');
+elems = {'Time';'q1';'q2';'q3';'q4'};
+
+satDP = satellite.DataProviders.Item('Attitude Quaternions').ExecElements(scenario.StartTime, scenario.StopTime, 60, elems);
+% Whenever you pass an index to an array, you need to cast it to a long equivalent (int32)
+satTime = cell2mat(satDP.DataSets.Item(cast(0, 'int32')).GetValues);
+satq1 = cell2mat(satDP.DataSets.Item(cast(1, 'int32')).GetValues);
+satq2 = cell2mat(satDP.DataSets.Item(cast(2, 'int32')).GetValues);
+satq3 = cell2mat(satDP.DataSets.Item(cast(3, 'int32')).GetValues);
+satq4 = cell2mat(satDP.DataSets.Item(cast(4, 'int32')).GetValues);

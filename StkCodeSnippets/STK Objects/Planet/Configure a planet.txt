@@ -1,0 +1,30 @@
+C#
+
+planet.PositionSource = AgEPlPositionSourceType.ePosCentralBody;
+
+// Get IAgPlPosCentralBody interface
+IAgPlPosCentralBody body = planet.PositionSourceData as IAgPlPosCentralBody;
+
+body.AutoRename = false;
+body.CentralBody = "Jupiter";
+
+// AvailableEphemSourceTypes is a one dimensional array of AgEEphemSourceType values
+if (Array.IndexOf(body.AvailableEphemSourceTypes, (int)AgEEphemSourceType.eEphemAnalytic) != -1)
+{
+    body.EphemSource = AgEEphemSourceType.eEphemAnalytic;
+}
+
+vbNet
+
+planet.PositionSource = AgEPlPositionSourceType.ePosCentralBody
+
+' Get IAgPlPosCentralBody interface
+Dim body As IAgPlPosCentralBody = TryCast(planet.PositionSourceData, IAgPlPosCentralBody)
+
+body.AutoRename = False
+body.CentralBody = "Jupiter"
+
+' AvailableEphemSourceTypes is a one dimensional array of AgEEphemSourceType values
+If Array.IndexOf(body.AvailableEphemSourceTypes, DirectCast(AgEEphemSourceType.eEphemAnalytic, Integer)) &lt;&gt; -1 Then
+	body.EphemSource = AgEEphemSourceType.eEphemAnalytic
+End If

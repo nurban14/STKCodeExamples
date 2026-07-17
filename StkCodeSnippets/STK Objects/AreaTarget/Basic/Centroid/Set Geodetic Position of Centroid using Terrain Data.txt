@@ -1,0 +1,7 @@
+Python
+#IAgAreaTarget areaTarget: Area Target Object
+#Set Centroid Latitude and Longitude to 25 degree and 50 degrees respectively
+areaTarget.Position.AssignGeodetic(25,50,0)
+
+#Set altitude using terrain data
+areaTarget.UseTerrainData = True

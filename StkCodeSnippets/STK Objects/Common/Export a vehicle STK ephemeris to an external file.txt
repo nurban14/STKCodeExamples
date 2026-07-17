@@ -1,0 +1,33 @@
+C#
+// IAgVeEphemerisStkExportTool stkEphem: STK Ephemeris Export Tool
+// String ephemFilePath: The fully qualified file path where the Ephemeris is to be exported to
+
+// set export parameters
+stkEphem.CoordinateSystem = AgEStkEphemCoordinateSystem.eStkEphemCoordinateSystemFixed;
+stkEphem.IncludeInterp = true;
+stkEphem.VersionFormat = AgEExportToolVersionFormat.eExportToolVersionFormatCurrent;
+stkEphem.TimePeriod.TimePeriodType = AgEExportToolTimePeriod.eExportToolTimePeriodSpecify;
+
+// Set the ephemeris to the Scenario start and stop times
+stkEphem.TimePeriod.Start = scenario.StartTime;
+stkEphem.TimePeriod.Stop = scenario.StopTime;
+
+stkEphem.StepSize.StepSizeType = AgEExportToolStepSize.eExportToolStepSizeEphem;
+stkEphem.Export(ephemFilePath);
+
+vbNet
+// IAgVeEphemerisStkExportTool stkEphem: STK Ephemeris Export Tool
+// String ephemFilePath: The fully qualified file path where the Ephemeris is to be exported to
+
+' set export parameters
+stkEphem.CoordinateSystem = AgEStkEphemCoordinateSystem.eStkEphemCoordinateSystemFixed
+stkEphem.IncludeInterp = True
+stkEphem.VersionFormat = AgEExportToolVersionFormat.eExportToolVersionFormatCurrent
+stkEphem.TimePeriod.TimePeriodType = AgEExportToolTimePeriod.eExportToolTimePeriodSpecify
+
+' Set the ephemeris to the Scenario start and stop times
+stkEphem.TimePeriod.Start = scenario.StartTime
+stkEphem.TimePeriod.[Stop] = scenario.StopTime
+
+stkEphem.StepSize.StepSizeType = AgEExportToolStepSize.eExportToolStepSizeEphem
+stkEphem.Export(ephemFilePath)

@@ -1,0 +1,14 @@
+Matlab
+% IAgStkObjectRoot root: STK Object Model Root
+% IAgSatellite satellite: Satellite object
+scenPath = root.ExecuteCommand('GetDirectory / Scenario').Item(0);
+satelliteFilePath = [scenPath '\' satellite.InstanceName '.e'];
+satellite.ExportTools.GetEphemerisStkExportTool.Export(satelliteFilePath);
+Python
+
+# IAgStkObjectRoot root: STK Object Model Root
+# IAgSatellite satellite: Satellite object
+scenPath = root.ExecuteCommand('GetDirectory / Scenario').Item(0)
+satelliteFilePath = '#s\#s.e' # (scenPath,satellite.InstanceName)
+satelliteFilePath = satelliteFilePath.replace("\\", "\\\\")
+satellite.ExportTools.GetEphemerisStkExportTool().Export(satelliteFilePath)

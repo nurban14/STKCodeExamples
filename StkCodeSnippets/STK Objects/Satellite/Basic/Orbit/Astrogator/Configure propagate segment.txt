@@ -1,0 +1,41 @@
+C#
+
+// Add a propagate segment to our sequence
+IAgVAMCSSegment segment = driver.MainSequence.Insert(AgEVASegmentType.eVASegmentTypePropagate, "Propagate", "-");
+IAgVAMCSPropagate propagate = segment as IAgVAMCSPropagate;
+propagate.PropagatorName = "Earth Point Mass";
+
+// Configure propagtor advanced properties
+propagate.MinPropagationTime = 0;
+propagate.EnableMaxPropagationTime = true;
+propagate.MaxPropagationTime = 72000000;
+propagate.EnableWarningMessage = true;
+
+// Configure stopping conditions
+IAgVAStoppingCondition duration = propagate.StoppingConditions["Duration"].Properties as IAgVAStoppingCondition;
+duration.Trip = 7200;
+duration.Tolerance = 0.00001;
+
+// Add any addition stopping conditions
+IAgVAStoppingCondition lightning = propagate.StoppingConditions.Add("Lighting") as IAgVAStoppingCondition;
+
+vbNet
+
+' Add a propagate segment to our sequence
+Dim segment As IAgVAMCSSegment = driver.MainSequence.Insert(AgEVASegmentType.eVASegmentTypePropagate, "Propagate", "-")
+Dim propagate As IAgVAMCSPropagate = TryCast(segment, IAgVAMCSPropagate)
+propagate.PropagatorName = "Earth Point Mass"
+
+' Configure propagtor advanced properties
+propagate.MinPropagationTime = 0
+propagate.EnableMaxPropagationTime = True
+propagate.MaxPropagationTime = 72000000
+propagate.EnableWarningMessage = True
+
+' Configure stopping conditions
+Dim duration As IAgVAStoppingCondition = TryCast(propagate.StoppingConditions("Duration").Properties, IAgVAStoppingCondition)
+duration.Trip = 7200
+duration.Tolerance = 1E-05
+
+' Add any addition stopping conditions
+Dim lightning As IAgVAStoppingCondition = TryCast(propagate.StoppingConditions.Add("Lighting"), IAgVAStoppingCondition)

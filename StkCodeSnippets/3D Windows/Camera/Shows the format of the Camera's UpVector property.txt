@@ -1,0 +1,16 @@
+C#
+
+Array upVector = new object[]
+{
+    0,
+    0,
+    1
+};
+
+scene.Camera.UpVector = upVector;
+
+vbNet
+
+Dim upVector As Array = New Object() {0, 0, 1}
+
+scene.Camera.UpVector = upVector

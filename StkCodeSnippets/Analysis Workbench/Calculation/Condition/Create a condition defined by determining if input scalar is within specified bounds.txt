@@ -1,0 +1,10 @@
+C#
+
+//Create a condition from a scalar.
+IAgCrdnConditionScalarBounds condition = (IAgCrdnConditionScalarBounds)provider.Conditions.Factory.Create(
+    "ConditionName", "Condition from a scalar.", AgECrdnConditionType.eCrdnConditionTypeScalarBounds);
+
+vbNet
+
+'Create a condition from a scalar.
+Dim condition As IAgCrdnConditionScalarBounds = DirectCast(provider.Conditions.Factory.Create("ConditionName", "Condition from a scalar.", AgECrdnConditionType.eCrdnConditionTypeScalarBounds), IAgCrdnConditionScalarBounds)

@@ -1,0 +1,29 @@
+Python
+## Extracting Specific Group Time Dependent Data in a Specified Interval
+# IAgStkObjectRoot root: STK Object Model root
+# IAgSatellite satellite: Satellite object
+# IAgScenario scenario: Scenario object
+
+# Change DateFormat dimension to epoch seconds to make the data easier to handle in Python
+root.UnitPreferences.Item('DateFormat').SetCurrentUnit('EpSec')
+
+# Retrieve only X,Y,Z datasets from Data providers
+elems = [['x'],['y'],['z']]
+
+#Extract data between 15000 epSec and 45000 epSec at a time step of 1000 secs
+satPosDP = satellite.DataProviders.Item('Cartesian Position').Group.Item('ICRF').ExecElements(15000,45000, 1000,elems)
+satx = satPosDP.DataSets.GetDataSetByName('x').GetValues()
+saty = satPosDP.DataSets.GetDataSetByName('y').GetValues()
+satz = satPosDP.DataSets.GetDataSetByName('z').GetValues()
+
+#Alternatively...
+#Extract data between 15000 epSec and 45000 epSec at a time step of 1000 secs
+satVelDP = satellite.DataProviders.GetDataPrvTimeVarFromPath('Cartesian Velocity/ICRF').ExecElements(15000,45000, 1000,elems)
+# There are 4 Methods to get DP From a Path depending on the kind of DP:
+#   GetDataPrvTimeVarFromPath
+#   GetDataPrvIntervalFromPath
+#   GetDataPrvInfoFromPath
+#   GetDataPrvFixedFromPath
+satvx = satVelDP.DataSets.GetDataSetByName('x').GetValues()
+satvy = satVelDP.DataSets.GetDataSetByName('y').GetValues()
+satvz = satVelDP.DataSets.GetDataSetByName('z').GetValues()

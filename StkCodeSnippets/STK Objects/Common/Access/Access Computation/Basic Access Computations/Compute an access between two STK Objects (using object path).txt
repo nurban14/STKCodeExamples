@@ -1,0 +1,8 @@
+Matlab
+% IAgSatellite satellite: Satellite object
+
+% Get access by object path
+access = satellite.GetAccess('Facility/MyFacility');
+
+% Compute access
+access.ComputeAccess();

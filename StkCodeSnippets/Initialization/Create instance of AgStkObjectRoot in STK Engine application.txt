@@ -1,0 +1,14 @@
+C#
+// Before instantiating AgStkObjectRoot an instance of AgSTKXApplication or an STK X control must be created
+AgStkObjectRoot root = new AgStkObjectRoot();
+
+Matlab
+
+% Before instantiating AgStkObjectRoot an instance of AgSTKXApplication or an STK X control must be created
+% This also requires a STKX license to be present
+STKXApplication = actxserver('STKX13.Application');
+rootEngine = actxserver('AgStkObjects13.AgStkObjectRoot');
+
+vbNet
+' Before instantiating AgStkObjectRoot an instance of AgSTKXApplication or an STK X control must be created
+Dim root As New AgStkObjectRoot()

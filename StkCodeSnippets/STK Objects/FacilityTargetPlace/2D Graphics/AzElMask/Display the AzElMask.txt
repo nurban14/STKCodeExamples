@@ -1,0 +1,9 @@
+Matlab
+% IAgFacility facility: Facility Object
+azelMask = facility.Graphics.AzElMask;
+azelMask.RangeVisible = true;
+azelMask.NumberOfRangeSteps = 10;
+azelMask.DisplayRangeMinimum = 0;   % km
+azelMask.DisplayRangeMaximum = 100;  % km
+azelMask.RangeColorVisible = true;
+azelMask.RangeColor = 16776960; % cyan

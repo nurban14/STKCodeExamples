@@ -1,0 +1,18 @@
+Python
+## Extracting Specific Ungrouped Time Dependent Data at a Single Point
+# IAgStkObjectRoot root: STK Object Model root
+# IAgSatellite satellite: Satellite object
+
+# Change DateFormat dimension to epoch seconds to make the data easier to handle in Python
+root.UnitPreferences.Item('DateFormat').SetCurrentUnit('EpSec')
+
+#Retrieve Only Time and Precision Pass Number from Precision Pass Data Provider
+elems = [['Precision Pass Number'],['Time']]
+satPassDP = satellite.DataProviders.Item('Precision Passes').ExecSingleElements(2600, elems)
+passes = satPassDP.DataSets.GetDataSetByName('Precision Pass Number').GetValues()
+time = satPassDP.DataSets.GetDataSetByName('Time').GetValues()
+
+#Alternatively...
+#Item Index determined by order of datasets under Data Provider in STK, NOT the order the elements array is in
+passes_2 = satPassDP.DataSets.Item(1).GetValues()
+time_2 = satPassDP.DataSets.Item(0).GetValues()

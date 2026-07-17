@@ -1,0 +1,58 @@
+C#
+
+IAgCrdnEventArray eventArray = provider.EventArrays.Factory.CreateEventArrayFiltered("MyEventArrayFiltered",  "MyDescription");
+IAgCrdnEventArrayFiltered asFiltered = eventArray as IAgCrdnEventArrayFiltered;
+
+asFiltered.OriginalTimeArray = provider.EventArrays["EphemerisTimes"];
+
+asFiltered.FilterType = AgECrdnEventArrayFilterType.eCrdnEventArrayFilterTypeSkipTimeStep;
+asFiltered.IncludeIntervalStopTimes = true;
+
+// Uses current Time unit preference, this code snippet assumes seconds.
+asFiltered.Step = 240;
+
+IAgCrdnFindTimesResult timeArrays = eventArray.FindTimes();
+if (timeArrays.IsValid)
+{
+    Console.WriteLine("Times");
+    int numTimes = timeArrays.Times.GetLength(0);
+    for (int i = 0; i &lt; numTimes; ++i)
+    {
+        Console.WriteLine(timeArrays.Times.GetValue(i));
+    }
+
+    foreach (IAgCrdnInterval timeArray in timeArrays.Intervals)
+    {
+        Console.WriteLine("Start: " + timeArray.Start);
+        Console.WriteLine("Stop: " + timeArray.Stop);
+    }
+}
+
+vbNet
+
+Dim eventArray As IAgCrdnEventArray = provider.EventArrays.Factory.CreateEventArrayFiltered("MyEventArrayFiltered", "MyDescription")
+Dim asFiltered As IAgCrdnEventArrayFiltered = TryCast(eventArray, IAgCrdnEventArrayFiltered)
+
+asFiltered.OriginalTimeArray = provider.EventArrays("EphemerisTimes")
+
+asFiltered.FilterType = AgECrdnEventArrayFilterType.eCrdnEventArrayFilterTypeSkipTimeStep
+asFiltered.IncludeIntervalStopTimes = True
+
+' Uses current Time unit preference, this code snippet assumes seconds.
+asFiltered.[Step] = 240
+
+Dim timeArrays As IAgCrdnFindTimesResult = eventArray.FindTimes()
+If timeArrays.IsValid Then
+	Console.WriteLine("Times")
+	Dim numTimes As Integer = timeArrays.Times.GetLength(0)
+	Dim i As Integer = 0
+	While i &lt; numTimes
+		Console.WriteLine(timeArrays.Times.GetValue(i))
+		System.Threading.Interlocked.Increment(i)
+	End While
+
+	For Each timeArray As IAgCrdnInterval In timeArrays.Intervals
+		Console.WriteLine("Start: " + timeArray.Start)
+		Console.WriteLine("Stop: " + timeArray.[Stop])
+	Next
+End If

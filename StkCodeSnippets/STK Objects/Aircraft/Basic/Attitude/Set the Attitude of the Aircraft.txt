@@ -1,0 +1,6 @@
+Matlab
+% IAgAircraft aircraft: Aircraft object
+aircraft.Attitude.Basic.SetProfileType('eCoordinatedTurn');
+Python
+# IAgAircraft aircraft: Aircraft object
+aircraft.Attitude.Basic.SetProfileType(24) # eCoordinatedTurn

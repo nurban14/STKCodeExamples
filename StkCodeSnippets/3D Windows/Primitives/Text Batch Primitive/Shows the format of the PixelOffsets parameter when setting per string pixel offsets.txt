@@ -1,0 +1,17 @@
+C#
+
+Array pixelOffset = new object[]
+{
+    1, 2,
+    2, 1
+};
+
+IAgStkGraphicsTextBatchPrimitiveOptionalParameters parameters = sceneManager.Initializers.TextBatchPrimitiveOptionalParameters.Initialize();
+parameters.SetPixelOffsets(ref pixelOffset);
+
+vbNet
+
+Dim pixelOffset As Array = New Object() {1, 2, 2, 1}
+
+Dim parameters As IAgStkGraphicsTextBatchPrimitiveOptionalParameters = sceneManager.Initializers.TextBatchPrimitiveOptionalParameters.Initialize()
+parameters.SetPixelOffsets(pixelOffset)

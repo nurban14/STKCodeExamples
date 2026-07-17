@@ -1,0 +1,64 @@
+C#
+
+// Array with waypoints to insert
+object[,] waypoints = new object[,]
+    {
+        { 20.36, 40.040, -76.304, "1 Jan 2012 12:00:00.000" },
+        { 20.30, 40.337, -75.922, "1 Jan 2012 13:00:00.000" },
+        { 20.30, 40.028, -75.628, "1 Jan 2012 14:00:00.000" }
+    };
+
+propagator.Method = AgEVeWayPtCompMethod.eDetermineVelFromTime;
+
+// Remove any previous waypoints
+propagator.Waypoints.RemoveAll();
+
+// Insert the waypoints
+for (int i = 0; i &lt; waypoints.GetLength(0); i++)
+{
+    IAgVeWaypointsElement waypoint = propagator.Waypoints.Add();
+    waypoint.Altitude = (double)waypoints[i, 0];
+    waypoint.Latitude = waypoints[i, 1];
+    waypoint.Longitude = waypoints[i, 2];
+    waypoint.Time = waypoints[i, 3];
+}
+
+// List the waypoints after extracting them into an array
+Array waypointArray = propagator.Waypoints.ToArray();
+for (int j = 0; j &lt; waypointArray.GetLength(0); ++j)
+{
+    Console.WriteLine("  Time: {0} Latitude: {1} Longitude: {2} Altitude: {3}",
+        waypointArray.GetValue(j, 0),
+        Convert.ToDouble(waypointArray.GetValue(j, 1)),
+        Convert.ToDouble(waypointArray.GetValue(j, 2)),
+        Convert.ToDouble(waypointArray.GetValue(j, 3)));
+}
+
+vbNet
+
+' Array with waypoints to insert
+Dim waypoints As Object(,) = New Object(,) {{20.36, 40.04, -76.304, "1 Jan 2012 12:00:00.000"}, {20.3, 40.337, -75.922, "1 Jan 2012 13:00:00.000"}, {20.3, 40.028, -75.628, "1 Jan 2012 14:00:00.000"}}
+
+propagator.Method = AgEVeWayPtCompMethod.eDetermineVelFromTime
+
+' Remove any previous waypoints
+propagator.Waypoints.RemoveAll()
+
+' Insert the waypoints
+Dim i As Integer = 0
+While i &lt; waypoints.GetLength(0)
+	Dim waypoint As IAgVeWaypointsElement = propagator.Waypoints.Add()
+	waypoint.Altitude = DirectCast(waypoints(i, 0), Double)
+	waypoint.Latitude = waypoints(i, 1)
+	waypoint.Longitude = waypoints(i, 2)
+	waypoint.Time = waypoints(i, 3)
+	System.Math.Max(System.Threading.Interlocked.Increment(i),i - 1)
+End While
+
+' List the waypoints after extracting them into an array
+Dim waypointArray As Array = propagator.Waypoints.ToArray()
+Dim j As Integer = 0
+While j &lt; waypointArray.GetLength(0)
+	Console.WriteLine("  Time: {0} Latitude: {1} Longitude: {2} Altitude: {3}", waypointArray.GetValue(j, 0), Convert.ToDouble(waypointArray.GetValue(j, 1)), Convert.ToDouble(waypointArray.GetValue(j, 2)), Convert.ToDouble(waypointArray.GetValue(j, 3)))
+	System.Threading.Interlocked.Increment(j)
+End While

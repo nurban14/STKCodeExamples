@@ -1,0 +1,37 @@
+Matlab
+# IAgCoverageDefinition coverage: Coverage object
+# IAgFigureOfMerit fom: Figure Of Merit object
+satisfaction = coverage.Graphics.Static
+satisfaction.IsRegionVisible = False
+Animation = fom.VO.Animation
+Animation.IsVisible = False
+VOcontours = fom.VO.Static
+VOcontours.IsVisible = True
+contours = fom.Graphics.Static.Contours
+contours.IsVisible = True
+contours.ContourType = 1 # eSmoothFill
+contours.ColorMethod = 0 # eColorRamp
+contours.LevelAttributes.RemoveAll()
+
+contours.LevelAttributes.AddLevelRange(590, 660, 10)   #Start, Start, Step
+contours.RampColor.StartColor = 255        #Red
+contours.RampColor.EndColor = 16711680     #Blue
+
+Python
+# IAgCoverageDefinition coverage: Coverage object
+# IAgFigureOfMerit fom: Figure Of Merit object
+satisfaction = coverage.Graphics.Static
+satisfaction.IsRegionVisible = False
+Animation = fom.VO.Animation
+Animation.IsVisible = False
+VOcontours = fom.VO.Static
+VOcontours.IsVisible = True
+contours = fom.Graphics.Static.Contours
+contours.IsVisible = True
+contours.ContourType = 1 # eSmoothFill
+contours.ColorMethod = 0 # eColorRamp
+contours.LevelAttributes.RemoveAll()
+
+contours.LevelAttributes.AddLevelRange(590, 660, 10)   #Start, Start, Step
+contours.RampColor.StartColor = 255        #Red
+contours.RampColor.EndColor = 16711680     #Blue

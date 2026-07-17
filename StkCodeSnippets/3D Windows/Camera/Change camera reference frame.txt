@@ -1,0 +1,13 @@
+Matlab
+% IAgScenario scenario: Scenario object
+% IAgStkObjectRoot root: STK Object Model Root
+manager = scenario.SceneManager;
+manager.scenes.Item(0).Camera.ViewCentralBody('Earth', root.CentralBodies.Earth.Vgt.Axes.Item('Fixed'));
+manager.Render;
+Python
+
+# IAgScenario scenario: Scenario object
+# IAgStkObjectRoot root: STK Object Model Root
+manager = scenario.SceneManager
+manager.Scenes.Item(0).Camera.ViewCentralBody('Earth', root.CentralBodies.Earth.Vgt.Axes.Item('Fixed'))
+manager.Render()

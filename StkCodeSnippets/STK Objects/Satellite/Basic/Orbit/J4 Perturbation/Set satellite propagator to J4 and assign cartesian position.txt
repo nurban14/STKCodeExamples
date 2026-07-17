@@ -1,0 +1,14 @@
+Matlab
+% IAgSatellite satellite: Satellite object
+satellite.SetPropagatorType('ePropagatorJ4Perturbation');
+propagator = satellite.Propagator;
+propagator.InitialState.Representation.AssignCartesian('eCoordinateSystemICRF',6678.14,0,0,0,6.78953,3.68641)
+propagator.Propagate;
+
+
+Python
+# IAgSatellite satellite: Satellite object
+satellite.SetPropagatorType(AgEVePropagatorType.ePropagatorJ4Perturbation)
+propagator = satellite.Propagator
+propagator.InitialState.Representation.AssignCartesian(AgECoordinateSystem.eCoordinateSystemICRF, 6678.14, 0, 0, 0, 6.78953, 3.68641)
+propagator.Propagate()

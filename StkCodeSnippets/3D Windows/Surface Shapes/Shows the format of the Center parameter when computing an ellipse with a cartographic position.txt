@@ -1,0 +1,21 @@
+C#
+
+Array center = new object[]
+{
+    38.85,
+    -77.04,
+    3000.0
+};
+
+IAgStkGraphicsSurfaceShapesResult shape = sceneManager.Initializers.SurfaceShapes.ComputeEllipseCartographic(
+    "Earth",
+    ref center,
+    45000,
+    30000,
+    45);
+
+vbNet
+
+Dim center As Array = New Object() {38.85, -77.04, 3000}
+
+Dim shape As IAgStkGraphicsSurfaceShapesResult = sceneManager.Initializers.SurfaceShapes.ComputeEllipseCartographic("Earth", center, 45000, 30000, 45)

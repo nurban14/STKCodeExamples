@@ -1,0 +1,18 @@
+Matlab
+% IAgScenario scenario: Scenario object
+% IAgStkGraphicsAGIProcessedImageGlobeOverlay imageryTile: Image Overlay object
+manager = scenario.SceneManager;
+extent = imageryTile.Extent;
+% Change extent in the default 3D window
+manager.scenes.Item(0).Camera.ViewExtent('Earth', extent);
+manager.Render;
+
+Python
+
+# IAgScenario scenario: Scenario object
+# IAgStkGraphicsAGIProcessedImageGlobeOverlay imageryTile: Image Overlay object
+manager = scenario.SceneManager
+extent = imageryTile.Extent
+# Change extent in the default 3D window
+manager.Scenes.Item(0).Camera.ViewExtent('Earth', extent)
+manager.Render()

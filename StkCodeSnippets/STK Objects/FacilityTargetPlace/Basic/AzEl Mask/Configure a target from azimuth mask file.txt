@@ -1,0 +1,25 @@
+C#
+// String maskfile: Path of maskfile
+
+target.UseLocalTimeOffset = true;
+target.LocalTimeOffset = 200.0;
+target.UseTerrain = true;
+// Note, if SetAzElMask is set to a type other than AgEAzElMaskType.eMaskFile,
+// the second parameter is ignored.
+target.SetAzElMask(AgEAzElMaskType.eMaskFile, maskfile);
+target.TerrainNorm = AgETerrainNormType.eSlopeAzimuth;
+target.AltRef = AgEAltRefType.eMSL;
+target.HeightAboveGround = 1472.0;
+
+vbNet
+// String maskfile: Path of maskfile
+
+target.UseLocalTimeOffset = True
+target.LocalTimeOffset = 200
+target.UseTerrain = True
+' Note, if SetAzElMask is set to a type other than AgEAzElMaskType.eMaskFile,
+' the second parameter is ignored.
+target.SetAzElMask(AgEAzElMaskType.eMaskFile, maskfile)
+target.TerrainNorm = AgETerrainNormType.eSlopeAzimuth
+target.AltRef = AgEAltRefType.eMSL
+target.HeightAboveGround = 1472

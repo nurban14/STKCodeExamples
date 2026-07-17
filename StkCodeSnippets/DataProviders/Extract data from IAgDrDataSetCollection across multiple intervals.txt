@@ -1,0 +1,19 @@
+C#
+
+foreach (IAgDrDataSet set in datasets)
+{
+    Console.WriteLine("{0}", set.ElementName);
+    foreach (object value in set.GetValues())
+    {
+        Console.WriteLine("\t{0}", value.ToString());
+    }
+}
+
+vbNet
+
+For Each [set] As IAgDrDataSet In datasets
+	Console.WriteLine("{0}", [set].ElementName)
+	For Each value As Object In [set].GetValues()
+		Console.WriteLine(vbTab &amp;&amp;#160;"{0}", value.ToString())
+	Next
+Next

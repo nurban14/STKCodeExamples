@@ -1,0 +1,7 @@
+Matlab
+% IAgAccessConstraintCollection accessConstraints: Access Constraint collection
+
+% Attitude constraint
+altitude = accessConstraints.AddConstraint('eCstrAltitude');
+altitude.EnableMin = true;
+altitude.Min = 20.5;    % km

@@ -1,0 +1,21 @@
+C#
+
+Array elems = new object[]
+              {
+                  "Time",
+                  "Precision Pass Number"
+              };
+
+IAgDataPrvTimeVar dp = satellite.DataProviders["Precision Passes"] as IAgDataPrvTimeVar;
+
+// ExecSingleElements expects as the second parameter a one dimensional array of element names
+IAgDrResult resInfo = dp.ExecSingleElements("1 Jan 2012 12:00:00.000", ref elems);
+
+vbNet
+
+Dim elems As Array = New Object() {"Time", "Precision Pass Number"}
+
+Dim dp As IAgDataPrvTimeVar = TryCast(satellite.DataProviders("Precision Passes"), IAgDataPrvTimeVar)
+
+' ExecSingleElements expects as the second parameter a one dimensional array of element names
+Dim resInfo As IAgDrResult = dp.ExecSingleElements("1 Jan 2012 12:00:00.000", elems)

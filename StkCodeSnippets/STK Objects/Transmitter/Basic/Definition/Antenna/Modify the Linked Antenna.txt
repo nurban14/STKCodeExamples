@@ -1,0 +1,5 @@
+Matlab
+% IAgTransmitter transmitter: Transmitter object
+transmitter.SetModel('Complex Transmitter Model')
+transmitter.Model.AntennaControl.ReferenceType = 'eAntennaControlRefTypeLink';
+transmitter.Model.AntennaControl.LinkedAntennaObject = 'Antenna/MyAntenna';

@@ -1,0 +1,55 @@
+C#
+
+IAgCrdnProvider satelliteVgtProvider = stkRoot.GetObjectFromPath("Satellite/LEO").Vgt;
+IAgCrdnProvider aircraftVgtProvider = stkRoot.GetObjectFromPath("Aircraft/UAV").Vgt;
+
+IAgCrdnEventIntervalList intervalList = satelliteVgtProvider.EventIntervalLists.Factory.CreateEventIntervalListSignaled("MyIntervalListSignaled",  "MyDescription");
+IAgCrdnEventIntervalListSignaled asListSingled = intervalList as IAgCrdnEventIntervalListSignaled;
+
+asListSingled.OriginalIntervals = aircraftVgtProvider.EventIntervalLists["BeforeStop.SatisfactionIntervals"];
+asListSingled.BaseClockLocation = satelliteVgtProvider.Points["Center"];
+asListSingled.TargetClockLocation = aircraftVgtProvider.Points["Center"];
+
+asListSingled.SignalSense = AgECrdnSignalSense.eCrdnSignalSenseTransmit;
+IAgCrdnSignalDelayBasic basicSignalDelay = asListSingled.SignalDelay as IAgCrdnSignalDelayBasic;
+basicSignalDelay.SpeedOption = AgECrdnSpeedOptions.eCrdnCustomTransmissionSpeed;
+
+// Uses current Time unit preference, this code snippet assumes seconds.
+basicSignalDelay.TimeDelayConvergence = 0.002;
+
+IAgCrdnIntervalListResult intervals = intervalList.FindIntervals();
+if (intervals.IsValid)
+{
+    foreach (IAgCrdnInterval interval in intervals.Intervals)
+    {
+        Console.WriteLine("Start: " + interval.Start);
+        Console.WriteLine("Stop: " + interval.Stop);
+    }
+}
+
+vbNet
+
+Dim satelliteVgtProvider As IAgCrdnProvider = stkRoot.GetObjectFromPath("Satellite/LEO").Vgt
+Dim aircraftVgtProvider As IAgCrdnProvider = stkRoot.GetObjectFromPath("Aircraft/UAV").Vgt
+
+Dim intervalList As IAgCrdnEventIntervalList = satelliteVgtProvider.EventIntervalLists.Factory.CreateEventIntervalListSignaled("MyIntervalListSignaled", "MyDescription")
+Dim asListSingled As IAgCrdnEventIntervalListSignaled = TryCast(intervalList, IAgCrdnEventIntervalListSignaled)
+
+asListSingled.OriginalIntervals = aircraftVgtProvider.EventIntervalLists("BeforeStop.SatisfactionIntervals")
+asListSingled.BaseClockLocation = satelliteVgtProvider.Points("Center")
+asListSingled.TargetClockLocation = aircraftVgtProvider.Points("Center")
+
+asListSingled.SignalSense = AgECrdnSignalSense.eCrdnSignalSenseTransmit
+Dim basicSignalDelay As IAgCrdnSignalDelayBasic = TryCast(asListSingled.SignalDelay, IAgCrdnSignalDelayBasic)
+basicSignalDelay.SpeedOption = AgECrdnSpeedOptions.eCrdnCustomTransmissionSpeed
+
+' Uses current Time unit preference, this code snippet assumes seconds.
+basicSignalDelay.TimeDelayConvergence = 0.002
+
+Dim intervals As IAgCrdnIntervalListResult = intervalList.FindIntervals()
+If intervals.IsValid Then
+	For Each interval As IAgCrdnInterval In intervals.Intervals
+		Console.WriteLine("Start: " + interval.Start)
+		Console.WriteLine("Stop: " + interval.[Stop])
+	Next
+End If

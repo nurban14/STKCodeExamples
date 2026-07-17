@@ -1,0 +1,10 @@
+C#
+// IAgFacility facility: An instance of a facility
+
+IAgCrdnSystemAssembled systemAssembled = provider.Systems.CommonTasks.CreateAssembled(
+    ((IAgStkObject)facility).Vgt.Points["Center"], provider.Axes["Fixed"]);
+
+vbNet
+// IAgFacility facility: An instance of a facility
+
+Dim systemAssembled As IAgCrdnSystemAssembled = provider.Systems.CommonTasks.CreateAssembled((DirectCast(facility, IAgStkObject)).Vgt.Points("Center"), provider.Axes("Fixed"))

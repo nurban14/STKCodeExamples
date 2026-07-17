@@ -1,0 +1,7 @@
+C#
+
+IAgSnPtFixed fixedSensor = sensor.CommonTasks.SetPointingFixedEuler(AgEEulerOrientationSequence.e132, 30, 40, 50);
+
+vbNet
+
+Dim fixedSensor As IAgSnPtFixed = sensor.CommonTasks.SetPointingFixedEuler(AgEEulerOrientationSequence.e132, 30, 40, 50)

@@ -1,0 +1,18 @@
+Matlab
+%% Extracting All Grouped Time Independent Data
+% IAgStkObjectRoot root: STK Object Model root
+% IAgFacility facility: Facility object
+
+% Change DateFormat dimension to epoch seconds to make the data easier to handle in MATLAB
+root.UnitPreferences.Item('DateFormat').SetCurrentUnit('EpSec');
+
+facDP = facility.DataProviders.Item('Terrain Info').Group.Item('Topocentric').Exec;
+normZ = cell2mat(facDP.DataSets.GetDataSetByName('Normal z').GetValues);
+terrainSlope = cell2mat(facDP.DataSets.GetDataSetByName('Slope').GetValues);
+terrainAz = cell2mat(facDP.DataSets.GetDataSetByName('Azimuth').GetValues);
+
+%Alternatively...
+facDP = facility.DataProviders.GetDataPrvFixedFromPath('Terrain Info/Topocentric').Exec;
+normZ = cell2mat(facDP.DataSets.GetDataSetByName('Normal z').GetValues);
+terrainSlope = cell2mat(facDP.DataSets.GetDataSetByName('Slope').GetValues);
+terrainAz = cell2mat(facDP.DataSets.GetDataSetByName('Azimuth').GetValues);

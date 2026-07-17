@@ -1,0 +1,80 @@
+C#
+// IAgCoverageDefinition coverage: An instance of the coverage definition object
+
+string currentDateFormat = stkRoot.UnitPreferences.GetCurrentUnitAbbrv("DateFormat");
+
+// For this example, we will set the coverage analysis time to the times the asset is available.
+// Note, this doesn't handle subassets. To do that, you'll just have to iterate through the subasset list.
+IAgDate minStartTime = null;
+IAgDate maxStartTime = null;
+
+foreach (IAgCvAssetListElement cvAsset in coverage.AssetList)
+{
+    IAgStkObject subAsset = stkRoot.GetObjectFromPath(cvAsset.ObjectName);
+    if (subAsset.Vgt.EventIntervals.Contains("AvailabilityTimeSpan"))
+    {
+        IAgCrdnEventIntervalResult availableTimeSpan = subAsset.Vgt.EventIntervals["AvailabilityTimeSpan"].FindInterval();
+        IAgDate startDate = stkRoot.ConversionUtility.NewDate(currentDateFormat, availableTimeSpan.Interval.Start.ToString());
+        if (!(minStartTime != null) || startDate.OLEDate &lt; minStartTime.OLEDate)
+        {
+            minStartTime = startDate;
+        }
+
+        IAgDate stopTime = stkRoot.ConversionUtility.NewDate(currentDateFormat, availableTimeSpan.Interval.Stop.ToString());
+        if (!(maxStartTime != null) || stopTime.OLEDate &gt; maxStartTime.OLEDate)
+        {
+            maxStartTime = stopTime;
+        }
+    }
+}
+
+if (minStartTime != null &amp;&amp; maxStartTime != null)
+{
+    // Now, that we have the minimum start time and the maximum stop time of the asset list, we can explicitly set the coverage analysis time.
+    coverage.Interval.AnalysisInterval.SetExplicitInterval(minStartTime.Format(currentDateFormat), maxStartTime.Format(currentDateFormat));
+}
+
+Console.WriteLine(
+    "Coverage Analysis Interval, StartTime = {0}, StopTime = {1}",
+    coverage.Interval.AnalysisInterval.FindStartTime(),
+    coverage.Interval.AnalysisInterval.FindStopTime());
+
+Matlab
+% IAgSatellite satellite: Satellite object
+% IAgCoverageDefinition coverage: Coverage object
+satVGT = satellite.vgt;
+AvailTimeSpan = satVGT.EventIntervals.Item('AvailabilityTimeSpan');
+IntResult = AvailTimeSpan.FindInterval;
+coverage.Interval.AnalysisInterval.SetStartAndStopTimes(IntResult.Interval.Start,IntResult.Interval.Stop)
+vbNet
+// IAgCoverageDefinition coverage: An instance of the coverage definition object
+
+Dim currentDateFormat As String = stkRoot.UnitPreferences.GetCurrentUnitAbbrv("DateFormat")
+
+' For this example, we will set the coverage analysis time to the times the asset is available.
+' Note, this doesn't handle subassets. To do that, you'll just have to iterate through the subasset list.
+Dim minStartTime As IAgDate = Nothing
+Dim maxStartTime As IAgDate = Nothing
+
+For Each cvAsset As IAgCvAssetListElement In coverage.AssetList
+	Dim subAsset As IAgStkObject = stkRoot.GetObjectFromPath(cvAsset.ObjectName)
+	If subAsset.Vgt.EventIntervals.Contains("AvailabilityTimeSpan") Then
+		Dim availableTimeSpan As IAgCrdnEventIntervalResult = subAsset.Vgt.EventIntervals("AvailabilityTimeSpan").FindInterval()
+		Dim startDate As IAgDate = stkRoot.ConversionUtility.NewDate(currentDateFormat, availableTimeSpan.Interval.Start.ToString())
+		If Not (minStartTime IsNot Nothing) OrElse startDate.OLEDate &lt; minStartTime.OLEDate Then
+			minStartTime = startDate
+		End If
+
+		Dim stopTime As IAgDate = stkRoot.ConversionUtility.NewDate(currentDateFormat, availableTimeSpan.Interval.[Stop].ToString())
+		If Not (maxStartTime IsNot Nothing) OrElse stopTime.OLEDate &gt; maxStartTime.OLEDate Then
+			maxStartTime = stopTime
+		End If
+	End If
+Next
+
+If minStartTime IsNot Nothing AndAlso maxStartTime IsNot Nothing Then
+	' Now, that we have the minimum start time and the maximum stop time of the asset list, we can explicitly set the coverage analysis time.
+	coverage.Interval.AnalysisInterval.SetExplicitInterval(minStartTime.Format(currentDateFormat), maxStartTime.Format(currentDateFormat))
+End If
+
+Console.WriteLine("Coverage Analysis Interval, StartTime = {0}, StopTime = {1}", coverage.Interval.AnalysisInterval.FindStartTime(), coverage.Interval.AnalysisInterval.FindStopTime())

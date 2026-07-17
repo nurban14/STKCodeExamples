@@ -1,0 +1,17 @@
+C#
+// IAgCrdnVector vector: A valid VGT vector object.
+
+IAgCrdnVectorFindInAxesResult result = vector.FindInAxes(0, provider.WellKnownAxes.Earth.Fixed);
+if (result.IsValid)
+{
+    Console.WriteLine("Vector in the Earth's Fixed axes (x,y,z) =&gt; {0},{1},{2}",
+        result.Vector.X, result.Vector.Y, result.Vector.Z);
+}
+
+vbNet
+// IAgCrdnVector vector: A valid VGT vector object.
+
+Dim result As IAgCrdnVectorFindInAxesResult = vector.FindInAxes(0, provider.WellKnownAxes.Earth.Fixed)
+If result.IsValid Then
+	Console.WriteLine("Vector in the Earth's Fixed axes (x,y,z) =&gt; {0},{1},{2}", result.Vector.X, result.Vector.Y, result.Vector.Z)
+End If

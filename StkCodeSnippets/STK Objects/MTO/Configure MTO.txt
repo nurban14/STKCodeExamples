@@ -1,0 +1,75 @@
+C#
+// IAgMto mto: Mto Object
+
+IAgScenario scenario = root.CurrentScenario as IAgScenario;
+scenario.SetTimePeriod("1 Feb 2008 12:00:00.000", "2 Feb 2008 12:00:00.000");
+
+// Number of tracks and points to add
+double trackCount = 10;
+double pointCount = 20;
+
+// Initial values from which we will interpolate
+double lat0 = 40.04;
+double lon0 = -75.595;
+double alt0 = 0;
+
+root.BeginUpdate(); // Call BeginUpdate for STK engine to delay updates
+
+for (int i = 0; i &lt; trackCount; ++i)
+{
+    IAgMtoTrack track = mto.Tracks.Add(i);
+    IAgDate date = root.ConversionUtility.NewDate("UTCG", scenario.StartTime as string);
+
+    // Interpolate mto points
+    for (int j = 0; j &lt; pointCount; ++j)
+    {
+        double lat = lat0 + 1 * i;
+        double lon = lon0 + 0.1 * j;
+        double alt = alt0;
+
+        date = date.Add("sec", 120);
+
+        track.Points.AddPoint(date.Format("UTCG"), lat, lon, alt);
+    }
+}
+
+root.EndUpdate();
+
+vbNet
+// IAgMto mto: Mto Object
+
+Dim scenario As IAgScenario = TryCast(root.CurrentScenario, IAgScenario)
+scenario.SetTimePeriod("1 Feb 2008 12:00:00.000", "2 Feb 2008 12:00:00.000")
+
+' Number of tracks and points to add
+Dim trackCount As Double = 10
+Dim pointCount As Double = 20
+
+' Initial values from which we will interpolate
+Dim lat0 As Double = 40.04
+Dim lon0 As Double = -75.595
+Dim alt0 As Double = 0
+
+root.BeginUpdate()
+' Call BeginUpdate for STK engine to delay updates
+Dim i As Integer = 0
+While i &lt; trackCount
+	Dim track As IAgMtoTrack = mto.Tracks.Add(i)
+	Dim [date] As IAgDate = root.ConversionUtility.NewDate("UTCG", TryCast(scenario.StartTime, String))
+
+	' Interpolate mto points
+	Dim j As Integer = 0
+	While j &lt; pointCount
+		Dim lat As Double = lat0 + 1 * i
+		Dim lon As Double = lon0 + 0.1 * j
+		Dim alt As Double = alt0
+
+		[date] = [date].Add("sec", 120)
+
+		track.Points.AddPoint([date].Format("UTCG"), lat, lon, alt)
+		System.Threading.Interlocked.Increment(j)
+	End While
+	System.Threading.Interlocked.Increment(i)
+End While
+
+root.EndUpdate()

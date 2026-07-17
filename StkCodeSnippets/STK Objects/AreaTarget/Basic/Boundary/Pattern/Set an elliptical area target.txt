@@ -1,0 +1,28 @@
+C#
+// IAgAreaTarget areaTarget: AreaTarget object
+
+// By using the fine grained interfaces,
+// BeginUpdate/EndUpdate prevent intermediate redraws
+root.BeginUpdate();
+areaTarget.AreaType = AgEAreaType.eEllipse;
+IAgAreaTypeEllipse ellipse = areaTarget.AreaTypeData as IAgAreaTypeEllipse;
+ellipse.SemiMajorAxis = 85.25; // in km (distance dimension)
+ellipse.SemiMinorAxis = 80.75; // in km (distance dimension)
+ellipse.Bearing = 44; // in deg (angle dimension)
+root.EndUpdate();
+
+vbNet
+// IAgAreaTarget areaTarget: AreaTarget object
+
+' By using the fine grained interfaces,
+' BeginUpdate/EndUpdate prevent intermediate redraws
+root.BeginUpdate()
+areaTarget.AreaType = AgEAreaType.eEllipse
+Dim ellipse As IAgAreaTypeEllipse = TryCast(areaTarget.AreaTypeData, IAgAreaTypeEllipse)
+ellipse.SemiMajorAxis = 85.25
+' in km (distance dimension)
+ellipse.SemiMinorAxis = 80.75
+' in km (distance dimension)
+ellipse.Bearing = 44
+' in deg (angle dimension)
+root.EndUpdate()

@@ -1,0 +1,17 @@
+C#
+
+Array connectCommands = new object[]
+    {
+        "New / */Satellite MySatellite",
+        "Graphics */Satellite/MySatellite SetColor red"
+    };
+
+// ExecuteMultipleCommands expect a one dimensional array of Connect commands
+IAgExecMultiCmdResult result = root.ExecuteMultipleCommands(ref connectCommands, AgEExecMultiCmdResultAction.eExceptionOnError);
+
+vbNet
+
+Dim connectCommands As Array = New Object() {"New / */Satellite MySatellite", "Graphics */Satellite/MySatellite SetColor red"}
+
+' ExecuteMultipleCommands expect a one dimensional array of Connect commands
+Dim result As IAgExecMultiCmdResult = root.ExecuteMultipleCommands(connectCommands, AgEExecMultiCmdResultAction.eExceptionOnError)

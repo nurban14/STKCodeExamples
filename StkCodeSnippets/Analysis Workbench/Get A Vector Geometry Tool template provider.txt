@@ -1,0 +1,15 @@
+C#
+// String className: A class name of STK Object or Central Body
+
+//Returns a VGT provider associated with the specified
+// STK object class (i.e., Satellite, Facility, etc.) or
+// a Central Body.
+IAgCrdnProvider provider = root.GetTemplateProvider(className);
+
+vbNet
+// String className: A class name of STK Object or Central Body
+
+'Returns a VGT provider associated with the specified
+' STK object class (i.e., Satellite, Facility, etc.) or
+' a Central Body.
+Dim provider As IAgCrdnProvider = root.GetTemplateProvider(className)

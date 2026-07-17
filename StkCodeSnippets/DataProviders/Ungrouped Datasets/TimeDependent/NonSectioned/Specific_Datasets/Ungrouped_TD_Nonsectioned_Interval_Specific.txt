@@ -1,0 +1,26 @@
+Python
+## Extracting Specific Ungrouped Time Dependent Data Elements in a Specified Interval
+# IAgStkObjectRoot root: STK Object Model root
+# IAgScenario scenario: STK Current Scenario
+# IAgSatellite satellite: Satellite object
+
+# Change DateFormat dimension to epoch seconds to make the data easier to handle 
+root.UnitPreferences.Item('DateFormat').SetCurrentUnit('EpSec')
+
+#Retrieve Only Time and Precision Pass Number from Precision Pass Data Provider
+elems = [['Precision Pass Number'],['Time']]
+
+# Start Time: 5000 epSec, Stop Time: 27500 epSec, Time Step: 100 sec
+satPassDP = satellite.DataProviders.Item('Precision Passes').ExecElements(5000, 27500, 100, elems)
+passTimes = satPassDP.DataSets.GetDataSetByName('Time').GetValues()
+passes = satPassDP.DataSets.GetDataSetByName('Precision Pass Number').GetValues()
+
+#Alternatively...
+#Item Index determined by order of datasets under Data Provider in STK, NOT the order the elements array is in
+passes_2 = satPassDP.DataSets.Item(1).GetValues()
+passTimes_2 = satPassDP.DataSets.Item(0).GetValues()
+
+print(passTimes)
+print(passes)
+print(passes_2)
+print(passTimes_2)

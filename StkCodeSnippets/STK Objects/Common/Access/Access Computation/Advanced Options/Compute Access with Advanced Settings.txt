@@ -1,0 +1,20 @@
+Matlab
+% IAgStkAccess access: Access object
+
+access.Advanced.EnableLightTimeDelay = true;
+access.Advanced.TimeLightDelayConvergence = .00005;
+access.Advanced.AberrationType = 'eAberrationAnnual';
+access.Advanced.UseDefaultClockHostAndSignalSense = false;
+access.Advanced.ClockHost = 'eIvBase';
+access.Advanced.SignalSenseOfClockHost = 'eIvTransmit';
+access.ComputeAccess;
+Python
+# IAgStkAccess access: Access object
+
+access.Advanced.EnableLightTimeDelay = True
+access.Advanced.TimeLightDelayConvergence = .00005
+access.Advanced.AberrationType = AgEAberrationType.eAberrationAnnual
+access.Advanced.UseDefaultClockHostAndSignalSense = False
+access.Advanced.ClockHost = AgEIvClockHost.eIvBase
+access.Advanced.SignalSenseOfClockHost = AgEIvTimeSense.eIvTransmit
+access.ComputeAccess()

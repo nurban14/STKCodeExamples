@@ -1,0 +1,35 @@
+C#
+
+// Attempt to cast STK Object to the IAgDisplayTm interface
+IAgDisplayTm display = stkObject as IAgDisplayTm;
+if (display != null)
+{
+    // Configure during access
+    if (display.IsDisplayStatusTypeSupported(AgEDisplayTimesType.eDuringAccess))
+    {
+        display.SetDisplayStatusType(AgEDisplayTimesType.eDuringAccess);
+
+        IAgDuringAccess duringAccess = display.DisplayTimesData as IAgDuringAccess;
+
+        // Add subsequent existing stk objects to access display
+        duringAccess.AccessObjects.Add("Satellite/satellite1");
+        duringAccess.AccessObjects.Add("Star/star1");
+    }
+}
+
+vbNet
+
+' Attempt to cast STK Object to the IAgDisplayTm interface
+Dim display As IAgDisplayTm = TryCast(stkObject, IAgDisplayTm)
+If display IsNot Nothing Then
+	' Configure during access
+	If display.IsDisplayStatusTypeSupported(AgEDisplayTimesType.eDuringAccess) Then
+		display.SetDisplayStatusType(AgEDisplayTimesType.eDuringAccess)
+
+		Dim duringAccess As IAgDuringAccess = TryCast(display.DisplayTimesData, IAgDuringAccess)
+
+		' Add subsequent existing stk objects to access display
+		duringAccess.AccessObjects.Add("Satellite/satellite1")
+		duringAccess.AccessObjects.Add("Star/star1")
+	End If
+End If

@@ -1,0 +1,9 @@
+C#
+
+IAgPosition pos = target.Position;
+pos.AssignGeodetic(39.95, 15.58, 231.54);
+
+vbNet
+
+Dim pos As IAgPosition = target.Position
+pos.AssignGeodetic(39.95, 15.58, 231.54)

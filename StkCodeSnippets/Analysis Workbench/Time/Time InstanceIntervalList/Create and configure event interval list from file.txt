@@ -1,0 +1,63 @@
+C#
+// String intervalFile: Path to interval file.
+
+// Example contents of a file
+//
+//  STK.V.10.0
+//
+//  BEGIN IntervalList
+//      ScenarioEpoch 1 Jul 1999 00:00:00.00
+//      DATEUNITABRV UTCG
+//
+//  BEGIN Intervals
+//      "1 Jul 1999 00:00:00.00" "1 Jul 1999 02:00:00.00"
+//      "1 Jul 1999 05:00:00.00" "1 Jul 1999 07:00:00.00"
+//      "1 Jul 1999 11:00:00.00" "1 Jul 1999 13:00:00.00"
+//      "1 Jul 1999 17:00:00.00" "1 Jul 1999 19:00:00.00"
+//  END Intervals
+//
+//  END IntervalList
+
+IAgCrdnEventIntervalList intervalList = provider.EventIntervalLists.Factory.CreateEventIntervalListFile("MyIntervalListFromFile", "MyDescription", intervalFile);
+IAgCrdnEventIntervalListFile asListFile = intervalList as IAgCrdnEventIntervalListFile;
+
+IAgCrdnIntervalListResult intervals = intervalList.FindIntervals();
+if (intervals.IsValid)
+{
+    foreach (IAgCrdnInterval interval in intervals.Intervals)
+    {
+        Console.WriteLine("Start: " + interval.Start);
+        Console.WriteLine("Stop: " + interval.Stop);
+    }
+}
+
+vbNet
+// String intervalFile: Path to interval file.
+
+' Example contents of a file
+'
+'  STK.V.10.0
+'
+'  BEGIN IntervalList
+'      ScenarioEpoch 1 Jul 1999 00:00:00.00
+'      DATEUNITABRV UTCG
+'
+'  BEGIN Intervals
+'      "1 Jul 1999 00:00:00.00" "1 Jul 1999 02:00:00.00"
+'      "1 Jul 1999 05:00:00.00" "1 Jul 1999 07:00:00.00"
+'      "1 Jul 1999 11:00:00.00" "1 Jul 1999 13:00:00.00"
+'      "1 Jul 1999 17:00:00.00" "1 Jul 1999 19:00:00.00"
+'  END Intervals
+'
+'  END IntervalList
+
+Dim intervalList As IAgCrdnEventIntervalList = provider.EventIntervalLists.Factory.CreateEventIntervalListFile("MyIntervalListFromFile", "MyDescription", intervalFile)
+Dim asListFile As IAgCrdnEventIntervalListFile = TryCast(intervalList, IAgCrdnEventIntervalListFile)
+
+Dim intervals As IAgCrdnIntervalListResult = intervalList.FindIntervals()
+If intervals.IsValid Then
+	For Each interval As IAgCrdnInterval In intervals.Intervals
+		Console.WriteLine("Start: " + interval.Start)
+		Console.WriteLine("Stop: " + interval.[Stop])
+	Next
+End If

@@ -1,0 +1,40 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+
+IAgStkGraphicsSceneManager manager = ((IAgScenario)root.CurrentScenario).SceneManager;
+Array philadelphia = new object[]
+{
+    39.88,
+    -75.25,
+    3000.0
+};
+Array washingtonDC = new object[]
+{
+    38.85,
+    -77.04,
+    3000.0
+};
+
+Array positions = new object[6];
+philadelphia.CopyTo(positions, 0);
+washingtonDC.CopyTo(positions, 3);
+
+IAgStkGraphicsPolylinePrimitive line = manager.Initializers.PolylinePrimitive.Initialize();
+line.SetCartographic("Earth", ref positions);
+manager.Primitives.Add((IAgStkGraphicsPrimitive)line);
+
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+
+Dim manager As IAgStkGraphicsSceneManager = DirectCast(root.CurrentScenario, IAgScenario).SceneManager
+Dim philadelphia As Array = New Object() {39.88, -75.25, 3000.0}
+Dim washingtonDC As Array = New Object() {38.85, -77.04, 3000.0}
+
+Dim positions As Array = New Object(5) {}
+philadelphia.CopyTo(positions, 0)
+washingtonDC.CopyTo(positions, 3)
+
+Dim line As IAgStkGraphicsPolylinePrimitive = manager.Initializers.PolylinePrimitive.Initialize()
+'$planetName$Name of the planet to place primitive$
+line.SetCartographic("Earth", positions)
+manager.Primitives.Add(DirectCast(line, IAgStkGraphicsPrimitive))

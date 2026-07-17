@@ -1,0 +1,55 @@
+C#
+
+// Set propagator to SGP4
+satellite.SetPropagatorType(AgEVePropagatorType.ePropagatorJ2Perturbation);
+
+// J2 Perturbation propagator
+IAgVePropagatorJ2Perturbation j2prop = satellite.Propagator as IAgVePropagatorJ2Perturbation;
+
+// Configure time period
+j2prop.EphemerisInterval.SetExplicitInterval("1 Jan 2012 12:00:00.000", "2 Jan 2012 12:00:00.000");
+j2prop.Step = 60.0;
+
+// Configure propagator initial state
+IAgVeJxInitialState initial = j2prop.InitialState;
+initial.Representation.Epoch = "1 Jan 2012 12:00:00.000";
+initial.Representation.AssignCartesian(
+    AgECoordinateSystem.eCoordinateSystemFixed,
+    -1514.4,       // in km (assuming unit preferences set to km)
+    -6790.1,       // in km
+    -1.25,         // in km
+    4.8151,        // in km/sec (assuming unit preferences set to km/sec)
+    1.7710,        // in km/sec
+    5.6414);       // in km/sec
+initial.EllipseOptions = AgEVeEllipseOptions.eSecularlyPrecessing;
+
+// Propagate
+j2prop.Propagate();
+
+vbNet
+
+' Set propagator to SGP4
+satellite.SetPropagatorType(AgEVePropagatorType.ePropagatorJ2Perturbation)
+
+' J2 Perturbation propagator
+Dim j2prop As IAgVePropagatorJ2Perturbation = TryCast(satellite.Propagator, IAgVePropagatorJ2Perturbation)
+
+' Configure time period
+j2prop.EphemerisInterval.SetExplicitInterval("1 Jan 2012 12:00:00.000", "2 Jan 2012 12:00:00.000")
+j2prop.[Step] = 60
+
+' Configure propagator initial state
+Dim initial As IAgVeJxInitialState = j2prop.InitialState
+initial.Representation.Epoch = "1 Jan 2012 12:00:00.000"
+' in km (assuming unit preferences set to km)
+' in km
+' in km
+' in km/sec (assuming unit preferences set to km/sec)
+' in km/sec
+initial.Representation.AssignCartesian(AgECoordinateSystem.eCoordinateSystemFixed, -1514.4, -6790.1, -1.25, 4.8151, 1.771, _
+	5.6414)
+' in km/sec
+initial.EllipseOptions = AgEVeEllipseOptions.eSecularlyPrecessing
+
+' Propagate
+j2prop.Propagate()

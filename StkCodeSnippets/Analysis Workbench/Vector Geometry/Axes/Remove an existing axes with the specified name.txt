@@ -1,0 +1,14 @@
+C#
+
+// Check if the axes with specified name exist
+if (provider.Axes.Contains("AxesName"))
+{
+    provider.Axes.Remove("AxesName");
+}
+
+vbNet
+
+' Check if the axes with specified name exist
+If provider.Axes.Contains("AxesName") Then
+	provider.Axes.Remove("AxesName")
+End If

@@ -1,0 +1,43 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+
+IAgStkGraphicsSceneManager manager = ((IAgScenario)root.CurrentScenario).SceneManager;
+Array washingtonDC = new object[]
+{
+    38.85,
+    -77.04,
+    0.0
+};
+Array newOrleans = new object[]
+{
+    29.98,
+    -90.25,
+    0.0
+};
+
+Array positions = new object[6];
+washingtonDC.CopyTo(positions, 0);
+newOrleans.CopyTo(positions, 3);
+
+IAgStkGraphicsPositionInterpolator interpolator = manager.Initializers.GreatArcInterpolator.Initialize() as IAgStkGraphicsPositionInterpolator;
+IAgStkGraphicsPolylinePrimitive line = manager.Initializers.PolylinePrimitive.InitializeWithInterpolator(interpolator);
+line.SetCartographic("Earth", ref positions);
+
+manager.Primitives.Add((IAgStkGraphicsPrimitive)line);
+
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+
+Dim manager As IAgStkGraphicsSceneManager = DirectCast(root.CurrentScenario, IAgScenario).SceneManager
+Dim washingtonDC As Array = New Object() {38.85, -77.04, 0.0}
+Dim newOrleans As Array = New Object() {29.98, -90.25, 0.0}
+
+Dim positions As Array = New Object(5) {}
+washingtonDC.CopyTo(positions, 0)
+newOrleans.CopyTo(positions, 3)
+
+Dim interpolator As IAgStkGraphicsPositionInterpolator = TryCast(manager.Initializers.GreatArcInterpolator.Initialize(), IAgStkGraphicsPositionInterpolator)
+Dim line As IAgStkGraphicsPolylinePrimitive = manager.Initializers.PolylinePrimitive.InitializeWithInterpolator(interpolator)
+line.SetCartographic("Earth", positions)
+
+manager.Primitives.Add(DirectCast(line, IAgStkGraphicsPrimitive))

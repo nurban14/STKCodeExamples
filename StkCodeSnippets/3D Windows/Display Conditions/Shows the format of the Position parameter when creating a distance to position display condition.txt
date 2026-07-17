@@ -1,0 +1,19 @@
+C#
+
+Array position = new object[]
+{
+    6700,
+    0,
+    0
+};
+
+IAgStkGraphicsDistanceToPositionDisplayCondition condition = sceneManager.Initializers.DistanceToPositionDisplayCondition.InitializeWithDistances(
+    ref position,
+    0,
+    10000);
+
+vbNet
+
+Dim position As Array = New Object() {6700, 0, 0}
+
+Dim condition As IAgStkGraphicsDistanceToPositionDisplayCondition = sceneManager.Initializers.DistanceToPositionDisplayCondition.InitializeWithDistances(position, 0, 10000)

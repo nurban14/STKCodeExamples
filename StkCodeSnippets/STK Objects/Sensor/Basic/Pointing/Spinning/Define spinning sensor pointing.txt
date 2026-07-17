@@ -1,0 +1,14 @@
+Python
+#IAg Sensor sensor: Sensor object
+
+# Set pattern type to Spinning
+sensor.SetPointingType(AgESnPointing.eSnPtSpinning)
+spinning = sensor.Pointing
+
+#Configure sensor
+spinning.SpinAxisAzimuth = 14.24
+spinning.SpinAxisElevation = 7.68
+spinning.SpinAxisConeAngle = 42.46
+spinning.ScanMode = AgESnScanMode.eSnContinuous
+spinning.SpinRate = 88.921
+spinning.OffsetAngle = 110.44

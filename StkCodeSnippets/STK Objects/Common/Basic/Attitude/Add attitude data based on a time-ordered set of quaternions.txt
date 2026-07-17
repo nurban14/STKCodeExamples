@@ -1,0 +1,17 @@
+C#
+
+satellite.SetAttitudeType(AgEVeAttitude.eAttitudeStandard);
+IAgVeOrbitAttitudeStandard standard = satellite.Attitude as IAgVeOrbitAttitudeStandard;
+standard.Basic.SetProfileType(AgEVeProfile.eProfileInertiallyFixed);
+IAgVeProfileInertial interfix = standard.Basic.Profile as IAgVeProfileInertial;
+
+interfix.Inertial.AssignQuaternion(-0.34298, -0.47081, 0.70345, 0.40725);
+
+vbNet
+
+satellite.SetAttitudeType(AgEVeAttitude.eAttitudeStandard)
+Dim standard As IAgVeOrbitAttitudeStandard = TryCast(satellite.Attitude, IAgVeOrbitAttitudeStandard)
+standard.Basic.SetProfileType(AgEVeProfile.eProfileInertiallyFixed)
+Dim interfix As IAgVeProfileInertial = TryCast(standard.Basic.Profile, IAgVeProfileInertial)
+
+interfix.Inertial.AssignQuaternion(-0.34298, -0.47081, 0.70345, 0.40725)

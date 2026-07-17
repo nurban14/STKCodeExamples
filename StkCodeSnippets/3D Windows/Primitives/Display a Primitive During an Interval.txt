@@ -1,0 +1,22 @@
+Matlab
+% IAgScenario scenario: Scenario object
+% IAgStkGraphicsModelPrimitive model: Graphics Primitive
+manager = scenario.SceneManager;
+composite = manager.Initializers.CompositeDisplayCondition.Initialize;
+start = root.ConversionUtility.NewDate('EpSec', num2str(scenario.StartTime));
+stop = root.ConversionUtility.NewDate('EpSec', num2str(scenario.StartTime + 600));
+timeInterval = manager.Initializers.TimeIntervalDisplayCondition.InitializeWithTimes(start, stop);
+composite.Add(timeInterval);
+model.DisplayCondition = composite;
+
+Python
+
+# IAgScenario scenario: Scenario object
+# IAgStkGraphicsModelPrimitive model: Graphics Primitive
+manager = scenario.SceneManager
+composite = manager.Initializers.CompositeDisplayCondition.Initialize()
+start = root.ConversionUtility.NewDate('EpSec', str(scenario.StartTime))
+stop = root.ConversionUtility.NewDate('EpSec', str(scenario.StartTime + 600))
+timeInterval = manager.Initializers.TimeIntervalDisplayCondition.InitializeWithTimes(start, stop)
+composite.Add(timeInterval)
+model.DisplayCondition = composite

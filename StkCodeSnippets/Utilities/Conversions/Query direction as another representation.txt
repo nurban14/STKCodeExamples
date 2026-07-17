@@ -1,0 +1,23 @@
+C#
+
+// Method 1
+object b = null, c = null;
+direction.QueryEuler(AgEEulerDirectionSequence.e12, out b, out c);
+Console.WriteLine("B = {0}, C = {1}", b, c);
+// Method 2
+// The Query functions returns a one dimension array
+// The number of column rows depends on the representation
+Array euler = direction.QueryEulerArray(AgEEulerDirectionSequence.e12);
+Console.WriteLine("B = {0}, C = {1}", euler.GetValue(0), euler.GetValue(1));
+
+vbNet
+
+' Method 1
+Dim b As Object = Nothing, c As Object = Nothing
+direction.QueryEuler(AgEEulerDirectionSequence.e12, b, c)
+Console.WriteLine("B = {0}, C = {1}", b, c)
+' Method 2
+' The Query functions returns a one dimension array
+' The number of column rows depends on the representation
+Dim euler As Array = direction.QueryEulerArray(AgEEulerDirectionSequence.e12)
+Console.WriteLine("B = {0}, C = {1}", euler.GetValue(0), euler.GetValue(1))

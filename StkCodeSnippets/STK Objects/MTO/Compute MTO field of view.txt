@@ -1,0 +1,21 @@
+C#
+
+IAgMtoAnalysisFieldOfView fov = mto.Analysis.FieldOfView;
+fov.Sensor = "Satellite/J2Satellite/Sensor/Sensor1";
+
+// AreTracksInFOV expects a one dimensional array of mto track ids
+Array tracks = new object[]
+               {
+                   1, 4
+               };
+bool tracksInView = fov.AreTracksInFOV(AgEMtoTrackEval.eMtoTrackEvalAny, ref tracks, "1 Jan 2012 12:00:00.000");
+
+vbNet
+
+Dim fov As IAgMtoAnalysisFieldOfView = mto.Analysis.FieldOfView
+fov.Sensor = "Satellite/J2Satellite/Sensor/Sensor1"
+
+' AreTracksInFOV expects a one dimensional array of mto track ids
+Dim tracks As Array = New Object() {1, 4}
+
+Dim tracksInView As Boolean = fov.AreTracksInFOV(AgEMtoTrackEval.eMtoTrackEvalAny, tracks, "1 Jan 2012 12:00:00.000")

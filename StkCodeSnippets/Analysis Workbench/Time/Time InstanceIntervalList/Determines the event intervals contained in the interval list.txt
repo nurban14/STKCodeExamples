@@ -1,0 +1,29 @@
+C#
+
+IAgCrdnEventIntervalList intervalsList = provider.EventIntervalLists["AttitudeIntervals"];
+
+IAgCrdnIntervalListResult intervals = intervalsList.FindIntervals();
+
+if (intervals.IsValid)
+{
+    Console.WriteLine("Intervals:");
+    foreach (IAgCrdnInterval interval in intervals.Intervals)
+    {
+        Console.WriteLine("Interval Start: " + interval.Start);
+        Console.WriteLine("Interval Stop: " + interval.Stop);
+    }
+}
+
+vbNet
+
+Dim intervalsList As IAgCrdnEventIntervalList = provider.EventIntervalLists("AttitudeIntervals")
+
+Dim intervals As IAgCrdnIntervalListResult = intervalsList.FindIntervals()
+
+If intervals.IsValid Then
+	Console.WriteLine("Intervals:")
+	For Each interval As IAgCrdnInterval In intervals.Intervals
+		Console.WriteLine("Interval Start: " + interval.Start)
+		Console.WriteLine("Interval Stop: " + interval.[Stop])
+	Next
+End If

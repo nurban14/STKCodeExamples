@@ -1,0 +1,25 @@
+Matlab
+# IAgScenario scenario: Scenario object
+mto = scenario.Children.New(12,'MyMTO') # eMTO
+mtoTimes = [ [0],[7200] ]
+mtoLats = [ [36.77],[34.80] ]
+mtoLons = [ [-77.25],[-78.37] ]
+mtoAlts = [ [5],[5] ]
+
+track1 = mto.Tracks.AddTrack(1,mtoTimes,mtoLats,mtoLons,mtoAlts)
+track1.Interpolate = True
+# Change the color of the track
+mto.Graphics.Tracks.GetTrackFromId(1).Color = 255
+Python
+
+# IAgScenario scenario: Scenario object
+mto = scenario.Children.New(12,'MyMTO') # eMTO
+mtoTimes = [ [0],[7200] ]
+mtoLats = [ [36.77],[34.80] ]
+mtoLons = [ [-77.25],[-78.37] ]
+mtoAlts = [ [5],[5] ]
+
+track1 = mto.Tracks.AddTrack(1,mtoTimes,mtoLats,mtoLons,mtoAlts)
+track1.Interpolate = True
+# Change the color of the track
+mto.Graphics.Tracks.GetTrackFromId(1).Color = 255

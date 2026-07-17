@@ -1,0 +1,10 @@
+Matlab
+%% Using a Time Independent Data Provider
+% IAgStkObjectRoot root: STK Object Model root
+% IAgFacility facility: Facility object
+% Change DateFormat dimension to epoch seconds to make the data easier to handle in MATLAB
+root.UnitPreferences.Item('DateFormat').SetCurrentUnit('EpSec');
+facDP = facility.DataProviders.Item('Cartesian Position').Exec;
+facx = cell2mat(facDP.DataSets.GetDataSetByName('x').GetValues);
+facy = cell2mat(facDP.DataSets.GetDataSetByName('y').GetValues);
+facz = cell2mat(facDP.DataSets.GetDataSetByName('z').GetValues);

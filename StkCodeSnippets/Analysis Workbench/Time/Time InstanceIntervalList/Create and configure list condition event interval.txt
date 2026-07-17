@@ -1,0 +1,31 @@
+C#
+
+IAgCrdnEventIntervalList intervalList = provider.EventIntervalLists.Factory.CreateEventIntervalListCondition("MyIntervalListSatisfaction",  "MyDescription");
+IAgCrdnEventIntervalListCondition asListCondition = intervalList as IAgCrdnEventIntervalListCondition;
+
+asListCondition.Condition = provider.Conditions["AfterStart"];
+
+IAgCrdnIntervalListResult intervals = intervalList.FindIntervals();
+if (intervals.IsValid)
+{
+    foreach (IAgCrdnInterval interval in intervals.Intervals)
+    {
+        Console.WriteLine("Start: " + interval.Start);
+        Console.WriteLine("Stop: " + interval.Stop);
+    }
+}
+
+vbNet
+
+Dim intervalList As IAgCrdnEventIntervalList = provider.EventIntervalLists.Factory.CreateEventIntervalListCondition("MyIntervalListSatisfaction", "MyDescription")
+Dim asListCondition As IAgCrdnEventIntervalListCondition = TryCast(intervalList, IAgCrdnEventIntervalListCondition)
+
+asListCondition.Condition = provider.Conditions("AfterStart")
+
+Dim intervals As IAgCrdnIntervalListResult = intervalList.FindIntervals()
+If intervals.IsValid Then
+	For Each interval As IAgCrdnInterval In intervals.Intervals
+		Console.WriteLine("Start: " + interval.Start)
+		Console.WriteLine("Stop: " + interval.[Stop])
+	Next
+End If

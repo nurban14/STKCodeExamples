@@ -1,0 +1,39 @@
+C#
+
+IAgMtoAnalysisVisibility mtoVisibility = mto.Analysis.Visibility;
+mtoVisibility.UseTerrain = false; // Set to true to use terrain instead of line of sight.
+mtoVisibility.Entirety = AgEMtoEntirety.eMtoEntiretyPartial; // Only applies if MTO is static (i.e. non time dependent).
+
+mtoVisibility.StkObjectPath = "Satellite/J2Satellite";
+
+// ComputeAllTracks returns a two dimensional array whose elements are trackid and visibility
+Array trackVisibilityArray = mtoVisibility.ComputeAllTracks(AgEMtoVisibilityMode.eVisibilityModeEach, "1 Jan 2012 12:00:00.000");
+
+// Output results
+Console.WriteLine("ComputeAllTracks:");
+for (int i = 0; i &lt; trackVisibilityArray.GetLength(0); ++i)
+{
+    Console.WriteLine("   Track {0} visibility: {1}",
+        Convert.ToInt32(trackVisibilityArray.GetValue(i, 0)),
+        Convert.ToInt32(trackVisibilityArray.GetValue(i, 1)));
+}
+
+vbNet
+
+Dim mtoVisibility As IAgMtoAnalysisVisibility = mto.Analysis.Visibility
+mtoVisibility.UseTerrain = False
+' Set to true to use terrain instead of line of sight.
+mtoVisibility.Entirety = AgEMtoEntirety.eMtoEntiretyPartial
+' Only applies if MTO is static (i.e. non time dependent).
+mtoVisibility.StkObjectPath = "Satellite/J2Satellite"
+
+' ComputeAllTracks returns a two dimensional array whose elements are trackid and visibility
+Dim trackVisibilityArray As Array = mtoVisibility.ComputeAllTracks(AgEMtoVisibilityMode.eVisibilityModeEach, "1 Jan 2012 12:00:00.000")
+
+' Output results
+Console.WriteLine("ComputeAllTracks:")
+Dim i As Integer = 0
+While i &lt; trackVisibilityArray.GetLength(0)
+	Console.WriteLine("   Track {0} visibility: {1}", Convert.ToInt32(trackVisibilityArray.GetValue(i, 0)), Convert.ToInt32(trackVisibilityArray.GetValue(i, 1)))
+	System.Threading.Interlocked.Increment(i)
+End While

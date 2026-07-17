@@ -1,0 +1,8 @@
+Matlab
+% IAgTransmitter transmitter: Transmitter object
+txModel = transmitter.Model;
+txModel.EnablePolarization = true;
+recModel.SetPolarizationType('ePolarizationTypeLinear');
+polarization = txModel.Polarization;
+polarization.ReferenceAxis = 'ePolarizationReferenceAxisY';
+polarization.TiltAngle = 15; %deg

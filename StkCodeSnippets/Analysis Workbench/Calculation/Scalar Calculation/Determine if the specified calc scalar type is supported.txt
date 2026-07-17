@@ -1,0 +1,20 @@
+C#
+// AgECrdnCalcScalarType calcScalarType: A calc scalar type.
+
+// Check if the specified calc scalar type is supported.
+if (provider.CalcScalars.Factory.IsTypeSupported(calcScalarType))
+{
+    //Create a CalcScalar with the supported Type
+    IAgCrdnCalcScalar calcScalar = provider.CalcScalars.Factory.Create(
+        "MyCalcScalar", string.Empty,
+        calcScalarType);
+}
+
+vbNet
+// AgECrdnCalcScalarType calcScalarType: A calc scalar type.
+
+' Check if the specified calc scalar type is supported.
+If provider.CalcScalars.Factory.IsTypeSupported(calcScalarType) Then
+	'Create a CalcScalar with the supported Type
+	Dim calcScalar As IAgCrdnCalcScalar = provider.CalcScalars.Factory.Create("MyCalcScalar", String.Empty, calcScalarType)
+End If

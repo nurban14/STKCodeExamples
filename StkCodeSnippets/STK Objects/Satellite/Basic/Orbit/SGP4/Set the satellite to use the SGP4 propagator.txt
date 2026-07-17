@@ -1,0 +1,15 @@
+C#
+
+// Set propagator to SGP4
+satellite.SetPropagatorType(AgEVePropagatorType.ePropagatorSGP4);
+
+// Get the SGP4 propagator
+IAgVePropagatorSGP4 propagator = satellite.Propagator as IAgVePropagatorSGP4;
+
+vbNet
+
+' Set propagator to SGP4
+satellite.SetPropagatorType(AgEVePropagatorType.ePropagatorSGP4)
+
+' Get the SGP4 propagator
+Dim propagator As IAgVePropagatorSGP4 = TryCast(satellite.Propagator, IAgVePropagatorSGP4)

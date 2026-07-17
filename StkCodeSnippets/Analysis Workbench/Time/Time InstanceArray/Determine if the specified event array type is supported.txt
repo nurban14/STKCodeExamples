@@ -1,0 +1,20 @@
+C#
+// AgECrdnEventArrayType eventArrayType: A event array type.
+
+// Check if the specified event array type is supported.
+if (provider.EventArrays.Factory.IsTypeSupported(eventArrayType))
+{
+    //Create an EventArray with the supported Type
+    IAgCrdnEventArray eventArray = provider.EventArrays.Factory.Create(
+        "MyEventArray", string.Empty,
+        eventArrayType);
+}
+
+vbNet
+// AgECrdnEventArrayType eventArrayType: A event array type.
+
+' Check if the specified event array type is supported.
+If provider.EventArrays.Factory.IsTypeSupported(eventArrayType) Then
+	'Create an EventArray with the supported Type
+	Dim eventArray As IAgCrdnEventArray = provider.EventArrays.Factory.Create("MyEventArray", String.Empty, eventArrayType)
+End If

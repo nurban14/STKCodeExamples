@@ -1,0 +1,8 @@
+Matlab
+% IAgAircraft aircraft: Aircraft object
+%Set the propagator to GreatArc
+aircraft.SetRouteType('ePropagatorGreatArc');
+
+%Set the start time to a new start time
+aircraft.Route.StartTime = '25 Dec 2019 00:00:00.00';
+aircraft.Route.Propagate;

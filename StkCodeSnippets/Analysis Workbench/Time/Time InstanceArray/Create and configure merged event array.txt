@@ -1,0 +1,48 @@
+C#
+
+IAgCrdnEventArray eventArray = provider.EventArrays.Factory.CreateEventArrayMerged("MyEventArrayMerged",  "MyDescription");
+IAgCrdnEventArrayMerged asMerged = eventArray as IAgCrdnEventArrayMerged;
+
+asMerged.TimeArrayA = provider.EventArrays["GroundTrajectory.Detic.LLA.Altitude.TimesOfLocalMin"];
+asMerged.TimeArrayB = provider.EventArrays["GroundTrajectory.Detic.LLA.Altitude.TimesOfLocalMax"];
+
+IAgCrdnFindTimesResult timeArrays = eventArray.FindTimes();
+if (timeArrays.IsValid)
+{
+    Console.WriteLine("Times");
+    int numTimes = timeArrays.Times.GetLength(0);
+    for (int i = 0; i &lt; numTimes; ++i)
+    {
+        Console.WriteLine(timeArrays.Times.GetValue(i));
+    }
+
+    foreach (IAgCrdnInterval timeArray in timeArrays.Intervals)
+    {
+        Console.WriteLine("Start: " + timeArray.Start);
+        Console.WriteLine("Stop: " + timeArray.Stop);
+    }
+}
+
+vbNet
+
+Dim eventArray As IAgCrdnEventArray = provider.EventArrays.Factory.CreateEventArrayMerged("MyEventArrayMerged", "MyDescription")
+Dim asMerged As IAgCrdnEventArrayMerged = TryCast(eventArray, IAgCrdnEventArrayMerged)
+
+asMerged.TimeArrayA = provider.EventArrays("GroundTrajectory.Detic.LLA.Altitude.TimesOfLocalMin")
+asMerged.TimeArrayB = provider.EventArrays("GroundTrajectory.Detic.LLA.Altitude.TimesOfLocalMax")
+
+Dim timeArrays As IAgCrdnFindTimesResult = eventArray.FindTimes()
+If timeArrays.IsValid Then
+	Console.WriteLine("Times")
+	Dim numTimes As Integer = timeArrays.Times.GetLength(0)
+	Dim i As Integer = 0
+	While i &lt; numTimes
+		Console.WriteLine(timeArrays.Times.GetValue(i))
+		System.Threading.Interlocked.Increment(i)
+	End While
+
+	For Each timeArray As IAgCrdnInterval In timeArrays.Intervals
+		Console.WriteLine("Start: " + timeArray.Start)
+		Console.WriteLine("Stop: " + timeArray.[Stop])
+	Next
+End If

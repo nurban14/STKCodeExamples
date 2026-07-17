@@ -1,0 +1,27 @@
+C#
+
+// Get the Sampling interface
+IAgCvAdvanced advanced = coverageDefinition.Advanced;
+IAgAccessSampling sampling = advanced.Sampling;
+
+// Set the Sampling Method
+sampling.SetType(AgESamplingMethod.eSamplingMethodAdaptive);
+IAgSamplingMethodAdaptive adaptive = sampling.Strategy as IAgSamplingMethodAdaptive;
+
+// Set properties on the Adaptive sampling method interface
+adaptive.MaxTimeStep = 180.0;
+adaptive.MinTimeStep = 1.0;
+
+vbNet
+
+' Get the Sampling interface
+Dim advanced As IAgCvAdvanced = coverageDefinition.Advanced
+Dim sampling As IAgAccessSampling = advanced.Sampling
+
+' Set the Sampling Method
+sampling.SetType(AgESamplingMethod.eSamplingMethodAdaptive)
+Dim adaptive As IAgSamplingMethodAdaptive = TryCast(sampling.Strategy, IAgSamplingMethodAdaptive)
+
+' Set properties on the Adaptive sampling method interface
+adaptive.MaxTimeStep = 180
+adaptive.MinTimeStep = 1

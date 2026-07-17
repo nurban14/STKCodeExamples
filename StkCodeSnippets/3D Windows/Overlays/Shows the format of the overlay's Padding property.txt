@@ -1,0 +1,17 @@
+C#
+
+Array padding = new object[]
+{
+    10,
+    10,
+    10,
+    10
+};
+
+overlay.Padding = padding;
+
+vbNet
+
+Dim padding As Array = New Object() {10, 10, 10, 10}
+
+overlay.Padding = padding

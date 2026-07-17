@@ -1,0 +1,21 @@
+C#
+
+Array rotationPoint = new object[]
+{
+    false,
+    AgEStkGraphicsScreenOverlayOrigin.eStkGraphicsScreenOverlayOriginCenter,
+    true,
+    0.0,
+    0.0,
+    AgEStkGraphicsScreenOverlayUnit.eStkGraphicsScreenOverlayUnitPixels,
+    AgEStkGraphicsScreenOverlayUnit.eStkGraphicsScreenOverlayUnitPixels
+};
+
+overlay.RotationPoint = rotationPoint;
+
+vbNet
+
+Dim rotationPoint As Array = New Object() {False, AgEStkGraphicsScreenOverlayOrigin.eStkGraphicsScreenOverlayOriginCenter, True, 0, 0, AgEStkGraphicsScreenOverlayUnit.eStkGraphicsScreenOverlayUnitPixels, _
+	AgEStkGraphicsScreenOverlayUnit.eStkGraphicsScreenOverlayUnitPixels}
+
+overlay.RotationPoint = rotationPoint

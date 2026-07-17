@@ -1,0 +1,38 @@
+Matlab
+% IAgSatellite satellite: Satellite object
+lighting = satellite.Graphics.Lighting;
+%Settings for vehicle in sunlight
+sunlight = lighting.Sunlight;
+sunlight.Visible = true;
+sunlight.Color = 65535; %yellow
+sunlight.LineWidth = 3;
+%Settings for vehicle in penumbra
+penumbra = lighting.Penumbra;
+penumbra.Visible = true;
+penumbra.Color = 42495; %orange
+penumbra.LineWidth = 2;
+%Settings for vehicle in umbra
+umbra = lighting.Umbra;
+umbra.Visible = true;
+umbra.Color = 255;  %red
+umbra.LineWidth = 1;
+
+Python
+# IAgSatellite satellite: Satellite object
+
+lighting = satellite.Graphics.Lighting
+# Settings for vehicle in sunlight
+sunlight = lighting.Sunlight
+sunlight.Visible = True
+sunlight.Color = Colors.Yellow
+sunlight.LineWidth = AgELineWidth.e4
+# Settings for vehicle in penumbra
+penumbra = lighting.Penumbra
+penumbra.Visible = True
+penumbra.Color = Colors.Orange
+penumbra.LineWidth = AgELineWidth.e3
+# Settings for vehicle in umbra
+umbra = lighting.Umbra
+umbra.Visible = True
+umbra.Color = Colors.Red
+umbra.LineWidth = AgELineWidth.e2

@@ -1,0 +1,12 @@
+Python
+## Extracting All Ungrouped Time Independent Data
+# IAgStkObjectRoot root: STK Object Model root
+# IAgFacility facility: Facility object
+
+# Change DateFormat dimension to epoch seconds to make the data easier to handle in Python
+root.UnitPreferences.Item('DateFormat').SetCurrentUnit('EpSec')
+
+facDP = facility.DataProviders.Item('Cartesian Position').Exec()
+facx = facDP.DataSets.GetDataSetByName('x').GetValues()
+facy = facDP.DataSets.GetDataSetByName('y').GetValues()
+facz = facDP.DataSets.GetDataSetByName('z').GetValues()

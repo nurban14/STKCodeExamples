@@ -1,0 +1,18 @@
+C#
+
+// orbitState can be extended to one of the other representations.
+// Here it is extended to Classical representation.
+IAgOrbitStateClassical newOrbitState = orbitState.ConvertTo(AgEOrbitStateType.eOrbitStateClassical) as IAgOrbitStateClassical;
+
+// Set the new orbit state parameters
+newOrbitState.AssignClassical(AgECoordinateSystem.eCoordinateSystemICRF, 12000000, 0, 1.8, 0, -1.8, 0);
+
+vbNet
+
+' orbitState can be extended to one of the other representations.
+' Here it is extended to Classical representation.
+Dim newOrbitState As IAgOrbitStateClassical = TryCast(orbitState.ConvertTo(AgEOrbitStateType.eOrbitStateClassical), IAgOrbitStateClassical)
+
+' Set the new orbit state parameters
+newOrbitState.AssignClassical(AgECoordinateSystem.eCoordinateSystemICRF, 12000000, 0, 1.8, 0, -1.8, _
+	0)

@@ -1,0 +1,100 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+// String modelFile: The model file
+
+IAgStkGraphicsSceneManager manager = ((IAgScenario)root.CurrentScenario).SceneManager;
+//
+// Create the model
+//
+IAgStkGraphicsModelPrimitive model = manager.Initializers.ModelPrimitive.InitializeWithStringUri(
+    modelFile);
+
+Array position = new object[3] { 36, -116.75, 25000.0 };
+model.SetPositionCartographic("Earth", ref position);
+
+//
+// Rotate the model to be oriented correctly
+//
+model.Articulations.GetByName("C-130").GetByName("Yaw").CurrentValue = 0.0;
+model.Articulations.GetByName("C-130").GetByName("Pitch").CurrentValue = -50 * Math.PI / 180.0;
+model.Articulations.GetByName("C-130").GetByName("Roll").CurrentValue = 35 * Math.PI / 180.0;
+
+//
+// Enable the "LandingGear" glTF animation for playback
+//
+model.Articulations.GetByName("LandingGear").GetByName("Enable").CurrentValue = 1.0;
+
+manager.Primitives.Add((IAgStkGraphicsPrimitive)model);
+
+
+internal void TimeChanged(double TimeEpSec)
+{
+    //
+    // Rotate the propellors every time the animation updates
+    //
+    if (m_Model != null)
+    {
+        double TwoPI = 2 * Math.PI;
+        double Spin = (TimeEpSec * 0.1) % TwoPI;
+        ((IAgStkGraphicsModelPrimitive)m_Model).Articulations.GetByName("Props").GetByName("Spin").CurrentValue = Spin;
+
+        double Gear = (TimeEpSec * 0.2) % 40.0;
+        if (Gear &gt; 20.0)
+        {
+            // Ping-pong forwards and backwards.
+            Gear = 40.0 - Gear;
+        }
+        // Clamp within animation playback range.
+        Gear = Math.Max(0.0, Math.Min(16.0, Gear - 2.0));
+        ((IAgStkGraphicsModelPrimitive)m_Model).Articulations.GetByName("LandingGear").GetByName("Seconds").CurrentValue = Gear;
+    }
+}
+
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+// String modelFile: The model file
+
+Dim manager As IAgStkGraphicsSceneManager = DirectCast(root.CurrentScenario, IAgScenario).SceneManager
+'
+' Create the model
+'
+Dim model As IAgStkGraphicsModelPrimitive = manager.Initializers.ModelPrimitive.InitializeWithStringUri( _
+	modelFile)
+
+Dim position As Array = New Object() {36, -116.75, 25000.0}
+model.SetPositionCartographic("Earth", position)
+
+'
+' Rotate the model to be oriented correctly
+'
+model.Articulations.GetByName("C-130").GetByName("Yaw").CurrentValue = 0.0
+model.Articulations.GetByName("C-130").GetByName("Pitch").CurrentValue = -50 * Math.PI / 180.0
+model.Articulations.GetByName("C-130").GetByName("Roll").CurrentValue = 35 * Math.PI / 180.0
+
+'
+' Enable the "LandingGear" glTF animation for playback
+'
+model.Articulations.GetByName("LandingGear").GetByName("Enable").CurrentValue = 1.0
+
+manager.Primitives.Add(DirectCast(model, IAgStkGraphicsPrimitive))
+
+
+Friend Sub TimeChanged(TimeEpSec As Double)
+	'
+	' Rotate the propellors every time the animation updates
+	'
+	If m_Model IsNot Nothing Then
+		Dim TwoPI As Double = 2 * Math.PI
+		Dim Spin As Double = (TimeEpSec * 0.1) Mod TwoPI
+		DirectCast(m_Model, IAgStkGraphicsModelPrimitive).Articulations.GetByName("Props").GetByName("Spin").CurrentValue = Spin
+
+		Dim Gear As Double = (TimeEpSec * 0.2) Mod 40.0
+		If Gear &gt; 20.0 Then
+			' Ping-pong forwards and backwards.
+			Gear = 40.0 - Gear
+		End If
+		' Clamp within animation playback range.
+		Gear = Math.Max(0.0, Math.Min(16.0, Gear - 2.0))
+		DirectCast(m_Model, IAgStkGraphicsModelPrimitive).Articulations.GetByName("LandingGear").GetByName("Seconds").CurrentValue = Gear
+	End If
+End Sub

@@ -1,0 +1,23 @@
+Matlab
+%% Extracting Elements from Data Providers with Groups
+% IAgStkObjectRoot root: STK Object Model root
+% IAgSatellite satellite: Satellite object
+% IAgScenario scenario: Scenario object
+
+% Change DateFormat dimension to epoch seconds to make the data easier to handle in MATLAB
+root.UnitPreferences.Item('DateFormat').SetCurrentUnit('EpSec');
+
+satPosDP = satellite.DataProviders.Item('Cartesian Position').Group.Item('ICRF').Exec(scenario.StartTime, scenario.StopTime, 60);
+satx = cell2mat(satPosDP.DataSets.GetDataSetByName('x').GetValues);
+saty = cell2mat(satPosDP.DataSets.GetDataSetByName('y').GetValues);
+satz = cell2mat(satPosDP.DataSets.GetDataSetByName('z').GetValues);
+
+satVelDP = satellite.DataProviders.GetDataPrvTimeVarFromPath('Cartesian Velocity/ICRF').Exec(scenario.StartTime, scenario.StopTime, 60);
+% There are 4 Methods to get DP From a Path depending on the kind of DP:
+%   GetDataPrvTimeVarFromPath
+%   GetDataPrvIntervalFromPath
+%   GetDataPrvInfoFromPath
+%   GetDataPrvFixedFromPath
+satvx = cell2mat(satVelDP.DataSets.GetDataSetByName('x').GetValues);
+satvy = cell2mat(satVelDP.DataSets.GetDataSetByName('y').GetValues);
+satvz = cell2mat(satVelDP.DataSets.GetDataSetByName('z').GetValues);

@@ -1,0 +1,7 @@
+C#
+
+IAgSnPtFixed fixedSensor = sensor.CommonTasks.SetPointingFixedQuat(0.1, 0.2, 0.3, 0.4);
+
+vbNet
+
+Dim fixedSensor As IAgSnPtFixed = sensor.CommonTasks.SetPointingFixedQuat(0.1, 0.2, 0.3, 0.4)

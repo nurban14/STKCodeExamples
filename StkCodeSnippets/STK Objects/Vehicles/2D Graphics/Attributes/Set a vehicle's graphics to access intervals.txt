@@ -1,0 +1,24 @@
+C#
+
+if (graphics.IsAttributesTypeSupported(AgEVeGfxAttributes.eAttributesAccess))
+{
+    // Set graphics to access intervals
+    graphics.SetAttributesType(AgEVeGfxAttributes.eAttributesAccess);
+
+    // Get IAgVeGfxAttributesAccess interface
+    IAgVeGfxAttributesAccess accessAttributes = graphics.Attributes as IAgVeGfxAttributesAccess;
+
+    // adjust the access intervals graphics
+}
+
+vbNet
+
+If graphics.IsAttributesTypeSupported(AgEVeGfxAttributes.eAttributesAccess) Then
+	' Set graphics to access intervals
+	graphics.SetAttributesType(AgEVeGfxAttributes.eAttributesAccess)
+
+	' Get IAgVeGfxAttributesAccess interface
+
+		' adjust the access intervals graphics
+	Dim accessAttributes As IAgVeGfxAttributesAccess = TryCast(graphics.Attributes, IAgVeGfxAttributesAccess)
+End If

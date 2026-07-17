@@ -1,0 +1,20 @@
+Matlab
+% IAgReceiver receiver: Receiver object
+recModel = receiver.Model;
+antennaControl = recModel.AntennaControl;
+antOrientation = antennaControl.EmbeddedModelOrientation;
+antOrientation.AssignAzEl(45, 85, 1); % 1 represents Rotate About Boresight
+antOrientation.PositionOffset.X = 0.5; %m
+antOrientation.PositionOffset.Y = 0.75; %m
+antOrientation.PositionOffset.Z = 1; %m
+
+Python
+# Complex receivers Only
+# IAgReceiver receiver: Receiver object
+recModel = receiver.Model
+antennaControl = recModel.AntennaControl
+antOrientation = antennaControl.EmbeddedModelOrientation
+antOrientation.AssignAzEl(45, 85, 1) # 1 represents Rotate About Boresight
+antOrientation.PositionOffset.X = 0.5 # m
+antOrientation.PositionOffset.Y = 0.75 # m
+antOrientation.PositionOffset.Z = 1 # m

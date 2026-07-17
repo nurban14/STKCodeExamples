@@ -1,0 +1,17 @@
+C#
+
+// To make this more efficient, wrap this method between calls to root.BeginUpdate() and root.EndUpdate()
+IAgAccessCnstrMinMax minmax = accessConstraints.AddConstraint(AgEAccessConstraints.eCstrLunarElevationAngle) as IAgAccessCnstrMinMax;
+minmax.EnableMin = true;
+minmax.Min = 11.1;
+minmax.EnableMax = true;
+minmax.Max = 88.8;
+
+vbNet
+
+' To make this more efficient, wrap this method between calls to root.BeginUpdate() and root.EndUpdate()
+Dim minmax As IAgAccessCnstrMinMax = TryCast(accessConstraints.AddConstraint(AgEAccessConstraints.eCstrLunarElevationAngle), IAgAccessCnstrMinMax)
+minmax.EnableMin = True
+minmax.Min = 11.1
+minmax.EnableMax = True
+minmax.Max = 88.8

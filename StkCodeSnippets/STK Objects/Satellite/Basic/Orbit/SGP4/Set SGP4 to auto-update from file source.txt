@@ -1,0 +1,39 @@
+C#
+// String fileUpdateSource: File update source
+
+propagator.AutoUpdateEnabled = true;
+propagator.AutoUpdate.SelectedSource = AgEVeSGP4AutoUpdateSource.eSGP4AutoUpdateSourceFile;
+propagator.AutoUpdate.FileSource.Filename = fileUpdateSource;
+
+// Preview TLEs (optional)
+// Preview() returns a one dimension string of tles
+Array tles = propagator.AutoUpdate.FileSource.Preview();
+Regex rx = new Regex(@"^(?&lt;ssc&gt;[-]?\d+) (?&lt;orbitepoch&gt;[-]?\d+[.]?\d+) (?&lt;revnumber&gt;[-]?\d+)$");
+foreach (object line in tles)
+{
+    Match m = rx.Match(line.ToString());
+    Console.WriteLine("SCC: {0}, orbit epoch: {1}, rev number: {2}", m.Groups["ssc"], m.Groups["orbitepoch"], m.Groups["revnumber"]);
+}
+
+// Propagate
+propagator.Propagate();
+
+vbNet
+// String fileUpdateSource: File update source
+
+propagator.AutoUpdateEnabled = True
+propagator.AutoUpdate.SelectedSource = AgEVeSGP4AutoUpdateSource.eSGP4AutoUpdateSourceFile
+propagator.AutoUpdate.FileSource.Filename = fileUpdateSource
+
+' Preview TLEs (optional)
+' Preview() returns a one dimension string of tles
+Dim tles As Array = propagator.AutoUpdate.FileSource.Preview()
+
+Dim rx As New Regex("^(?&lt;ssc&gt;[-]?\d+) (?&lt;orbitepoch&gt;[-]?\d+[.]?\d+) (?&lt;revnumber&gt;[-]?\d+)$")
+For Each line As Object In tles
+	Dim m As Match = rx.Match(line.ToString())
+	Console.WriteLine("SCC: {0}, orbit epoch: {1}, rev number: {2}", m.Groups("ssc"), m.Groups("orbitepoch"), m.Groups("revnumber"))
+Next
+
+' Propagate
+propagator.Propagate()

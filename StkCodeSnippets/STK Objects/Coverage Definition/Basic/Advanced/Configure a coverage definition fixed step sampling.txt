@@ -1,0 +1,27 @@
+C#
+
+// Get the Sampling interface
+IAgCvAdvanced advanced = coverageDefinition.Advanced;
+IAgAccessSampling sampling = advanced.Sampling;
+
+// Set the Sampling Method
+sampling.SetType(AgESamplingMethod.eSamplingMethodFixedStep);
+IAgSamplingMethodFixedStep fixedStep = sampling.Strategy as IAgSamplingMethodFixedStep;
+
+// Set properties on the Fixed Stop sampling method interface
+fixedStep.FixedTimeStep = 360.0;
+fixedStep.TimeBound = 5.0;
+
+vbNet
+
+' Get the Sampling interface
+Dim advanced As IAgCvAdvanced = coverageDefinition.Advanced
+Dim sampling As IAgAccessSampling = advanced.Sampling
+
+' Set the Sampling Method
+sampling.SetType(AgESamplingMethod.eSamplingMethodFixedStep)
+Dim fixedStep As IAgSamplingMethodFixedStep = TryCast(sampling.Strategy, IAgSamplingMethodFixedStep)
+
+' Set properties on the Fixed Stop sampling method interface
+fixedStep.FixedTimeStep = 360
+fixedStep.TimeBound = 5

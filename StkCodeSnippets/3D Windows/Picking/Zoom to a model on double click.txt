@@ -1,0 +1,42 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+
+IAgStkGraphicsPrimitive selectedModel = null;
+//
+// Get a collection of picked objects under the mouse location.
+// The collection is sorted with the closest object at index zero.
+//
+IAgStkGraphicsPickResultCollection collection = scene.Pick(mouseX, mouseY);
+if (collection.Count != 0)
+{
+    IAgStkGraphicsObjectCollection objects = collection[0].Objects;
+    IAgStkGraphicsCompositePrimitive composite = objects[0] as IAgStkGraphicsCompositePrimitive;
+
+    //
+    // Was a model in our composite picked?
+    //
+    if (composite == m_Models)
+    {
+        selectedModel = objects[1] as IAgStkGraphicsPrimitive;
+    }
+}
+
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+
+Dim selectedModel As IAgStkGraphicsPrimitive = Nothing
+'
+' Get a collection of picked objects under the mouse location.
+' The collection is sorted with the closest object at index zero.
+'
+Dim collection As IAgStkGraphicsPickResultCollection = scene.Pick(mouseX, mouseY)
+If collection.Count &lt;&gt; 0 Then
+	Dim objects As IAgStkGraphicsObjectCollection = collection(0).Objects
+	Dim composite As IAgStkGraphicsCompositePrimitive = TryCast(objects(0), IAgStkGraphicsCompositePrimitive)
+
+	'
+	' Was a model in our composite picked?
+	'
+	If composite Is m_Models Then
+		selectedModel = TryCast(objects(1), IAgStkGraphicsPrimitive)
+	End If

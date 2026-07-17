@@ -1,0 +1,21 @@
+Matlab
+
+% IAgSatellite satellite: Satellite object
+vgtSat = satellite.vgt;
+% Get handle to the Center point on the satellite
+centerPtSat = vgtSat.Points.Item('Center');
+% Get handle to the Body Y Vector
+bodyYSat = vgtSat.Vectors.Item('Body.Y');
+% Get handle to the Body Axes
+bodyAxes = vgtSat.Axes.Item('Body');
+icrfAxes = vgtSat.Axes.Item('ICRF');
+Python
+# IAgSatellite satellite: Satellite object
+vgtSat = satellite.Vgt
+# Get handle to the Center point on the satellite
+centerPtSat = vgtSat.Points.Item('Center')
+# Get handle to the Body Y Vector
+bodyYSat = vgtSat.Vectors.Item('Body.Y')
+# Get handle to the Body Axes
+bodyAxes = vgtSat.Axes.Item('Body')
+icrfAxes = vgtSat.Axes.Item('ICRF')

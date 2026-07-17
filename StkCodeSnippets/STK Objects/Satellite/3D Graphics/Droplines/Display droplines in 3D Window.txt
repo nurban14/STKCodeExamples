@@ -1,0 +1,17 @@
+Matlab
+
+% IAgSatellite satellite: Satellite object
+orbitDroplines = satellite.VO.DropLines.Orbit;
+wgs84 = orbitDroplines.Item(0); %   Droplines to WGS84 surface
+wgs84.IsVisible = true;
+wgs84.LineWidth = 1;
+wgs84.Use2DColor = false;
+wgs84.Color = 255;  %red
+Python
+# IAgSatellite satellite: Satellite object
+orbitDroplines = satellite.VO.DropLines.Orbit
+wgs84 = orbitDroplines.Item(0)  # Droplines to WGS84 surface
+wgs84.IsVisible = True
+wgs84.LineWidth = AgELineWidth.e2
+wgs84.Use2DColor = False
+wgs84.Color = Colors.Red

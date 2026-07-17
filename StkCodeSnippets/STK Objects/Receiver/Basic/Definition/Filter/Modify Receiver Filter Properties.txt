@@ -1,0 +1,18 @@
+Matlab
+% IAgReceiver receiver: Receiver object
+recModel = receiver.Model;
+recModel.EnableFilter = true;
+recModel.SetFilter('Bessel');
+recFilter = recModel.Filter;
+recFilter.LowerBandwidthLimit = -20;
+recFilter.UpperBandwidthLimit = 20;
+recFilter.CutoffFrequency = 10;
+Python
+# IAgReceiver receiver: Receiver object
+recModel = receiver.Model
+recModel.EnableFilter = True
+recModel.SetFilter('Bessel')
+recFilter = recModel.Filter
+recFilter.LowerBandwidthLimit = -20
+recFilter.UpperBandwidthLimit = 20
+recFilter.CutoffFrequency = 10

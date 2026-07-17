@@ -1,0 +1,36 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+
+IAgStkGraphicsSceneManager manager = ((IAgScenario)root.CurrentScenario).SceneManager;
+
+Array extent = new object[]
+{
+    -94, 29,
+    -89, 33
+};
+
+IAgStkGraphicsSurfaceTriangulatorResult triangles = manager.Initializers.SurfaceExtentTriangulator.ComputeSimple(
+        "Earth", ref extent);
+
+IAgStkGraphicsTriangleMeshPrimitive mesh = manager.Initializers.TriangleMeshPrimitive.Initialize();
+mesh.SetTriangulator((IAgStkGraphicsTriangulatorResult)triangles);
+((IAgStkGraphicsPrimitive)mesh).Color = Color.Salmon;
+mesh.Lighting = false;  /* Turn off lighting for the mesh so the color we assigned will always be consistent */
+
+manager.Primitives.Add((IAgStkGraphicsPrimitive)mesh);
+
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+
+Dim manager As IAgStkGraphicsSceneManager = DirectCast(root.CurrentScenario, IAgScenario).SceneManager
+
+Dim extent As Array = New Object() {-94, 29, -89, 33}
+
+Dim triangles As IAgStkGraphicsSurfaceTriangulatorResult = manager.Initializers.SurfaceExtentTriangulator.ComputeSimple("Earth", extent)
+
+Dim mesh As IAgStkGraphicsTriangleMeshPrimitive = manager.Initializers.TriangleMeshPrimitive.Initialize()
+mesh.SetTriangulator(DirectCast(triangles, IAgStkGraphicsTriangulatorResult))
+DirectCast(mesh, IAgStkGraphicsPrimitive).Color = Color.Salmon
+mesh.Lighting = False
+
+manager.Primitives.Add(DirectCast(mesh, IAgStkGraphicsPrimitive))

@@ -1,0 +1,8 @@
+Matlab
+# IAgScenario scenario: Scenario object
+grndVehicle = scenario.Children.New(9,'MyVehicle') # eGroundVehicle
+grndVehicle.SetRouteType(9) # ePropagatorGreatArc
+Python
+# IAgScenario scenario: Scenario object
+grndVehicle = scenario.Children.New(9,'MyVehicle') # eGroundVehicle
+grndVehicle.SetRouteType(9) # ePropagatorGreatArc

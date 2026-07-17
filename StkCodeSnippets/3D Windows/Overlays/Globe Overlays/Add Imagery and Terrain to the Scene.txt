@@ -1,0 +1,26 @@
+Matlab
+
+% IAgScenario scenario: Scenario object
+% Retrieve the boundaries of the imported files
+manager = scenario.SceneManager;
+% Add Terrain
+terrainTile = manager.Scenes.Item(0).CentralBodies.Earth.Terrain.AddUriString('<Install Dir>\Data\Resources\stktraining\samples\SRTM_Skopje.pdtt');
+extentTerrain = terrainTile.Extent;
+disp(['Terrain boundaries: LatMin: ' num2str(extentTerrain{1}) ' LatMax: ' num2str(extentTerrain{3}) ' LonMin: ' num2str(extentTerrain{2}) ' LonMax: ' num2str(extentTerrain{4})]);
+% Add Imagery
+imageryTile = manager.Scenes.Item(0).CentralBodies.Earth.Imagery.AddUriString('<Install Dir>\Data\Resources\stktraining\imagery\NPS_OrganPipeCactus_Map.pdttx');
+extentImagery = imageryTile.Extent;
+disp(['Imagery boundaries: LatMin: ' num2str(extentImagery{1}) ' LatMax: ' num2str(extentImagery{3}) ' LonMin: ' num2str(extentImagery{2}) ' LonMax: ' num2str(extentImagery{4})]);
+Python
+
+# IAgScenario scenario: Scenario object
+# Retrieve the boundaries of the imported files
+manager = scenario.SceneManager
+# Add Terrain
+terrainTile = manager.Scenes.Item(0).CentralBodies.Earth.Terrain.AddUriString(r'C:\Program Files\AGI\STK_ODTK 13\STK\Help\stktraining\samples\SRTM_Skopje.pdtt')
+extentTerrain = terrainTile.Extent
+print('Terrain boundaries: LatMin: #s LatMax: #s LonMin: #s LonMax: #s' # (str(extentTerrain[0]),str(extentTerrain[2]),str(extentTerrain[1]) ,str(extentTerrain[3])))
+# Add Imagery
+imageryTile = manager.Scenes.Item(0).CentralBodies.Earth.Imagery.AddUriString(r'C:\Program Files\AGI\STK_ODTK 13\STK\Help\stktraining\imagery\NPS_OrganPipeCactus_Map.pdttx')
+extentImagery = imageryTile.Extent
+print('Imagery boundaries: LatMin: #s LatMax: #s LonMin: #s LonMax: #s' # (str(extentImagery[0]),str(extentImagery[2]),str(extentImagery[1]),str(extentImagery[3])))

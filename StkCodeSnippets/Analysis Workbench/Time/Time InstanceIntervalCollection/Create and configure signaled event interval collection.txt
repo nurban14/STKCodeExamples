@@ -1,0 +1,60 @@
+C#
+
+IAgCrdnProvider satelliteVgtProvider = stkRoot.GetObjectFromPath("Satellite/LEO").Vgt;
+IAgCrdnProvider aircraftVgtProvider = stkRoot.GetObjectFromPath("Aircraft/UAV").Vgt;
+
+IAgCrdnEventIntervalCollection intervalCollection = satelliteVgtProvider.EventIntervalCollections.Factory.CreateEventIntervalCollectionSignaled("MyIntervalCollectionSignaled",  "MyDescription");
+IAgCrdnEventIntervalCollectionSignaled asCollectionSignaled = intervalCollection as IAgCrdnEventIntervalCollectionSignaled;
+
+asCollectionSignaled.OriginalCollection = aircraftVgtProvider.EventIntervalCollections["LightingIntervals"];
+asCollectionSignaled.BaseClockLocation = satelliteVgtProvider.Points["Center"];
+asCollectionSignaled.TargetClockLocation = aircraftVgtProvider.Points["Center"];
+
+asCollectionSignaled.SignalSense = AgECrdnSignalSense.eCrdnSignalSenseTransmit;
+IAgCrdnSignalDelayBasic basicSignalDelay = asCollectionSignaled.SignalDelay as IAgCrdnSignalDelayBasic;
+basicSignalDelay.SpeedOption = AgECrdnSpeedOptions.eCrdnLightTransmissionSpeed;
+
+// Uses current Time unit preference, this code snippet assumes seconds.
+basicSignalDelay.TimeDelayConvergence = 0.002;
+
+IAgCrdnIntervalsVectorResult intervalResult = intervalCollection.FindIntervalCollection();
+if (intervalResult.IsValid)
+{
+    foreach (IAgCrdnIntervalCollection intervals in intervalResult.IntervalCollections)
+    {
+        foreach (IAgCrdnInterval interval in intervals)
+        {
+            Console.WriteLine("Start: " + interval.Start);
+            Console.WriteLine("Start: " + interval.Stop);
+        }
+    }
+}
+
+vbNet
+
+Dim satelliteVgtProvider As IAgCrdnProvider = stkRoot.GetObjectFromPath("Satellite/LEO").Vgt
+Dim aircraftVgtProvider As IAgCrdnProvider = stkRoot.GetObjectFromPath("Aircraft/UAV").Vgt
+
+Dim intervalCollection As IAgCrdnEventIntervalCollection = satelliteVgtProvider.EventIntervalCollections.Factory.CreateEventIntervalCollectionSignaled("MyIntervalCollectionSignaled", "MyDescription")
+Dim asCollectionSignaled As IAgCrdnEventIntervalCollectionSignaled = TryCast(intervalCollection, IAgCrdnEventIntervalCollectionSignaled)
+
+asCollectionSignaled.OriginalCollection = aircraftVgtProvider.EventIntervalCollections("LightingIntervals")
+asCollectionSignaled.BaseClockLocation = satelliteVgtProvider.Points("Center")
+asCollectionSignaled.TargetClockLocation = aircraftVgtProvider.Points("Center")
+
+asCollectionSignaled.SignalSense = AgECrdnSignalSense.eCrdnSignalSenseTransmit
+Dim basicSignalDelay As IAgCrdnSignalDelayBasic = TryCast(asCollectionSignaled.SignalDelay, IAgCrdnSignalDelayBasic)
+basicSignalDelay.SpeedOption = AgECrdnSpeedOptions.eCrdnLightTransmissionSpeed
+
+' Uses current Time unit preference, this code snippet assumes seconds.
+basicSignalDelay.TimeDelayConvergence = 0.002
+
+Dim intervalResult As IAgCrdnIntervalsVectorResult = intervalCollection.FindIntervalCollection()
+If intervalResult.IsValid Then
+	For Each intervals As IAgCrdnIntervalCollection In intervalResult.IntervalCollections
+		For Each interval As IAgCrdnInterval In intervals
+			Console.WriteLine("Start: " + interval.Start)
+			Console.WriteLine("Start: " + interval.[Stop])
+		Next
+	Next
+End If

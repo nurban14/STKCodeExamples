@@ -1,0 +1,11 @@
+Matlab
+% IAgScenario scenario: Scenario object
+% IAgSatellite satellite: Satellite object
+% Create a model primitive and sets properties
+manager = scenario.SceneManager;
+modelRefFrame = manager.Initializers.ModelPrimitive.InitializeWithStringUriAndUpAxis('<Install Dir>\STKData\VO\Models\Space\cubesat.mdl','eStkGraphicsModelUpAxisNegativeX');
+modelRefFrame.Position = {0;.005;0};
+modelRefFrame.ReferenceFrame = satellite.Vgt.Systems.Item('Body');
+modelRefFrame.Scale = 1;
+manager.Primitives.Add(modelRefFrame);
+manager.Render;

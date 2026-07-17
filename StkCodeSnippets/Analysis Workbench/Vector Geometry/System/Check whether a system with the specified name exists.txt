@@ -1,0 +1,14 @@
+C#
+
+// Check if the specified system exists.
+if (provider.Systems.Contains("SystemName"))
+{
+    Console.WriteLine("The system \"{0}\" exists!", "SystemName");
+}
+
+vbNet
+
+' Check if the specified system exists.
+If provider.Systems.Contains("SystemName") Then
+	Console.WriteLine("The system ""{0}"" exists!", "SystemName")
+End If

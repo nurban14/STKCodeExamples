@@ -1,0 +1,18 @@
+C#
+
+dropLine.IsVisible = true;
+dropLine.Use2DColor = false;
+dropLine.Color = Color.Red;
+dropLine.LineStyle = AgELineStyle.eDashed;
+dropLine.LineWidth = AgELineWidth.e4;
+dropLine.Interval = 100.000; // in sec
+
+vbNet
+
+dropLine.IsVisible = True
+dropLine.Use2DColor = False
+dropLine.Color = Color.Red
+dropLine.LineStyle = AgELineStyle.eDashed
+dropLine.LineWidth = AgELineWidth.e4
+dropLine.Interval = 100
+' in sec

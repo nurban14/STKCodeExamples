@@ -1,0 +1,31 @@
+C#
+
+// Add ground ellipse
+IAgVeGroundEllipseElement ellipse = ellipsesCollection.Add("MyEllipses");
+
+// Add ellipse data element
+IAgVeEllipseDataElement element = ellipse.EllipseData.Add();
+
+// Configure element properties
+element.Time = "1 Jan 2012 12:00:00.000";
+element.Latitude = 35.2920;
+element.Longitude = -93.7299;
+element.SemiMajorAxis = 400.0;
+element.SemiMinorAxis = 300.0;
+element.Bearing = 35.71;
+
+vbNet
+
+' Add ground ellipse
+Dim ellipse As IAgVeGroundEllipseElement = ellipsesCollection.Add("MyEllipses")
+
+' Add ellipse data element
+Dim element As IAgVeEllipseDataElement = ellipse.EllipseData.Add()
+
+' Configure element properties
+element.Time = "1 Jan 2012 12:00:00.000"
+element.Latitude = 35.292
+element.Longitude = -93.7299
+element.SemiMajorAxis = 400
+element.SemiMinorAxis = 300
+element.Bearing = 35.71

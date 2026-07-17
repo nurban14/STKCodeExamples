@@ -1,0 +1,8 @@
+Matlab
+# IAgScenario scenario: Scenario object
+planet = scenario.Children.New(15,'Mars') # ePlanet
+planet.CommonTasks.SetPositionSourceCentralBody('Mars',4) # eEphemJPLDE
+Python
+# IAgScenario scenario: Scenario object
+planet = scenario.Children.New(15,'Mars') # ePlanet
+planet.CommonTasks.SetPositionSourceCentralBody('Mars',4) # eEphemJPLDE

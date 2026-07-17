@@ -1,0 +1,5 @@
+Matlab
+% IAgTransmitter transmitter: Transmitter object
+txModel = transmitter.Model;
+gain = txModel.PostTransmitGainsLosses.Add(-5); %dB
+gain.Identifier = 'Example Loss';

@@ -1,0 +1,12 @@
+Python
+from agi.stk12.graphics import *
+
+sceneManager = root.CurrentScenario.SceneManager
+overlay = sceneManager.Initializers.TextureScreenOverlay.InitializeWithXYWidthHeight(0,0,100, 100)
+overlay.MaintainAspectRatio = True
+overlay.Translucency = 0
+overlay.BorderSize = 1
+overlay.BorderTranslucency = .25
+overlay.Origin = AgEStkGraphicsScreenOverlayOrigin.eStkGraphicsScreenOverlayOriginTopRight
+overlay.Texture = sceneManager.Textures.LoadFromStringUri('<image path>')
+sceneManager.ScreenOverlays.Overlays.Add(overlay)

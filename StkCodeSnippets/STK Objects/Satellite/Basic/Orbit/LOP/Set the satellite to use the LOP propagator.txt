@@ -1,0 +1,15 @@
+C#
+
+// Set satellite propagator to LOP
+satellite.SetPropagatorType(AgEVePropagatorType.ePropagatorLOP);
+
+// Get the LOP propagator
+IAgVePropagatorLOP propagator = satellite.Propagator as IAgVePropagatorLOP;
+
+vbNet
+
+' Set satellite propagator to LOP
+satellite.SetPropagatorType(AgEVePropagatorType.ePropagatorLOP)
+
+' Get the LOP propagator
+Dim propagator As IAgVePropagatorLOP = TryCast(satellite.Propagator, IAgVePropagatorLOP)

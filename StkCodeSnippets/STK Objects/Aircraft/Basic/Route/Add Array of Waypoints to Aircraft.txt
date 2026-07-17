@@ -1,0 +1,16 @@
+Matlab
+% IAgAircraft aircraft: Aircraft object
+route = aircraft.Route;
+ptsArray = {37.5378,14.2207,3.0480,0.0772,2;
+            47.2602,30.5517,3.0480,0.0772,2};
+route.SetPointsSmoothRateAndPropagate(ptsArray);
+%Propagate the route
+route.Propagate;
+Python
+
+# IAgAircraft aircraft: Aircraft object
+route = aircraft.Route
+ptsArray = [ [37.5378,14.2207,3.0480,0.0772,2][47.2602,30.5517,3.0480,0.0772,2] ]
+route.SetPointsSmoothRateAndPropagate(ptsArray)
+#Propagate the route
+route.Propagate()

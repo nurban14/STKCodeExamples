@@ -1,0 +1,103 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+// String imageFile: The image file to use for the child overlay
+// String rasterFile: The raster file for the second child overlay
+
+IAgStkGraphicsSceneManager manager = ((IAgScenario)root.CurrentScenario).SceneManager;
+IAgStkGraphicsScreenOverlayCollectionBase overlayManager = (IAgStkGraphicsScreenOverlayCollectionBase)manager.ScreenOverlays.Overlays;
+
+IAgStkGraphicsTextureScreenOverlay overlay =
+    manager.Initializers.TextureScreenOverlay.InitializeWithXYWidthHeight(0, 0,
+    188, 200);
+((IAgStkGraphicsOverlay)overlay).Origin = AgEStkGraphicsScreenOverlayOrigin.eStkGraphicsScreenOverlayOriginTopLeft;
+((IAgStkGraphicsOverlay)overlay).Color = Color.LightSkyBlue;
+((IAgStkGraphicsOverlay)overlay).Translucency = 0.7f;
+((IAgStkGraphicsOverlay)overlay).BorderTranslucency = 0.3f;
+((IAgStkGraphicsOverlay)overlay).BorderSize = 1;
+((IAgStkGraphicsOverlay)overlay).BorderColor = Color.LightBlue;
+
+IAgStkGraphicsTextureScreenOverlay childOverlay =
+    manager.Initializers.TextureScreenOverlay.InitializeWithXYWidthHeight(
+    0, 0, ((IAgStkGraphicsOverlay)overlay).Width, ((IAgStkGraphicsOverlay)overlay).Height);
+((IAgStkGraphicsOverlay)childOverlay).Origin = AgEStkGraphicsScreenOverlayOrigin.eStkGraphicsScreenOverlayOriginCenter;
+
+childOverlay.Texture = manager.Textures.LoadFromStringUri(imageFile);
+
+//
+// Create the RasterStream from the plugin the same way as in ImageDynamicCodeSnippet.cs
+//
+IAgStkGraphicsProjectionRasterStreamPluginActivator activator =
+    manager.Initializers.ProjectionRasterStreamPluginActivator.Initialize();
+IAgStkGraphicsProjectionRasterStreamPluginProxy proxy =
+    activator.CreateFromDisplayName("ProjectionRasterStreamPlugin.CSharp");
+Type plugin = proxy.RealPluginObject.GetType();
+plugin.GetProperty("RasterPath").SetValue(proxy.RealPluginObject, rasterFile, null);
+
+IAgStkGraphicsRasterStream rasterStream = proxy.RasterStream;
+rasterStream.UpdateDelta = 0.01667;
+IAgStkGraphicsRendererTexture2D texture2D = manager.Textures.FromRaster((IAgStkGraphicsRaster)rasterStream);
+
+IAgStkGraphicsTextureScreenOverlay secondChildOverlay =
+    manager.Initializers.TextureScreenOverlay.InitializeWithXYWidthHeight(0, 0,
+    128, 128);
+((IAgStkGraphicsOverlay)secondChildOverlay).Origin = AgEStkGraphicsScreenOverlayOrigin.eStkGraphicsScreenOverlayOriginTopRight;
+((IAgStkGraphicsOverlay)secondChildOverlay).TranslationX = -36;
+((IAgStkGraphicsOverlay)secondChildOverlay).TranslationY = -18;
+((IAgStkGraphicsOverlay)secondChildOverlay).ClipToParent = false;
+secondChildOverlay.Texture = texture2D;
+
+overlayManager.Add((IAgStkGraphicsScreenOverlay)overlay);
+
+IAgStkGraphicsScreenOverlayCollectionBase parentOverlayManager = ((IAgStkGraphicsOverlay)overlay).Overlays as IAgStkGraphicsScreenOverlayCollectionBase;
+parentOverlayManager.Add((IAgStkGraphicsScreenOverlay)childOverlay);
+
+IAgStkGraphicsScreenOverlayCollectionBase childOverlayManager = ((IAgStkGraphicsOverlay)childOverlay).Overlays as IAgStkGraphicsScreenOverlayCollectionBase;
+childOverlayManager.Add((IAgStkGraphicsScreenOverlay)secondChildOverlay);
+
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+// String imageFile: The image file to use for the child overlay
+// String rasterFile: The raster file for the second child overlay
+
+Dim manager As IAgStkGraphicsSceneManager = DirectCast(root.CurrentScenario, IAgScenario).SceneManager
+Dim overlayManager As IAgStkGraphicsScreenOverlayCollectionBase = DirectCast(manager.ScreenOverlays.Overlays, IAgStkGraphicsScreenOverlayCollectionBase)
+
+Dim overlay As IAgStkGraphicsTextureScreenOverlay = manager.Initializers.TextureScreenOverlay.InitializeWithXYWidthHeight(0, 0, 188, 200)
+DirectCast(overlay, IAgStkGraphicsOverlay).Origin = AgEStkGraphicsScreenOverlayOrigin.eStkGraphicsScreenOverlayOriginTopLeft
+DirectCast(overlay, IAgStkGraphicsOverlay).BorderTranslucency = 0.3F
+DirectCast(overlay, IAgStkGraphicsOverlay).BorderSize = 1
+DirectCast(overlay, IAgStkGraphicsOverlay).BorderColor = Color.LightBlue
+DirectCast(overlay, IAgStkGraphicsOverlay).Color = Color.LightSkyBlue
+DirectCast(overlay, IAgStkGraphicsOverlay).Translucency = 0.7F
+
+Dim childOverlay As IAgStkGraphicsTextureScreenOverlay = manager.Initializers.TextureScreenOverlay.InitializeWithXYWidthHeight(0, 0, DirectCast(overlay, IAgStkGraphicsOverlay).Width, DirectCast(overlay, IAgStkGraphicsOverlay).Height)
+DirectCast(childOverlay, IAgStkGraphicsOverlay).Origin = AgEStkGraphicsScreenOverlayOrigin.eStkGraphicsScreenOverlayOriginCenter
+
+childOverlay.Texture = manager.Textures.LoadFromStringUri(imageFile)
+
+'
+' Create the RasterStream from the plugin the same way as in ImageDynamicCodeSnippet.cs
+'
+Dim activator As IAgStkGraphicsProjectionRasterStreamPluginActivator = manager.Initializers.ProjectionRasterStreamPluginActivator.Initialize()
+Dim proxy As IAgStkGraphicsProjectionRasterStreamPluginProxy = activator.CreateFromDisplayName("ProjectionRasterStreamPlugin.VBNET")
+Dim plugin As Type = proxy.RealPluginObject.[GetType]()
+plugin.GetProperty("RasterPath").SetValue(proxy.RealPluginObject, rasterFile, Nothing)
+
+Dim rasterStream As IAgStkGraphicsRasterStream = proxy.RasterStream
+rasterStream.UpdateDelta = 0.01667
+Dim texture2D As IAgStkGraphicsRendererTexture2D = manager.Textures.FromRaster(DirectCast(rasterStream, IAgStkGraphicsRaster))
+
+Dim secondChildOverlay As IAgStkGraphicsTextureScreenOverlay = manager.Initializers.TextureScreenOverlay.InitializeWithXYWidthHeight(0, 0, 128, 128)
+DirectCast(secondChildOverlay, IAgStkGraphicsOverlay).Origin = AgEStkGraphicsScreenOverlayOrigin.eStkGraphicsScreenOverlayOriginTopRight
+DirectCast(secondChildOverlay, IAgStkGraphicsOverlay).TranslationX = -36
+DirectCast(secondChildOverlay, IAgStkGraphicsOverlay).TranslationY = -18
+DirectCast(secondChildOverlay, IAgStkGraphicsOverlay).ClipToParent = False
+secondChildOverlay.Texture = texture2D
+
+overlayManager.Add(DirectCast(overlay, IAgStkGraphicsScreenOverlay))
+
+Dim parentOverlayManager As IAgStkGraphicsScreenOverlayCollectionBase = TryCast(DirectCast(overlay, IAgStkGraphicsOverlay).Overlays, IAgStkGraphicsScreenOverlayCollectionBase)
+parentOverlayManager.Add(DirectCast(childOverlay, IAgStkGraphicsScreenOverlay))
+
+Dim childOverlayManager As IAgStkGraphicsScreenOverlayCollectionBase = TryCast(DirectCast(childOverlay, IAgStkGraphicsOverlay).Overlays, IAgStkGraphicsScreenOverlayCollectionBase)
+childOverlayManager.Add(DirectCast(secondChildOverlay, IAgStkGraphicsScreenOverlay))

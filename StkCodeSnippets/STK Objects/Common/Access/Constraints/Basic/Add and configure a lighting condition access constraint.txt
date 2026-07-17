@@ -1,0 +1,16 @@
+Matlab
+
+% IAgAccessConstraintCollection accessConstraints: Access Constraint collection
+
+% Condition constraint
+light = accessConstraints.AddConstraint('eCstrLighting');
+light.Condition = 'eDirectSun';
+
+Python
+## Add and configure a lighting condition access constraint
+
+# IAgAccessConstraintCollection accessConstraints: Access Constraint collection
+
+# Condition constraint
+light = accessConstraints.AddConstraint(AgEAccessConstraints.eCstrLighting)
+light.Condition = AgECnstrLighting.eDirectSun

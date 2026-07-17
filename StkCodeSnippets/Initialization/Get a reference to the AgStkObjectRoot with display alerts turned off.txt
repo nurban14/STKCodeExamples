@@ -1,0 +1,25 @@
+C#
+// Get reference to running STK instance
+AgUiApplication uiApplication = System.Runtime.InteropServices.Marshal.GetActiveObject("STK.Application") as AgUiApplication;
+
+//Create a new instance of the application model root object.
+AgUiApplication uiApplication2 = uiApplication.CreateApplication() as AgUiApplication;
+//Set DisplayAlerts to false to suppress certain alerts and messages.
+//This is useful when automating tasks.
+uiApplication2.DisplayAlerts = false;
+// Get our IAgStkObjectRoot interface with display alerts turned off
+IAgStkObjectRoot stkRoot = uiApplication2.Personality2 as IAgStkObjectRoot;
+
+vbNet
+' Get reference to running STK instance
+Dim uiApplication As AgUiApplication = TryCast(System.Runtime.InteropServices.Marshal.GetActiveObject("STK.Application"), AgUiApplication)
+
+'Create a new instance of the application model root object.
+Dim uiApplication2 As AgUiApplication = TryCast(uiApplication.CreateApplication(), AgUiApplication)
+
+'Set DisplayAlerts to false to suppress certain alerts and messages.
+'This is useful when automating tasks.
+uiApplication2.DisplayAlerts = False
+
+' Get our IAgStkObjectRoot interface with display alerts turned off
+Dim stkRoot As IAgStkObjectRoot = TryCast(uiApplication2.Personality2, IAgStkObjectRoot)

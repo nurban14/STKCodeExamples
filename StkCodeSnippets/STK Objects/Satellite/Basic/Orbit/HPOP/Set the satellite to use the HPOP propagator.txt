@@ -1,0 +1,15 @@
+C#
+
+// Set satellite propagator to HPOP
+satellite.SetPropagatorType(AgEVePropagatorType.ePropagatorHPOP);
+
+// Get the HPOP propagator
+IAgVePropagatorHPOP propagator = satellite.Propagator as IAgVePropagatorHPOP;
+
+vbNet
+
+' Set satellite propagator to HPOP
+satellite.SetPropagatorType(AgEVePropagatorType.ePropagatorHPOP)
+
+' Get the HPOP propagator
+Dim propagator As IAgVePropagatorHPOP = TryCast(satellite.Propagator, IAgVePropagatorHPOP)

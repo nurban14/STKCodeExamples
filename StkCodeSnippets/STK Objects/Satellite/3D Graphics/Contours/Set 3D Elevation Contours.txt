@@ -1,0 +1,5 @@
+Matlab
+% IAgSatellite satellite: Satellite object
+
+%Turn the contours on in the 3D properties
+satellite.VO.ElevContours.IsVisible = true;

@@ -1,0 +1,9 @@
+C#
+
+// Create the Ship
+IAgShip ship = root.CurrentScenario.Children.New(AgESTKObjectType.eShip, "MyShip") as IAgShip;
+
+vbNet
+
+' Create the Ship
+Dim ship As IAgShip = TryCast(root.CurrentScenario.Children.[New](AgESTKObjectType.eShip, "MyShip"), IAgShip)

@@ -1,0 +1,16 @@
+C#
+
+Array size = new object[]
+{
+    1000,
+    1000,
+    2000
+};
+
+IAgStkGraphicsSolidTriangulatorResult result = sceneManager.Initializers.BoxTriangulator.Compute(ref size);
+
+vbNet
+
+Dim size As Array = New Object() {1000, 1000, 2000}
+
+Dim result As IAgStkGraphicsSolidTriangulatorResult = sceneManager.Initializers.BoxTriangulator.Compute(size)

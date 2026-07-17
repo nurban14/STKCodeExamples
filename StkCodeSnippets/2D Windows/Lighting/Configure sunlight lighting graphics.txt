@@ -1,0 +1,19 @@
+C#
+
+IAgVeGfxLightingElement sunlight = lighting.Sunlight;
+
+sunlight.Visible = true;
+sunlight.Color = Color.Red;
+sunlight.LineStyle = AgELineStyle.eDotted;
+sunlight.LineWidth = AgELineWidth.e3;
+sunlight.MarkerStyle = "Circle";
+
+vbNet
+
+Dim sunlight As IAgVeGfxLightingElement = lighting.Sunlight
+
+sunlight.Visible = True
+sunlight.Color = Color.Red
+sunlight.LineStyle = AgELineStyle.eDotted
+sunlight.LineWidth = AgELineWidth.e3
+sunlight.MarkerStyle = "Circle"

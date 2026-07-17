@@ -1,0 +1,35 @@
+C#
+
+Array elems = new object[]
+{ "Time", "x", "y", "z" };
+IAgDataProviderGroup dpVectorChoose = satObj.DataProviders["Vector Choose Axes"] as IAgDataProviderGroup;
+IAgDataProvider groupPosition = dpVectorChoose.Group["Position"] as IAgDataProvider;
+groupPosition.PreData = "Satellite/Sat2 Body";
+IAgDataPrvTimeVar timeVarDP = groupPosition as IAgDataPrvTimeVar;
+IAgDrResult result = timeVarDP.ExecElements("26 Jan 2015 17:00:00.000", "27 Jan 2015 17:00:00.000", 120, ref elems);
+IAgDrDataSetCollection datasets = result.DataSets;
+
+if (result.DataSets.Count &gt; 0)
+{
+    System.Array arrayTime = datasets[0].GetValues();
+    System.Array arrayX = datasets[1].GetValues();
+    System.Array arrayY = datasets[2].GetValues();
+    System.Array arrayZ = datasets[2].GetValues();
+}
+
+vbNet
+
+Dim elems As Array = New Object() {"Time", "x", "y", "z"}
+Dim dpVectorChoose As IAgDataProviderGroup = TryCast(satObj.DataProviders("Vector Choose Axes"), IAgDataProviderGroup)
+Dim groupPosition As IAgDataProvider = TryCast(dpVectorChoose.Group("Position"), IAgDataProvider)
+groupPosition.PreData = "Satellite/Sat2 Body"
+Dim timeVarDP As IAgDataPrvTimeVar = TryCast(groupPosition, IAgDataPrvTimeVar)
+Dim result As IAgDrResult = timeVarDP.ExecElements("26 Jan 2015 17:00:00.000", "27 Jan 2015 17:00:00.000", 120, elems)
+Dim datasets As IAgDrDataSetCollection = result.DataSets
+
+If result.DataSets.Count &gt; 0 Then
+	Dim arrayTime As System.Array = datasets(0).GetValues()
+	Dim arrayX As System.Array = datasets(1).GetValues()
+	Dim arrayY As System.Array = datasets(2).GetValues()
+	Dim arrayZ As System.Array = datasets(2).GetValues()
+End If

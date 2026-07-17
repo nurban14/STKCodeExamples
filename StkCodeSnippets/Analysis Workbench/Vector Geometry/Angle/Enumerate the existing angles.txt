@@ -1,0 +1,20 @@
+C#
+
+// Enumerate the existing angles using specified CrdnProvider.
+foreach (IAgCrdnAngle angle in provider.Angles)
+{
+    // All angles implement IAgCrdn interface which provides
+    // information about the angle instance and its type.
+    IAgCrdn crdn = angle as IAgCrdn;
+    Console.WriteLine("Name: {0}, type: {1}", crdn.Name, angle.Type);
+}
+
+vbNet
+
+' Enumerate the existing angles using specified CrdnProvider.
+For Each angle As IAgCrdnAngle In provider.Angles
+	' All angles implement IAgCrdn interface which provides
+	' information about the angle instance and its type.
+	Dim crdn As IAgCrdn = TryCast(angle, IAgCrdn)
+	Console.WriteLine("Name: {0}, type: {1}", crdn.Name, angle.Type)
+Next

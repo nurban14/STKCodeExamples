@@ -1,0 +1,48 @@
+C#
+
+IAgCrdnProvider satelliteVgtProvider = stkRoot.GetObjectFromPath("Satellite/LEO").Vgt;
+IAgCrdnProvider aircraftVgtProvider = stkRoot.GetObjectFromPath("Aircraft/UAV").Vgt;
+
+IAgCrdnEvent timeEvent = satelliteVgtProvider.Events.Factory.CreateEventSignaled("MyEventSignaled", "MyDescription");
+IAgCrdnEventSignaled asSignaled = timeEvent as IAgCrdnEventSignaled;
+
+asSignaled.OriginalTimeInstant = aircraftVgtProvider.Events["EphemerisStartTime"];
+asSignaled.BaseClockLocation = satelliteVgtProvider.Points["Center"];
+asSignaled.TargetClockLocation = aircraftVgtProvider.Points["Center"];
+
+asSignaled.SignalSense = AgECrdnSignalSense.eCrdnSignalSenseTransmit;
+IAgCrdnSignalDelayBasic basicSignalDelay = asSignaled.SignalDelay as IAgCrdnSignalDelayBasic;
+basicSignalDelay.SpeedOption = AgECrdnSpeedOptions.eCrdnCustomTransmissionSpeed;
+
+// Uses current Time unit preference, this code snippet assumes seconds.
+basicSignalDelay.TimeDelayConvergence = 0.002;
+
+IAgCrdnEventFindOccurrenceResult occurrence = timeEvent.FindOccurrence();
+if (occurrence.IsValid)
+{
+    Console.WriteLine("Event occurred at: " + occurrence.Epoch);
+}
+
+vbNet
+
+Dim satelliteVgtProvider As IAgCrdnProvider = stkRoot.GetObjectFromPath("Satellite/LEO").Vgt
+Dim aircraftVgtProvider As IAgCrdnProvider = stkRoot.GetObjectFromPath("Aircraft/UAV").Vgt
+
+Dim timeEvent As IAgCrdnEvent = satelliteVgtProvider.Events.Factory.CreateEventSignaled("MyEventSignaled", "MyDescription")
+Dim asSignaled As IAgCrdnEventSignaled = TryCast(timeEvent, IAgCrdnEventSignaled)
+
+asSignaled.OriginalTimeInstant = aircraftVgtProvider.Events("EphemerisStartTime")
+asSignaled.BaseClockLocation = satelliteVgtProvider.Points("Center")
+asSignaled.TargetClockLocation = aircraftVgtProvider.Points("Center")
+
+asSignaled.SignalSense = AgECrdnSignalSense.eCrdnSignalSenseTransmit
+Dim basicSignalDelay As IAgCrdnSignalDelayBasic = TryCast(asSignaled.SignalDelay, IAgCrdnSignalDelayBasic)
+basicSignalDelay.SpeedOption = AgECrdnSpeedOptions.eCrdnCustomTransmissionSpeed
+
+' Uses current Time unit preference, this code snippet assumes seconds.
+basicSignalDelay.TimeDelayConvergence = 0.002
+
+Dim occurrence As IAgCrdnEventFindOccurrenceResult = timeEvent.FindOccurrence()
+If occurrence.IsValid Then
+	Console.WriteLine("Event occurred at: " + occurrence.Epoch)
+End If

@@ -1,0 +1,73 @@
+C#
+
+// Add launch sequence and retrieve the
+IAgVAMCSSegment segment = driver.MainSequence.Insert(AgEVASegmentType.eVASegmentTypeLaunch, "MyLaunch", "-");
+IAgVAMCSLaunch launch = segment as IAgVAMCSLaunch;
+
+// Configure launch properties
+launch.CentralBodyName = "Mars";
+launch.Epoch = "1 Jan 2012 12:00:00.000";
+launch.StepSize = 6;
+launch.UsePreviousSegmentState = false;
+launch.PreLaunchTime = 1;
+launch.TimeOfFlight = 500;
+launch.AscentType = AgEVAAscentType.eVAAscentTypeEllipseQuarticMotion;
+launch.InitialAcceleration = 0.02;
+
+// Configure display type
+launch.SetDisplaySystemType(AgEVALaunchDisplaySystem.eVADisplaySystemGeocentric);
+IAgVADisplaySystemGeocentric llr = (IAgVADisplaySystemGeocentric)launch.DisplaySystem;
+llr.Latitude = 35.581;
+llr.Longitude = -92.263;
+llr.Radius = 1000;
+
+// Configure launch type
+launch.AscentType = AgEVAAscentType.eVAAscentTypeEllipseQuarticMotion;
+launch.InitialAcceleration = 0.02;
+launch.AscentType = AgEVAAscentType.eVAAscentTypeEllipseCubicMotion;
+
+// Configure burnout type
+IAgVABurnoutVelocity velocity = launch.BurnoutVelocity;
+velocity.BurnoutOption = AgEVABurnoutOptions.eVABurnoutOptionsInertialVelocity;
+velocity.InertialVelocity = 20.0;
+velocity.InertialHorizontalFPA = 22;
+velocity.InertialVelocityAzimuth = 55;
+velocity.BurnoutOption = AgEVABurnoutOptions.eVABurnoutOptionsFixedVelocity;
+velocity.FixedVelocity = 20;
+
+vbNet
+
+' Add launch sequence and retrieve the
+Dim segment As IAgVAMCSSegment = driver.MainSequence.Insert(AgEVASegmentType.eVASegmentTypeLaunch, "MyLaunch", "-")
+Dim launch As IAgVAMCSLaunch = TryCast(segment, IAgVAMCSLaunch)
+
+' Configure launch properties
+launch.CentralBodyName = "Mars"
+launch.Epoch = "1 Jan 2012 12:00:00.000"
+launch.StepSize = 6
+launch.UsePreviousSegmentState = False
+launch.PreLaunchTime = 1
+launch.TimeOfFlight = 500
+launch.AscentType = AgEVAAscentType.eVAAscentTypeEllipseQuarticMotion
+launch.InitialAcceleration = 0.02
+
+' Configure display type
+launch.SetDisplaySystemType(AgEVALaunchDisplaySystem.eVADisplaySystemGeocentric)
+Dim llr As IAgVADisplaySystemGeocentric = DirectCast(launch.DisplaySystem, IAgVADisplaySystemGeocentric)
+llr.Latitude = 35.581
+llr.Longitude = -92.263
+llr.Radius = 1000
+
+' Configure launch type
+launch.AscentType = AgEVAAscentType.eVAAscentTypeEllipseQuarticMotion
+launch.InitialAcceleration = 0.02
+launch.AscentType = AgEVAAscentType.eVAAscentTypeEllipseCubicMotion
+
+' Configure burnout type
+Dim velocity As IAgVABurnoutVelocity = launch.BurnoutVelocity
+velocity.BurnoutOption = AgEVABurnoutOptions.eVABurnoutOptionsInertialVelocity
+velocity.InertialVelocity = 20
+velocity.InertialHorizontalFPA = 22
+velocity.InertialVelocityAzimuth = 55
+velocity.BurnoutOption = AgEVABurnoutOptions.eVABurnoutOptionsFixedVelocity
+velocity.FixedVelocity = 20

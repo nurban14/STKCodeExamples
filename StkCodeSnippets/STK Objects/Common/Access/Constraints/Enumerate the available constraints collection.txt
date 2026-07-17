@@ -1,0 +1,28 @@
+C#
+
+// The AvailableConstraints method returns a rectangular two-dimensional array of available constraints.
+// A row of the array consists of two elements where the first element is a symbolic name of the constraint,
+// and the second is a corresponding enumeration value.
+
+Array arAvailable = accessConstraints.AvailableConstraints();
+for (int i = 0; i &lt; arAvailable.GetLength(0); i++)
+{
+    string availName = (string)arAvailable.GetValue(i, 0);
+    AgEAccessConstraints eAccessConstraint = (AgEAccessConstraints)(int)arAvailable.GetValue(i, 1);
+    Console.WriteLine("\tConstraint {0}: {1} ({2})", i, availName, eAccessConstraint);
+}
+
+vbNet
+
+' The AvailableConstraints method returns a rectangular two-dimensional array of available constraints.
+' A row of the array consists of two elements where the first element is a symbolic name of the constraint,
+' and the second is a corresponding enumeration value.
+
+Dim arAvailable As Array = accessConstraints.AvailableConstraints()
+Dim i As Integer = 0
+While i &lt; arAvailable.GetLength(0)
+	Dim availName As String = DirectCast(arAvailable.GetValue(i, 0), String)
+	Dim eAccessConstraint As AgEAccessConstraints = DirectCast(DirectCast(arAvailable.GetValue(i, 1), Integer), AgEAccessConstraints)
+	Console.WriteLine(vbTab &amp;&amp;#160;"Constraint {0}: {1} ({2})", i, availName, eAccessConstraint)
+	System.Math.Max(System.Threading.Interlocked.Increment(i),i - 1)
+End While

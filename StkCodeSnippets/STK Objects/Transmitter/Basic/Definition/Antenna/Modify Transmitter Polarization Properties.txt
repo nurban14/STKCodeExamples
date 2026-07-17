@@ -1,0 +1,8 @@
+Python
+# IAgTransmitter transmitter: Transmitter object
+txModel = transmitter.Model
+txModel.EnablePolarization = True
+recModel.SetPolarizationType(3) # ePolarizationTypeLinear
+polarization = txModel.Polarization
+polarization.ReferenceAxis = 1  # ePolarizationReferenceAxisY
+polarization.TiltAngle = 15 # deg

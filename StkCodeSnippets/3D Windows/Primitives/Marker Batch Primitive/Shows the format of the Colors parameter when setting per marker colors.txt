@@ -1,0 +1,19 @@
+C#
+
+Array colors = new object[]
+{
+    Color.Red.ToArgb(),
+    Color.Green.ToArgb(),
+    Color.Blue.ToArgb(),
+    Color.White.ToArgb()
+};
+
+IAgStkGraphicsMarkerBatchPrimitiveOptionalParameters parameters = sceneManager.Initializers.MarkerBatchPrimitiveOptionalParameters.Initialize();
+parameters.SetColors(ref colors);
+
+vbNet
+
+Dim colors As Array = New Object() {Color.Red.ToArgb(), Color.Green.ToArgb(), Color.Blue.ToArgb(), Color.White.ToArgb()}
+
+Dim parameters As IAgStkGraphicsMarkerBatchPrimitiveOptionalParameters = sceneManager.Initializers.MarkerBatchPrimitiveOptionalParameters.Initialize()
+parameters.SetColors(colors)

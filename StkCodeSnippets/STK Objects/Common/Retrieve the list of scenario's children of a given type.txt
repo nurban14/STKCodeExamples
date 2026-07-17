@@ -1,0 +1,18 @@
+C#
+// AgESTKObjectType type: Object type in scenario that we want to list
+
+IAgStkObjectElementCollection allChildrenOfType = root.CurrentScenario.Children.GetElements(type);
+
+foreach (IAgStkObject o in allChildrenOfType)
+{
+    Console.WriteLine(o.InstanceName);
+}
+
+vbNet
+// AgESTKObjectType type: Object type in scenario that we want to list
+
+Dim allChildrenOfType As IAgStkObjectElementCollection = root.CurrentScenario.Children.GetElements(type)
+
+For Each o As IAgStkObject In allChildrenOfType
+	Console.WriteLine(o.InstanceName)
+Next

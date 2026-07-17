@@ -1,0 +1,19 @@
+C#
+
+// Set AutoRecomputer for Accesses
+coverageDefinition.Advanced.AutoRecompute = false;
+
+// Compute
+coverageDefinition.ComputeAccesses();
+
+// Export to File
+string tempFile = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "MyAccess.txt");
+coverageDefinition.ExportAccessesAsText(tempFile);
+coverageDefinition.ReloadAccesses();
+
+// Clear accesses if necessary
+//coverageDefinition.ClearAccesses();
+
+vbNet
+
+

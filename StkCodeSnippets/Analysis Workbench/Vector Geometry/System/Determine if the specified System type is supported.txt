@@ -1,0 +1,19 @@
+C#
+// AgECrdnSystemType SystemType: A system type
+
+// Check if the specified system type is supported.
+if (provider.Systems.Factory.IsTypeSupported(SystemType))
+{
+    //Create a System with supported Type
+    IAgCrdnSystem system = provider.Systems.Factory.Create("SystemName",
+        string.Empty, SystemType);
+}
+
+vbNet
+// AgECrdnSystemType SystemType: A system type
+
+' Check if the specified system type is supported.
+If provider.Systems.Factory.IsTypeSupported(SystemType) Then
+	'Create a System with supported Type
+	Dim system As IAgCrdnSystem = provider.Systems.Factory.Create("SystemName", String.Empty, SystemType)
+End If

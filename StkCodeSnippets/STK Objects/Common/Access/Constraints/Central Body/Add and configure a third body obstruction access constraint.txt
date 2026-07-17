@@ -1,0 +1,45 @@
+Matlab
+% IAgAccessConstraintCollection accessconstraints: Access Constraint collection
+% Get IAgAccessCnstrThirdBody interface
+thirdBodyConstraint = accessConstraints.AddConstraint('eCstrThirdBodyObstruction');
+
+% AvailableObstructions returns a one dimensional array of obstruction paths
+availableArray = thirdBodyConstraint.AvailableObstructions;
+
+% In this example add all available obstructions
+disp('Available obstructions');
+for i=1:length(availableArray)
+   disp(availableArray{i,1});
+   thirdBodyConstraint.AddObstruction(availableArray{i,1});
+end
+
+% AssignedObstructions returns a one dimensional array of obstruction paths
+assignedArray = thirdBodyConstraint.AssignedObstructions;
+
+disp('Assigned obstructions');
+for i=1:length(assignedArray)
+    disp(assignedArray{i,1});
+end
+
+Python
+## Add and configure a central body obstruction access constraint
+
+# IAgAccessConstraintCollection accessConstraints: Access Constraint collection
+# Get IAgAccessCnstrCbObstruction interface
+cbObstrConstraint = accessConstraints.AddConstraint(AgEAccessConstraints.eCstrCbObstruction)
+
+# AvailableObstructions returns a one dimensional array of obstruction paths
+availableArray = cbObstrConstraint.AvailableObstructions
+
+# In this example add all available obstructions
+print('Available obstructions')
+for i in range(0, len(availableArray)):
+    print(availableArray[i])
+    cbObstrConstraint.AddObstruction(availableArray[i])
+
+# AssignedObstructions returns a one dimensional array of obstruction paths
+assignedArray = cbObstrConstraint.AssignedObstructions
+
+print('Assigned obstructions')
+for i in range(0, len(assignedArray)):
+    print(assignedArray[i])

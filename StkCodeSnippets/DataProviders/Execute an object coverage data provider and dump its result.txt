@@ -1,0 +1,80 @@
+C#
+
+IAgStkObject aircraft = root.CurrentScenario.Children["aircraft340"];
+
+IAgStkObjectCoverage objectCoverage = aircraft.ObjectCoverage;
+objectCoverage.Clear();
+objectCoverage.Assets.Add("Constellation/gps_const");
+objectCoverage.Compute();
+
+IAgDataPrvTimeVar provider = objectCoverage.DataProviders["FOM by Time"] as IAgDataPrvTimeVar;
+
+IAgDrResult result = provider.Exec("1 Jan 2012 12:00:00.00", "1 Jan 2012 13:00:00.00", 1);
+
+foreach (IAgDrSubSection section in result.Sections)
+{
+    foreach (IAgDrInterval interval in section.Intervals)
+    {
+        Array arBoundaries = new object[]
+                             {
+                                 1.0, 2.0, 3.0, 4.0, 5.0
+                             };
+
+        // MultipleThresholdCrossings expects the second parameter
+        // to be a one demensional array of boundary index values
+        Array arRanges = interval.MultipleThresholdCrossings("FOM Value", ref arBoundaries);
+
+        for (int iRange = 0; iRange &lt; arRanges.GetLength(0); iRange++)
+        {
+            Console.Write("\nRange: {0}\n", iRange);
+
+            Array arTimeSpans = arRanges.GetValue(iRange) as Array;
+            for (int iSpan = 0; iSpan &lt; arTimeSpans.GetLength(0); iSpan++)
+            {
+                string strStart = arTimeSpans.GetValue(iSpan, 0).ToString();
+                string strStop = arTimeSpans.GetValue(iSpan, 1).ToString();
+
+                Console.Write("Start: {0}	Stop: {1}\n", strStart, strStop);
+            }
+        }
+    }
+}
+
+vbNet
+
+Dim aircraft As IAgStkObject = root.CurrentScenario.Children("aircraft340")
+
+Dim objectCoverage As IAgStkObjectCoverage = aircraft.ObjectCoverage
+objectCoverage.Clear()
+objectCoverage.Assets.Add("Constellation/gps_const")
+objectCoverage.Compute()
+
+Dim provider As IAgDataPrvTimeVar = TryCast(objectCoverage.DataProviders("FOM by Time"), IAgDataPrvTimeVar)
+
+Dim result As IAgDrResult = provider.Exec("1 Jan 2012 12:00:00.00", "1 Jan 2012 13:00:00.00", 1)
+
+For Each section As IAgDrSubSection In result.Sections
+	For Each interval As IAgDrInterval In section.Intervals
+		Dim arBoundaries As Array = New Object() {1, 2, 3, 4, 5}
+
+		' MultipleThresholdCrossings expects the second parameter
+		' to be a one demensional array of boundary index values
+		Dim arRanges As Array = interval.MultipleThresholdCrossings("FOM Value", arBoundaries)
+
+		Dim iRange As Integer = 0
+		While iRange &lt; arRanges.GetLength(0)
+			Console.Write(vbLf &amp;&amp;#160;"Range: {0}" &amp;&amp;#160;vbLf, iRange)
+
+			Dim arTimeSpans As Array = TryCast(arRanges.GetValue(iRange), Array)
+			Dim iSpan As Integer = 0
+			While iSpan &lt; arTimeSpans.GetLength(0)
+				Dim strStart As String = arTimeSpans.GetValue(iSpan, 0).ToString()
+				Dim strStop As String = arTimeSpans.GetValue(iSpan, 1).ToString()
+
+				Console.Write("Start: {0}" &amp;&amp;#160;vbTab &amp;&amp;#160;"Stop: {1}" &amp;&amp;#160;vbLf, strStart, strStop)
+				System.Math.Max(System.Threading.Interlocked.Increment(iSpan),iSpan - 1)
+			End While
+			System.Math.Max(System.Threading.Interlocked.Increment(iRange),iRange - 1)
+		End While
+	Next
+Next

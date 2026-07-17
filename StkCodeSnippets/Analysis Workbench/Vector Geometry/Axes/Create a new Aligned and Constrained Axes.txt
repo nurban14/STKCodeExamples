@@ -1,0 +1,21 @@
+Matlab
+
+% IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+% IAgCrdnVectorDisplacement Sat2EarthCenter: vector component
+% IAgCrdnVectorFixedInAxes bodyYSat: vector component
+AxesFactory = vgtSat.Axes.Factory;
+AlignConstain = AxesFactory.Create('AlignConstrain','Aligned to displacement vector and constrained to Body Y','eCrdnAxesTypeAlignedAndConstrained');
+AlignConstain.AlignmentReferenceVector.SetVector(Sat2EarthCenter);
+AlignConstain.AlignmentDirection.AssignXYZ(1,0,0);
+AlignConstain.ConstraintReferenceVector.SetVector(bodyYSat);
+AlignConstain.constraintDirection.AssignXYZ(0,0,1);
+Python
+# IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+# IAgCrdnVectorDisplacement Sat2EarthCenter: vector component
+# IAgCrdnVectorFixedInAxes bodyYSat: vector component
+AxesFactory = vgtSat.Axes.Factory
+AlignConstain = AxesFactory.Create('AlignConstrain', 'Aligned to displacement vector and constrained to Body Y', AgECrdnAxesType.eCrdnAxesTypeAlignedAndConstrained)
+AlignConstain.AlignmentReferenceVector.SetVector(Sat2EarthCenter)
+AlignConstain.AlignmentDirection.AssignXYZ(1, 0, 0)
+AlignConstain.ConstraintReferenceVector.SetVector(bodyYSat)
+AlignConstain.ConstraintDirection.AssignXYZ(0, 0, 1)

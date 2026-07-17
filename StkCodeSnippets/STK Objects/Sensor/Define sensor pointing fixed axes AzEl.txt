@@ -1,0 +1,7 @@
+C#
+
+IAgSnPtFixedAxes fixedAxesSensor = sensor.CommonTasks.SetPointingFixedAxesAzEl("CentralBody/Sun J2000 Axes", 11, 22, AgEAzElAboutBoresight.eAzElAboutBoresightHold);
+
+vbNet
+
+Dim fixedAxesSensor As IAgSnPtFixedAxes = sensor.CommonTasks.SetPointingFixedAxesAzEl("CentralBody/Sun J2000 Axes", 11, 22, AgEAzElAboutBoresight.eAzElAboutBoresightHold)

@@ -1,0 +1,10 @@
+Matlab
+
+% IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+% IAgCrdnCalcScalarDataElement trueAnom: calc scalar component
+condFactory = vgtSat.Conditions.Factory;
+scaleBound = condFactory.Create('BelowMax','Valid for displacement','eCrdnConditionTypeScalarBounds');
+scaleBound.Scalar = trueAnom;
+scaleBound.Operation = 'eCrdnConditionThresholdOptionBelowMax';
+maxValue = root.ConversionUtility.NewQuantity('Angle', 'deg', 180);
+scaleBound.SetMaximum(maxValue); %Maximum

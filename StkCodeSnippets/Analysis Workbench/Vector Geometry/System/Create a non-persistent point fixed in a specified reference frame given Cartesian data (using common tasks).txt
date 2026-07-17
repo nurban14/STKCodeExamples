@@ -1,0 +1,14 @@
+C#
+// IAgFacility facility: An instance of a facility
+
+double X, Y, Z;
+facility.Position.QueryCartesian(out X, out Y, out Z);
+IAgCrdnPointFixedInSystem origin = provider.Points.CommonTasks.CreateFixedInSystemCartesian(
+    provider.Systems["Fixed"], X, Y, Z);
+
+vbNet
+// IAgFacility facility: An instance of a facility
+
+Dim X As Double, Y As Double, Z As Double
+facility.Position.QueryCartesian(X, Y, Z)
+Dim origin As IAgCrdnPointFixedInSystem = provider.Points.CommonTasks.CreateFixedInSystemCartesian(provider.Systems("Fixed"), X, Y, Z)

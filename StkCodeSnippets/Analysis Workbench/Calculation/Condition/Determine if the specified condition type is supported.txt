@@ -1,0 +1,20 @@
+C#
+// AgECrdnConditionType conditionType: A condition type.
+
+// Check if the specified condition type is supported.
+if (provider.Conditions.Factory.IsTypeSupported(conditionType))
+{
+    //Create a Condition with the supported Type
+    IAgCrdnCondition condition = provider.Conditions.Factory.Create(
+        "MyCondition", string.Empty,
+        conditionType);
+}
+
+vbNet
+// AgECrdnConditionType conditionType: A condition type.
+
+' Check if the specified condition type is supported.
+If provider.Conditions.Factory.IsTypeSupported(conditionType) Then
+	'Create a Condition with the supported Type
+	Dim condition As IAgCrdnCondition = provider.Conditions.Factory.Create("MyCondition", String.Empty, conditionType)
+End If

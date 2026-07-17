@@ -1,0 +1,16 @@
+C#
+// IAgCrdnPlane plane: A plane to check against reference plane.
+
+//Check if the reference plane has a cyclic dependency on another plane.
+if (planeRefTo.HasCyclicDependency(plane))
+{
+    Console.WriteLine("The plane {0} has a cyclic dependency on plane {1}.", ((IAgCrdn)planeRefTo.GetPlane()).Name, ((IAgCrdn)plane).Name);
+}
+
+vbNet
+// IAgCrdnPlane plane: A plane to check against reference plane.
+
+'Check if the reference plane has a cyclic dependency on another plane.
+If planeRefTo.HasCyclicDependency(plane) Then
+	Console.WriteLine("The plane {0} has a cyclic dependency on plane {1}.", DirectCast(planeRefTo.GetPlane(), IAgCrdn).Name, DirectCast(plane, IAgCrdn).Name)
+End If

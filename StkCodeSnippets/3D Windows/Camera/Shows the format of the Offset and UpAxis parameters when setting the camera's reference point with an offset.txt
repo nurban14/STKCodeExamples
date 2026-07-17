@@ -1,0 +1,33 @@
+C#
+// IAgCrdnPoint point: A valid VGT point object.
+// IAgCrdnAxes axes: A valid VGT axes object.
+
+Array offset = new object[]
+{
+    50.0,
+    50.0,
+    -50.0
+};
+
+Array upAxis = new object[]
+{
+    0,
+    0,
+    1
+};
+
+scene.Camera.ViewOffsetWithUpAxis(
+    axes,
+    point,
+    ref offset,
+    ref upAxis);
+
+vbNet
+// IAgCrdnPoint point: A valid VGT point object.
+// IAgCrdnAxes axes: A valid VGT axes object.
+
+Dim offset As Array = New Object() {50, 50, -50}
+
+Dim upAxis As Array = New Object() {0, 0, 1}
+
+scene.Camera.ViewOffsetWithUpAxis(axes, point, offset, upAxis)

@@ -1,0 +1,27 @@
+C#
+
+// Create a quantity representing a 3.1 mile/ 5 km fun run race
+IAgQuantity  race3mi = root.ConversionUtility.NewQuantity("Distance", "mi", 3.1);
+IAgQuantity  race5km = root.ConversionUtility.NewQuantity("Distance", "km", 5);
+
+// Add the two 3.1 mile/ 5 km runs
+IAgQuantity race10km = race5km.Add(race3mi);
+Console.Write("The {0} {1} race is also called a ", race10km.Value, race10km.Unit);
+
+// Convert 10k run to 6.2 mile run internally within the quantity
+race10km.ConvertToUnit("mi");
+Console.WriteLine("{0} {1} race", race10km.Value, race10km.Unit);
+
+vbNet
+
+' Create a quantity representing a 3.1 mile/ 5 km fun run race
+Dim race3mi As IAgQuantity = root.ConversionUtility.NewQuantity("Distance", "mi", 3.1)
+Dim race5km As IAgQuantity = root.ConversionUtility.NewQuantity("Distance", "km", 5)
+
+' Add the two 3.1 mile/ 5 km runs
+Dim race10km As IAgQuantity = race5km.Add(race3mi)
+Console.Write("The {0} {1} race is also called a ", race10km.Value, race10km.Unit)
+
+' Convert 10k run to 6.2 mile run internally within the quantity
+race10km.ConvertToUnit("mi")
+Console.WriteLine("{0} {1} race", race10km.Value, race10km.Unit)

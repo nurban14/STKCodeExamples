@@ -1,0 +1,15 @@
+C#
+
+// To make this more efficient, wrap this method between calls to root.BeginUpdate() and root.EndUpdate()
+// Attitude constraint
+IAgAccessCnstrMinMax altitude = accessConstraints.AddConstraint(AgEAccessConstraints.eCstrAltitude) as IAgAccessCnstrMinMax;
+altitude.EnableMin = true;
+altitude.Min = 20.5;
+
+vbNet
+
+' To make this more efficient, wrap this method between calls to root.BeginUpdate() and root.EndUpdate()
+' Attitude constraint
+Dim altitude As IAgAccessCnstrMinMax = TryCast(accessConstraints.AddConstraint(AgEAccessConstraints.eCstrAltitude), IAgAccessCnstrMinMax)
+altitude.EnableMin = True
+altitude.Min = 20.5

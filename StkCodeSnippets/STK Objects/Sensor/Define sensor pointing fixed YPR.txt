@@ -1,0 +1,7 @@
+C#
+
+IAgSnPtFixed fixedSensor = sensor.CommonTasks.SetPointingFixedYPR(AgEYPRAnglesSequence.eRPY, 12, 24, 36);
+
+vbNet
+
+Dim fixedSensor As IAgSnPtFixed = sensor.CommonTasks.SetPointingFixedYPR(AgEYPRAnglesSequence.eRPY, 12, 24, 36)

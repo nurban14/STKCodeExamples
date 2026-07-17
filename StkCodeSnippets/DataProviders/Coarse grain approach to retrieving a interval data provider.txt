@@ -1,0 +1,9 @@
+C#
+
+IAgDataPrvInterval dp = facility.DataProviders.GetDataPrvIntervalFromPath("Lighting Times//Sunlight");
+IAgDrResult result = dp.Exec("1 Jan 2012 12:00:00.000", "1 Jan 2012 12:00:20.000");
+
+vbNet
+
+Dim dp As IAgDataPrvInterval = facility.DataProviders.GetDataPrvIntervalFromPath("Lighting Times//Sunlight")
+Dim result As IAgDrResult = dp.Exec("1 Jan 2012 12:00:00.000", "1 Jan 2012 12:00:20.000")

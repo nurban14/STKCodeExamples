@@ -1,0 +1,16 @@
+C#
+// IAgCrdnAxes axes: A axes to check against reference axes.
+
+//Check if the reference axes has a cyclic dependency on another axes.
+if (axesRefTo.HasCyclicDependency(axes))
+{
+    Console.WriteLine("The axes {0} has a cyclic dependency on axes {1}.", ((IAgCrdn)axesRefTo.GetAxes()).Name, ((IAgCrdn)axes).Name);
+}
+
+vbNet
+// IAgCrdnAxes axes: A axes to check against reference axes.
+
+'Check if the reference axes has a cyclic dependency on another axes.
+If axesRefTo.HasCyclicDependency(axes) Then
+	Console.WriteLine("The axes {0} has a cyclic dependency on axes {1}.", DirectCast(axesRefTo.GetAxes(), IAgCrdn).Name, DirectCast(axes, IAgCrdn).Name)
+End If

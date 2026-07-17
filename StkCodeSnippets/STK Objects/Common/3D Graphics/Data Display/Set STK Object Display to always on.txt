@@ -1,0 +1,9 @@
+C#
+
+IAgDisplayTm display = stkObject as IAgDisplayTm;
+display.SetDisplayStatusType(AgEDisplayTimesType.eAlwaysOn);
+
+vbNet
+
+Dim display As IAgDisplayTm = TryCast(stkObject, IAgDisplayTm)
+display.SetDisplayStatusType(AgEDisplayTimesType.eAlwaysOn)

@@ -1,0 +1,6 @@
+Matlab
+% IAgSatellite satellite: Satellite object
+sensor = satellite.Children.New('eSensor','MySensor');
+Python
+# IAgSatellite satellite: Satellite object
+sensor = satellite.Children.New(AgESTKObjectType.eSensor, 'MySensor')

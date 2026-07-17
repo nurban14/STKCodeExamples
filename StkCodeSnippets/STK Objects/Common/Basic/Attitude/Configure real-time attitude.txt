@@ -1,0 +1,35 @@
+C#
+
+// set attitude type to real time
+satellite.SetAttitudeType(AgEVeAttitude.eAttitudeRealTime);
+IAgVeAttitudeRealTime realtime = satellite.Attitude as IAgVeAttitudeRealTime;
+
+// Set our Attitude Look Ahead method to Extrapolate
+realtime.LookAheadMethod = AgEVeLookAheadMethod.eExtrapolate;
+
+// Duration
+IAgVeDuration duration = realtime.Duration;
+duration.LookAhead = 1600.0;
+duration.LookBehind = 1600.0;
+
+// BlockFactor
+realtime.BlockFactor = 40;
+realtime.DataReference.SetProfileType(AgEVeProfile.eProfileInertiallyFixed);
+
+vbNet
+
+' set attitude type to real time
+satellite.SetAttitudeType(AgEVeAttitude.eAttitudeRealTime)
+Dim realtime As IAgVeAttitudeRealTime = TryCast(satellite.Attitude, IAgVeAttitudeRealTime)
+
+' Set our Attitude Look Ahead method to Extrapolate
+realtime.LookAheadMethod = AgEVeLookAheadMethod.eExtrapolate
+
+' Duration
+Dim duration As IAgVeDuration = realtime.Duration
+duration.LookAhead = 1600
+duration.LookBehind = 1600
+
+' BlockFactor
+realtime.BlockFactor = 40
+realtime.DataReference.SetProfileType(AgEVeProfile.eProfileInertiallyFixed)

@@ -1,0 +1,13 @@
+C#
+
+IAgAccessConstraintCollection accessConstraints = stkobject.AccessConstraints;
+
+accessConstraints.AddConstraint(AgEAccessConstraints.eCstrObjectExclusionAngle);
+accessConstraints.AddConstraint(AgEAccessConstraints.eCstrObjectExclusionAngle);
+
+vbNet
+
+Dim accessConstraints As IAgAccessConstraintCollection = stkobject.AccessConstraints
+
+accessConstraints.AddConstraint(AgEAccessConstraints.eCstrObjectExclusionAngle)
+accessConstraints.AddConstraint(AgEAccessConstraints.eCstrObjectExclusionAngle)

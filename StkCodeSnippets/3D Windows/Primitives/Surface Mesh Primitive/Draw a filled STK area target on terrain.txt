@@ -1,0 +1,32 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+// String terrainFile: The terrain file
+// Array positions: The positions used to compute triangulation
+
+IAgStkGraphicsSceneManager manager = ((IAgScenario)root.CurrentScenario).SceneManager;
+IAgStkGraphicsTerrainOverlay overlay = scene.CentralBodies.Earth.Terrain.AddUriString(
+    terrainFile);
+
+IAgStkGraphicsSurfaceTriangulatorResult triangles =
+    manager.Initializers.SurfacePolygonTriangulator.Compute("Earth", ref positions);
+
+IAgStkGraphicsSurfaceMeshPrimitive mesh = manager.Initializers.SurfaceMeshPrimitive.Initialize();
+((IAgStkGraphicsPrimitive)mesh).Color = Color.Purple;
+mesh.Set(triangles);
+manager.Primitives.Add((IAgStkGraphicsPrimitive)mesh);
+
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+// String terrainFile: The terrain file
+// Array positions: The positions used to compute triangulation
+
+Dim manager As IAgStkGraphicsSceneManager = DirectCast(root.CurrentScenario, IAgScenario).SceneManager
+Dim overlay As IAgStkGraphicsTerrainOverlay = scene.CentralBodies.Earth.Terrain.AddUriString( _
+    terrainFile)
+
+Dim triangles As IAgStkGraphicsSurfaceTriangulatorResult = manager.Initializers.SurfacePolygonTriangulator.Compute("Earth", positions)
+
+Dim mesh As IAgStkGraphicsSurfaceMeshPrimitive = manager.Initializers.SurfaceMeshPrimitive.Initialize()
+DirectCast(mesh, IAgStkGraphicsPrimitive).Color = Color.Purple
+mesh.Set(triangles)
+manager.Primitives.Add(DirectCast(mesh, IAgStkGraphicsPrimitive))

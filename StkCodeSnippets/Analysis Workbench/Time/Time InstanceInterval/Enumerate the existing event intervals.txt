@@ -1,0 +1,20 @@
+C#
+
+// Enumerate the existing EventIntervals using specified CrdnProvider.
+foreach (IAgCrdnEventInterval eventInterval in provider.EventIntervals)
+{
+    // All event intervals implement IAgCrdn interface which provides
+    // information about the event interval instance and its type.
+    IAgCrdn crdn = eventInterval as IAgCrdn;
+    Console.WriteLine("Name: {0}, type: {1}", crdn.Name, eventInterval.Type);
+}
+
+vbNet
+
+' Enumerate the existing EventIntervals using specified CrdnProvider.
+For Each eventInterval As IAgCrdnEventInterval In provider.EventIntervals
+	' All event intervals implement IAgCrdn interface which provides
+	' information about the event interval instance and its type.
+	Dim crdn As IAgCrdn = TryCast(eventInterval, IAgCrdn)
+	Console.WriteLine("Name: {0}, type: {1}", crdn.Name, eventInterval.Type)
+Next

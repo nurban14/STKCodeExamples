@@ -1,0 +1,4 @@
+Python
+# IAgStkObjectRoot root: STK Object Model root
+centerPtEarth = root.CentralBodies.Earth.Vgt.Points.Item('Center')
+icrf = root.CentralBodies.Earth.Vgt.Systems.Item('ICRF')

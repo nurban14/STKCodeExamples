@@ -1,0 +1,18 @@
+Matlab
+%% Extracting All Ungrouped Time Dependent Data separated by Sections
+% IAgStkObjectRoot root: STK Object Model root
+% IAgScenario scenario: STK Current Scenario
+% IAgSatellite satellite: Satellite object
+
+root.UnitPreferences.Item('Power').SetCurrentUnit('W');
+solarPanelData = satellite.DataProviders.Item("Solar Panel Power").Exec(scenario.StartTime,scenario.StopTime, 86400);
+
+time = cell2mat(solarPanelData.Interval.Item(cast(0, 'int32')).DataSets.GetDataSetByName('Time').GetValues);
+power = cell2mat(solarPanelData.Interval.Item(cast(0, 'int32')).DataSets.GetDataSetByName('Power').GetValues);
+solarIntensity = cell2mat(solarPanelData.Interval.Item(cast(0, 'int32')).DataSets.GetDataSetByName('Solar Intensity').GetValues); 
+for i = 1:1:solarPanelData.Interval.Count-1
+    time = [time; cell2mat(solarPanelData.Interval.Item(cast(i, 'int32')).DataSets.GetDataSetByName('Time').GetValues)];
+    power = [power; cell2mat(solarPanelData.Interval.Item(cast(i, 'int32')).DataSets.GetDataSetByName('Power').GetValues)];
+    solarIntensity = [solarIntensity; cell2mat(solarPanelData.Interval.Item(cast(i, 'int32')).DataSets.GetDataSetByName('Solar Intensity').GetValues)];
+ 
+end

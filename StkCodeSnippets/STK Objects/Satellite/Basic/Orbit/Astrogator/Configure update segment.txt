@@ -1,0 +1,38 @@
+C#
+
+// Add launch sequence and retrieve the
+IAgVAMCSSegment segment = driver.MainSequence.Insert(AgEVASegmentType.eVASegmentTypeUpdate, "MyUpdate", "-");
+IAgVAMCSUpdate update = segment as IAgVAMCSUpdate;
+
+// Specify the element to be changed, the action, and the value
+
+// Add values
+update.SetActionAndValue(AgEVAUpdateParam.eVAUpdateParamCd, AgEVAUpdateAction.eVAUpdateActionAddValue, 2);
+update.SetActionAndValue(AgEVAUpdateParam.eVAUpdateParamFuelDensity, AgEVAUpdateAction.eVAUpdateActionAddValue, 1);
+// Set to new value
+update.SetActionAndValue(AgEVAUpdateParam.eVAUpdateParamTankPressure, AgEVAUpdateAction.eVAUpdateActionSetToNewValue, 6000);
+update.SetActionAndValue(AgEVAUpdateParam.eVAUpdateParamTankTemp, AgEVAUpdateAction.eVAUpdateActionSetToNewValue, 5);
+
+// Subtract values
+update.SetActionAndValue(AgEVAUpdateParam.eVAUpdateParamSRPArea, AgEVAUpdateAction.eVAUpdateActionSubtractValue, 10);
+update.SetActionAndValue(AgEVAUpdateParam.eVAUpdateParamSRPArea, AgEVAUpdateAction.eVAUpdateActionSubtractValue, 1);
+
+vbNet
+
+' Add launch sequence and retrieve the
+Dim segment As IAgVAMCSSegment = driver.MainSequence.Insert(AgEVASegmentType.eVASegmentTypeUpdate, "MyUpdate", "-")
+Dim update As IAgVAMCSUpdate = TryCast(segment, IAgVAMCSUpdate)
+
+' Specify the element to be changed, the action, and the value
+
+' Add values
+update.SetActionAndValue(AgEVAUpdateParam.eVAUpdateParamCd, AgEVAUpdateAction.eVAUpdateActionAddValue, 2)
+update.SetActionAndValue(AgEVAUpdateParam.eVAUpdateParamFuelDensity, AgEVAUpdateAction.eVAUpdateActionAddValue, 1)
+
+' Set to new value
+update.SetActionAndValue(AgEVAUpdateParam.eVAUpdateParamTankPressure, AgEVAUpdateAction.eVAUpdateActionSetToNewValue, 6000)
+update.SetActionAndValue(AgEVAUpdateParam.eVAUpdateParamTankTemp, AgEVAUpdateAction.eVAUpdateActionSetToNewValue, 5)
+
+' Subtract values
+update.SetActionAndValue(AgEVAUpdateParam.eVAUpdateParamSRPArea, AgEVAUpdateAction.eVAUpdateActionSubtractValue, 10)
+update.SetActionAndValue(AgEVAUpdateParam.eVAUpdateParamSRPArea, AgEVAUpdateAction.eVAUpdateActionSubtractValue, 1)

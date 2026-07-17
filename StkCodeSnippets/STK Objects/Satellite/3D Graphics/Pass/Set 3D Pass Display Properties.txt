@@ -1,0 +1,23 @@
+Matlab
+% IAgSatellite satellite: Satellite object
+
+%Display one orbit pass and no ground track on 3D
+passdata3D = satellite.VO.Pass.TrackData.PassData;
+groundTrack3D = passdata3D.GroundTrack;
+groundTrack3D.SetLeadDataType('eDataNone');
+groundTrack3D.SetTrailSameAsLead;
+orbit3D = passdata3D.Orbit;
+orbit3D.SetLeadDataType('eDataOnePass');
+orbit3D.SetTrailSameAsLead;
+
+Python
+# IAgSatellite satellite: Satellite object
+
+# Display one orbit pass and no ground track on 3D
+passdata3D = satellite.VO.Pass.TrackData.PassData
+groundTrack3D = passdata3D.GroundTrack
+groundTrack3D.SetLeadDataType(AgELeadTrailData.eDataNone)
+groundTrack3D.SetTrailSameAsLead
+orbit3D = passdata3D.Orbit
+orbit3D.SetLeadDataType(AgELeadTrailData.eDataOnePass)
+orbit3D.SetTrailSameAsLead

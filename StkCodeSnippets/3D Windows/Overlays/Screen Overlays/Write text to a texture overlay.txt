@@ -1,0 +1,57 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+// String temporaryFile: The file to which the bitmap will be temporarily saved (should not exist yet)
+
+IAgStkGraphicsSceneManager manager = ((IAgScenario)root.CurrentScenario).SceneManager;
+IAgStkGraphicsScreenOverlayCollectionBase overlayManager = (IAgStkGraphicsScreenOverlayCollectionBase)manager.ScreenOverlays.Overlays;
+Font font = new Font("Arial", 12, FontStyle.Bold);
+string text = "STK Engine\nAnalytical Graphics\nOverlays";
+Size textSize = MeasureString(text, font);
+Bitmap textBitmap = new Bitmap(textSize.Width, textSize.Height);
+Graphics gfx = Graphics.FromImage(textBitmap);
+gfx.DrawString(text, font, Brushes.White, new PointF(0, 0));
+
+IAgStkGraphicsTextureScreenOverlay overlay =
+    manager.Initializers.TextureScreenOverlay.InitializeWithXYWidthHeight(10, 10, textSize.Width, textSize.Height);
+((IAgStkGraphicsOverlay)overlay).Origin = AgEStkGraphicsScreenOverlayOrigin.eStkGraphicsScreenOverlayOriginBottomLeft;
+
+//
+// Any bitmap can be written to a texture by temporarily saving the texture to disk.
+//
+string filePath = temporaryFile;
+textBitmap.Save(filePath);
+overlay.Texture = manager.Textures.LoadFromStringUri(filePath);
+System.IO.File.Delete(filePath); // The temporary file is not longer required and can be deleted
+overlay.TextureFilter = manager.Initializers.TextureFilter2D.NearestClampToEdge;
+
+overlayManager.Add((IAgStkGraphicsScreenOverlay)overlay);
+
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+// String temporaryFile: The file to which the bitmap will be temporarily saved (should not exist yet)
+
+Dim manager As IAgStkGraphicsSceneManager = DirectCast(root.CurrentScenario, IAgScenario).SceneManager
+Dim overlayManager As IAgStkGraphicsScreenOverlayCollectionBase = DirectCast(manager.ScreenOverlays.Overlays, IAgStkGraphicsScreenOverlayCollectionBase)
+
+Dim font As New Font("Arial", 12, CType(FontStyle.Bold, System.Drawing.FontStyle))
+Dim text As String = "Insight3D" &amp;&amp;#160;vbLf &amp;&amp;#160;"Analytical Graphics" &amp;&amp;#160;vbLf &amp;&amp;#160;"Overlays"
+Dim textSize As Size = MeasureString(text, font)
+Dim textBitmap As New Bitmap(textSize.Width, textSize.Height)
+Dim gfx As Graphics = Graphics.FromImage(textBitmap)
+gfx.DrawString(text, font, Brushes.White, New PointF(0, 0))
+
+Dim overlay As IAgStkGraphicsTextureScreenOverlay = manager.Initializers.TextureScreenOverlay.InitializeWithXYWidthHeight(10, 10, textSize.Width, textSize.Height)
+DirectCast(overlay, IAgStkGraphicsOverlay).Origin = AgEStkGraphicsScreenOverlayOrigin.eStkGraphicsScreenOverlayOriginBottomLeft
+
+'
+' Any bitmap can be written to a texture by temporarily saving the texture to disk.
+'
+Dim filePath As String = temporaryFile
+textBitmap.Save(filePath)
+overlay.Texture = manager.Textures.LoadFromStringUri(filePath)
+' The temporary file is no longer required and can be deleted
+System.IO.File.Delete(filePath)
+
+overlay.TextureFilter = manager.Initializers.TextureFilter2D.NearestClampToEdge
+
+overlayManager.Add(DirectCast(overlay, IAgStkGraphicsScreenOverlay))

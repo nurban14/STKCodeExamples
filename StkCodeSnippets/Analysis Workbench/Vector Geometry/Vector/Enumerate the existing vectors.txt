@@ -1,0 +1,20 @@
+C#
+
+// Enumerate the existing vectors using specified CrdnProvider.
+foreach (IAgCrdnVector vector in provider.Vectors)
+{
+    // All vectors implement IAgCrdn interface which provides
+    // information about the vector instance and its type.
+    IAgCrdn crdn = vector as IAgCrdn;
+    Console.WriteLine("Name: {0}, type: {1}", crdn.Name, vector.Type);
+}
+
+vbNet
+
+' Enumerate the existing vectors using specified CrdnProvider.
+For Each vector As IAgCrdnVector In provider.Vectors
+	' All vectors implement IAgCrdn interface which provides
+	' information about the vector instance and its type.
+	Dim crdn As IAgCrdn = TryCast(vector, IAgCrdn)
+	Console.WriteLine("Name: {0}, type: {1}", crdn.Name, vector.Type)
+Next

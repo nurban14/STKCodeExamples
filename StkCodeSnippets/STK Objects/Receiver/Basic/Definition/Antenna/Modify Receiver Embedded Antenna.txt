@@ -1,0 +1,12 @@
+Matlab
+% IAgReceiver receiver: Receiver object
+recModel = receiver.Model;
+antennaControl = recModel.AntennaControl;
+antennaControl.SetEmbeddedModel('Hemispherical');
+antennaControl.EmbeddedModel.Efficiency = 85; %Percent
+Python
+# IAgReceiver receiver: Receiver object
+recModel = receiver.Model
+antennaControl = recModel.AntennaControl
+antennaControl.SetEmbeddedModel('Hemispherical')
+antennaControl.EmbeddedModel.Efficiency = 85 # Percent

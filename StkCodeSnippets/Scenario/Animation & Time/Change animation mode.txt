@@ -1,0 +1,16 @@
+Matlab
+
+% IAgStkObjectRoot root: STK Object Model Root
+scenario = root.CurrentScenario;
+root.AnimationOptions = 'eAniOptionStop';
+root.Mode = 'eAniXRealtime';
+scenario.Animation.AnimStepValue = 1;   % second
+scenario.Animation.RefreshDelta = .03;  %second
+Python
+
+# IAgStkObjectRoot root: STK Object Model Root
+scenario = root.CurrentScenario
+root.AnimationOptions = 2 # eAniOptionStop
+root.Mode = 32 # eAniXRealtime
+scenario.Animation.AnimStepValue = 1   # second
+scenario.Animation.RefreshDelta = .03  #second

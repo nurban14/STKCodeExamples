@@ -1,0 +1,15 @@
+C#
+
+// Set propagator to J2 Perturbation
+satellite.SetPropagatorType(AgEVePropagatorType.ePropagatorJ2Perturbation);
+
+// Get the J2 Perturbation propagator
+IAgVePropagatorJ2Perturbation propagator = satellite.Propagator as IAgVePropagatorJ2Perturbation;
+
+vbNet
+
+' Set propagator to J2 Perturbation
+satellite.SetPropagatorType(AgEVePropagatorType.ePropagatorJ2Perturbation)
+
+' Get the J2 Perturbation propagator
+Dim propagator As IAgVePropagatorJ2Perturbation = TryCast(satellite.Propagator, IAgVePropagatorJ2Perturbation)

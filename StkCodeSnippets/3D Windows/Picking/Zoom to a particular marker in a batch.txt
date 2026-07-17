@@ -1,0 +1,139 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+// String markerFile: The file to use for the markers
+// IList&lt;Array&gt; markerPositions: A list of the marker positions
+
+Array selectedMarkerCartesianPosition = null;
+//
+// Get a collection of picked objects under the mouse location.
+// The collection is sorted with the closest object at index zero.
+//
+IAgStkGraphicsPickResultCollection collection = scene.Pick(mouseX, mouseY);
+if (collection.Count != 0)
+{
+    IAgStkGraphicsObjectCollection objects = collection[0].Objects;
+    IAgStkGraphicsMarkerBatchPrimitive batchPrimitive = objects[0] as IAgStkGraphicsMarkerBatchPrimitive;
+
+    //
+    // Was a marker in our marker batch picked?
+    //
+    if (batchPrimitive == m_MarkerBatch)
+    {
+        //
+        // Get the index of the particular marker we picked
+        //
+        IAgStkGraphicsBatchPrimitiveIndex markerIndex = objects[1] as IAgStkGraphicsBatchPrimitiveIndex;
+
+        //
+        // Get the position of the particular marker we picked
+        //
+        Array markerCartographic = markerPositions[markerIndex.Index];
+
+        IAgPosition markerPosition = root.ConversionUtility.NewPositionOnEarth();
+        markerPosition.AssignPlanetodetic(
+            (double)markerCartographic.GetValue(0),
+            (double)markerCartographic.GetValue(1),
+            (double)markerCartographic.GetValue(2));
+
+        double x, y, z;
+        markerPosition.QueryCartesian(out x, out y, out z);
+
+        selectedMarkerCartesianPosition = new object[] { x, y, z };
+    }
+}
+
+
+IAgStkGraphicsSceneManager manager = ((IAgScenario)root.CurrentScenario).SceneManager;
+
+IList&lt;Array&gt; positions = new List&lt;Array&gt;();
+positions.Add(new object[] {39.88, -75.25, 3000.0 });
+positions.Add(new object[] {38.85, -77.04, 3000.0 });
+positions.Add(new object[] {38.85, -77.04, 0.0 });
+positions.Add(new object[] {29.98, -90.25, 0.0 });
+positions.Add(new object[] {37.37, -121.92, 0.0 });
+
+Array positionsArray = Array.CreateInstance(typeof(object), positions.Count * 3);
+for (int i = 0; i &lt; positions.Count; ++i)
+{
+    Array position = positions[i];
+    position.CopyTo(positionsArray, i * 3);
+}
+
+IAgStkGraphicsMarkerBatchPrimitive markerBatch = manager.Initializers.MarkerBatchPrimitive.Initialize();
+markerBatch.Texture = manager.Textures.LoadFromStringUri(
+    markerFile);
+markerBatch.SetCartographic("Earth", ref positionsArray);
+
+// Save the positions of the markers for use in the pick event
+markerPositions = positions;
+
+// Enable per item picking
+markerBatch.PerItemPickingEnabled = true;
+
+manager.Primitives.Add((IAgStkGraphicsPrimitive)markerBatch);
+
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+// String markerFile: The file to use for the markers
+// IList&lt;Array&gt; markerPositions: A list of the marker positions
+
+Dim selectedMarkerCartesianPosition As Array = Nothing
+'
+' Get a collection of picked objects under the mouse location.
+' The collection is sorted with the closest object at index zero.
+'
+Dim collection As IAgStkGraphicsPickResultCollection = scene.Pick(mouseX, mouseY)
+If collection.Count &lt;&gt; 0 Then
+	Dim objects As IAgStkGraphicsObjectCollection = collection(0).Objects
+	Dim batchPrimitive As IAgStkGraphicsMarkerBatchPrimitive = TryCast(objects(0), IAgStkGraphicsMarkerBatchPrimitive)
+
+	'
+	' Was a marker in our marker batch picked?
+	'
+	If batchPrimitive Is m_MarkerBatch Then
+		'
+		' Get the index of the particular marker we picked
+		'
+		Dim markerIndex As IAgStkGraphicsBatchPrimitiveIndex = TryCast(objects(1), IAgStkGraphicsBatchPrimitiveIndex)
+		'
+		' Get the position of the particular marker we picked
+		'
+		Dim markerCartographic As Array = markerPositions(markerIndex.Index)
+
+		Dim markerPosition As IAgPosition = root.ConversionUtility.NewPositionOnEarth()
+		markerPosition.AssignPlanetodetic(CDbl(markerCartographic.GetValue(0)), CDbl(markerCartographic.GetValue(1)), CDbl(markerCartographic.GetValue(2)))
+
+		Dim x As Double, y As Double, z As Double
+		markerPosition.QueryCartesian(x, y, z)
+
+		selectedMarkerCartesianPosition = New Object() {x, y, z}
+	End If
+End If
+
+
+Dim manager As IAgStkGraphicsSceneManager = DirectCast(root.CurrentScenario, IAgScenario).SceneManager
+
+Dim positions As IList(Of Array) = New List(Of Array)()
+positions.Add(New Object() {39.88, -75.25, 3000.0})
+positions.Add(New Object() {38.85, -77.04, 3000.0})
+positions.Add(New Object() {38.85, -77.04, 0.0})
+positions.Add(New Object() {29.98, -90.25, 0.0})
+positions.Add(New Object() {37.37, -121.92, 0.0})
+
+Dim positionsArray As Array = Array.CreateInstance(GetType(Object), positions.Count * 3)
+For i As Integer = 0 To positions.Count - 1
+	Dim position As Array = positions(i)
+	position.CopyTo(positionsArray, i * 3)
+Next
+
+Dim markerBatch As IAgStkGraphicsMarkerBatchPrimitive = manager.Initializers.MarkerBatchPrimitive.Initialize()
+markerBatch.Texture = manager.Textures.LoadFromStringUri( _
+	markerFile)
+markerBatch.SetCartographic("Earth", positionsArray)
+
+' Save the positions of the markers for use in the pick event
+markerPositions = positions
+' Enable per item picking
+markerBatch.PerItemPickingEnabled = True
+
+manager.Primitives.Add(DirectCast(markerBatch, IAgStkGraphicsPrimitive))

@@ -1,0 +1,62 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+// String imageFile: The image file
+
+IAgStkGraphicsSceneManager manager = ((IAgScenario)root.CurrentScenario).SceneManager;
+IAgStkGraphicsScreenOverlayCollectionBase overlayManager = (IAgStkGraphicsScreenOverlayCollectionBase)manager.ScreenOverlays.Overlays;
+//
+// The URI can be a file path, http, https, or ftp location
+//
+IAgStkGraphicsRaster image = manager.Initializers.Raster.InitializeWithStringUri(
+    imageFile);
+
+//
+// Swizzle RGBA to BGRA
+//
+IAgStkGraphicsBandOrderFilter channelOrder = manager.Initializers.BandOrderFilter.InitializeWithOrder(AgEStkGraphicsRasterFormat.eStkGraphicsRasterFormatBgra);
+image.ApplyInPlace((IAgStkGraphicsRasterFilter)channelOrder);
+
+IAgStkGraphicsRendererTexture2D texture = manager.Textures.FromRaster(image);
+
+//
+// Display the image using a screen overlay
+//
+IAgStkGraphicsTextureScreenOverlay overlay = manager.Initializers.TextureScreenOverlay.Initialize();
+((IAgStkGraphicsOverlay)overlay).Width = 0.2;
+((IAgStkGraphicsOverlay)overlay).WidthUnit = AgEStkGraphicsScreenOverlayUnit.eStkGraphicsScreenOverlayUnitFraction;
+((IAgStkGraphicsOverlay)overlay).Height = 0.2;
+((IAgStkGraphicsOverlay)overlay).HeightUnit = AgEStkGraphicsScreenOverlayUnit.eStkGraphicsScreenOverlayUnitFraction;
+((IAgStkGraphicsOverlay)overlay).Origin = AgEStkGraphicsScreenOverlayOrigin.eStkGraphicsScreenOverlayOriginTopCenter;
+overlay.Texture = texture;
+
+overlayManager.Add((IAgStkGraphicsScreenOverlay)overlay);
+
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+// String imageFile: The image file
+
+Dim manager As IAgStkGraphicsSceneManager = DirectCast(root.CurrentScenario, IAgScenario).SceneManager
+Dim overlayManager As IAgStkGraphicsScreenOverlayCollectionBase = DirectCast(manager.ScreenOverlays.Overlays, IAgStkGraphicsScreenOverlayCollectionBase)
+'
+' The URI can be a file path, http, https, or ftp location
+'
+Dim image As IAgStkGraphicsRaster = manager.Initializers.Raster.InitializeWithStringUri( _
+    imageFile)
+
+'
+' Swizzle RGBA to BGRA
+'
+Dim channelOrder As IAgStkGraphicsBandOrderFilter = manager.Initializers.BandOrderFilter.InitializeWithOrder(AgEStkGraphicsRasterFormat.eStkGraphicsRasterFormatBgra)
+image.ApplyInPlace(DirectCast(channelOrder, IAgStkGraphicsRasterFilter))
+
+Dim texture As IAgStkGraphicsRendererTexture2D = manager.Textures.FromRaster(image)
+
+Dim overlay As IAgStkGraphicsTextureScreenOverlay = manager.Initializers.TextureScreenOverlay.Initialize()
+DirectCast(overlay, IAgStkGraphicsOverlay).Width = 0.2
+DirectCast(overlay, IAgStkGraphicsOverlay).WidthUnit = AgEStkGraphicsScreenOverlayUnit.eStkGraphicsScreenOverlayUnitFraction
+DirectCast(overlay, IAgStkGraphicsOverlay).Height = 0.2
+DirectCast(overlay, IAgStkGraphicsOverlay).HeightUnit = AgEStkGraphicsScreenOverlayUnit.eStkGraphicsScreenOverlayUnitFraction
+overlay.Texture = texture
+DirectCast(overlay, IAgStkGraphicsOverlay).Origin = AgEStkGraphicsScreenOverlayOrigin.eStkGraphicsScreenOverlayOriginTopCenter
+
+overlayManager.Add(DirectCast(overlay, IAgStkGraphicsScreenOverlay))

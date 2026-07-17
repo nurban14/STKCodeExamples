@@ -1,0 +1,39 @@
+C#
+// String imagePath: Path to the image to write
+// String saveFile: Path to the output file
+
+Array extent = new object[]
+{
+    -1,
+    -1,
+    1,
+    1
+};
+
+Array subExtent = new object[]
+{
+    -0.5,
+    -0.5,
+    0.5,
+    0.5
+};
+
+sceneManager.Initializers.Jpeg2000Writer.WriteExtentAndSubExtentString(
+    imagePath,
+    ref extent,
+    ref subExtent,
+    AgEStkGraphicsJpeg2000CompressionProfile.eStkGraphicsJpeg2000CompressionProfileDefault,
+    1,
+    saveFile,
+    true);
+
+vbNet
+// String imagePath: Path to the image to write
+// String saveFile: Path to the output file
+
+Dim extent As Array = New Object() {-1, -1, 1, 1}
+
+Dim subExtent As Array = New Object() {-0.5, -0.5, 0.5, 0.5}
+
+sceneManager.Initializers.Jpeg2000Writer.WriteExtentAndSubExtentString(imagePath, extent, subExtent, AgEStkGraphicsJpeg2000CompressionProfile.eStkGraphicsJpeg2000CompressionProfileDefault, 1, saveFile, _
+	True)

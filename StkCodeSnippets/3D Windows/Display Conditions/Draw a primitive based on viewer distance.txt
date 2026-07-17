@@ -1,0 +1,32 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+// String modelFile: Location of the model file
+
+IAgStkGraphicsSceneManager manager = ((IAgScenario)root.CurrentScenario).SceneManager;
+IAgStkGraphicsModelPrimitive model = manager.Initializers.ModelPrimitive.InitializeWithStringUri(
+    modelFile);
+Array position = new object[3] { 29.98, -90.25, 8000.0 };
+model.SetPositionCartographic("Earth", ref position);
+model.Scale = Math.Pow(10, 3);
+
+IAgStkGraphicsDistanceDisplayCondition condition =
+    manager.Initializers.DistanceDisplayCondition.InitializeWithDistances(2000, 40000);
+((IAgStkGraphicsPrimitive)model).DisplayCondition = condition as IAgStkGraphicsDisplayCondition;
+
+manager.Primitives.Add((IAgStkGraphicsPrimitive)model);
+
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+// String modelFile: Location of the model file
+
+Dim manager As IAgStkGraphicsSceneManager = DirectCast(root.CurrentScenario, IAgScenario).SceneManager
+Dim model As IAgStkGraphicsModelPrimitive = manager.Initializers.ModelPrimitive.InitializeWithStringUri( _
+    modelFile)
+Dim position As Array = New Object() {29.98, -90.25, 8000.0}
+model.SetPositionCartographic("Earth", position)
+model.Scale = Math.Pow(10, 3)
+
+Dim condition As IAgStkGraphicsDistanceDisplayCondition = manager.Initializers.DistanceDisplayCondition.InitializeWithDistances(2000, 40000)
+DirectCast(model, IAgStkGraphicsPrimitive).DisplayCondition = TryCast(condition, IAgStkGraphicsDisplayCondition)
+
+manager.Primitives.Add(DirectCast(model, IAgStkGraphicsPrimitive))

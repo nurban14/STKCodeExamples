@@ -1,0 +1,3 @@
+Python
+#IAgAreaTarget areaTarget: Area Target Object
+areaTarget.AutoCentroid = True

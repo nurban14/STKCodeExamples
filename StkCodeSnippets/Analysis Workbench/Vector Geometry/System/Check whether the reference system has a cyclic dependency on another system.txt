@@ -1,0 +1,16 @@
+C#
+// IAgCrdnSystem system: A system to check against reference system.
+
+//Check if the reference system has a cyclic dependency on another system.
+if (systemRefTo.HasCyclicDependency(system))
+{
+    Console.WriteLine("The system {0} has a cyclic dependency on system {1}.", ((IAgCrdn)systemRefTo.GetSystem()).Name, ((IAgCrdn)system).Name);
+}
+
+vbNet
+// IAgCrdnSystem system: A system to check against reference system.
+
+'Check if the reference system has a cyclic dependency on another system.
+If systemRefTo.HasCyclicDependency(system) Then
+	Console.WriteLine("The system {0} has a cyclic dependency on system {1}.", DirectCast(systemRefTo.GetSystem(), IAgCrdn).Name, DirectCast(system, IAgCrdn).Name)
+End If

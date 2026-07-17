@@ -1,0 +1,65 @@
+C#
+
+IAgVeOrbitAttitudeStandard orbitAttStandard = satellite.Attitude as IAgVeOrbitAttitudeStandard;
+orbitAttStandard.Pointing.UseTargetPointing = true;
+orbitAttStandard.Pointing.Targets.Add("Facility/FacSlew");
+orbitAttStandard.Pointing.TargetSlew.SetSlewModeType(AgEVeSlewMode.eVeSlewModeConstrained2ndOrderSpline);
+
+IAgVeAttSlewConstrained constrainedSlew = orbitAttStandard.Pointing.TargetSlew.SlewMode as IAgVeAttSlewConstrained;
+constrainedSlew.MaximumSlewTime = 20.0; //sec
+constrainedSlew.SlewTimingBetweenTargets = AgEVeSlewTimingBetweenTargets.eVeSlewTimingBetweenTargetsOptimal;
+
+IAgVeAttMaximumSlewRate maxRate = constrainedSlew.MaximumSlewRate;
+maxRate.Magnitude = 10.0; //deg/sec^2
+maxRate.PerAxisXEnabled = true;
+maxRate.PerAxisX = 5.0; //deg/sec^2
+maxRate.PerAxisYEnabled = true;
+maxRate.PerAxisY = 5.0; //deg/sec^2
+maxRate.PerAxisZEnabled = true;
+maxRate.PerAxisZ = 5.0; //deg/sec^2
+
+IAgVeAttMaximumSlewAcceleration maxAcceleration = constrainedSlew.MaximumSlewAcceleration;
+maxAcceleration.Magnitude = 10.0; //deg/sec^2
+maxAcceleration.PerAxisXAccelEnabled = true;
+maxAcceleration.PerAxisXAccel = 5.0; //deg/sec^2
+maxAcceleration.PerAxisYAccelEnabled = true;
+maxAcceleration.PerAxisYAccel = 5.0; //deg/sec^2
+maxAcceleration.PerAxisZAccelEnabled = true;
+maxAcceleration.PerAxisZAccel = 5.0; //deg/sec^2
+
+vbNet
+
+Dim orbitAttStandard As IAgVeOrbitAttitudeStandard = TryCast(satellite.Attitude, IAgVeOrbitAttitudeStandard)
+orbitAttStandard.Pointing.UseTargetPointing = True
+orbitAttStandard.Pointing.Targets.Add("Facility/FacSlew")
+orbitAttStandard.Pointing.TargetSlew.SetSlewModeType(AgEVeSlewMode.eVeSlewModeConstrained2ndOrderSpline)
+
+Dim constrainedSlew As IAgVeAttSlewConstrained = TryCast(orbitAttStandard.Pointing.TargetSlew.SlewMode, IAgVeAttSlewConstrained)
+constrainedSlew.MaximumSlewTime = 20
+'sec
+constrainedSlew.SlewTimingBetweenTargets = AgEVeSlewTimingBetweenTargets.eVeSlewTimingBetweenTargetsOptimal
+
+Dim maxRate As IAgVeAttMaximumSlewRate = constrainedSlew.MaximumSlewRate
+maxRate.Magnitude = 10
+'deg/sec^2
+maxRate.PerAxisXEnabled = True
+maxRate.PerAxisX = 5
+'deg/sec^2
+maxRate.PerAxisYEnabled = True
+maxRate.PerAxisY = 5
+'deg/sec^2
+maxRate.PerAxisZEnabled = True
+maxRate.PerAxisZ = 5
+'deg/sec^2
+Dim maxAcceleration As IAgVeAttMaximumSlewAcceleration = constrainedSlew.MaximumSlewAcceleration
+maxAcceleration.Magnitude = 10
+'deg/sec^2
+maxAcceleration.PerAxisXAccelEnabled = True
+maxAcceleration.PerAxisXAccel = 5
+'deg/sec^2
+maxAcceleration.PerAxisYAccelEnabled = True
+maxAcceleration.PerAxisYAccel = 5
+'deg/sec^2
+maxAcceleration.PerAxisZAccelEnabled = True
+maxAcceleration.PerAxisZAccel = 5
+'deg/sec^2

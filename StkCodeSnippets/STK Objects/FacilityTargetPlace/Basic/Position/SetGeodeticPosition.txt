@@ -1,0 +1,9 @@
+Python
+# IAgFacility facility: Facility Object
+facility.Position.AssignGeodetic(41.9849, 21.4039, 0)  # Latitude, Longitude, Altitude
+
+# Set altitude to height of terrain
+facility.UseTerrain = True
+
+# Set altitude to a distance above the ground
+facility.HeightAboveGround = .05   # km

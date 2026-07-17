@@ -1,0 +1,21 @@
+Matlab
+% IAgSatellite satellite Satellite object
+%Display one pass for ground track and orbit on 2D
+passdata = satellite.Graphics.PassData;
+groundTrack = passdata.GroundTrack;
+groundTrack.SetLeadDataType('eDataOnePass');
+groundTrack.SetTrailSameAsLead;
+orbit = passdata.Orbit;
+orbit.SetLeadDataType('eDataOnePass');
+orbit.SetTrailSameAsLead;
+Python
+# IAgSatellite satellite: Satellite object
+
+# Display one pass for ground track and orbit on 2D
+passdata = satellite.Graphics.PassData
+groundTrack = passdata.GroundTrack
+groundTrack.SetLeadDataType(AgELeadTrailData.eDataOnePass)
+groundTrack.SetTrailSameAsLead
+orbit = passdata.Orbit
+orbit.SetLeadDataType(AgELeadTrailData.eDataOnePass)
+orbit.SetTrailSameAsLead

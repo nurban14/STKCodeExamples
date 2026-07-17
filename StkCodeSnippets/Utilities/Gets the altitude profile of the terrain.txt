@@ -1,0 +1,23 @@
+C#
+// String terrainFile: Path of Terrain file
+
+IAgScenario scenario = (IAgScenario)root.CurrentScenario;
+
+// If you haven't done so, add the terrain to your scenario (for example .PDTT)
+IAgCentralBodyTerrainCollectionElement earthTerrain = scenario.Terrain["Earth"];
+IAgTerrain terrain = earthTerrain.TerrainCollection.Add(terrainFile, AgETerrainFileType.ePDTTTerrainFile);
+
+// Get diagonal altitude profile using the max resolution of the terrain file.
+Array terrainProfile = earthTerrain.GetAltitudesBetweenPointsAtResolution(terrain.SWLatitude, terrain.SWLongitude, terrain.NELatitude, terrain.NELongitude, terrain.Resolution, AgEDistanceOnSphere.eDistanceOnSphereGreatCircle, AgEAltRefType.eMSL);
+
+// GetAltitudesBetweenPointsAtResolution returns a two dimensional array of lat lon alt values.
+int numPoints = terrainProfile.GetLength(0);
+for (int i = 0; i &lt; numPoints; ++i)
+{
+    Console.WriteLine("Latitude={0}, Longitude={1}, Altitude={2}", terrainProfile.GetValue(i, 0), terrainProfile.GetValue(i, 1), terrainProfile.GetValue(i, 2));
+}
+
+vbNet
+// String terrainFile: Path of Terrain file
+
+

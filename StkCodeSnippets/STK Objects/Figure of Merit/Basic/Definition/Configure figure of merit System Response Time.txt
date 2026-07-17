@@ -1,0 +1,13 @@
+C#
+
+fom.SetDefinitionType(AgEFmDefinitionType.eFmSystemResponseTime);
+IAgFmDefSystemResponseTime systemResponseTime = fom.Definition as IAgFmDefSystemResponseTime;
+
+systemResponseTime.CommandStationPath = @"/Application/STK/Scenario/CodeSnippetScenario/Facility/Facility1";
+
+vbNet
+
+fom.SetDefinitionType(AgEFmDefinitionType.eFmSystemResponseTime)
+Dim systemResponseTime As IAgFmDefSystemResponseTime = TryCast(fom.Definition, IAgFmDefSystemResponseTime)
+
+systemResponseTime.CommandStationPath = "/Application/STK/Scenario/CodeSnippetScenario/Facility/Facility1"

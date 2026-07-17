@@ -1,0 +1,30 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+// String textureFile: The file to use as the texture of the surface mesh
+
+IAgStkGraphicsSceneManager manager = ((IAgScenario)root.CurrentScenario).SceneManager;
+Array overlayExtent = ((IAgStkGraphicsGlobeOverlay)overlay).Extent;
+IAgStkGraphicsSurfaceTriangulatorResult triangles =
+    manager.Initializers.SurfaceExtentTriangulator.ComputeSimple("Earth", ref overlayExtent);
+IAgStkGraphicsRendererTexture2D texture = manager.Textures.LoadFromStringUri(
+    textureFile);
+IAgStkGraphicsSurfaceMeshPrimitive mesh = manager.Initializers.SurfaceMeshPrimitive.Initialize();
+((IAgStkGraphicsPrimitive)mesh).Translucency = 0.3f;
+mesh.Texture = texture;
+mesh.Set(triangles);
+manager.Primitives.Add((IAgStkGraphicsPrimitive)mesh);
+
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+// String textureFile: The file to use as the texture of the surface mesh
+
+Dim manager As IAgStkGraphicsSceneManager = DirectCast(root.CurrentScenario, IAgScenario).SceneManager
+Dim overlayExtent As Array = DirectCast(overlay, IAgStkGraphicsGlobeOverlay).Extent
+Dim triangles As IAgStkGraphicsSurfaceTriangulatorResult = manager.Initializers.SurfaceExtentTriangulator.ComputeSimple("Earth", overlayExtent)
+Dim texture As IAgStkGraphicsRendererTexture2D = manager.Textures.LoadFromStringUri( _
+    textureFile)
+Dim mesh As IAgStkGraphicsSurfaceMeshPrimitive = manager.Initializers.SurfaceMeshPrimitive.Initialize()
+DirectCast(mesh, IAgStkGraphicsPrimitive).Translucency = 0.3F
+mesh.Texture = texture
+mesh.Set(triangles)
+manager.Primitives.Add(DirectCast(mesh, IAgStkGraphicsPrimitive))

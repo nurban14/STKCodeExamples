@@ -1,0 +1,12 @@
+C#
+
+if (crdn.EmbeddedComponents.Contains("Origin"))
+{
+    IAgCrdn embeddedComponent = crdn.EmbeddedComponents["Origin"];
+}
+
+vbNet
+
+If crdn.EmbeddedComponents.Contains("Origin") Then
+	Dim embeddedComponent As IAgCrdn = crdn.EmbeddedComponents("Origin")
+End If

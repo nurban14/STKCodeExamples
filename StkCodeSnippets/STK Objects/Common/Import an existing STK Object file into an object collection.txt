@@ -1,0 +1,9 @@
+C#
+// String stkObjectLocation: Path of STK Object external file
+
+col.ImportObject(stkObjectLocation);
+
+vbNet
+// String stkObjectLocation: Path of STK Object external file
+
+col.ImportObject(stkObjectLocation)

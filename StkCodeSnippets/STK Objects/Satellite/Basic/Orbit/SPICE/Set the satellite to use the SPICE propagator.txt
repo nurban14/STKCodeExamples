@@ -1,0 +1,15 @@
+C#
+
+// Set propagator to SPICE
+satellite.SetPropagatorType(AgEVePropagatorType.ePropagatorSPICE);
+
+// Get the SPICE propagator
+IAgVePropagatorSPICE propagator = satellite.Propagator as IAgVePropagatorSPICE;
+
+vbNet
+
+' Set propagator to SPICE
+satellite.SetPropagatorType(AgEVePropagatorType.ePropagatorSPICE)
+
+' Get the SPICE propagator
+Dim propagator As IAgVePropagatorSPICE = TryCast(satellite.Propagator, IAgVePropagatorSPICE)

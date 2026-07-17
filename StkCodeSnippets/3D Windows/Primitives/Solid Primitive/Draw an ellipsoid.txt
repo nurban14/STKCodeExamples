@@ -1,0 +1,61 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+// IAgCrdnSystem system: A system for the solid
+
+IAgStkGraphicsSceneManager manager = ((IAgScenario)root.CurrentScenario).SceneManager;
+
+Array radii = new object[] {2000, 1000, 1000 };
+IAgStkGraphicsSolidTriangulatorResult result = manager.Initializers.EllipsoidTriangulator.ComputeSimple(ref radii);
+IAgStkGraphicsSolidPrimitive solid = manager.Initializers.SolidPrimitive.Initialize();
+((IAgStkGraphicsPrimitive)solid).ReferenceFrame = system;
+((IAgStkGraphicsPrimitive)solid).Color =  Color.Orange;
+((IAgStkGraphicsPrimitive)solid).Translucency = 0.3f;
+solid.OutlineAppearance = AgEStkGraphicsOutlineAppearance.eStkGraphicsFrontLinesOnly;
+solid.OutlineColor = Color.Blue;
+solid.OutlineWidth = 2;
+solid.DisplaySilhouette = true;
+solid.SetWithResult(result);
+
+manager.Primitives.Add((IAgStkGraphicsPrimitive)solid);
+
+Matlab
+
+% IAgScenario scenario: Scenario object
+manager = scenario.SceneManager;
+originEllipsoid = root.ConversionUtility.NewPositionOnEarth();
+originEllipsoid.AssignGeodetic(0, 5, 100);
+
+orientEllipsoid = root.ConversionUtility.NewOrientation();
+orientEllipsoid.AssignAzEl(0,0,'eAzElAboutBoresightRotate');
+
+radii = {200; 100; 100};
+ellipsoid = manager.Initializers.EllipsoidTriangulator.ComputeSimple(radii);
+solidEllipsoid = manager.Initializers.SolidPrimitive.Initialize();
+solidEllipsoid.ReferenceFrame = root.CentralBodies.Earth.Vgt.Systems.Item('Fixed');%vgtSat.Systems.Item('Body');%
+solidEllipsoid.Position = originEllipsoid.QueryCartesianArray;
+solidEllipsoid.SetWithResult(ellipsoid);
+solidEllipsoid.Color = 16777215;
+solidEllipsoid.OutlineColor = 15863551;
+solidEllipsoid.Translucency = .75;
+solidEllipsoid.Rotation = orientEllipsoid;
+manager.Primitives.Add(solidEllipsoid);
+manager.Render;
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+// IAgCrdnSystem system: A system for the solid
+
+Dim manager As IAgStkGraphicsSceneManager = DirectCast(root.CurrentScenario, IAgScenario).SceneManager
+
+Dim radii As Array = New Object() {2000, 1000, 1000}
+Dim result As IAgStkGraphicsSolidTriangulatorResult = manager.Initializers.EllipsoidTriangulator.ComputeSimple(radii)
+Dim solid As IAgStkGraphicsSolidPrimitive = manager.Initializers.SolidPrimitive.Initialize()
+DirectCast(solid, IAgStkGraphicsPrimitive).ReferenceFrame = DirectCast(system, IAgCrdnSystem)
+DirectCast(solid, IAgStkGraphicsPrimitive).Color = Color.Orange
+DirectCast(solid, IAgStkGraphicsPrimitive).Translucency = 0.3F
+solid.OutlineAppearance = AgEStkGraphicsOutlineAppearance.eStkGraphicsFrontLinesOnly
+solid.OutlineColor = Color.Blue
+solid.OutlineWidth = 2
+solid.DisplaySilhouette = True
+solid.SetWithResult(result)
+
+manager.Primitives.Add(DirectCast(solid, IAgStkGraphicsPrimitive))

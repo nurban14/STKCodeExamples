@@ -1,0 +1,14 @@
+Matlab
+
+
+% IAgSatellite satellite: Satellite object
+orbitsystems = satellite.VO.OrbitSystems;
+orbitsystems.FixedByWindow.IsVisible = true;
+orbitsystems.FixedByWindow.Inherit = false;
+orbitsystems.FixedByWindow.Color = 65535;   %yellow
+Python
+# IAgSatellite satellite: Satellite object
+orbitsystems = satellite.VO.OrbitSystems
+orbitsystems.FixedByWindow.IsVisible = True
+orbitsystems.FixedByWindow.Inherit = False
+orbitsystems.FixedByWindow.Color = Colors.Yellow

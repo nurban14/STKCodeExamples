@@ -1,0 +1,16 @@
+C#
+
+Array kernel = new object[] {
+    1, 1, 1,
+    1, 1, 1,
+    1, 1, 1
+};
+
+IAgStkGraphicsConvolutionFilter convolutionFilter = sceneManager.Initializers.ConvolutionFilter.InitializeWithKernel(ref kernel);
+
+vbNet
+
+Dim kernel As Array = New Object() {1, 1, 1, 1, 1, 1, _
+	1, 1, 1}
+
+Dim convolutionFilter As IAgStkGraphicsConvolutionFilter = sceneManager.Initializers.ConvolutionFilter.InitializeWithKernel(kernel)

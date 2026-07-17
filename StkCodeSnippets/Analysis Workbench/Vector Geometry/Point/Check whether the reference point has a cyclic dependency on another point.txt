@@ -1,0 +1,16 @@
+C#
+// IAgCrdnPoint point: A point to check against reference point.
+
+//Check if the reference point has a cyclic dependency on another point.
+if (pointRefTo.HasCyclicDependency(point))
+{
+    Console.WriteLine("The point {0} has a cyclic dependency on point {1}.", ((IAgCrdn)pointRefTo.GetPoint()).Name, ((IAgCrdn)point).Name);
+}
+
+vbNet
+// IAgCrdnPoint point: A point to check against reference point.
+
+'Check if the reference point has a cyclic dependency on another point.
+If pointRefTo.HasCyclicDependency(point) Then
+	Console.WriteLine("The point {0} has a cyclic dependency on point {1}.", DirectCast(pointRefTo.GetPoint(), IAgCrdn).Name, DirectCast(point, IAgCrdn).Name)
+End If

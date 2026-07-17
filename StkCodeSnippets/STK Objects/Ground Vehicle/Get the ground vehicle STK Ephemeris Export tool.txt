@@ -1,0 +1,7 @@
+C#
+
+IAgVeEphemerisStkExportTool stkEphem = groundVehicle.ExportTools.GetEphemerisStkExportTool();
+
+vbNet
+
+Dim stkEphem As IAgVeEphemerisStkExportTool = groundVehicle.ExportTools.GetEphemerisStkExportTool()

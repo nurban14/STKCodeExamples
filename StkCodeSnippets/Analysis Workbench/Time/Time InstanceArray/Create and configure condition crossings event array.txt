@@ -1,0 +1,58 @@
+C#
+
+IAgCrdnEventArray eventArray = provider.EventArrays.Factory.CreateEventArrayConditionCrossings("MyEventArrayConditionCrossings", "MyDescription");
+IAgCrdnEventArrayConditionCrossings asConditionCrossings = eventArray as IAgCrdnEventArrayConditionCrossings;
+
+IAgCrdnCondition scalarBound = provider.Conditions.Factory.CreateConditionScalarBounds("Bound", "MyDescription");
+IAgCrdnConditionScalarBounds asScalarBounds = scalarBound as IAgCrdnConditionScalarBounds;
+asScalarBounds.Scalar = provider.CalcScalars["GroundTrajectory.Detic.LLA.Latitude"];
+asScalarBounds.Operation = AgECrdnConditionThresholdOption.eCrdnConditionThresholdOptionInsideMinMax;
+//asScalarBounds.Set(-0.349, 0);
+
+asConditionCrossings.Condition = scalarBound;
+
+IAgCrdnFindTimesResult timeArrays = eventArray.FindTimes();
+if (timeArrays.IsValid)
+{
+    Console.WriteLine("Times");
+    int numTimes = timeArrays.Times.GetLength(0);
+    for (int i = 0; i &lt; numTimes; ++i)
+    {
+        Console.WriteLine(timeArrays.Times.GetValue(i));
+    }
+
+    foreach (IAgCrdnInterval timeArray in timeArrays.Intervals)
+    {
+        Console.WriteLine("Start: " + timeArray.Start);
+        Console.WriteLine("Stop: " + timeArray.Stop);
+    }
+}
+
+vbNet
+
+Dim eventArray As IAgCrdnEventArray = provider.EventArrays.Factory.CreateEventArrayConditionCrossings("MyEventArrayConditionCrossings", "MyDescription")
+Dim asConditionCrossings As IAgCrdnEventArrayConditionCrossings = TryCast(eventArray, IAgCrdnEventArrayConditionCrossings)
+
+Dim scalarBound As IAgCrdnCondition = provider.Conditions.Factory.CreateConditionScalarBounds("Bound", "MyDescription")
+Dim asScalarBounds As IAgCrdnConditionScalarBounds = TryCast(scalarBound, IAgCrdnConditionScalarBounds)
+asScalarBounds.Scalar = provider.CalcScalars("GroundTrajectory.Detic.LLA.Latitude")
+asScalarBounds.Operation = AgECrdnConditionThresholdOption.eCrdnConditionThresholdOptionInsideMinMax
+'asScalarBounds.Set(-0.349, 0);
+
+asConditionCrossings.Condition = scalarBound
+
+Dim timeArrays As IAgCrdnFindTimesResult = eventArray.FindTimes()
+If timeArrays.IsValid Then
+	Console.WriteLine("Times")
+	Dim numTimes As Integer = timeArrays.Times.GetLength(0)
+	Dim i As Integer = 0
+	While i &lt; numTimes
+		Console.WriteLine(timeArrays.Times.GetValue(i))
+		System.Threading.Interlocked.Increment(i)
+	End While
+
+	For Each timeArray As IAgCrdnInterval In timeArrays.Intervals
+		Console.WriteLine("Start: " + timeArray.Start)
+		Console.WriteLine("Stop: " + timeArray.[Stop])
+	Next
+End If

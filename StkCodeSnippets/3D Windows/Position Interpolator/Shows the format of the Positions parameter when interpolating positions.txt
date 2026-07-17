@@ -1,0 +1,19 @@
+C#
+
+IAgStkGraphicsPositionInterpolator interpolator = sceneManager.Initializers.GreatArcInterpolator.InitializeWithCentralBody("Earth") as IAgStkGraphicsPositionInterpolator;
+
+Array positions = new object[]
+{
+    39.88, -75.25, 0,
+    38.85, -77.04, 0,
+};
+
+Array results = interpolator.Interpolate(ref positions);
+
+vbNet
+
+Dim interpolator As IAgStkGraphicsPositionInterpolator = TryCast(sceneManager.Initializers.GreatArcInterpolator.InitializeWithCentralBody("Earth"), IAgStkGraphicsPositionInterpolator)
+
+Dim positions As Array = New Object() {39.88, -75.25, 0, 38.85, -77.04, 0}
+
+Dim results As Array = interpolator.Interpolate(positions)

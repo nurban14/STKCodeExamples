@@ -1,0 +1,52 @@
+C#
+// IAgStkGraphicsMarkerBatchPrimitive markerBatch: A marker batch primitive
+
+Array colors = new object[]
+{
+    Color.Red.ToArgb(),
+    Color.Green.ToArgb(),
+    Color.Blue.ToArgb(),
+    Color.White.ToArgb()
+};
+
+IAgStkGraphicsMarkerBatchPrimitiveOptionalParameters parameters = sceneManager.Initializers.MarkerBatchPrimitiveOptionalParameters.Initialize();
+parameters.SetColors(ref colors);
+
+Array positions = new object[]
+{
+    39.88, -75.25, 0,
+    38.85, -77.04, 0,
+    29.98, -90.25, 0,
+    37.37, -121.92, 0
+};
+
+Array indices = new object[]
+{
+    0,
+    1,
+    2,
+    3
+};
+
+markerBatch.SetPartialCartographicWithOptionalParametersIndicesOrderAndRenderPass(
+    "Earth",
+    ref positions,
+    parameters,
+    ref indices,
+    AgEStkGraphicsIndicesOrderHint.eStkGraphicsIndicesOrderHintSortedAscending,
+    AgEStkGraphicsRenderPassHint.eStkGraphicsRenderPassHintOpaque);
+
+vbNet
+// IAgStkGraphicsMarkerBatchPrimitive markerBatch: A marker batch primitive
+
+Dim colors As Array = New Object() {Color.Red.ToArgb(), Color.Green.ToArgb(), Color.Blue.ToArgb(), Color.White.ToArgb()}
+
+Dim parameters As IAgStkGraphicsMarkerBatchPrimitiveOptionalParameters = sceneManager.Initializers.MarkerBatchPrimitiveOptionalParameters.Initialize()
+parameters.SetColors(colors)
+
+Dim positions As Array = New Object() {39.88, -75.25, 0, 38.85, -77.04, 0, _
+	29.98, -90.25, 0, 37.37, -121.92, 0}
+
+Dim indices As Array = New Object() {0, 1, 2, 3}
+
+markerBatch.SetPartialCartographicWithOptionalParametersIndicesOrderAndRenderPass("Earth", positions, parameters, indices, AgEStkGraphicsIndicesOrderHint.eStkGraphicsIndicesOrderHintSortedAscending, AgEStkGraphicsRenderPassHint.eStkGraphicsRenderPassHintOpaque)

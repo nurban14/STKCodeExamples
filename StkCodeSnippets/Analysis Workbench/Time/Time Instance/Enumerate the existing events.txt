@@ -1,0 +1,20 @@
+C#
+
+// Enumerate the existing Events using specified CrdnProvider.
+foreach (IAgCrdnEvent @event in provider.Events)
+{
+    // All events implement IAgCrdn interface which provides
+    // information about the event instance and its type.
+    IAgCrdn crdn = @event as IAgCrdn;
+    Console.WriteLine("Name: {0}, type: {1}", crdn.Name, @event.Type);
+}
+
+vbNet
+
+' Enumerate the existing Events using specified CrdnProvider.
+For Each [event] As IAgCrdnEvent In provider.Events
+	' All events implement IAgCrdn interface which provides
+	' information about the event instance and its type.
+	Dim crdn As IAgCrdn = TryCast([event], IAgCrdn)
+	Console.WriteLine("Name: {0}, type: {1}", crdn.Name, [event].Type)
+Next

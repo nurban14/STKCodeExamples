@@ -1,0 +1,17 @@
+Python
+
+# IAgScenario scenario: Scenario object
+manager = scenario.SceneManager
+point = manager.Initializers.PointBatchPrimitive.Initialize()
+ptPosition = [ [0],[-1],[0] ]  #Lat,Lon,Alt
+
+point.SetCartographic('Earth',ptPosition)
+point.PixelSize = 15
+point.Color = 65280
+point.DisplayOutline = True
+point.OutlineWidth = 5
+point.OutlineColor = 255
+
+manager.Primitives.Add(point)
+#Render the Scene
+manager.Render()

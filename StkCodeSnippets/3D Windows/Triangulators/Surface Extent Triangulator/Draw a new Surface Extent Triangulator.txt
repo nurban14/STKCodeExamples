@@ -1,0 +1,65 @@
+C#
+
+//The LongitudeUnit and LatitudeUnit is expected to be in degrees
+Array extent = new object[]
+{
+    90,
+    30,
+    -77,
+    39
+};
+
+IAgStkGraphicsSurfaceTriangulatorResult result = sceneManager.Initializers.SurfaceExtentTriangulator.ComputeSimple(
+    "Earth",
+    ref extent);
+
+Matlab
+
+% IAgScenario scenario: Scenario object
+manager = scenario.SceneManager;
+texture = manager.Textures.LoadFromStringUri('<Install Dir>\CodeSamples\CustomApplications\Data\HowTo\Textures\agi_logo_transparent.png');
+mesh = manager.Initializers.SurfaceMeshPrimitive.Initialize();
+mesh.Texture = texture;
+mesh.Translucency = 0;
+cartographicExtent = {-55;10;-24;30};
+
+triangles = manager.Initializers.SurfaceExtentTriangulator.ComputeSimple('Earth', cartographicExtent);
+mesh.Set(triangles);
+mesh.Translucency = .25;
+c0 = {10;-55};
+c1 = {30;-55};
+c2 = {30;-24};
+c3 = {10;-24};
+
+mesh.TextureMatrix = manager.Initializers.TextureMatrix.InitializeWithRectangles(c0,c1,c2,c3);
+mesh.TransparentTextureBorder = true;
+manager.Primitives.Add(mesh);
+manager.Render;
+Python
+# IAgScenario scenario: Scenario object
+manager = scenario.SceneManager
+texture = manager.Textures.LoadFromStringUri(r'C:\Program Files\AGI\STK ODTK 13\STK\CodeSamples\CustomApplications\Data\HowTo\Textures\agi_logo_transparent.png')
+mesh = manager.Initializers.SurfaceMeshPrimitive.Initialize()
+mesh.Texture = texture
+mesh.Translucency = 0
+cartographicExtent = [ [-55],[10],[-24],[30] ]
+
+triangles = manager.Initializers.SurfaceExtentTriangulator.ComputeSimple('Earth', cartographicExtent)
+mesh.Set(triangles)
+mesh.Translucency = .25
+c0 = [ [10],[-55] ]
+c1 = [ [30],[-55] ]
+c2 = [ [30],[-24] ]
+c3 = [ [10],[-24] ]
+
+mesh.TextureMatrix = manager.Initializers.TextureMatrix.InitializeWithRectangles(c0,c1,c2,c3)
+mesh.TransparentTextureBorder = True
+manager.Primitives.Add(mesh)
+manager.Render()
+
+vbNet
+
+'The LongitudeUnit and LatitudeUnit is expected to be in degrees
+Dim extent As Array = New Object() {90, 30, -77, 39}
+
+Dim result As IAgStkGraphicsSurfaceTriangulatorResult = sceneManager.Initializers.SurfaceExtentTriangulator.ComputeSimple("Earth", extent)

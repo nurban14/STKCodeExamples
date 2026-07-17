@@ -1,0 +1,16 @@
+C#
+// IAgCrdnAngle angle: A angle to check against reference angle.
+
+//Check if the reference angle has a cyclic dependency on another angle.
+if (angleRefTo.HasCyclicDependency(angle))
+{
+    Console.WriteLine("The angle {0} has a cyclic dependency on angle {1}.", ((IAgCrdn)angleRefTo.GetAngle()).Name, ((IAgCrdn)angle).Name);
+}
+
+vbNet
+// IAgCrdnAngle angle: A angle to check against reference angle.
+
+'Check if the reference angle has a cyclic dependency on another angle.
+If angleRefTo.HasCyclicDependency(angle) Then
+	Console.WriteLine("The angle {0} has a cyclic dependency on angle {1}.", DirectCast(angleRefTo.GetAngle(), IAgCrdn).Name, DirectCast(angle, IAgCrdn).Name)
+End If

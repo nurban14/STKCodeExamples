@@ -1,0 +1,27 @@
+C#
+
+// Configure time period
+propagator.EphemerisInterval.SetExplicitInterval("1 Jan 2012 12:00:00.000", "2 Jan 2012 12:00:00.000");
+propagator.Step = 60.0;
+
+// Set the initial state
+propagator.InitialState.Launch.AssignGeodetic(38.3721, -77.6402, 25.0);
+propagator.InitialState.Burnout.AssignGeodetic(48.1395, -82.5145, 25.0);
+propagator.InitialState.BurnoutVel = 7.7258;
+
+// Propagate
+propagator.Propagate();
+
+vbNet
+
+' Configure time period
+propagator.EphemerisInterval.SetExplicitInterval("1 Jan 2012 12:00:00.000", "2 Jan 2012 12:00:00.000")
+propagator.[Step] = 60
+
+' Set the initial state
+propagator.InitialState.Launch.AssignGeodetic(38.3721, -77.6402, 25)
+propagator.InitialState.Burnout.AssignGeodetic(48.1395, -82.5145, 25)
+propagator.InitialState.BurnoutVel = 7.7258
+
+' Propagate
+propagator.Propagate()

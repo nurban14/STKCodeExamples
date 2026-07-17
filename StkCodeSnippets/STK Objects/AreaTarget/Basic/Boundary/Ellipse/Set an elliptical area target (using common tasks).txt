@@ -1,0 +1,12 @@
+Matlab
+% IAgStkObjectRoot root: STK Object Model Root
+% IAgAreaTarget areaTarget: AreaTarget object
+
+% By using the CommonTasks interface
+areaTarget.CommonTasks.SetAreaTypeEllipse(85.25, 80.75, 44);
+Python
+# IAgStkObjectRoot root: STK Object Model Root
+# IAgAreaTarget areaTarget: AreaTarget object
+
+# By using the CommonTasks interface
+areaTarget.CommonTasks.SetAreaTypeEllipse(85.25, 80.75, 44)

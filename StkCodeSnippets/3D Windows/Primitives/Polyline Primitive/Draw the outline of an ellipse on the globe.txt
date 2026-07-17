@@ -1,0 +1,30 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+
+IAgStkGraphicsSceneManager manager = ((IAgScenario)root.CurrentScenario).SceneManager;
+Array center = new object[] { 38.85, -77.04, 3000.0 }; // Washington, DC
+
+IAgStkGraphicsSurfaceShapesResult shape = manager.Initializers.SurfaceShapes.ComputeEllipseCartographic(
+    "Earth", ref center, 45000, 30000, 45);
+Array positions = shape.Positions;
+
+IAgStkGraphicsPolylinePrimitive line = manager.Initializers.PolylinePrimitive.InitializeWithType(shape.PolylineType);
+line.Set(ref positions);
+((IAgStkGraphicsPrimitive)line).Color = Color.Cyan;
+
+manager.Primitives.Add((IAgStkGraphicsPrimitive)line);
+
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+
+Dim manager As IAgStkGraphicsSceneManager = DirectCast(root.CurrentScenario, IAgScenario).SceneManager
+Dim washingtonDC As Array = New Object() {38.85, -77.04, 3000.0}
+
+Dim shape As IAgStkGraphicsSurfaceShapesResult = manager.Initializers.SurfaceShapes.ComputeEllipseCartographic("Earth", washingtonDC, 45000, 30000, 45)
+Dim positions As Array = shape.Positions
+
+Dim line As IAgStkGraphicsPolylinePrimitive = manager.Initializers.PolylinePrimitive.InitializeWithType(shape.PolylineType)
+line.Set(positions)
+DirectCast(line, IAgStkGraphicsPrimitive).Color = Color.Cyan
+
+manager.Primitives.Add(DirectCast(line, IAgStkGraphicsPrimitive))

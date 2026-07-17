@@ -1,0 +1,9 @@
+C#
+
+stkObject.Metadata.Set("key", "value");
+stkObject.Metadata.SetReadOnly("key", true);
+
+vbNet
+
+stkObject.Metadata.[Set]("key", "value")
+stkObject.Metadata.SetReadOnly("key", True)

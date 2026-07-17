@@ -1,0 +1,17 @@
+Matlab
+% IAgScenario scenario: Scenario object
+% Modify the lighting levels
+manager = scenario.SceneManager;
+lighting = manager.Scenes.Item(0).Lighting;
+lighting.AmbientIntensity = .20;    %Percent
+lighting.DiffuseIntensity = 4;  %Percent
+lighting.NightLightsIntensity = 5;  %Percent
+Python
+
+# IAgScenario scenario: Scenario object
+# Modify the lighting levels
+manager = scenario.SceneManager
+lighting = manager.Scenes.Item(0).Lighting
+lighting.AmbientIntensity = .20    #Percent
+lighting.DiffuseIntensity = 4  #Percent
+lighting.NightLightsIntensity = 5  #Percent

@@ -1,0 +1,19 @@
+C#
+
+Array center = new object[]
+{
+    1247.87,
+    -4739.74,
+    4067.77
+};
+
+IAgStkGraphicsSurfaceShapesResult shape = sceneManager.Initializers.SurfaceShapes.ComputeCircle(
+    "Earth",
+    ref center,
+    10000);
+
+vbNet
+
+Dim center As Array = New Object() {1247.87, -4739.74, 4067.77}
+
+Dim shape As IAgStkGraphicsSurfaceShapesResult = sceneManager.Initializers.SurfaceShapes.ComputeCircle("Earth", center, 10000)

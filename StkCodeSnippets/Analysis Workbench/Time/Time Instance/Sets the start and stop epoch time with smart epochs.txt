@@ -1,0 +1,7 @@
+C#
+
+smartInterval.SetExplicitInterval("Today", "Tomorrow");
+
+vbNet
+
+smartInterval.SetExplicitInterval("Today", "Tomorrow")

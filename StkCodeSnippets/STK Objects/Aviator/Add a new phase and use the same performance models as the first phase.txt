@@ -1,0 +1,19 @@
+C#
+
+// Add a new phase at the end of the mission
+IAgAvtrPhase newPhase = phases.Add();
+// Rename the phase
+newPhase.Name = "New Phase";
+// Copy the performance models from the first phase and paste it to the new phase
+phases[0].CopyPerformanceModels();
+newPhase.PastePerformanceModels();
+
+vbNet
+
+' Add a new phase at the end of the mission
+Dim newPhase As IAgAvtrPhase = phases.Add()
+' Rename the phase
+newPhase.Name = "New Phase"
+' Copy the performance models from the first phase and paste it to the new phase
+phases(0).CopyPerformanceModels()
+newPhase.PastePerformanceModels()

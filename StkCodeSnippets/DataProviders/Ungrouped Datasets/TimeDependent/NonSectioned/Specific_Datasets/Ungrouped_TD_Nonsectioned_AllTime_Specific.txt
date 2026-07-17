@@ -1,0 +1,18 @@
+Python
+## Using a Time Dependent Data Provider and requesting only specified elements
+# IAgStkObjectRoot root: STK Object Model root
+# IAgSatellite satellite: Satellite object
+# IAgScenario scenario: Scenario object
+
+# Change DateFormat dimension to epoch seconds to make the data easier to handle in Python
+root.UnitPreferences.Item('DateFormat').SetCurrentUnit('EpSec')
+
+elems = [['Time'], ['q1'], ['q2'], ['q3'], ['q4']]
+satDP = satellite.DataProviders.Item('Attitude Quaternions').ExecElements(scenario.StartTime, scenario.StopTime, 60, elems)
+# Whenever you pass an index to an array, you need to cast it to a long
+# equivalent (int32)
+satTime = satDP.DataSets.Item(0).GetValues
+satq1 = satDP.DataSets.Item(1).GetValues
+satq2 = satDP.DataSets.Item(2).GetValues
+satq3 = satDP.DataSets.Item(3).GetValues
+satq4 = satDP.DataSets.Item(4).GetValues

@@ -1,0 +1,22 @@
+Python
+
+# IAgScenario scenario: Scenario object
+manager = scenario.SceneManager
+originEllipsoid = root.ConversionUtility.NewPositionOnEarth()
+originEllipsoid.AssignGeodetic(0, 5, 100)
+
+orientEllipsoid = root.ConversionUtility.NewOrientation()
+orientEllipsoid.AssignAzEl(0,0,1) # eAzElAboutBoresightRotate
+
+radii = [ [200],[100],[100] ]
+ellipsoid = manager.Initializers.EllipsoidTriangulator.ComputeSimple(radii)
+solidEllipsoid = manager.Initializers.SolidPrimitive.Initialize()
+solidEllipsoid.ReferenceFrame = root.CentralBodies.Earth.Vgt.Systems.Item('Fixed') #vgtSat.Systems.Item('Body')
+solidEllipsoid.Position = originEllipsoid.QueryCartesianArray()
+solidEllipsoid.SetWithResult(ellipsoid)
+solidEllipsoid.Color = 16777215
+solidEllipsoid.OutlineColor = 15863551
+solidEllipsoid.Translucency = .75
+solidEllipsoid.Rotation = orientEllipsoid
+manager.Primitives.Add(solidEllipsoid)
+manager.Render()

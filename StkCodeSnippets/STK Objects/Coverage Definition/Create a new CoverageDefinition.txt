@@ -1,0 +1,9 @@
+C#
+
+// Create the CoverageDefinition
+IAgCoverageDefinition cd = root.CurrentScenario.Children.New(AgESTKObjectType.eCoverageDefinition, "cd1") as IAgCoverageDefinition;
+
+vbNet
+
+' Create the CoverageDefinition
+Dim cd As IAgCoverageDefinition = TryCast(root.CurrentScenario.Children.[New](AgESTKObjectType.eCoverageDefinition, "cd1"), IAgCoverageDefinition)

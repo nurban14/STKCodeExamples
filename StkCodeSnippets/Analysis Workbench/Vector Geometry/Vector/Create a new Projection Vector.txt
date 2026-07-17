@@ -1,0 +1,17 @@
+Matlab
+
+% IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+% IAgCrdnVectorDisplacement Sat2EarthCenter: vector component
+VectFactory = vgtSat.Vectors.Factory;
+projectionVector = VectFactory.Create('Projection','','eCrdnVectorTypeProjection');
+projectionVector.Source.SetVector(Sat2EarthCenter);
+horizontalPlane = vgtSat.Planes.Item('LocalHorizontal');
+projectionVector.ReferencePlane.SetPlane(horizontalPlane);
+Python
+# IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+# IAgCrdnVectorDisplacement Sat2EarthCenter: vector component
+VectFactory = vgtSat.Vectors.Factory
+projectionVector = VectFactory.Create('Projection', '', AgECrdnVectorType.eCrdnVectorTypeProjection)
+projectionVector.Source.SetVector(Sat2EarthCenter)
+horizontalPlane = vgtSat.Planes.Item('LocalHorizontal')
+projectionVector.ReferencePlane.SetPlane(horizontalPlane)

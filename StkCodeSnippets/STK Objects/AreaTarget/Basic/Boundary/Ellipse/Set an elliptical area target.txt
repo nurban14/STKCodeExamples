@@ -1,0 +1,26 @@
+Matlab
+% IAgStkObjectRoot root: STK Object Model Root
+% IAgAreaTarget areaTarget: AreaTarget object
+
+% By using the fine grained interfaces,
+% BeginUpdate/EndUpdate prevent intermediate redraws
+root.BeginUpdate();
+areaTarget.AreaType = 'eEllipse';
+ellipse = areaTarget.AreaTypeData;
+ellipse.SemiMajorAxis = 85.25; % in km (distance dimension)
+ellipse.SemiMinorAxis = 80.75; % in km (distance dimension)
+ellipse.Bearing = 44; % in deg (angle dimension)
+root.EndUpdate();
+Python
+# IAgStkObjectRoot root: STK Object Model Root
+# IAgAreaTarget areaTarget: AreaTarget object
+
+# By using the fine grained interfaces,
+# BeginUpdate/EndUpdate prevent intermediate redraws
+root.BeginUpdate()
+areaTarget.AreaType = AgEAreaType.eEllipse
+ellipse = areaTarget.AreaTypeData
+ellipse.SemiMajorAxis = 85.25  # in km (distance dimension)
+ellipse.SemiMinorAxis = 80.75  # in km (distance dimension)
+ellipse.Bearing = 44  # in deg (angle dimension)
+root.EndUpdate()

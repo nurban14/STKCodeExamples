@@ -1,0 +1,16 @@
+C#
+
+Array position = new object[]
+{
+    1089235,
+    -4800930,
+    4046386
+};
+
+path.Position = position;
+
+vbNet
+
+Dim position As Array = New Object() {1089235, -4800930, 4046386}
+
+path.Position = position

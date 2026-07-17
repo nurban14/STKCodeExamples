@@ -1,0 +1,33 @@
+C#
+
+IAgFmGridInspector gridInspector = fom.GridInspector;
+gridInspector.SelectPoint(-13.864, -51.088);
+
+IAgDataPrvTimeVar pointFom = gridInspector.PointFOM as IAgDataPrvTimeVar;
+IAgDrResult pointFomResult = pointFom.ExecSingle("1 Jan 2012 12:00:00.00");
+
+IAgDataPrvInterval pointSatisfaction = gridInspector.PointSatisfaction as IAgDataPrvInterval;
+IAgDrResult pointSatisfactionResult = pointSatisfaction.Exec("1 Jan 2012 12:00:00.00", "2 Jan 2012 12:00:00.00");
+
+IAgDataPrvTimeVar regionFom = gridInspector.RegionFOM as IAgDataPrvTimeVar;
+IAgDrResult regionFomResult = regionFom.ExecSingle("1 Jan 2012 12:00:00.00");
+
+IAgDataPrvInterval regionSatisfaction = gridInspector.RegionSatisfaction as IAgDataPrvInterval;
+IAgDrResult regionSatisfactionResult = regionSatisfaction.Exec("1 Jan 2012 12:00:00.00", "2 Jan 2012 12:00:00.00");
+
+vbNet
+
+Dim gridInspector As IAgFmGridInspector = fom.GridInspector
+gridInspector.SelectPoint(-13.864, -51.088)
+
+Dim pointFom As IAgDataPrvTimeVar = TryCast(gridInspector.PointFOM, IAgDataPrvTimeVar)
+Dim pointFomResult As IAgDrResult = pointFom.ExecSingle("1 Jan 2012 12:00:00.00")
+
+Dim pointSatisfaction As IAgDataPrvInterval = TryCast(gridInspector.PointSatisfaction, IAgDataPrvInterval)
+Dim pointSatisfactionResult As IAgDrResult = pointSatisfaction.Exec("1 Jan 2012 12:00:00.00", "2 Jan 2012 12:00:00.00")
+
+Dim regionFom As IAgDataPrvTimeVar = TryCast(gridInspector.RegionFOM, IAgDataPrvTimeVar)
+Dim regionFomResult As IAgDrResult = regionFom.ExecSingle("1 Jan 2012 12:00:00.00")
+
+Dim regionSatisfaction As IAgDataPrvInterval = TryCast(gridInspector.RegionSatisfaction, IAgDataPrvInterval)
+Dim regionSatisfactionResult As IAgDrResult = regionSatisfaction.Exec("1 Jan 2012 12:00:00.00", "2 Jan 2012 12:00:00.00")

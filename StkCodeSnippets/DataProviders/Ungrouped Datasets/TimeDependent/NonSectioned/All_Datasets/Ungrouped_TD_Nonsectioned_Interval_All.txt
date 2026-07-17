@@ -1,0 +1,16 @@
+Python
+## Extracting All Ungrouped Time Dependent Data Elements in a Specified Interval
+# IAgStkObjectRoot root: STK Object Model root
+# IAgScenario scenario: STK Current Scenario
+# IAgSatellite satellite: Satellite object
+
+# Change DateFormat dimension to epoch seconds to make the data easier to handle 
+root.UnitPreferences.Item('DateFormat').SetCurrentUnit('EpSec')
+
+# Start Time: 5000 epSec, Stop Time: 27500 epSec, Time Step: 100 sec
+satPassDP = satellite.DataProviders.Item('Precision Passes').Exec(5000, 27500, 100)
+
+passTimes = satPassDP.DataSets.GetDataSetByName('Time').GetValues()
+passes = satPassDP.DataSets.GetDataSetByName('Precision Pass Number').GetValues()
+path = satPassDP.DataSets.GetDataSetByName('Precision Path Number').GetValues()
+

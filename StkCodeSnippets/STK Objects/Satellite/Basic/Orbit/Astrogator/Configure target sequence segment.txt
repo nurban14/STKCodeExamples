@@ -1,0 +1,76 @@
+C#
+
+// First add a sequence target
+IAgVAMCSSegment segment = driver.MainSequence.Insert(AgEVASegmentType.eVASegmentTypeTargetSequence, "Start Transfer", "-");
+IAgVAMCSTargetSequence targetSequence = segment as IAgVAMCSTargetSequence;
+
+targetSequence.Action = AgEVATargetSeqAction.eVATargetSeqActionRunActiveProfiles;
+targetSequence.WhenProfilesFinish = AgEVAProfilesFinish.eVAProfilesFinishRunToReturnAndContinue;
+targetSequence.ContinueOnFailure = false;
+
+// Add as many child segments to target
+IAgVAMCSManeuver dv1 = targetSequence.Segments.Insert(AgEVASegmentType.eVASegmentTypeManeuver, "DV1", "-") as IAgVAMCSManeuver;
+IAgVAMCSManeuver dv2 = targetSequence.Segments.Insert(AgEVASegmentType.eVASegmentTypeManeuver, "DV2", "-") as IAgVAMCSManeuver;
+
+// Add more profiles if necessary
+string profileName = "Change Maneuver Type";
+if (Array.IndexOf(targetSequence.Profiles.AvailableProfiles, profileName) != -1)
+{
+    IAgVAProfile newProfile = targetSequence.Profiles.Add(profileName);
+}
+
+// Enable controls
+dv1.EnableControlParameter(AgEVAControlManeuver.eVAControlManeuverImpulsiveCartesianX);
+IAgVAProfileDifferentialCorrector dc = targetSequence.Profiles["Differential Corrector"] as IAgVAProfileDifferentialCorrector;
+IAgVADCControl controlParam = dc.ControlParameters.GetControlByPaths("DV1", "ImpulsiveMnvr.Cartesian.X");
+controlParam.Enable = true;
+controlParam.MaxStep = 0.3;
+
+// Enable results
+((IAgVAMCSSegment)dv1).Results.Add("Epoch");
+IAgVADCResult roaResult = dc.Results.GetResultByPaths("DV1", "Epoch");
+roaResult.Enable = true;
+
+// Confiure the differential corrector
+dc.MaxIterations = 50;
+dc.EnableDisplayStatus = true;
+dc.Mode = AgEVAProfileMode.eVAProfileModeIterate;
+targetSequence.Action = AgEVATargetSeqAction.eVATargetSeqActionRunActiveProfiles;
+
+vbNet
+
+' First add a sequence target
+Dim segment As IAgVAMCSSegment = driver.MainSequence.Insert(AgEVASegmentType.eVASegmentTypeTargetSequence, "Start Transfer", "-")
+Dim targetSequence As IAgVAMCSTargetSequence = TryCast(segment, IAgVAMCSTargetSequence)
+
+targetSequence.Action = AgEVATargetSeqAction.eVATargetSeqActionRunActiveProfiles
+targetSequence.WhenProfilesFinish = AgEVAProfilesFinish.eVAProfilesFinishRunToReturnAndContinue
+targetSequence.ContinueOnFailure = False
+
+' Add as many child segments to target
+Dim dv1 As IAgVAMCSManeuver = TryCast(targetSequence.Segments.Insert(AgEVASegmentType.eVASegmentTypeManeuver, "DV1", "-"), IAgVAMCSManeuver)
+Dim dv2 As IAgVAMCSManeuver = TryCast(targetSequence.Segments.Insert(AgEVASegmentType.eVASegmentTypeManeuver, "DV2", "-"), IAgVAMCSManeuver)
+
+' Add more profiles if necessary
+Dim profileName As String = "Change Maneuver Type"
+If Array.IndexOf(targetSequence.Profiles.AvailableProfiles, profileName) &lt;&gt; -1 Then
+	Dim newProfile As IAgVAProfile = targetSequence.Profiles.Add(profileName)
+End If
+
+' Enable controls
+dv1.EnableControlParameter(AgEVAControlManeuver.eVAControlManeuverImpulsiveCartesianX)
+Dim dc As IAgVAProfileDifferentialCorrector = TryCast(targetSequence.Profiles("Differential Corrector"), IAgVAProfileDifferentialCorrector)
+Dim controlParam As IAgVADCControl = dc.ControlParameters.GetControlByPaths("DV1", "ImpulsiveMnvr.Cartesian.X")
+controlParam.Enable = True
+controlParam.MaxStep = 0.3
+
+' Enable results
+DirectCast(dv1, IAgVAMCSSegment).Results.Add("Epoch")
+Dim roaResult As IAgVADCResult = dc.Results.GetResultByPaths("DV1", "Epoch")
+roaResult.Enable = True
+
+' Confiure the differential corrector
+dc.MaxIterations = 50
+dc.EnableDisplayStatus = True
+dc.Mode = AgEVAProfileMode.eVAProfileModeIterate
+targetSequence.Action = AgEVATargetSeqAction.eVATargetSeqActionRunActiveProfiles

@@ -1,0 +1,21 @@
+C#
+
+IAgComponentInfoCollection compInfoCol = scenario.ComponentDirectory.GetComponents(AgEComponent.eComponentAstrogator);
+IAgComponentInfoCollection propagatorFolder = compInfoCol.GetFolder("Propagators");
+IAgVANumericalPropagatorWrapper myEathHPOP = propagatorFolder.DuplicateComponent("Earth Default High Fidelity v13", "myEathHPOP") as IAgVANumericalPropagatorWrapper;
+IAgVAThirdBodyFunction moon = myEathHPOP.PropagatorFunctions["Moon"] as IAgVAThirdBodyFunction;
+moon.SetModeType(AgEVAThirdBodyMode.eVAThirdBodyModePointMass);
+IAgVAPointMassFunction pointMass = moon.Mode as IAgVAPointMassFunction;
+pointMass.GravSource = AgEVAGravParamSource.eVAGravParamSourceUser;
+pointMass.Mu = 390000.0;
+
+vbNet
+
+Dim compInfoCol As IAgComponentInfoCollection = scenario.ComponentDirectory.GetComponents(AgEComponent.eComponentAstrogator)
+Dim propagatorFolder As IAgComponentInfoCollection = compInfoCol.GetFolder("Propagators")
+Dim myEathHPOP As IAgVANumericalPropagatorWrapper = TryCast(propagatorFolder.DuplicateComponent("Earth Default High Fidelity v13", "myEathHPOP"), IAgVANumericalPropagatorWrapper)
+Dim moon As IAgVAThirdBodyFunction = TryCast(myEathHPOP.PropagatorFunctions("Moon"), IAgVAThirdBodyFunction)
+moon.SetModeType(AgEVAThirdBodyMode.eVAThirdBodyModePointMass)
+Dim pointMass As IAgVAPointMassFunction = TryCast(moon.Mode, IAgVAPointMassFunction)
+pointMass.GravSource = AgEVAGravParamSource.eVAGravParamSourceUser
+pointMass.Mu = 390000

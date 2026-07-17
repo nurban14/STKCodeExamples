@@ -1,0 +1,28 @@
+C#
+
+// Iterate through the the group of existing calc scalars associated
+// with the specified CrdnProvider.
+for (int i = 0; i &lt; provider.CalcScalars.Count; i++)
+{
+    IAgCrdnCalcScalar calcScalar = provider.CalcScalars[i];
+    // All calc scalars implement IAgCrdn interface which provides
+    // information about the calc scalar's instance and its type.
+    IAgCrdn crdn = provider.CalcScalars[i] as IAgCrdn;
+    // Print the calc scalar's name and type to the standard output.
+    Console.WriteLine("Name: {0}, type: {1}", crdn.Name, calcScalar.Type);
+}
+
+vbNet
+
+' Iterate through the the group of existing calc scalars associated
+' with the specified CrdnProvider.
+Dim i As Integer = 0
+While i &lt; provider.CalcScalars.Count
+	Dim calcScalar As IAgCrdnCalcScalar = provider.CalcScalars(i)
+	' All calc scalars implement IAgCrdn interface which provides
+	' information about the calc scalar's instance and its type.
+	Dim crdn As IAgCrdn = TryCast(provider.CalcScalars(i), IAgCrdn)
+	' Print the calc scalar's name and type to the standard output.
+	Console.WriteLine("Name: {0}, type: {1}", crdn.Name, calcScalar.Type)
+	System.Math.Max(System.Threading.Interlocked.Increment(i),i - 1)
+End While

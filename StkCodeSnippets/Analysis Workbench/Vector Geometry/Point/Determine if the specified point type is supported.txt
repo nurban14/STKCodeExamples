@@ -1,0 +1,17 @@
+C#
+// AgECrdnPointType PointType: A point type
+
+// Check if the specified point type is supported.
+if (provider.Points.Factory.IsTypeSupported(PointType))
+{
+    IAgCrdnPoint point = provider.Points.Factory.Create(
+        "PointName", string.Empty, PointType);
+}
+
+vbNet
+// AgECrdnPointType PointType: A point type
+
+' Check if the specified point type is supported.
+If provider.Points.Factory.IsTypeSupported(PointType) Then
+	Dim point As IAgCrdnPoint = provider.Points.Factory.Create("PointName", String.Empty, PointType)
+End If

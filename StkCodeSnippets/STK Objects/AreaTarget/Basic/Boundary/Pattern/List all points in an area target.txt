@@ -1,0 +1,63 @@
+C#
+
+if (areaTarget.AreaType == AgEAreaType.ePattern)
+{
+    // Get IAgAreaTypePatternCollection interface from AreaTypeData
+    IAgAreaTypePatternCollection patternPoints = areaTarget.AreaTypeData as IAgAreaTypePatternCollection;
+
+    // ToArray returns a two dimensional array of latitude and longitude points
+    Array areaTargetPoints = patternPoints.ToArray();
+
+    Console.WriteLine("All points in Area Target");
+    for (int i = 0; i &lt; areaTargetPoints.GetLength(0); ++i)
+    {
+        Console.WriteLine("  Latitude {0} Longitude: {1}",
+            Convert.ToDouble(areaTargetPoints.GetValue(i, 0)),
+            Convert.ToDouble(areaTargetPoints.GetValue(i, 1)));
+    }
+}
+
+Matlab
+% IAgAreaTarget areaTarget: AreaTarget object
+if strcmp(areaTarget.AreaType,'ePattern')
+
+    % Get IAgAreaTypePatternCollection interface from AreaTypeData
+    patternPoints = areaTarget.AreaTypeData;
+
+    % ToArray returns a two dimensional array of latitude and longitude points
+    areaTargetPoints = patternPoints.ToArray();
+
+    disp('All points in Area Target');
+    for i= 1:length(areaTargetPoints)
+        disp(['Latitude ' num2str(areaTargetPoints{i,1}) ' Longitude: ' num2str(areaTargetPoints{i,2})]);
+    end
+end
+Python
+# IAgAreaTarget areaTarget: AreaTarget object
+if (areaTarget.AreaType == AgEAreaType.ePattern):
+
+    # Get IAgAreaTypePatternCollection interface from AreaTypeData
+    patternPoints = areaTarget.AreaTypeData
+
+    # ToArray returns a two dimensional array of latitude and longitude points
+    areaTargetPoints = patternPoints.ToArray()
+
+    print('All points in Area Target')
+    for i in range(0, len(areaTargetPoints)):
+        print('Latitude: %s Longitude: %s' % (str(areaTargetPoints[i][0]), str(areaTargetPoints[i][1])))
+vbNet
+
+If areaTarget.AreaType = AgEAreaType.ePattern Then
+	' Get IAgAreaTypePatternCollection interface from AreaTypeData
+	Dim patternPoints As IAgAreaTypePatternCollection = TryCast(areaTarget.AreaTypeData, IAgAreaTypePatternCollection)
+
+	' ToArray returns a two dimensional array of latitude and longitude points
+	Dim areaTargetPoints As Array = patternPoints.ToArray()
+
+	Console.WriteLine("All points in Area Target")
+	Dim i As Integer = 0
+	While i &lt; areaTargetPoints.GetLength(0)
+		Console.WriteLine("  Latitude {0} Longitude: {1}", Convert.ToDouble(areaTargetPoints.GetValue(i, 0)), Convert.ToDouble(areaTargetPoints.GetValue(i, 1)))
+		System.Threading.Interlocked.Increment(i)
+	End While
+End If

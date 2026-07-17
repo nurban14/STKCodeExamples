@@ -1,0 +1,32 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+
+IAgStkGraphicsSceneManager manager = ((IAgScenario)root.CurrentScenario).SceneManager;
+
+//
+// The snapshot can be saved to a file, texture, image, or the clipboard
+//
+IAgStkGraphicsRendererTexture2D texture = scene.Camera.Snapshot.SaveToTexture();
+
+IAgStkGraphicsTextureScreenOverlay textureScreenOverlay = manager.Initializers.TextureScreenOverlay.InitializeWithXYTexture(0, 0, texture);
+IAgStkGraphicsOverlay overlay = (IAgStkGraphicsOverlay)textureScreenOverlay;
+overlay.BorderSize = 2;
+overlay.BorderColor = Color.White;
+overlay.Scale = 0.2;
+overlay.Origin = AgEStkGraphicsScreenOverlayOrigin.eStkGraphicsScreenOverlayOriginCenter;
+IAgStkGraphicsScreenOverlayCollectionBase screenOverlayManager = (IAgStkGraphicsScreenOverlayCollectionBase)manager.ScreenOverlays;
+screenOverlayManager.Add((IAgStkGraphicsScreenOverlay)overlay);
+
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+
+Dim manager As IAgStkGraphicsSceneManager = DirectCast(root.CurrentScenario, IAgScenario).SceneManager
+
+'
+' The snapshot can be saved to a file, texture, image, or the clipboard
+'
+Dim texture As IAgStkGraphicsRendererTexture2D = scene.Camera.Snapshot.SaveToTexture()
+
+Dim overlay As IAgStkGraphicsTextureScreenOverlay = CreateOverlayFromTexture(texture, root)
+Dim screenOverlayManager As IAgStkGraphicsScreenOverlayCollectionBase = DirectCast(manager.ScreenOverlays, IAgStkGraphicsScreenOverlayCollectionBase)
+screenOverlayManager.Add(DirectCast(overlay, IAgStkGraphicsScreenOverlay))

@@ -1,0 +1,15 @@
+C#
+
+Array size = new object[]
+{
+    256,
+    128
+};
+
+markerBatch.Size = size;
+
+vbNet
+
+Dim size As Array = New Object() {256, 128}
+
+markerBatch.Size = size

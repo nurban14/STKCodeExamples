@@ -1,0 +1,15 @@
+Matlab
+% IAgSatellite satellite: Satellite object
+basic = satellite.Attitude.Basic;
+basic.SetProfileType('eProfileSpinning')
+basic.Profile.Body.AssignXYZ(0,0,1)
+basic.Profile.Inertial.AssignXYZ(0,1,0);
+basic.Profile.Rate = 6;  % rev/sec
+
+Python
+# IAgSatellite satellite: Satellite object
+basic = satellite.Attitude.Basic
+basic.SetProfileType(AgEVeProfile.eProfileSpinning)
+basic.Profile.Body.AssignXYZ(0, 0, 1)
+basic.Profile.Inertial.AssignXYZ(0, 1, 0)
+basic.Profile.Rate = 6   # rev/sec

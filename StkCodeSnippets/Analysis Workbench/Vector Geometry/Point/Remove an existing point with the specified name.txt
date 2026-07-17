@@ -1,0 +1,14 @@
+C#
+
+// Check if the specified point exists
+if (provider.Points.Contains("PointName"))
+{
+    provider.Points.Remove("PointName");
+}
+
+vbNet
+
+' Check if the specified point exists
+If provider.Points.Contains("PointName") Then
+	provider.Points.Remove("PointName")
+End If

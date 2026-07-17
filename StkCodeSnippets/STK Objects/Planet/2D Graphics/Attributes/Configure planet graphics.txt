@@ -1,0 +1,34 @@
+C#
+
+graphics.Inherit = false;
+
+graphics.Color = Color.Red;
+graphics.MarkerStyle = "Circle";
+graphics.LineStyle = AgELineStyle.eMDashDot;
+graphics.LineWidth = AgELineWidth.e4;
+graphics.InertialPositionVisible = false;
+graphics.SubPlanetPointVisible = false;
+graphics.PositionLabelVisible = false;
+graphics.SubPlanetLabelVisible = false;
+graphics.OrbitVisible = true;
+graphics.OrbitDisplay = AgEPlOrbitDisplayType.eOrbitDisplayTime;
+IAgPlOrbitDisplayTime displayTime = graphics.OrbitDisplayData as IAgPlOrbitDisplayTime;
+displayTime.Time = 10000.00;
+
+vbNet
+
+graphics.Inherit = False
+
+graphics.Color = Color.Red
+graphics.MarkerStyle = "Circle"
+graphics.LineStyle = AgELineStyle.eMDashDot
+graphics.LineWidth = AgELineWidth.e4
+
+graphics.InertialPositionVisible = False
+graphics.SubPlanetPointVisible = False
+graphics.PositionLabelVisible = False
+graphics.SubPlanetLabelVisible = False
+graphics.OrbitVisible = True
+graphics.OrbitDisplay = AgEPlOrbitDisplayType.eOrbitDisplayTime
+Dim displayTime As IAgPlOrbitDisplayTime = TryCast(graphics.OrbitDisplayData, IAgPlOrbitDisplayTime)
+displayTime.Time = 10000

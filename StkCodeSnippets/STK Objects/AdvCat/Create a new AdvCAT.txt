@@ -1,0 +1,6 @@
+Matlab
+% IAgScenario scenario: Scenario object
+advCAT = scenario.Children.New('eAdvCAT','AdvCAT');
+Python
+# IAgScenario scenario: Scenario object
+advCAT = scenario.Children.New(0,0) # eAdvCAT, AdvCAT

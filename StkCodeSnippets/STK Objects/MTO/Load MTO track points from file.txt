@@ -1,0 +1,11 @@
+C#
+// String filePath: Path of ephemeris file
+
+// LoadPoints expects the path an Ephemeris file path
+track.Points.LoadPoints(filePath);
+
+vbNet
+// String filePath: Path of ephemeris file
+
+' LoadPoints expects the path an Ephemeris file path
+track.Points.LoadPoints(filePath)

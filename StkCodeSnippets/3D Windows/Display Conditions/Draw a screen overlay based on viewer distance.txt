@@ -1,0 +1,29 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+// IAgStkGraphicsModelPrimitive model: A model
+// IAgStkGraphicsScreenOverlay overlay: A overlay
+
+IAgStkGraphicsSceneManager manager = ((IAgScenario)root.CurrentScenario).SceneManager;
+IAgStkGraphicsScreenOverlayCollectionBase overlayManager = (IAgStkGraphicsScreenOverlayCollectionBase)manager.ScreenOverlays.Overlays;
+
+IAgStkGraphicsDistanceToPrimitiveDisplayCondition condition =
+    manager.Initializers.DistanceToPrimitiveDisplayCondition.InitializeWithDistances(
+    (IAgStkGraphicsPrimitive)model, 0, 40000);
+((IAgStkGraphicsOverlay)overlay).DisplayCondition = (IAgStkGraphicsDisplayCondition)condition;
+
+manager.Primitives.Add((IAgStkGraphicsPrimitive)model);
+overlayManager.Add(overlay);
+
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+// IAgStkGraphicsModelPrimitive model: A model
+// IAgStkGraphicsScreenOverlay overlay: A overlay
+
+Dim manager As IAgStkGraphicsSceneManager = DirectCast(root.CurrentScenario, IAgScenario).SceneManager
+Dim overlayManager As IAgStkGraphicsScreenOverlayCollectionBase = DirectCast(manager.ScreenOverlays.Overlays, IAgStkGraphicsScreenOverlayCollectionBase)
+
+Dim condition As IAgStkGraphicsDistanceToPrimitiveDisplayCondition = manager.Initializers.DistanceToPrimitiveDisplayCondition.InitializeWithDistances(DirectCast(model, IAgStkGraphicsPrimitive), 0, 40000)
+DirectCast(overlay, IAgStkGraphicsOverlay).DisplayCondition = DirectCast(condition, IAgStkGraphicsDisplayCondition)
+
+manager.Primitives.Add(DirectCast(model, IAgStkGraphicsPrimitive))
+overlayManager.Add(overlay)

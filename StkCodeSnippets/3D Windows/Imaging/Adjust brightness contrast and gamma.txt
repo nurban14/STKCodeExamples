@@ -1,0 +1,69 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+// String imageFile: The image file
+
+IAgStkGraphicsSceneManager manager = ((IAgScenario)root.CurrentScenario).SceneManager;
+IAgStkGraphicsScreenOverlayCollectionBase overlayManager = (IAgStkGraphicsScreenOverlayCollectionBase)manager.ScreenOverlays.Overlays;
+//
+// The URI can be a file path, http, https, or ftp location
+//
+IAgStkGraphicsRaster image = manager.Initializers.Raster.InitializeWithStringUri(
+    imageFile);
+
+//
+// Add brightness, contrast, and gamma correction filters to sequence
+//
+IAgStkGraphicsSequenceFilter sequenceFilter = manager.Initializers.SequenceFilter.Initialize();
+sequenceFilter.Add((IAgStkGraphicsRasterFilter)manager.Initializers.BrightnessFilter.InitializeWithAdjustment(.1));
+sequenceFilter.Add((IAgStkGraphicsRasterFilter)manager.Initializers.ContrastFilter.InitializeWithAdjustment(.2));
+sequenceFilter.Add((IAgStkGraphicsRasterFilter)manager.Initializers.GammaCorrectionFilter.InitializeWithGamma(.9));
+image.ApplyInPlace((IAgStkGraphicsRasterFilter)sequenceFilter);
+
+IAgStkGraphicsRendererTexture2D texture = manager.Textures.FromRaster(image);
+
+//
+// Display the image using a screen overlay
+//
+IAgStkGraphicsTextureScreenOverlay overlay = manager.Initializers.TextureScreenOverlay.Initialize();
+((IAgStkGraphicsOverlay)overlay).Width = 0.2;
+((IAgStkGraphicsOverlay)overlay).WidthUnit = AgEStkGraphicsScreenOverlayUnit.eStkGraphicsScreenOverlayUnitFraction;
+((IAgStkGraphicsOverlay)overlay).Height = 0.2;
+((IAgStkGraphicsOverlay)overlay).HeightUnit = AgEStkGraphicsScreenOverlayUnit.eStkGraphicsScreenOverlayUnitFraction;
+((IAgStkGraphicsOverlay)overlay).Origin = AgEStkGraphicsScreenOverlayOrigin.eStkGraphicsScreenOverlayOriginCenterRight;
+overlay.Texture = texture;
+
+overlayManager.Add((IAgStkGraphicsScreenOverlay)overlay);
+
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+// String imageFile: The image file
+
+Dim manager As IAgStkGraphicsSceneManager = DirectCast(root.CurrentScenario, IAgScenario).SceneManager
+Dim overlayManager As IAgStkGraphicsScreenOverlayCollectionBase = DirectCast(manager.ScreenOverlays.Overlays, IAgStkGraphicsScreenOverlayCollectionBase)
+'
+' The URI can be a file path, http, https, or ftp location
+'
+Dim image As IAgStkGraphicsRaster = manager.Initializers.Raster.InitializeWithStringUri( _
+    imageFile)
+
+'
+' Add brightness, contrast, and gamma correction filters to sequence
+'
+Dim sequenceFilter As IAgStkGraphicsSequenceFilter = manager.Initializers.SequenceFilter.Initialize()
+sequenceFilter.Add(DirectCast(manager.Initializers.BrightnessFilter.InitializeWithAdjustment(0.1), IAgStkGraphicsRasterFilter))
+sequenceFilter.Add(DirectCast(manager.Initializers.ContrastFilter.InitializeWithAdjustment(0.2), IAgStkGraphicsRasterFilter))
+sequenceFilter.Add(DirectCast(manager.Initializers.GammaCorrectionFilter.InitializeWithGamma(0.9), IAgStkGraphicsRasterFilter))
+
+image.ApplyInPlace(DirectCast(sequenceFilter, IAgStkGraphicsRasterFilter))
+
+Dim texture As IAgStkGraphicsRendererTexture2D = manager.Textures.FromRaster(image)
+
+Dim overlay As IAgStkGraphicsTextureScreenOverlay = manager.Initializers.TextureScreenOverlay.Initialize()
+DirectCast(overlay, IAgStkGraphicsOverlay).Width = 0.2
+DirectCast(overlay, IAgStkGraphicsOverlay).WidthUnit = AgEStkGraphicsScreenOverlayUnit.eStkGraphicsScreenOverlayUnitFraction
+DirectCast(overlay, IAgStkGraphicsOverlay).Height = 0.2
+DirectCast(overlay, IAgStkGraphicsOverlay).HeightUnit = AgEStkGraphicsScreenOverlayUnit.eStkGraphicsScreenOverlayUnitFraction
+overlay.Texture = texture
+DirectCast(overlay, IAgStkGraphicsOverlay).Origin = AgEStkGraphicsScreenOverlayOrigin.eStkGraphicsScreenOverlayOriginCenterRight
+
+overlayManager.Add(DirectCast(overlay, IAgStkGraphicsScreenOverlay))

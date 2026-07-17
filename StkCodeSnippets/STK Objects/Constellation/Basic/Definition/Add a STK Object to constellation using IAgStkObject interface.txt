@@ -1,0 +1,11 @@
+C#
+// IAgStkObject alos: Satellite Object that is to be added to constellation
+
+// Add object to constellation
+constellation.Objects.AddObject(alos);
+
+vbNet
+// IAgStkObject alos: Satellite Object that is to be added to constellation
+
+' Add object to constellation
+constellation.Objects.AddObject(alos)

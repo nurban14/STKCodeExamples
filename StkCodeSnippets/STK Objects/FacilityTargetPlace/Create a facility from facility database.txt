@@ -1,0 +1,25 @@
+C#
+
+// Get STK database location using Connect
+IAgExecCmdResult result = root.ExecuteCommand("GetDirectory / Database Facility");
+string facDataDir = result[0];
+string filelocation = Path.Combine(facDataDir, @"stkFacility.fd");
+
+// Import object from database using Connect
+string command = "ImportFromDB * Facility \"" + filelocation + "\" Class Facility SiteName Weilheim";
+root.ExecuteCommand(command);
+
+IAgFacility facility = root.GetObjectFromPath("Facility/Weilheim") as IAgFacility;
+
+vbNet
+
+' Get STK database location using Connect
+Dim result As IAgExecCmdResult = root.ExecuteCommand("GetDirectory / Database Facility")
+Dim facDataDir As String = result(0)
+Dim filelocation As String = Path.Combine(facDataDir, "stkFacility.fd")
+
+' Import object from database using Connect
+Dim command As String = "ImportFromDB * Facility """ + filelocation + """ Class Facility SiteName Weilheim"
+root.ExecuteCommand(command)
+
+Dim facility As IAgFacility = TryCast(root.GetObjectFromPath("Facility/Weilheim"), IAgFacility)

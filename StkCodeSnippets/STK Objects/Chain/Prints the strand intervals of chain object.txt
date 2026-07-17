@@ -1,0 +1,109 @@
+C#
+
+IAgStkObject chainAsStkObject = chain as IAgStkObject;
+
+// Compute the chain access if not done already.
+chain.ComputeAccess();
+
+// Considered Start and Stop time
+Console.WriteLine("Chain considered start time: {0}", chainAsStkObject.Vgt.Events["ConsideredStartTime"].FindOccurrence().Epoch);
+Console.WriteLine("Chain considered stop time: {0}", chainAsStkObject.Vgt.Events["ConsideredStopTime"].FindOccurrence().Epoch);
+
+IAgCrdnEventIntervalCollection objectParticipationIntervals = chainAsStkObject.Vgt.EventIntervalCollections["StrandAccessIntervals"];
+IAgCrdnIntervalsVectorResult intervalListResult = objectParticipationIntervals.FindIntervalCollection();
+
+for (int i = 0; i &lt; intervalListResult.IntervalCollections.Count; ++i)
+{
+    if (intervalListResult.IsValid)
+    {
+        Console.WriteLine("Link Name: {0}", objectParticipationIntervals.Labels.GetValue(i));
+        Console.WriteLine("--------------");
+        for (int j = 0; j &lt; intervalListResult.IntervalCollections[i].Count; ++j)
+        {
+            object startTime = intervalListResult.IntervalCollections[i][j].Start;
+            object stopTime = intervalListResult.IntervalCollections[i][j].Stop;
+            Console.WriteLine("Start: {0}, Stop: {1}", startTime, stopTime);
+        }
+    }
+}
+
+Matlab
+% IAgChain chain: Chain Object
+% Compute the chain access if not done already.
+chain.ComputeAccess();
+
+% Considered Start and Stop time
+disp(['Chain considered start time: ' chain.Vgt.Events.Item('ConsideredStartTime').FindOccurrence.Epoch]);
+disp(['Chain considered stop time: ', chain.Vgt.Events.Item('ConsideredStopTime').FindOccurrence.Epoch]);
+
+objectParticipationIntervals = chain.Vgt.EventIntervalCollections.Item('StrandAccessIntervals');
+intervalListResult = objectParticipationIntervals.FindIntervalCollection();
+
+for i = 0:intervalListResult.IntervalCollections.Count -1
+
+    if intervalListResult.IsValid
+
+        disp(['Link Name: ' objectParticipationIntervals.Labels(i+1)]);
+        disp('--------------');
+        for j = 0:intervalListResult.IntervalCollections.Item(i).Count - 1
+
+            startTime = intervalListResult.IntervalCollections.Item(i).Item(j).Start;
+            stopTime = intervalListResult.IntervalCollections.Item(i).Item(j).Stop;
+            disp(['Start: ' startTime ' Stop: ' stopTime]);
+        end
+    end
+end
+
+
+Python
+# IAgChain chain: Chain Object
+# Compute the chain access if not done already.
+chain.ComputeAccess()
+
+# Considered Start and Stop time
+print('Chain considered start time: #s' # chain.Vgt.Events.Item('ConsideredStartTime').FindOccurrence().Epoch)
+print('Chain considered stop time: #s' # chain.Vgt.Events.Item('ConsideredStopTime').FindOccurrence().Epoch)
+
+objectParticipationIntervals = chain.Vgt.EventIntervalCollections.Item('StrandAccessIntervals')
+intervalListResult = objectParticipationIntervals.FindIntervalCollection()
+
+for i in range(0,intervalListResult.IntervalCollections.Count):
+
+    if intervalListResult.IsValid:
+
+        print('Link Name: #s' # objectParticipationIntervals.Labels(i+1))
+        print('--------------')
+        for j in range(0,intervalListResult.IntervalCollections.Item(i).Count):
+
+            startTime = intervalListResult.IntervalCollections.Item(i).Item(j).Start
+            stopTime = intervalListResult.IntervalCollections.Item(i).Item(j).Stop
+            print('Start: #s Stop: #s' # (startTime, stopTime))
+vbNet
+
+Dim chainAsStkObject As IAgStkObject = TryCast(chain, IAgStkObject)
+
+' Compute the chain access if not done already.
+chain.ComputeAccess()
+
+' Considered Start and Stop time
+Console.WriteLine("Chain considered start time: {0}", chainAsStkObject.Vgt.Events("ConsideredStartTime").FindOccurrence().Epoch)
+Console.WriteLine("Chain considered stop time: {0}", chainAsStkObject.Vgt.Events("ConsideredStopTime").FindOccurrence().Epoch)
+
+Dim objectParticipationIntervals As IAgCrdnEventIntervalCollection = chainAsStkObject.Vgt.EventIntervalCollections("StrandAccessIntervals")
+Dim intervalListResult As IAgCrdnIntervalsVectorResult = objectParticipationIntervals.FindIntervalCollection()
+
+Dim i As Integer = 0
+While i &lt; intervalListResult.IntervalCollections.Count
+	If intervalListResult.IsValid Then
+		Console.WriteLine("Link Name: {0}", objectParticipationIntervals.Labels.GetValue(i))
+		Console.WriteLine("--------------")
+		Dim j As Integer = 0
+		While j &lt; intervalListResult.IntervalCollections(i).Count
+			Dim startTime As Object = intervalListResult.IntervalCollections(i)(j).Start
+			Dim stopTime As Object = intervalListResult.IntervalCollections(i)(j).[Stop]
+			Console.WriteLine("Start: {0}, Stop: {1}", startTime, stopTime)
+			System.Threading.Interlocked.Increment(j)
+		End While
+	End If
+	System.Threading.Interlocked.Increment(i)
+End While

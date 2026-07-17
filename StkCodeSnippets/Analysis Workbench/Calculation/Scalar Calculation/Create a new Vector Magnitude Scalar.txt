@@ -1,0 +1,13 @@
+Matlab
+
+% IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+% IAgCrdnVectorDisplacement Sat2EarthCenter: vector component
+calcFactory = vgtSat.CalcScalars.Factory;
+displScalar = calcFactory.CreateCalcScalarVectorMagnitude('VectorDisplacement','Vector Magnitude of Displacement Vector');
+displScalar.InputVector = Sat2EarthCenter;w
+Python
+# IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+# IAgCrdnVectorDisplacement Sat2EarthCenter: vector component
+calcFactory = vgtSat.CalcScalars.Factory
+displScalar = calcFactory.CreateCalcScalarVectorMagnitude('VectorDisplacement', 'Vector Magnitude of Displacement Vector')
+displScalar.InputVector = Sat2EarthCenter

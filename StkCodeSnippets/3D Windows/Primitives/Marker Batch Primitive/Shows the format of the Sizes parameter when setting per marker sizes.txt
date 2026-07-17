@@ -1,0 +1,19 @@
+C#
+
+Array size = new object[]
+{
+    256,
+    128,
+    128,
+    256
+};
+
+IAgStkGraphicsMarkerBatchPrimitiveOptionalParameters parameters = sceneManager.Initializers.MarkerBatchPrimitiveOptionalParameters.Initialize();
+parameters.SetSizes(ref size);
+
+vbNet
+
+Dim size As Array = New Object() {256, 128, 128, 256}
+
+Dim parameters As IAgStkGraphicsMarkerBatchPrimitiveOptionalParameters = sceneManager.Initializers.MarkerBatchPrimitiveOptionalParameters.Initialize()
+parameters.SetSizes(size)

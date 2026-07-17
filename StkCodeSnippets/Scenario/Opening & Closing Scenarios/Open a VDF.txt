@@ -1,0 +1,8 @@
+Matlab
+
+% IAgStkObjectRoot root: STK Object Model Root
+root.LoadVDF('<Install Dir>\Data\ExampleScenarios\Intro_STK_Space_Systems.vdf','');
+Python
+
+# IAgStkObjectRoot root: STK Object Model Root
+root.LoadVDF(r'C:\Program Files\AGI\STK_ODTK 13\STK\Data\ExampleScenarios\Intro_STK_Space_Systems.vdf','')

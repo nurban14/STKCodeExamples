@@ -1,0 +1,20 @@
+C#
+// AgECrdnEventIntervalListType eventIntervalListType: A event interval list type.
+
+// Check if the specified event interval list type is supported.
+if (provider.EventIntervalLists.Factory.IsTypeSupported(eventIntervalListType))
+{
+    //Create an EventIntervalList with the supported Type
+    IAgCrdnEventIntervalList eventIntervalList = provider.EventIntervalLists.Factory.Create(
+        "MyEventIntervalList", string.Empty,
+        eventIntervalListType);
+}
+
+vbNet
+// AgECrdnEventIntervalListType eventIntervalListType: A event interval list type.
+
+' Check if the specified event interval list type is supported.
+If provider.EventIntervalLists.Factory.IsTypeSupported(eventIntervalListType) Then
+	'Create an EventIntervalList with the supported Type
+	Dim eventIntervalList As IAgCrdnEventIntervalList = provider.EventIntervalLists.Factory.Create("MyEventIntervalList", String.Empty, eventIntervalListType)
+End If

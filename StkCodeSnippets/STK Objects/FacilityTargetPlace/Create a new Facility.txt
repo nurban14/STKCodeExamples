@@ -1,0 +1,15 @@
+C#
+
+// Create a facility on current scenario central body
+IAgFacility facility = root.CurrentScenario.Children.New(AgESTKObjectType.eFacility, "MyFacility") as IAgFacility;
+
+Matlab
+% IAgStkObjectRoot root: STK Object Model Root
+facility = root.CurrentScenario.Children.New('eFacility', 'MyFacility');
+Python
+# IAgStkObjectRoot root: STK Object Model Root
+facility = root.CurrentScenario.Children.New(AgESTKObjectType.eFacility, 'MyFacility')
+vbNet
+
+' Create a facility on current scenario central body
+Dim facility As IAgFacility = TryCast(root.CurrentScenario.Children.[New](AgESTKObjectType.eFacility, "MyFacility"), IAgFacility)

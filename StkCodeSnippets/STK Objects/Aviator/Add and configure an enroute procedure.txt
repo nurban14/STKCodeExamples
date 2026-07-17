@@ -1,0 +1,57 @@
+C#
+
+// Add an enroute procedure with a site type of End of Previous Procedure
+IAgAvtrProcedureEnroute enroute = procedures.Add(AgEAvtrSiteType.eSiteEndOfPrevProcedure, AgEAvtrProcedureType.eProcEnroute) as IAgAvtrProcedureEnroute;
+//Get the altitude options
+IAgAvtrAltitudeMSLAndLevelOffOptions altitudeOptions = enroute.AltitudeMSLOptions;
+// To specify an altitude, turn off the option to use the default cruise altitude
+altitudeOptions.UseDefaultCruiseAltitude = false;
+// Set the altitude
+altitudeOptions.MSLAltitude = 10000;
+
+//Get the navigation options
+IAgAvtrNavigationOptions navigationOptions = enroute.NavigationOptions;
+// Set the route to arrive on a specified course
+navigationOptions.NavMode = AgEAvtrPointToPointMode.eArriveOnCourse;
+// Set the course
+navigationOptions.ArriveOnCourse = 30;
+// Use a magnetic heading
+navigationOptions.UseMagneticHeading = true;
+
+//Get the navigation options
+IAgAvtrCruiseAirspeedOptions airspeedOptions = enroute.EnrouteCruiseAirspeedOptions;
+// Fly at max speed
+airspeedOptions.CruiseSpeedType = AgEAvtrCruiseSpeed.eMaxAirspeed;
+// To specify an airspeed to fly at, set the speed type to other airspeed
+airspeedOptions.CruiseSpeedType = AgEAvtrCruiseSpeed.eOtherAirspeed;
+// Then set the airspeed and airspeed type
+airspeedOptions.SetOtherAirspeed(AgEAvtrAirspeedType.eTAS, 200);
+
+vbNet
+
+' Add an enroute procedure with a site type of End of Previous Procedure
+Dim enroute As IAgAvtrProcedureEnroute = TryCast(procedures.Add(AgEAvtrSiteType.eSiteEndOfPrevProcedure, AgEAvtrProcedureType.eProcEnroute), IAgAvtrProcedureEnroute)
+'Get the altitude options
+Dim altitudeOptions As IAgAvtrAltitudeMSLAndLevelOffOptions = enroute.AltitudeMSLOptions
+' To specify an altitude, turn off the option to use the default cruise altitude
+altitudeOptions.UseDefaultCruiseAltitude = False
+' Set the altitude
+altitudeOptions.MSLAltitude = 10000
+
+'Get the navigation options
+Dim navigationOptions As IAgAvtrNavigationOptions = enroute.NavigationOptions
+' Set the route to arrive on a specified course
+navigationOptions.NavMode = AgEAvtrPointToPointMode.eArriveOnCourse
+' Set the course
+navigationOptions.ArriveOnCourse = 30
+' Use a magnetic heading
+navigationOptions.UseMagneticHeading = True
+
+'Get the navigation options
+Dim airspeedOptions As IAgAvtrCruiseAirspeedOptions = enroute.EnrouteCruiseAirspeedOptions
+' Fly at max speed
+airspeedOptions.CruiseSpeedType = AgEAvtrCruiseSpeed.eMaxAirspeed
+' To specify an airspeed to fly at, set the speed type to other airspeed
+airspeedOptions.CruiseSpeedType = AgEAvtrCruiseSpeed.eOtherAirspeed
+' Then set the airspeed and airspeed type
+airspeedOptions.SetOtherAirspeed(AgEAvtrAirspeedType.eTAS, 200)

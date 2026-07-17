@@ -1,0 +1,4 @@
+Matlab
+%IAgUiApplication uiApplication: STK UI Application
+
+uiApplication.Windows.Arrange('eArrangeStyleTiledVertical');

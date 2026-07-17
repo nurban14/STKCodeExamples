@@ -1,0 +1,14 @@
+C#
+
+//Check if an event array with the specified name already exists.
+if (provider.EventArrays.Contains("EventArrayName"))
+{
+    Console.WriteLine("The event array \"{0}\" already exists!", "EventArrayName");
+}
+
+vbNet
+
+'Check if an event array with the specified name already exists.
+If provider.EventArrays.Contains("EventArrayName") Then
+	Console.WriteLine("The event array ""{0}"" already exists!", "EventArrayName")
+End If

@@ -1,0 +1,9 @@
+C#
+
+IAgDataPrvFixed dpInfo = facility.DataProviders["Cartesian Position"] as IAgDataPrvFixed;
+IAgDrResult resInfo = dpInfo.Exec();
+
+vbNet
+
+Dim dpInfo As IAgDataPrvFixed = TryCast(facility.DataProviders("Cartesian Position"), IAgDataPrvFixed)
+Dim resInfo As IAgDrResult = dpInfo.Exec()

@@ -1,0 +1,11 @@
+Matlab
+
+% IAgStkObjectRoot root: STK Object Model Root
+constellation = root.CurrentScenario.Children.New('eConstellation','MyConstellation');
+constellation.Objects.AddObject(satellite);
+constellation.Objects.Add('*/Facility/MyFacility');
+Python
+# IAgStkObjectRoot root: STK Object Model Root
+constellation = root.CurrentScenario.Children.New(6,'MyConstellation') # eConstellation
+constellation.Objects.AddObject(satellite)
+constellation.Objects.Add('*/Facility/MyFacility')

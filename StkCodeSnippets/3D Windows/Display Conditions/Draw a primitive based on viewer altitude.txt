@@ -1,0 +1,43 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+
+IAgStkGraphicsSceneManager manager = ((IAgScenario)root.CurrentScenario).SceneManager;
+Array extent = new object[]
+{
+    -94, 29,
+    -89, 33
+};
+
+IAgStkGraphicsSurfaceTriangulatorResult triangles = manager.Initializers.SurfaceExtentTriangulator.ComputeSimple("Earth", ref extent);
+
+IAgStkGraphicsPolylinePrimitive line = manager.Initializers.PolylinePrimitive.Initialize();
+Array boundaryPositions = triangles.BoundaryPositions;
+line.Set(ref boundaryPositions);
+((IAgStkGraphicsPrimitive)line).Color = Color.White;
+
+IAgStkGraphicsAltitudeDisplayCondition condition = manager.Initializers.AltitudeDisplayCondition.InitializeWithAltitudes(500000, 2500000);
+((IAgStkGraphicsPrimitive)line).DisplayCondition = condition as IAgStkGraphicsDisplayCondition;
+
+manager.Primitives.Add((IAgStkGraphicsPrimitive)line);
+
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+
+Dim manager As IAgStkGraphicsSceneManager = DirectCast(root.CurrentScenario, IAgScenario).SceneManager
+Dim extent As Array = New Object() _
+{ _
+    -94, 29, _
+    -89, 33 _
+}
+
+Dim triangles As IAgStkGraphicsSurfaceTriangulatorResult = manager.Initializers.SurfaceExtentTriangulator.ComputeSimple("Earth", extent)
+
+Dim line As IAgStkGraphicsPolylinePrimitive = manager.Initializers.PolylinePrimitive.Initialize()
+Dim boundaryPositions As Array = triangles.BoundaryPositions
+line.Set(boundaryPositions)
+DirectCast(line, IAgStkGraphicsPrimitive).Color = Color.White
+
+Dim condition As IAgStkGraphicsAltitudeDisplayCondition = manager.Initializers.AltitudeDisplayCondition.InitializeWithAltitudes(500000, 2500000)
+DirectCast(line, IAgStkGraphicsPrimitive).DisplayCondition = TryCast(condition, IAgStkGraphicsDisplayCondition)
+
+manager.Primitives.Add(DirectCast(line, IAgStkGraphicsPrimitive))

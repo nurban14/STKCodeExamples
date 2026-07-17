@@ -1,0 +1,12 @@
+Matlab
+
+% IAgReceiver receiver: Receiver object
+recModel = receiver.Model;
+recModel.AutoSelectDemodulator = false;
+recModel.SetDemodulator('16PSK');
+
+Python
+# IAgReceiver receiver: Receiver object
+recModel = receiver.Model
+recModel.AutoSelectDemodulator = False
+recModel.SetDemodulator('16PSK')

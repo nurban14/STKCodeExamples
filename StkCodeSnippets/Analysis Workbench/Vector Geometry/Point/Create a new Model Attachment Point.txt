@@ -1,0 +1,11 @@
+Matlab
+
+% IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+PtFactory = vgtSat.Points.Factory;
+modelPt = PtFactory.Create('ModelPt','Attach point defined in model','eCrdnPointTypeModelAttachment');
+modelPt.PointableElementName = 'MainSensor-000000';
+Python
+# IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+PtFactory = vgtSat.Points.Factory
+modelPt = PtFactory.Create('ModelPt', 'Attach point defined in model', AgECrdnPointType.eCrdnPointTypeModelAttachment)
+modelPt.PointableElementName = 'MainSensor-000000'

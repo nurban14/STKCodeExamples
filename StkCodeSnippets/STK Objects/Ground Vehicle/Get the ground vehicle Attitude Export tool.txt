@@ -1,0 +1,7 @@
+C#
+
+IAgVeAttitudeExportTool attExTool = groundVehicle.ExportTools.GetAttitudeExportTool();
+
+vbNet
+
+Dim attExTool As IAgVeAttitudeExportTool = groundVehicle.ExportTools.GetAttitudeExportTool()

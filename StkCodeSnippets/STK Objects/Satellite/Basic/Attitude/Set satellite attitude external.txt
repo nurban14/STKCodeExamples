@@ -1,0 +1,3 @@
+Matlab
+% IAgSatellite satellite: Satellite object
+satellite.Attitude.External.Load('<Install Dir>\Data\Resources\stktraining\text\AttitudeTimeEulerAngles_Example.a');

@@ -1,0 +1,17 @@
+C#
+
+// Get and display the Computed Access Intervals
+IAgIntervalCollection intervalCollection = access.ComputedAccessIntervalTimes;
+
+// Set the intervals to use to the Computed Access Intervals
+Array computedIntervals = intervalCollection.ToArray(0, -1);
+access.SpecifyAccessIntervals(ref computedIntervals);
+
+vbNet
+
+' Get and display the Computed Access Intervals
+Dim intervalCollection As IAgIntervalCollection = access.ComputedAccessIntervalTimes
+
+' Set the intervals to use to the Computed Access Intervals
+Dim computedIntervals As Array = intervalCollection.ToArray(0, -1)
+access.SpecifyAccessIntervals(computedIntervals)

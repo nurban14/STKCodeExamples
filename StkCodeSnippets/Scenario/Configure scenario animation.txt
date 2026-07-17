@@ -1,0 +1,23 @@
+C#
+
+IAgScAnimation animation = scenario.Animation;
+
+animation.StartTime = "1 Jun 2004 12:00:00.00";
+animation.EnableAnimCycleTime = true;
+animation.AnimCycleType = AgEScEndLoopType.eEndTime;
+animation.AnimCycleTime = "2 Jun 2004 12:00:00.00";
+animation.AnimStepValue = 1000;
+animation.RefreshDeltaType = AgEScRefreshDeltaType.eRefreshDelta;
+animation.RefreshDelta = 0.02;
+
+vbNet
+
+Dim animation As IAgScAnimation = scenario.Animation
+
+animation.StartTime = "1 Jun 2004 12:00:00.00"
+animation.EnableAnimCycleTime = True
+animation.AnimCycleType = AgEScEndLoopType.eEndTime
+animation.AnimCycleTime = "2 Jun 2004 12:00:00.00"
+animation.AnimStepValue = 1000
+animation.RefreshDeltaType = AgEScRefreshDeltaType.eRefreshDelta
+animation.RefreshDelta = 0.02

@@ -1,0 +1,37 @@
+Matlab
+
+% IAgStkObjectRoot root: STK Object Model root
+% IAgFacility facility: Facility object
+% IAgScenario scenario: Scenario object
+%Change DateFormat dimension to epoch seconds to make the data easier to handle in
+%MATLAB
+root.UnitPreferences.Item('DateFormat').SetCurrentUnit('EpSec');
+facChooseDP = facility.DataProviders.Item('Points Choose System');
+dataProvCenter = facChooseDP.Group.Item('Center');
+%Choose the referense system you want to report the Center point in
+dataProvCenter.PreData = 'CentralBody/Earth TOD';
+rptElems = {'Time';'x';'y';'z'};
+results = dataProvCenter.ExecElements(scenario.StartTime, scenario.StopTime, 60, rptElems);
+datasets = results.DataSets;
+Time = cell2mat(datasets.GetDataSetByName('Time').GetValues);
+facTODx = cell2mat(datasets.GetDataSetByName('x').GetValues);
+facTODy = cell2mat(datasets.GetDataSetByName('y').GetValues);
+facTODz = cell2mat(datasets.GetDataSetByName('z').GetValues);
+Python
+# IAgStkObjectRoot root: STK Object Model root
+# IAgFacility facility: Facility object
+# IAgScenario scenario: Scenario object
+#Change DateFormat dimension to epoch seconds to make the data easier to handle in
+#Python
+root.UnitPreferences.Item('DateFormat').SetCurrentUnit('EpSec')
+facChooseDP = facility.DataProviders.Item('Points Choose System')
+dataProvCenter = facChooseDP.Group.Item('Center')
+#Choose the referense system you want to report the Center point in
+dataProvCenter.PreData = 'CentralBody/Earth TOD'
+rptElems = [ ['Time'],['x'],['y'],['z'] ]
+results = dataProvCenter.ExecElements(scenario.StartTime, scenario.StopTime, 60, rptElems)
+datasets = results.DataSets
+Time = datasets.GetDataSetByName('Time').GetValues
+facTODx = datasets.GetDataSetByName('x').GetValues
+facTODy = datasets.GetDataSetByName('y').GetValues
+facTODz = datasets.GetDataSetByName('z').GetValues

@@ -1,0 +1,32 @@
+C#
+
+IAgCrdnEventInterval eventInterval = provider.EventIntervals.Factory.CreateEventIntervalTimeOffset("MyIntervalFixedTimeOffset",  "MyDescription");
+IAgCrdnEventIntervalTimeOffset asFixedTimeOffset = eventInterval as IAgCrdnEventIntervalTimeOffset;
+
+asFixedTimeOffset.ReferenceInterval = provider.EventIntervals["AvailabilityTimeSpan"];
+
+// Uses current Time unit preference, this code snippet assumes seconds.
+asFixedTimeOffset.TimeOffset = 30;
+
+IAgCrdnEventIntervalResult intervalResult = eventInterval.FindInterval();
+if (intervalResult.IsValid)
+{
+    Console.WriteLine("Interval Start: " + intervalResult.Interval.Start);
+    Console.WriteLine("Interval Stop: " + intervalResult.Interval.Stop);
+}
+
+vbNet
+
+Dim eventInterval As IAgCrdnEventInterval = provider.EventIntervals.Factory.CreateEventIntervalTimeOffset("MyIntervalFixedTimeOffset", "MyDescription")
+Dim asFixedTimeOffset As IAgCrdnEventIntervalTimeOffset = TryCast(eventInterval, IAgCrdnEventIntervalTimeOffset)
+
+asFixedTimeOffset.ReferenceInterval = provider.EventIntervals("AvailabilityTimeSpan")
+
+' Uses current Time unit preference, this code snippet assumes seconds.
+asFixedTimeOffset.TimeOffset = 30
+
+Dim intervalResult As IAgCrdnEventIntervalResult = eventInterval.FindInterval()
+If intervalResult.IsValid Then
+	Console.WriteLine("Interval Start: " + intervalResult.Interval.Start)
+	Console.WriteLine("Interval Stop: " + intervalResult.Interval.[Stop])
+End If

@@ -1,0 +1,5 @@
+Python
+# IAgReceiver receiver: Receiver object
+recModel = receiver.Model
+gain = recModel.PreReceiveGainsLosses.Add(5) # dB
+gain.Identifier = 'Example Gain'

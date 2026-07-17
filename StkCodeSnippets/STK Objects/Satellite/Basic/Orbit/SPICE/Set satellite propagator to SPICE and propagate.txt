@@ -1,0 +1,24 @@
+Matlab
+% IAgSatellite satellite: Satellite object
+% IAgStkObjectRoot root: STK Object Model Root
+satellite.SetPropagatorType('ePropagatorSPICE');
+propagator = satellite.propagator;
+propagator.Spice = '<Install Dir>\STKData\Spice\planets.bsp';   % Make sure this is a valid path
+propagator.BodyName = 'MARS';
+
+propagator.StartTime = root.CurrentScenario.StartTime;  % Set to scenario start time
+propagator.StopTime = root.CurrentScenario.StopTime;    % Set to scenario stop time
+propagator.Step = 60.0;
+propagator.Propagate;
+Python
+# IAgSatellite satellite: Satellite object
+# IAgStkObjectRoot root: STK Object Model Root
+satellite.SetPropagatorType(AgEVePropagatorType.ePropagatorSPICE)
+propagator = satellite.Propagator
+propagator.Spice = r'C:\Program Files\AGI\STK 12\STKData\Spice\planets.bsp'   # Make sure this is a valid path
+propagator.BodyName = 'MARS'
+
+propagator.EphemerisInterval.SetImplicitInterval(
+    root.CurrentScenario.Vgt.EventIntervals.Item("AnalysisInterval"))  # Link to scenario period
+propagator.Step = 60.0
+propagator.Propagate()

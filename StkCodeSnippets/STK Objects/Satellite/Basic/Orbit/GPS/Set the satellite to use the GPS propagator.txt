@@ -1,0 +1,15 @@
+C#
+
+// Set propagator to GPS
+satellite.SetPropagatorType(AgEVePropagatorType.ePropagatorGPS);
+
+// Get the GPS propagator
+IAgVePropagatorGPS propagator = satellite.Propagator as IAgVePropagatorGPS;
+
+vbNet
+
+' Set propagator to GPS
+satellite.SetPropagatorType(AgEVePropagatorType.ePropagatorGPS)
+
+' Get the GPS propagator
+Dim propagator As IAgVePropagatorGPS = TryCast(satellite.Propagator, IAgVePropagatorGPS)

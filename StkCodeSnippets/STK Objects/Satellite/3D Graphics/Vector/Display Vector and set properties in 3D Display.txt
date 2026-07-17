@@ -1,0 +1,9 @@
+Matlab
+% IAgSatellite satellite: Satellite object
+vector = satellite.VO.Vector;
+sunVector = vector.RefCrdns.GetCrdnByName('eVectorElem','Satellite/MySatellite Sun Vector');
+vector.VectorSizeScale = 2;
+sunVector.Visible = true;
+sunVector.Color = 65535;    %yellow
+sunVector.LabelVisible = true;
+sunVector.MagnitudeVisible = true;

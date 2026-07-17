@@ -1,0 +1,15 @@
+Matlab
+
+% IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+% IAgCrdnAxes bodyAxes: axes component
+VectFactory = vgtSat.Vectors.Factory;
+fixedAxesVector = VectFactory.Create('FixedInAxes','','eCrdnVectorTypeFixedInAxes');
+fixedAxesVector.ReferenceAxes.SetAxes(bodyAxes);
+fixedAxesVector.Direction.AssignXYZ(0,0,1);
+Python
+# IAgCrdnProvider vgtSat: Vector Geometry Tool Interface
+# IAgCrdnAxes bodyAxes: axes component
+VectFactory = vgtSat.Vectors.Factory
+fixedAxesVector = VectFactory.Create('FixedInAxes', '', AgECrdnVectorType.eCrdnVectorTypeFixedInAxes)
+fixedAxesVector.ReferenceAxes.SetAxes(bodyAxes)
+fixedAxesVector.Direction.AssignXYZ(0, 0, 1)

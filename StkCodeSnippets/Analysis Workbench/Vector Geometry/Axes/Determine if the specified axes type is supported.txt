@@ -1,0 +1,15 @@
+C#
+// AgECrdnAxesType axesType: An axes type.
+
+if (provider.Axes.Factory.IsTypeSupported(axesType))
+{
+    IAgCrdnAxes axes = provider.Axes.Factory.Create(
+        "AxesName", string.Empty, axesType);
+}
+
+vbNet
+// AgECrdnAxesType axesType: An axes type.
+
+If provider.Axes.Factory.IsTypeSupported(axesType) Then
+	Dim axes As IAgCrdnAxes = provider.Axes.Factory.Create("AxesName", String.Empty, axesType)
+End If

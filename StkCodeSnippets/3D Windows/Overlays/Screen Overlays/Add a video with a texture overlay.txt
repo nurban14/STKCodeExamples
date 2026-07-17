@@ -1,0 +1,42 @@
+C#
+// AgStkObjectRoot root: STK Object Model root
+// String videoFile: The video file
+
+IAgStkGraphicsSceneManager manager = ((IAgScenario)root.CurrentScenario).SceneManager;
+IAgStkGraphicsScreenOverlayCollectionBase overlayManager = (IAgStkGraphicsScreenOverlayCollectionBase)manager.ScreenOverlays.Overlays;
+
+IAgStkGraphicsVideoStream videoStream = manager.Initializers.VideoStream.InitializeWithStringUri(videoFile);
+videoStream.Playback = AgEStkGraphicsVideoPlayback.eStkGraphicsVideoPlaybackRealTime;
+videoStream.Loop = true;
+
+IAgStkGraphicsTextureScreenOverlay overlay = manager.Initializers.TextureScreenOverlay.InitializeWithXYWidthHeight(
+    0, 0,
+    ((IAgStkGraphicsRaster)videoStream).Width / 4,
+    ((IAgStkGraphicsRaster)videoStream).Height / 4);
+((IAgStkGraphicsOverlay)overlay).Translucency = 0.3f;
+((IAgStkGraphicsOverlay)overlay).Origin = AgEStkGraphicsScreenOverlayOrigin.eStkGraphicsScreenOverlayOriginTopRight;
+((IAgStkGraphicsOverlay)overlay).BorderSize = 1;
+((IAgStkGraphicsOverlay)overlay).BorderTranslucency = 0.3f;
+overlay.Texture = manager.Textures.FromRaster((IAgStkGraphicsRaster)videoStream);
+
+overlayManager.Add((IAgStkGraphicsScreenOverlay)overlay);
+
+vbNet
+// AgStkObjectRoot root: STK Object Model root
+// String videoFile: The video file
+
+Dim manager As IAgStkGraphicsSceneManager = DirectCast(root.CurrentScenario, IAgScenario).SceneManager
+Dim overlayManager As IAgStkGraphicsScreenOverlayCollectionBase = DirectCast(manager.ScreenOverlays.Overlays, IAgStkGraphicsScreenOverlayCollectionBase)
+
+Dim videoStream As IAgStkGraphicsVideoStream = manager.Initializers.VideoStream.InitializeWithStringUri(videoFile)
+videoStream.Playback = AgEStkGraphicsVideoPlayback.eStkGraphicsVideoPlaybackRealTime
+videoStream.[Loop] = True
+
+Dim overlay As IAgStkGraphicsTextureScreenOverlay = manager.Initializers.TextureScreenOverlay.InitializeWithXYWidthHeight(0, 0, DirectCast(videoStream, IAgStkGraphicsRaster).Width / 4, DirectCast(videoStream, IAgStkGraphicsRaster).Height / 4)
+DirectCast(overlay, IAgStkGraphicsOverlay).BorderSize = 1
+DirectCast(overlay, IAgStkGraphicsOverlay).BorderTranslucency = 0.3F
+DirectCast(overlay, IAgStkGraphicsOverlay).Translucency = 0.3F
+DirectCast(overlay, IAgStkGraphicsOverlay).Origin = AgEStkGraphicsScreenOverlayOrigin.eStkGraphicsScreenOverlayOriginTopRight
+overlay.Texture = manager.Textures.FromRaster(DirectCast(videoStream, IAgStkGraphicsRaster))
+
+overlayManager.Add(DirectCast(overlay, IAgStkGraphicsScreenOverlay))

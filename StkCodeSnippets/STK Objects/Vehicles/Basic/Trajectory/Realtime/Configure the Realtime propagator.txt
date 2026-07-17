@@ -1,0 +1,50 @@
+C#
+// IAgVePropagatorRealtime propagator: Realtime propagator
+
+// Set Realtime Propagator settings if they should be other than
+// the defaults.
+propagator.InterpolationOrder = 1;
+propagator.TimeoutGap = 30.0;
+propagator.TimeStep = 60.0;
+
+// Since we want to use the Two Body Look Ahead Propagator, check
+// to see that it is supported before we set the Realtime Propagator
+// to use this look ahead type
+if (propagator.IsLookAheadPropagatorSupported(AgELookAheadPropagator.eLookAheadTwoBody))
+{
+    // Set the look ahead type
+    propagator.LookAheadPropagator = AgELookAheadPropagator.eLookAheadTwoBody;
+
+    // Set the duration time to look ahead and look behind
+    IAgVeDuration duration = propagator.Duration;
+    duration.LookAhead = 3600.0;
+    duration.LookBehind = 3600.0;
+
+    // Apply the Realtime Propagator settings
+    propagator.Propagate();
+}
+
+vbNet
+// IAgVePropagatorRealtime propagator: Realtime propagator
+
+' Set Realtime Propagator settings if they should be other than
+' the defaults.
+propagator.InterpolationOrder = 1
+propagator.TimeoutGap = 30
+propagator.TimeStep = 60
+
+' Since we want to use the Two Body Look Ahead Propagator, check
+' to see that it is supported before we set the Realtime Propagator
+' to use this look ahead type
+If propagator.IsLookAheadPropagatorSupported(AgELookAheadPropagator.eLookAheadTwoBody) Then
+	' Set the look ahead type
+	propagator.LookAheadPropagator = AgELookAheadPropagator.eLookAheadTwoBody
+
+	' Set the duration time to look ahead and look behind
+	Dim duration As IAgVeDuration = propagator.Duration
+	duration.LookAhead = 3600
+	duration.LookBehind = 3600
+
+	' Apply the Realtime Propagator settings
+	propagator.Propagate()
+End If

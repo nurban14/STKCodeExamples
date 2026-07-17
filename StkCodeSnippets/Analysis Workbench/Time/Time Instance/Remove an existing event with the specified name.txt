@@ -1,0 +1,14 @@
+C#
+
+// Check if the event with specified name exists
+if (provider.Events.Contains("EventName"))
+{
+    provider.Events.Remove("EventName");
+}
+
+vbNet
+
+' Check if the event with specified name exists
+If provider.Events.Contains("EventName") Then
+	provider.Events.Remove("EventName")
+End If

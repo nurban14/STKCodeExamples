@@ -1,0 +1,70 @@
+C#
+
+IAgCrdnProvider satelliteVgtProvider = stkRoot.GetObjectFromPath("Satellite/LEO").Vgt;
+IAgCrdnProvider aircraftVgtProvider = stkRoot.GetObjectFromPath("Aircraft/UAV").Vgt;
+
+IAgCrdnEventArray eventArray = satelliteVgtProvider.EventArrays.Factory.CreateEventArraySignaled("MyEventArraySignaled",  "MyDescription");
+IAgCrdnEventArraySignaled asSignaled = eventArray as IAgCrdnEventArraySignaled;
+
+asSignaled.OriginalTimeArray = aircraftVgtProvider.EventArrays["OneMinuteSampleTimes"];
+asSignaled.BaseClockLocation = satelliteVgtProvider.Points["Center"];
+asSignaled.TargetClockLocation = aircraftVgtProvider.Points["Center"];
+
+asSignaled.SignalSense = AgECrdnSignalSense.eCrdnSignalSenseTransmit;
+IAgCrdnSignalDelayBasic basicSignalDelay = asSignaled.SignalDelay as IAgCrdnSignalDelayBasic;
+basicSignalDelay.SpeedOption = AgECrdnSpeedOptions.eCrdnLightTransmissionSpeed;
+
+// Uses current Time unit preference, this code snippet assumes seconds.
+basicSignalDelay.TimeDelayConvergence = 0.01;
+
+IAgCrdnFindTimesResult timeArrays = eventArray.FindTimes();
+if (timeArrays.IsValid)
+{
+    Console.WriteLine("Times");
+    int numTimes = timeArrays.Times.GetLength(0);
+    for (int i = 0; i &lt; numTimes; ++i)
+    {
+        Console.WriteLine(timeArrays.Times.GetValue(i));
+    }
+
+    foreach (IAgCrdnInterval timeArray in timeArrays.Intervals)
+    {
+        Console.WriteLine("Start: " + timeArray.Start);
+        Console.WriteLine("Stop: " + timeArray.Stop);
+    }
+}
+
+vbNet
+
+Dim satelliteVgtProvider As IAgCrdnProvider = stkRoot.GetObjectFromPath("Satellite/LEO").Vgt
+Dim aircraftVgtProvider As IAgCrdnProvider = stkRoot.GetObjectFromPath("Aircraft/UAV").Vgt
+
+Dim eventArray As IAgCrdnEventArray = satelliteVgtProvider.EventArrays.Factory.CreateEventArraySignaled("MyEventArraySignaled", "MyDescription")
+Dim asSignaled As IAgCrdnEventArraySignaled = TryCast(eventArray, IAgCrdnEventArraySignaled)
+
+asSignaled.OriginalTimeArray = aircraftVgtProvider.EventArrays("OneMinuteSampleTimes")
+asSignaled.BaseClockLocation = satelliteVgtProvider.Points("Center")
+asSignaled.TargetClockLocation = aircraftVgtProvider.Points("Center")
+
+asSignaled.SignalSense = AgECrdnSignalSense.eCrdnSignalSenseTransmit
+Dim basicSignalDelay As IAgCrdnSignalDelayBasic = TryCast(asSignaled.SignalDelay, IAgCrdnSignalDelayBasic)
+basicSignalDelay.SpeedOption = AgECrdnSpeedOptions.eCrdnLightTransmissionSpeed
+
+' Uses current Time unit preference, this code snippet assumes seconds.
+basicSignalDelay.TimeDelayConvergence = 0.01
+
+Dim timeArrays As IAgCrdnFindTimesResult = eventArray.FindTimes()
+If timeArrays.IsValid Then
+	Console.WriteLine("Times")
+	Dim numTimes As Integer = timeArrays.Times.GetLength(0)
+	Dim i As Integer = 0
+	While i &lt; numTimes
+		Console.WriteLine(timeArrays.Times.GetValue(i))
+		System.Threading.Interlocked.Increment(i)
+	End While
+
+	For Each timeArray As IAgCrdnInterval In timeArrays.Intervals
+		Console.WriteLine("Start: " + timeArray.Start)
+		Console.WriteLine("Stop: " + timeArray.[Stop])
+	Next
+End If

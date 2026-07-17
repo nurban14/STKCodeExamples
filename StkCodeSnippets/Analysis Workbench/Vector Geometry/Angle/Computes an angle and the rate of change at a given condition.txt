@@ -1,0 +1,14 @@
+C#
+
+IAgCrdnAngleFindAngleWithRateResult result = angle.FindAngleWithRate(0);
+if (result.IsValid)
+{
+    Console.WriteLine("Angle: {0}, Rate: {1}", result.Angle, result.AngleRate);
+}
+
+vbNet
+
+Dim result As IAgCrdnAngleFindAngleWithRateResult = angle.FindAngleWithRate(0)
+If result.IsValid Then
+	Console.WriteLine("Angle: {0}, Rate: {1}", result.Angle, result.AngleRate)
+End If

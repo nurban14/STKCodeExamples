@@ -1,0 +1,20 @@
+Matlab
+% IAgTransmitter transmitter: Transmitter object
+txModel = transmitter.Model;
+txModel.EnableFilter = true;
+txModel.SetFilter('Butterworth');
+recFilter = txModel.Filter;
+recFilter.LowerBandwidthLimit = -20;
+recFilter.UpperBandwidthLimit = 20;
+recFilter.CutoffFrequency = 10;
+
+Python
+
+# IAgTransmitter transmitter: Transmitter object
+txModel = transmitter.Model
+txModel.EnableFilter = True
+txModel.SetFilter('Butterworth')
+recFilter = txModel.Filter
+recFilter.LowerBandwidthLimit = -20
+recFilter.UpperBandwidthLimit = 20
+recFilter.CutoffFrequency = 10

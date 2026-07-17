@@ -1,0 +1,9 @@
+Python
+
+# IAgVADriverMCS driver: MCS driver interface
+transferEllipse = driver.MainSequence.Insert(AgEVASegmentType.eVASegmentTypePropagate, 'Transfer Ellipse', '-')
+
+transferEllipse.Properties.Color = Colors.Red
+transferEllipse.PropagatorName = 'Earth Point Mass'
+transferEllipse.StoppingConditions.Add('Apoapsis')
+transferEllipse.StoppingConditions.Remove('Duration')

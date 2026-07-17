@@ -1,0 +1,22 @@
+Python
+
+# IAgScenario scenario: Scenario object
+manager = scenario.SceneManager
+originCylinder = root.ConversionUtility.NewPositionOnEarth()
+originCylinder.AssignGeodetic(0, 7, 100)
+
+orientCylinder = root.ConversionUtility.NewOrientation()
+orientCylinder.AssignAzEl(0,0,1) # eAzElAboutBoresightRotate
+
+cylinder = manager.Initializers.CylinderTriangulator.CreateSimple(200,100)
+solidCylinder = manager.Initializers.SolidPrimitive.Initialize()
+solidCylinder.ReferenceFrame = root.CentralBodies.Earth.Vgt.Systems.Item('Fixed')
+solidCylinder.Position = originCylinder.QueryCartesianArray()
+solidCylinder.SetWithResult(cylinder)
+solidCylinder.Color = 65280
+solidCylinder.OutlineColor = 16711680
+solidCylinder.OutlineWidth = 3
+solidCylinder.Translucency = .75
+solidCylinder.Rotation = orientCylinder
+manager.Primitives.Add(solidCylinder)
+manager.Render()

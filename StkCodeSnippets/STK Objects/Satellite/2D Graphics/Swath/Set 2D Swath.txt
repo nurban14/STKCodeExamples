@@ -1,0 +1,14 @@
+Matlab
+% IAgSatellite satellite: Satellite object
+%Set swath in the 2D properties
+swath = satellite.Graphics.Swath;
+swath.SetElevationType('eElevationGroundElevation');
+swath.Elevation.Angle = 30;  % deg
+satellite.Graphics.Swath.Options = 'eOptionsEdgeLimits';
+Python
+# IAgSatellite satellite: Satellite object
+# Set swath in the 2D properties
+swath = satellite.Graphics.Swath
+swath.SetElevationType(AgEVeGfxElevation.eElevationGroundElevation)
+swath.Elevation.Angle = 30  # deg
+satellite.Graphics.Swath.Options = AgEVeGfxOptions.eOptionsEdgeLimits

@@ -1,0 +1,8 @@
+Python
+# IAgReceiver receiver: Receiver object
+recModel = receiver.Model
+recModel.EnablePolarization = True
+recModel.SetPolarizationType(3) # ePolarizationTypeLinear
+polarization = recModel.Polarization
+polarization.ReferenceAxis = 2 # ePolarizationReferenceAxisZ
+polarization.CrossPolLeakage = -60 # dB

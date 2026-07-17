@@ -1,0 +1,21 @@
+Python
+## Extracting Specific Ungrouped Time Dependent Data from a Specified Section
+# IAgStkObjectRoot root: STK Object Model root
+# IAgScenario scenario: STK Current Scenario
+# IAgSatellite satellite: Satellite object
+
+# Change DateFormat dimension to epoch seconds to make the data easier to handle 
+root.UnitPreferences.Item('DateFormat').SetCurrentUnit('EpSec')
+
+root.UnitPreferences.Item('Power').SetCurrentUnit('W')
+
+
+#Extract just Time and Power datasets from Solar Panel Power Data Providerr
+elems = [['Time'],['Power']]
+solarPanelData = satellite.DataProviders.Item("Solar Panel Power").ExecElements(scenario.StartTime,scenario.StopTime, 86400,elems)
+
+#Searches for section called "All Solar Panel Groups"
+for jj in range(0,solarPanelData.Sections.Count):
+    if "All Solar Panel Groups" == solarPanelData.Sections.Item(jj).Title:
+        TotalTimes = solarPanelData.Sections.Item(jj).Intervals.Item(0).DataSets.GetDataSetByName('Time').GetValues()
+        TotalPower = solarPanelData.Sections.Item(jj).Intervals.Item(0).DataSets.GetDataSetByName('Power').GetValues()

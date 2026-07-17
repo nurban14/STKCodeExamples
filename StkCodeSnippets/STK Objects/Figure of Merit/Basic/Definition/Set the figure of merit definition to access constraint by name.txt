@@ -1,0 +1,17 @@
+C#
+
+IAgFmDefAccessConstraint defAccessCnstr = fom.SetAccessConstraintDefinitionName("AzimuthRate");
+
+// Confiure access constraint properties
+defAccessCnstr.SetComputeType(AgEFmCompute.eMaximum);
+defAccessCnstr.AcrossAssets = AgEFmAcrossAssets.eFmMinimum;
+defAccessCnstr.TimeStep = 60.0;
+
+vbNet
+
+Dim defAccessCnstr As IAgFmDefAccessConstraint = fom.SetAccessConstraintDefinitionName("AzimuthRate")
+
+' Confiure access constraint properties
+defAccessCnstr.SetComputeType(AgEFmCompute.eMaximum)
+defAccessCnstr.AcrossAssets = AgEFmAcrossAssets.eFmMinimum
+defAccessCnstr.TimeStep = 60

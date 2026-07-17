@@ -1,0 +1,16 @@
+Matlab
+% IAgAccessConstraintCollection accessConstraints: Access Constraint collection
+constraintArray = accessConstraints.AvailableConstraints;
+
+disp('List of Available Constraints:');
+for i=1:length(constraintArray)
+   disp(constraintArray{i,1});
+end
+
+Python
+# IAgAccessConstraintCollection accessConstraints: Access Constraint collection
+constraintArray = accessConstraints.AvailableConstraints()
+
+print('List of Available Constraints:')
+for i in range(0, len(constraintArray)):
+    print(constraintArray[i])

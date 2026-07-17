@@ -1,0 +1,16 @@
+C#
+
+for (int i = 0; i &lt; crdn.EmbeddedComponents.Count; i++)
+{
+    IAgCrdn embeddedComponent = crdn.EmbeddedComponents[i];
+    Console.WriteLine("Name: {0}, kind: {1}", embeddedComponent.Name, embeddedComponent.Kind);
+}
+
+vbNet
+
+Dim i As Integer = 0
+While i &lt; crdn.EmbeddedComponents.Count
+	Dim embeddedComponent As IAgCrdn = crdn.EmbeddedComponents(i)
+	Console.WriteLine("Name: {0}, kind: {1}", embeddedComponent.Name, embeddedComponent.Kind)
+	System.Math.Max(System.Threading.Interlocked.Increment(i),i - 1)
+End While

@@ -1,0 +1,69 @@
+C#
+
+// Get the cruise type
+IAgAvtrAircraftCruise cruise = aircraft.Cruise;
+// Get the build in performance model
+IAgAvtrAircraftBasicCruiseModel basicCruiseModel = cruise.GetBuiltInModel();
+
+// Set the ceiling altitude
+basicCruiseModel.CeilingAltitude = 50000;
+// Set the default cruise altitude
+basicCruiseModel.DefaultCruiseAltitude = 10000;
+// Set the airspeed type
+basicCruiseModel.AirspeedType = AgEAvtrAirspeedType.eTAS;
+// Opt to not use the fuel flow calculated by the aero/prop model and instead specify the values
+basicCruiseModel.UseAeroPropFuel = false;
+
+// Set the various airspeeds and fuel flows
+basicCruiseModel.MinAirspeed = 110;
+basicCruiseModel.MinAirspeedFuelFlow = 10000;
+
+basicCruiseModel.MaxEnduranceAirspeed = 135;
+basicCruiseModel.MaxEnduranceFuelFlow = 8000;
+
+basicCruiseModel.MaxAirspeed = 570;
+basicCruiseModel.MaxAirspeedFuelFlow = 30000;
+
+basicCruiseModel.MaxRangeAirspeed = 140;
+basicCruiseModel.MaxRangeFuelFlow = 9000;
+
+basicCruiseModel.MaxPerfAirspeed = 150;
+basicCruiseModel.MaxPerfAirspeedFuelFlow = 12000;
+
+// Save the changes to the catalog
+aircraft.GetAsCatalogItem().Save();
+
+vbNet
+
+' Get the cruise type
+Dim cruise As IAgAvtrAircraftCruise = aircraft.Cruise
+' Get the build in performance model
+Dim basicCruiseModel As IAgAvtrAircraftBasicCruiseModel = cruise.GetBuiltInModel()
+
+' Set the ceiling altitude
+basicCruiseModel.CeilingAltitude = 50000
+' Set the default cruise altitude
+basicCruiseModel.DefaultCruiseAltitude = 10000
+' Set the airspeed type
+basicCruiseModel.AirspeedType = AgEAvtrAirspeedType.eTAS
+' Opt to not use the fuel flow calculated by the aero/prop model and instead specify the values
+basicCruiseModel.UseAeroPropFuel = False
+
+' Set the various airspeeds and fuel flows
+basicCruiseModel.MinAirspeed = 110
+basicCruiseModel.MinAirspeedFuelFlow = 10000
+
+basicCruiseModel.MaxEnduranceAirspeed = 135
+basicCruiseModel.MaxEnduranceFuelFlow = 8000
+
+basicCruiseModel.MaxAirspeed = 570
+basicCruiseModel.MaxAirspeedFuelFlow = 30000
+
+basicCruiseModel.MaxRangeAirspeed = 140
+basicCruiseModel.MaxRangeFuelFlow = 9000
+
+basicCruiseModel.MaxPerfAirspeed = 150
+basicCruiseModel.MaxPerfAirspeedFuelFlow = 12000
+
+' Save the changes to the catalog
+aircraft.GetAsCatalogItem().Save()

@@ -1,0 +1,14 @@
+C#
+
+// Check if the vector with specified name exists
+if (provider.Angles.Contains("AngleName"))
+{
+    provider.Angles.Remove("AngleName");
+}
+
+vbNet
+
+' Check if the vector with specified name exists
+If provider.Angles.Contains("AngleName") Then
+	provider.Angles.Remove("AngleName")
+End If

@@ -1,0 +1,15 @@
+C#
+
+// Set ship route to great arc
+ship.SetRouteType(AgEVePropagatorType.ePropagatorGreatArc);
+
+// Retrieve propagator interface if necessary
+IAgVePropagatorGreatArc propagator = ship.Route as IAgVePropagatorGreatArc;
+
+vbNet
+
+' Set ship route to great arc
+ship.SetRouteType(AgEVePropagatorType.ePropagatorGreatArc)
+
+' Retrieve propagator interface if necessary
+Dim propagator As IAgVePropagatorGreatArc = TryCast(ship.Route, IAgVePropagatorGreatArc)

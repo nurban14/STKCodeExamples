@@ -1,0 +1,37 @@
+C#
+// String terrainFile: Path of Terrain data file
+
+// Retrieve the IAgScenario interface
+IAgScenario scenario = root.CurrentScenario as IAgScenario;
+
+IAgCentralBodyTerrainCollection terrainCollection = scenario.Terrain;
+IAgTerrainCollection elementCollection = terrainCollection["Earth"].TerrainCollection;
+
+// Add terrain data file to current scenario's terrain collection
+// Terrain data files traditionally have .dte extensions
+IAgTerrain terrain = elementCollection.Add(terrainFile, AgETerrainFileType.eArcInfoBinGridMSLFile);
+
+// Set Scenario to use terrain data file
+terrain.UseTerrain = true;
+
+Matlab
+
+%IAgStkObjectRoot root: STK Object Model Root
+terrain = root.CurrentScenario.Terrain.Item('Earth').TerrainCollection.Add('<Install Dir>\Data\Resources\stktraining\samples\SRTM_Skopje.pdtt','ePDTTTerrainFile');
+terrain.UseTerrain = true;
+
+vbNet
+// String terrainFile: Path of Terrain data file
+
+' Retrieve the IAgScenario interface
+Dim scenario As IAgScenario = TryCast(root.CurrentScenario, IAgScenario)
+
+Dim terrainCollection As IAgCentralBodyTerrainCollection = scenario.Terrain
+Dim elementCollection As IAgTerrainCollection = terrainCollection("Earth").TerrainCollection
+
+' Add terrain data file to current scenario's terrain collection
+' Terrain data files traditionally have .dte extensions
+Dim terrain As IAgTerrain = elementCollection.Add(terrainFile, AgETerrainFileType.eArcInfoBinGridMSLFile)
+
+' Set Scenario to use terrain data file
+terrain.UseTerrain = True

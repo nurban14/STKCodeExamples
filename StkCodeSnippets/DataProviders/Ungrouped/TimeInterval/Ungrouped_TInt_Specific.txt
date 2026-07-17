@@ -1,0 +1,28 @@
+Matlab
+%% Extracting Specific Ungrouped Interval Data
+% IAgStkObjectRoot root: STK Object Model root
+% IAgSatellite satellite: Satellite object
+% IAgFacility facility: Facility object
+
+% Change DateFormat dimension to epoch seconds to make the data easier to handle in MATLAB
+root.UnitPreferences.Item('DateFormat').SetCurrentUnit('EpSec');
+
+% Get the current scenario
+scenario = root.CurrentScenario;
+% Set up the access object
+access = satellite.GetAccessToObject(facility);
+access.ComputeAccess;
+
+%Access Data Data Provider will only return Start Time and Stop Time
+elems = {'Start Time'; 'Stop Time'};
+% Get the Access AER Data Provider
+accessDP = access.DataProviders.Item('Access Data').ExecElements(scenario.StartTime, scenario.StopTime,elems);
+
+%Order in which datasets are imported matches how the order they are in STK
+%Integer in cast should align with this
+accessStartTimes = cell2mat(accessDP.DataSets.Item(cast(0, 'int32')).GetValues);
+accessStopTimes = cell2mat(accessDP.DataSets.Item(cast(1, 'int32')).GetValues);
+
+%Alternatively can use .GetDataSetByName() method
+accessStartTimes_2 = cell2mat(accessDP.DataSets.GetDataSetByName('Start Time').GetValues);
+accessStopTimes_2 = cell2mat(accessDP.DataSets.GetDataSetByName('Stop Time').GetValues);

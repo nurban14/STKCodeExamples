@@ -1,0 +1,26 @@
+Matlab
+
+% IAgStkObjectRoot root: STK Object Model root
+
+satellite = root.GetObjectFromPath('/Satellite/MySatellite');
+facility = root.GetObjectFromPath('/Facility/MyFacility');
+
+% For this code snippet, let's use the time interval when the satellite reached min and max altitude values.
+% Note, this assumes time at min happens before time at max.
+timeOfAltMin = satellite.Vgt.Events.Item('GroundTrajectory.Detic.LLA.Altitude.TimeOfMin');
+timeOfAltMax = satellite.Vgt.Events.Item('GroundTrajectory.Detic.LLA.Altitude.TimeOfMax');
+
+% Set the access time period with the times we figured out above.
+access = satellite.GetAccessToObject(facility);
+access.AccessTimePeriod = 'eUserSpecAccessTime';
+accessTimePeriod = access.AccessTimePeriodData;
+
+accessTimePeriod.AccessInterval.State = 'eCrdnSmartIntervalStateStartStop';
+
+accessStartEpoch = accessTimePeriod.AccessInterval.GetStartEpoch();
+accessStartEpoch.SetImplicitTime(timeOfAltMin);
+accessTimePeriod.AccessInterval.SetStartEpoch(accessStartEpoch);
+
+accessStopEpoch = accessTimePeriod.AccessInterval.GetStopEpoch();
+accessStopEpoch.SetImplicitTime(timeOfAltMax);
+accessTimePeriod.AccessInterval.SetStopEpoch(accessStopEpoch);

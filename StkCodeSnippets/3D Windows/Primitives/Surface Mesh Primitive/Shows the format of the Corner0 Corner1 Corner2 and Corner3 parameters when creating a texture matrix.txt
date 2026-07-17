@@ -1,0 +1,36 @@
+C#
+// IAgStkGraphicsSurfaceMeshPrimitive surfaceMesh: A surface mesh primitive
+
+Array lowerLeftCorner = new object[]
+{
+    -0.386182,
+    42.938583
+};
+Array lowerRightCorner = new object[]
+{
+    -0.375100,
+    42.929871
+};
+Array upperRightCorner = new object[]
+{
+    -0.333891,
+    42.944780
+};
+Array upperLeftCorner = new object[]
+{
+    -0.359980,
+    42.973438
+};
+
+surfaceMesh.TextureMatrix = sceneManager.Initializers.TextureMatrix.InitializeWithRectangles(
+    ref lowerLeftCorner, ref lowerRightCorner, ref upperRightCorner, ref upperLeftCorner);
+
+vbNet
+// IAgStkGraphicsSurfaceMeshPrimitive surfaceMesh: A surface mesh primitive
+
+Dim lowerLeftCorner As Array = New Object() {-0.386182, 42.938583}
+Dim lowerRightCorner As Array = New Object() {-0.3751, 42.929871}
+Dim upperRightCorner As Array = New Object() {-0.333891, 42.94478}
+Dim upperLeftCorner As Array = New Object() {-0.35998, 42.973438}
+
+surfaceMesh.TextureMatrix = sceneManager.Initializers.TextureMatrix.InitializeWithRectangles(lowerLeftCorner, lowerRightCorner, upperRightCorner, upperLeftCorner)

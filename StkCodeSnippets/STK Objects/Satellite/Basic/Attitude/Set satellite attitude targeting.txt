@@ -1,0 +1,7 @@
+Matlab
+% IAgSatellite satellite: Satellite object
+attitudePointing = satellite.Attitude.Pointing;
+attitudePointing.UseTargetPointing = 1;
+attitudePointing.Targets.RemoveAll;
+attitudePointing.Targets.Add('AreaTarget/MyAreaTarget');
+attitudePointing.TargetTimes.UseAccessTimes;

@@ -1,0 +1,119 @@
+C#
+// IAgReceiver facilityReceiver: Receiver object
+
+IAgStkObject xmtrAsStkObject = geoTransmitter as IAgStkObject;
+IAgStkObject rcvrAsStkObject = facilityReceiver as IAgStkObject;
+
+//Set the transmitter to the simple model
+geoTransmitter.ModelComponentLinking.SetComponent("Simple Transmitter Model");
+IAgTransmitterModelSimple simpleTrans = geoTransmitter.ModelComponentLinking.Component as IAgTransmitterModelSimple;
+
+//Set the simple transmitter model's frequency to 3.2 GHz
+simpleTrans.Frequency = 3.2;
+
+//Set the simple transmitter model's EIRP to 60 dBW
+simpleTrans.Eirp = 60.0;
+
+//Set the receiver to the simple model
+facilityReceiver.ModelComponentLinking.SetComponent("Simple Receiver Model");
+IAgReceiverModelSimple simpleRcvr = facilityReceiver.ModelComponentLinking.Component as IAgReceiverModelSimple;
+
+//Set the simple receiver model's G/T to 60 dB/K
+simpleRcvr.GOverT = 60.0;
+
+//Create an access object for the access between the transmitter and recevier objects
+IAgStkAccess linkAccess = xmtrAsStkObject.GetAccessToObject(rcvrAsStkObject);
+
+//Compute access
+linkAccess.ComputeAccess();
+
+// Get the access intervals
+IAgIntervalCollection accessIntervals = linkAccess.ComputedAccessIntervalTimes;
+
+// Extract the access intervals and the range information for each access interval
+Array dataPrvElements = new object[] { "Time", "Eb/No", "BER" };
+
+IAgDataPrvTimeVar dp = linkAccess.DataProviders["Link Information"] as IAgDataPrvTimeVar;
+
+for (int index0 = 0; index0 &lt; accessIntervals.Count; ++index0)
+{
+    object startTime = null, stopTime = null;
+    accessIntervals.GetInterval(index0, out startTime, out stopTime);
+
+    IAgDrResult result = dp.ExecElements(startTime, stopTime, 60, ref dataPrvElements);
+
+    Array timeValues = result.DataSets[0].GetValues();
+    Array ebno = result.DataSets[1].GetValues();
+    Array ber = result.DataSets[2].GetValues();
+
+    for (int index1 = 0; index1 &lt; timeValues.GetLength(0); ++index1)
+    {
+        string time = (string)timeValues.GetValue(index1);
+        double ebnoVal = (double)ebno.GetValue(index1);
+        double berVal = (double)ber.GetValue(index1);
+        Console.WriteLine("{0}: Eb/No={1} BER={2}", time, ebnoVal, berVal);
+    }
+
+    Console.WriteLine();
+}
+
+vbNet
+// IAgReceiver facilityReceiver: Receiver object
+
+Dim xmtrAsStkObject As IAgStkObject = TryCast(geoTransmitter, IAgStkObject)
+Dim rcvrAsStkObject As IAgStkObject = TryCast(facilityReceiver, IAgStkObject)
+
+'Set the transmitter to the simple model
+geoTransmitter.ModelComponentLinking.SetComponent("Simple Transmitter Model")
+Dim simpleTrans As IAgTransmitterModelSimple = TryCast(geoTransmitter.ModelComponentLinking.Component, IAgTransmitterModelSimple)
+
+'Set the simple transmitter model's frequency to 3.2 GHz
+simpleTrans.Frequency = 3.2
+
+'Set the simple transmitter model's EIRP to 60 dBW
+simpleTrans.Eirp = 60
+
+'Set the receiver to the simple model
+facilityReceiver.ModelComponentLinking.SetComponent("Simple Receiver Model")
+Dim simpleRcvr As IAgReceiverModelSimple = TryCast(facilityReceiver.ModelComponentLinking.Component, IAgReceiverModelSimple)
+
+'Set the simple receiver model's G/T to 60 dB/K
+simpleRcvr.GOverT = 60
+
+'Create an access object for the access between the transmitter and recevier objects
+Dim linkAccess As IAgStkAccess = xmtrAsStkObject.GetAccessToObject(rcvrAsStkObject)
+
+'Compute access
+linkAccess.ComputeAccess()
+
+' Get the access intervals
+Dim accessIntervals As IAgIntervalCollection = linkAccess.ComputedAccessIntervalTimes
+
+' Extract the access intervals and the range information for each access interval
+Dim dataPrvElements As Array = New Object() {"Time", "Eb/No", "BER"}
+
+Dim dp As IAgDataPrvTimeVar = TryCast(linkAccess.DataProviders("Link Information"), IAgDataPrvTimeVar)
+
+Dim index0 As Integer = 0
+While index0 &lt; accessIntervals.Count
+	Dim startTime As Object = Nothing, stopTime As Object = Nothing
+	accessIntervals.GetInterval(index0, startTime, stopTime)
+
+	Dim result As IAgDrResult = dp.ExecElements(startTime, stopTime, 60, dataPrvElements)
+
+	Dim timeValues As Array = result.DataSets(0).GetValues()
+	Dim ebno As Array = result.DataSets(1).GetValues()
+	Dim ber As Array = result.DataSets(2).GetValues()
+
+	Dim index1 As Integer = 0
+	While index1 &lt; timeValues.GetLength(0)
+		Dim time As String = DirectCast(timeValues.GetValue(index1), String)
+		Dim ebnoVal As Double = DirectCast(ebno.GetValue(index1), Double)
+		Dim berVal As Double = DirectCast(ber.GetValue(index1), Double)
+		Console.WriteLine("{0}: Eb/No={1} BER={2}", time, ebnoVal, berVal)
+		System.Threading.Interlocked.Increment(index1)
+	End While
+
+	Console.WriteLine()
+	System.Threading.Interlocked.Increment(index0)
+End While

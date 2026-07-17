@@ -1,0 +1,21 @@
+C#
+
+foreach (IAgUiWindow window in application.Windows)
+{
+    object oSvc = window.GetServiceByType(AgEWindowService.eWindowService3DWindow);
+    IAgUiWindowGlobeObject globeObject = oSvc as IAgUiWindowGlobeObject;
+    if (globeObject != null)
+    {
+        Console.WriteLine("Window Title: {0}, scene ID: {1}", window.Caption, globeObject.SceneID);
+    }
+}
+
+vbNet
+
+For Each window As IAgUiWindow In application.Windows
+	Dim oSvc As Object = window.GetServiceByType(AgEWindowService.eWindowService3DWindow)
+	Dim globeObject As IAgUiWindowGlobeObject = TryCast(oSvc, IAgUiWindowGlobeObject)
+	If globeObject IsNot Nothing Then
+		Console.WriteLine("Window Title: {0}, scene ID: {1}", window.Caption, globeObject.SceneID)
+	End If
+Next
